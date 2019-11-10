@@ -1,8 +1,8 @@
 const express = require('express');
 const os = require('os');
 const router = express.Router();
-// const db = require('../dbconnection')
-// const mysql = require('mysql')
+const db = require('../dbconnection')
+const mysql = require('mysql')
  
 router.get('/api/hello', (req, res) => {
     res.send({ message: 'Hello Express!' });
