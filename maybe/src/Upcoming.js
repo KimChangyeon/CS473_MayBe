@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './App.css';
-import Image from 'react-bootstrap/Image';
 import {Card} from 'react-bootstrap';
 import calendar from './img/hamburger_calendar.png';
 import statistics from './img/hamburger_statistics.png';
