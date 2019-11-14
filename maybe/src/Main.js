@@ -35,15 +35,15 @@ class Main extends Component {
     
     const appointment_list = 
     <Card className='app_list'>
-              <Card.Header><img src={timer} style={{width: '30px', height: '30px', marginRight: "10px"}}/><b>D-2</b></Card.Header>
-              <Card.Body>
-                <Card.Text>
-                  When? <br/>
-                  Where? <br/>
-                  Who? <br/>
-                  What? <br/>
-                </Card.Text>
-              </Card.Body>
+      <Card.Header><img src={timer} style={{width: '30px', height: '30px', marginRight: "10px"}}/><b>D-2</b></Card.Header>
+      <Card.Body>
+        <Card.Text>
+          When? <br/>
+          Where? <br/>
+          Who? <br/>
+          What? <br/>
+        </Card.Text>
+      </Card.Body>
     </Card>
 
     switch (main_stage) {
