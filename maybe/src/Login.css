@@ -1,0 +1,29 @@
+* {
+}
+
+.maybe {
+    font-weight: bolder;
+    font-size: 50px;
+}
+
+.IDPW {
+    width: 210px;
+    margin: 0px auto;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+
+.input-group-text{
+    width: 51px;
+    background-color: #ecdfcf;
+}
+
+Button {
+    width: 100px;
+}
+
+.--info {
+    color: #9bbfd7
+}
+
