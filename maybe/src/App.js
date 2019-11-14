@@ -1,13 +1,20 @@
 import React, {Component} from 'react';
 import './App.css';
 import Main from './Main'
+import Login from './Login'
 
 class App extends Component {
-  state = {
-    stage_id: 1,
-    stages: ['login', 'Main'],
+  
 
-  }
+  constructor(props){
+    super(props)
+    this.state = {
+      stage_id: 0,
+      stages: ['login', 'Main'],
+  
+    }
+    this.nextStage = this.nextStage.bind(this);
+}
 
   nextStage() {
     this.setState({stage_id: this.state.stage_id + 1});
@@ -18,11 +25,11 @@ class App extends Component {
     let content;
     switch (stage) {
         case 'login':
-          // content = <Login next_stage = {this.nextStage}/>;
-          content = 'login page'
+          content = <Login nextStage = {this.nextStage}/>;
+          // content = 'login page'
           break;
         case 'Main':
-          content = <Main next_stage = {this.nextStage}/>;
+          content = <Main nextStage = {this.nextStage}/>;
           break;
         default:
           alert('YOU SHOULD NOT BE HERE.') 
