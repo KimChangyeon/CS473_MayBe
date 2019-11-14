@@ -1,22 +1,36 @@
 import React, {Component} from 'react';
 import './App.css';
-import Upcoming from './Upcoming.js';
+import Main from './Main'
 
 class App extends Component {
   state = {
-    page_id: 0,
-    page : ['home','scenario','about','feedback'],
-    stage_id: 0,
-    stage : ['intro','discription'],
-    language_list : ['English', 'Korean'],
-    language: 0,
-    stopper: 0,
-    request: 0
+    stage_id: 1,
+    stages: ['login', 'Main'],
+
+  }
+
+  nextStage() {
+    this.setState({stage_id: this.state.stage_id + 1});
   }
 
   render () {
+    var stage = this.state.stages[this.state.stage_id];
+    let content;
+    switch (stage) {
+        case 'login':
+          // content = <Login next_stage = {this.nextStage}/>;
+          content = 'login page'
+          break;
+        case 'Main':
+          content = <Main next_stage = {this.nextStage}/>;
+          break;
+        default:
+          alert('YOU SHOULD NOT BE HERE.') 
+    }
     return (
-			<Upcoming/>
+      <div>
+			  {content}
+      </div>
     )
   }
 }
