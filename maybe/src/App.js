@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import './App.css';
 import {DropdownButton, Dropdown} from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
-import Schedule from './schedule';
+import DragSelect from './DragSelect';
+
 
 class App extends Component {
-
   state = {
     header: <header>
               <div className = "wrapper">
@@ -24,10 +24,10 @@ class App extends Component {
     language_list : ['English', 'Korean'],
     language: 0,
     stopper: 0,
-    request: 0
+    request: 0,
   }
-
   render () {
+    const {information} = this.state;
     return (
     <div>
       <header>
@@ -35,7 +35,7 @@ class App extends Component {
         <body>
 					<Bar title="bar"/>
           <div className='wrap'>
-            <Schedule name = "react"/>
+            <DragSelect/>
           </div>
         </body>  
       </header>

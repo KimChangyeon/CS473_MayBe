@@ -2,8 +2,16 @@
   "name": "maybe",
   "version": "0.1.0",
   "private": true,
+  "license": "SEE LICENSE IN license/LicenseAgreement.pdf",
   "dependencies": {
+    "@devexpress/dx-react-core": "^2.2.1",
+    "@devexpress/dx-react-scheduler": "^2.2.1",
+    "@devexpress/dx-react-scheduler-material-ui": "^2.2.1",
     "@expo/vector-icons": "^10.0.6",
+    "@material-ui/core": "^4.6.1",
+    "@material-ui/icons": "^4.5.1",
+    "daypilot-pro-react": "https://npm.daypilot.org/daypilot-pro-react/trial/2019.3.4012.tar.gz",
+    "material-ui-icons": "^1.0.0-beta.36",
     "morgan": "^1.9.1",
     "mysql": "^2.17.1",
     "native-base": "^2.13.8",
@@ -11,7 +19,8 @@
     "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.11.0",
     "react-script": "^2.0.5",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "react-table-drag-select": "^0.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
