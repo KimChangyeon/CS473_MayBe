@@ -1,40 +1,54 @@
+// https://www.chartjs.org/docs/latest/axes/styling.html#tick-configuration
+
 import React, {Component} from 'react';
 import './App.css';
-import { Radar } from "react-chartjs-2";
+import { Radar, Doughnut } from "react-chartjs-2";
 import { MDBContainer } from "mdbreact";
+import rewards from "./img/reward.png";
 
 class Statistics_Monthly extends Component {
     state = {
         stage_id: 3,
-        
         dataRadar: {
-            labels: ["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"],
-            datasets: [
-              {
-                label: "My First dataset",
-                backgroundColor: "rgba(194, 116, 161, 0.5)",
-                borderColor: "rgb(194, 116, 161)",
-                data: [65, 59, 90, 81, 56, 55, 40]
-              },
-              {
-                label: "My Second dataset",
-                backgroundColor: "rgba(71, 225, 167, 0.5)",
-                borderColor: "rgb(71, 225, 167)",
-                data: [28, 48, 40, 19, 96, 27,100]
-              }
-            ]
-          }
+            labels: ["Rewards", "Punctuality", "Avg. Satisfaction", "# of Friends You've Met", "# of Appointments"],
+            datasets: [{
+                // label: "Overall Score",
+                backgroundColor: "rgba(155, 191, 215, 0.6)",
+                borderColor: "rgb(155, 191, 215)",
+                data: [75, 59, 80, 61, 40]
+            }]
+          },
+          dataDoughnut: {
+            labels: ["",""],
+            datasets: [{
+                backgroundColor: ["#cc9880","#ecdfcf"],
+                data: [70,30]
+            }]
+          },
 	}
 
 	content () {
 		return (
-			<body className="BodyContent">
-				abc
-                {<MDBContainer>
-                    <h3 className="mt-5">Radar chart</h3>
-                    <Radar data={this.state.dataRadar} options={{ responsive: true }} />
-                </MDBContainer>}
-			</body>
+			<div className="BodyContent">
+                <h5 style={{marginLeft: "15px"}}>Rewards
+                    <img id="rewards" src={rewards} alt="rewards img" style={{marginLeft: "10px", marginRight: "10px", width: "25px"}}/>
+                    125pt
+                </h5>
+                <MDBContainer>
+                    <h5 className="mt-5">Overall Score</h5>
+                    <Radar data={this.state.dataRadar}
+                           options={{ responsive: true, scale:
+                            {ticks: {max:100, min:0, stepsize:20, display: false}}}}
+                           legend={{ display: false }}/>
+                </MDBContainer>
+                <h5 style={{marginTop: "30px", marginLeft: "15px"}}>Top5 Frequently Met Friends</h5>
+                <MDBContainer>
+                    <Doughnut data={this.state.dataDoughnut}
+                              options={{ responsive: true }}
+                              legend={{ display: false}}
+                              />
+                </MDBContainer>
+			</div>
 		)
 	}
 
