@@ -7,6 +7,8 @@
     width: 500px;
     text-align: center;
     margin: 0px auto;
+    margin-top: 75px;
+    margin-left: 23px;
 }
 
 .IDPW {
@@ -24,10 +26,24 @@
 }
 
 Button {
-    width: 100px;
+    width: 120px;
 }
 
-.--info {
-    color: #9bbfd7
+.btn-flat {
+    background-color: #9bbfd7;
+    color: white;
 }
+
+.btn-outlineflat {
+    border-color: #9bbfd7;
+    color: #9bbfd7;
+}
+
+#login_calendar {
+    width: 50px;
+    position: relative;
+    left: 135px;
+    top: 137px;
+}
+
 
