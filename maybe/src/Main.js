@@ -61,7 +61,7 @@ class Main extends Component {
 		let bar
 		let button;
 		let content;
-
+    
     switch (main_stage) {
       case ('upcoming'):
 				button = <img className="makeapp" src={makeapp} onClick={() => this.nextStage(1)}/>;
