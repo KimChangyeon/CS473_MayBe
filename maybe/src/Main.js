@@ -1,20 +1,28 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
-import './App.css';
-import Make from './Make.js';
 import {Card} from 'react-bootstrap';
-import {ButtonGroup, Button} from 'react-bootstrap';
+import './App.css';
+
+/* Classes */
+import Make from './Make.js';
+import Schedule from './Schedule.js';
+import Statistics from './Statistics.js';
+
+/* Icons */
 import calendar from './img/hamburger_calendar.png';
 import statistics from './img/hamburger_statistics.png';
 import timer from './img/appointment_list_timer.png';
-import makeapp from './img/button_make_appointment.png';
-import friendlist from './img/friend_list_tab_friend_light.png';
-import timeslot from './img/friend_list_tab_calendar_dark.png';
+import listbutton from './img/button_friend_list.png';
+import gps from './img/appointment_list_gps_location.png';
 
 class Main extends Component {
-	state = {
-			stage_id: 0,
-			stages : ['upcoming','make','schedule','statistics']
+	constructor (props) {
+		super(props);
+		this.state = {
+				stage_id: 0,
+				stages : ['upcoming','make','schedule','statistics']
+		}
+		this.nextStage = this.nextStage.bind(this);
 	}
 
   nextStage(number) {
@@ -44,6 +52,7 @@ class Main extends Component {
 			<Card className='app_list' bg="light" border="dark">
 				<Card.Header><img src={timer} style={{width: '30px', height: '30px', marginRight: "10px"}}/><b>D-{dday}</b></Card.Header>
 				<Card.Body>
+					<img src={gps} style={{width: '90px', marginTop: '5px', float: 'right'}}/>
 					<Card.Text>
 						When? <br/>
 						Where? <br/>
@@ -57,48 +66,38 @@ class Main extends Component {
 
   render () {
     var main_stage = this.state.stages[this.state.stage_id];
-		let header;
-		let bar
 		let button;
+		let bar;
+		let header;
+		let body;
 		let content;
     
     switch (main_stage) {
       case ('upcoming'):
-				button = <img className="makeapp" src={makeapp} onClick={() => this.nextStage(1)}/>;
+				button = <img className="listbutton" src={listbutton} onClick={() => this.nextStage(1)}/>;
 				bar = <div className="Bar">Upcoming Schedules</div>;
 				header = this.header(bar, button);
-        content = 
-          <div>
-            <body className="BodyContent"> 
-							<li>{this.appointment_list(2)}</li>
-							<li>{this.appointment_list(3)}</li>
-							<li>{this.appointment_list(4)}</li>
-							<li>{this.appointment_list(5)}</li>
-							<li>{this.appointment_list(6)}</li>
-            </body>
-          </div>
+        body =
+					<body className="Body"> 
+						<li>{this.appointment_list(2)}</li>
+						<li>{this.appointment_list(3)}</li>
+						<li>{this.appointment_list(4)}</li>
+						<li>{this.appointment_list(5)}</li>
+						<li>{this.appointment_list(6)}</li>
+					</body>
+				content = <div>{header}{body}</div>;
         break;
 
       case ('make'):
-				bar =
-					<ButtonGroup id="Tap" size='lg' style={{top: "-12px", width: "100%", height: "50px"}}>
-						<Button id="Button1"><img src={friendlist}/></Button>
-						<Button id="Button2"><img src={timeslot}/></Button>
-					</ButtonGroup>
-				header = this.header(bar, null);
-        content = <Make nextStage = {this.nextStage} header = {this.state.header}/>
+        content = <Make nextStage = {this.nextStage} header = {this.header}/>
         break;
 
       case ('schedule'):
-				bar = <div className="Bar">Schedules</div>;
-				header = this.header(bar, null);
-        // content = <Schedule nextStage = {this.nextStage} header = {this.state.header}/>
+      	content = <Schedule nextStage = {this.nextStage} header = {this.header}/>
         break;
 
       case ('statistics'):
-				bar = <div className="Bar">Statistics</div>;
-				header = this.header(bar, null);
-        // content = <Statistics nextStage = {this.nextStage} header = {this.state.header}/>
+        content = <Statistics nextStage = {this.nextStage} header = {this.header}/>
         break;
 
       default:
@@ -106,10 +105,7 @@ class Main extends Component {
     }
 
     return (
-    <div>
-			{header}
-      {content}  
-    </div>
+				content
     )
   }
 }
