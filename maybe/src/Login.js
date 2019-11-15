@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
-import './Login.css';
-import './App.css'
+import React, {Component} from 'react'
+import './Login.css'
 import {Button, InputGroup, FormControl} from 'react-bootstrap'
 import calendar from "./img/login_calendar.png"
 
@@ -10,7 +9,7 @@ class Login extends Component {
         return (
         <div>
             <img id="login_calendar" src={calendar}/>
-            <div className="maybe Darkbrown">MayBe</div>
+            <div className="maybe">MayBe</div>
             <form>
                 <div className="IDPW">
                     <InputGroup style={{marginBottom : "20px", width : "50%", marginLeft: "25%"}}>

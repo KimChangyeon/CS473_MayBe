@@ -68,15 +68,13 @@ class Main extends Component {
 				bar = <div className="Bar">Upcoming Schedules</div>;
 				header = this.header(bar, button);
         content = 
-          <div>
-            <body className="BodyContent"> 
+            <div className="BodyContent"> 
 							<li>{this.appointment_list(2)}</li>
 							<li>{this.appointment_list(3)}</li>
 							<li>{this.appointment_list(4)}</li>
 							<li>{this.appointment_list(5)}</li>
 							<li>{this.appointment_list(6)}</li>
-            </body>
-          </div>
+            </div>
         break;
 
       case ('make'):
