@@ -8,7 +8,7 @@ class Login extends Component {
     render() {
         return (
         <div>
-            <img id="login_calendar" src={calendar}/>
+            <img id="login_calendar" src={calendar} alt="logo calendar" />
             <div className="maybe">MayBe</div>
             <form>
                 <div className="IDPW">

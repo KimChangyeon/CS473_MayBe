@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Make from './Make.js';
+import Statistics_Monthly from './Statistics_Monthly';
 import {Card} from 'react-bootstrap';
 import {ButtonGroup, Button} from 'react-bootstrap';
 import calendar from './img/hamburger_calendar.png';
@@ -13,8 +14,8 @@ import timeslot from './img/friend_list_tab_calendar_dark.png';
 
 class Main extends Component {
 	state = {
-			stage_id: 0,
-			stages : ['upcoming','make','schedule','statistics']
+		stage_id: 0,
+		stages : ['upcoming','make','schedule','statistics']
 	}
 
   nextStage(number) {
@@ -57,24 +58,24 @@ class Main extends Component {
 
   render () {
     var main_stage = this.state.stages[this.state.stage_id];
-		let header;
-		let bar
-		let button;
-		let content;
+	let header;
+	let bar
+	let button;
+	let content;
     
     switch (main_stage) {
-      case ('upcoming'):
-				button = <img className="makeapp" src={makeapp} onClick={() => this.nextStage(1)}/>;
-				bar = <div className="Bar">Upcoming Schedules</div>;
-				header = this.header(bar, button);
-        content = 
-            <div className="BodyContent"> 
-							<li>{this.appointment_list(2)}</li>
-							<li>{this.appointment_list(3)}</li>
-							<li>{this.appointment_list(4)}</li>
-							<li>{this.appointment_list(5)}</li>
-							<li>{this.appointment_list(6)}</li>
-            </div>
+    	case ('upcoming'):
+			button = <img className="makeapp" src={makeapp} onClick={() => this.nextStage(1)} />;
+			bar = <div className="Bar">Upcoming Schedules</div>;
+			header = this.header(bar, button);
+        	content = 
+            	<body className="BodyContent"> 
+					<li>{this.appointment_list(2)}</li>
+					<li>{this.appointment_list(3)}</li>
+					<li>{this.appointment_list(4)}</li>
+					<li>{this.appointment_list(5)}</li>
+					<li>{this.appointment_list(6)}</li>
+            	</body>
         break;
 
       case ('make'):
@@ -94,9 +95,9 @@ class Main extends Component {
         break;
 
       case ('statistics'):
-				bar = <div className="Bar">Statistics</div>;
-				header = this.header(bar, null);
-        // content = <Statistics nextStage = {this.nextStage} header = {this.state.header}/>
+			bar = <div className="Bar">Statistics</div>;
+			header = this.header(bar, null);
+			content = <Statistics_Monthly nextStage = {this.nextStage} header = {this.state.header}/>
         break;
 
       default:
@@ -105,8 +106,8 @@ class Main extends Component {
 
     return (
     <div>
-			{header}
-      {content}  
+		{header}
+    	{content}  
     </div>
     )
   }
