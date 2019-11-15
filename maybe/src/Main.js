@@ -6,7 +6,7 @@ import './App.css';
 /* Classes */
 import Make from './Make.js';
 import Schedule from './Schedule.js';
-import Statistics from './Statistics.js';
+import Statistics_Monthly from './Statistics_Monthly.js';
 
 /* Icons */
 import calendar from './img/hamburger_calendar.png';
@@ -97,16 +97,14 @@ class Main extends Component {
         break;
 
       case ('statistics'):
-        content = <Statistics nextStage = {this.nextStage} header = {this.header}/>
+        content = <Statistics_Monthly nextStage = {this.nextStage} header = {this.header}/>
         break;
 
       default:
         alert('YOU SHOULD NOT BE HERE IN MAIN PAGE.');
     }
 
-    return (
-				content
-    )
+    return (content);
   }
 }
 
