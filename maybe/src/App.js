@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import {DropdownButton, Dropdown} from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
+import Schedule from './schedule';
 
 class App extends Component {
 
@@ -34,7 +35,7 @@ class App extends Component {
         <body>
 					<Bar title="bar"/>
           <div className='wrap'>
-            main page sample.
+            <Schedule name = "react"/>
           </div>
         </body>  
       </header>
