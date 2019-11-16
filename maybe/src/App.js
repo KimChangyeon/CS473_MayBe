@@ -32,11 +32,7 @@ class App extends Component {
         default:
           alert('YOU SHOULD NOT BE HERE.') 
     }
-    return (
-      <div>
-			  {content}
-      </div>
-    )
+    return content;
   }
 }
 
