@@ -9,13 +9,14 @@ import friendlist_dark from './img/friend_list_tab_friend_dark.png';
 import timeslot_light from './img/friend_list_tab_calendar_light.png';
 import timeslot_dark from './img/friend_list_tab_calendar_dark.png';
 import complete from './img/button_complete.png';
+import cancel from './img/button_cancel.png';
 
 class Make extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			stage_id: 0,
-			stages: ['list','slot','choose','vote']
+			stages: ['list','slot','choose']
 		}
 		this.nextStage = this.nextStage.bind(this);
 	}
@@ -58,15 +59,15 @@ class Make extends Component {
 				break;
 
 			case 'choose':
-				button = <img className="complete" src={complete} onClick={()=>this.props.nextStage(0)}/>;
+				button =
+					<ul>
+						<li> <img className="complete" src={complete} onClick={()=>this.props.nextStage(0)}/> </li>
+						<li> <img className="cancel" src={cancel} onClick={()=>this.props.nextStage(0)}/> </li>
+					</ul>
 				bar = <div className="Bar">Choose Available Time Slots</div>;
 				header = this.props.header(bar, button);
 				body = <body className="Body">choose</body>;
 				content = <div>{header}{body}</div>;
-				break;
-
-			case 'vote':
-				content = <body className="Body">vote</body>
 				break;
 
       default:

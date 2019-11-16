@@ -80,7 +80,14 @@ body{
 
 .complete {
 	position: absolute;
-	left: 300px;
+	right: 50px;
+	top: 600px;
+	width: 180px;	
+}
+
+.cancel {
+	position: absolute;
+	left: 50px;
 	top: 600px;
 	width: 180px;	
 }
@@ -106,4 +113,37 @@ body{
 #Button2 {
 	background-color: white;
 	border-color: #564c4d;
+}
+
+.content-left {
+	text-align: center;
+	content-align: center;
+	border-right: 1px solid;
+	border-color: #8a8686;
+	width: 25%;
+	word-break: keep-all;
+}
+
+.content-right {
+	text-align: center;
+	width: 25%;
+	word-break: keep-all;
+}
+
+.content-left li {
+	margin: 5px;
+}
+
+hr {
+	margin: 10px;
+}
+
+.card-header {
+	padding-top: 7px;
+	padding-bottom: 7px;
+	padding-left: 12px;
+}
+
+.card-body {
+	padding: 15px;
 }
