@@ -47,8 +47,12 @@ class Main extends Component {
 						<h1 className="Darkblue" onClick={()=>this.nextStage(0)}><a href="#">MayBe</a></h1>
 						<nav>
 							<ul className="menu">
-								<li><a href="#"><img src={statistics} onClick={()=>this.nextStage(3)}/></a></li>
-								<li><a href="#"><img src={calendar} onClick={()=>this.nextStage(2)}/></a></li>
+								<li><a href="#">
+									<img src={statistics} onClick={()=>this.nextStage(3)} alt="statistics" />
+								</a></li>
+								<li><a href="#">
+									<img src={calendar} onClick={()=>this.nextStage(2)} alt="schedule" />
+								</a></li>
 							</ul>
 						</nav>
 				</div>
@@ -61,7 +65,7 @@ class Main extends Component {
 	appointment_list(dday) {
 		return (
 				<Card className='app_list' bg="light" border="dark">
-					<Card.Header><img src={timer} style={{width: "20px", marginRight: "10px"}}/>
+					<Card.Header><img src={timer} style={{width: "20px", marginRight: "10px"}} alt="Appointment" />
 						<b> D-{dday} &nbsp; &nbsp;</b>
 						Dinner Party
 					</Card.Header>
@@ -70,7 +74,7 @@ class Main extends Component {
 						<div className="content-left"><b>When</b><hr/>
 							<a href="#">
 								<img src={checkbox} style={{width: "50%", marginLeft: "12px", marginTop: "8px"}}
-									onClick={()=>this.nextStage(4)}/>
+									onClick={()=>this.nextStage(4)} alt="When" />
 							</a>
 						</div>
 						<div className="content-left"><b>Who</b><hr/>
@@ -80,11 +84,11 @@ class Main extends Component {
 						<div className="content-left"><b>Where</b><hr/>
 							<a href="#">
 								<img src={gps} style={{width: "65%"}}
-									onClick={()=>this.nextStage(5)}/>
+									onClick={()=>this.nextStage(5)} alt="Where" />
 							</a>
 						</div>
 						<div className="content-right"><b>What</b><hr/>
-							<img src={align} style={{width: "45%", marginTop: "13px"}}/>
+							<img src={align} style={{width: "45%", marginTop: "13px"}} alt="What"/>
 						</div>
 					</div>
 					</Card.Body>
@@ -102,7 +106,8 @@ class Main extends Component {
     
     switch (main_stage) {
       case ('upcoming'):
-				button = <img className="listbutton" src={listbutton} onClick={() => this.nextStage(1)}/>;
+				button = <img className="listbutton" src={listbutton} alt="Go to List"
+							onClick={() => this.nextStage(1)} />;
 				bar = <div className="Bar">Upcoming Schedules</div>;
 				header = this.header(bar, button);
         body =

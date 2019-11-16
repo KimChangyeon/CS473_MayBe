@@ -24,11 +24,10 @@ class Location extends Component {
 	render () {
 		const button =
 			<ul>
-				<li>
-					<img className="complete" src={complete}
-						onClick={()=>{this.props.setMarker(this.state); this.props.nextStage(0)}}/>
-				</li>
-				<li> <img className="cancel" src={cancel} onClick={()=>this.props.nextStage(0)}/> </li>
+				<li> <img className="complete" src={complete} alt="Complete"
+						  onClick={()=>{this.props.setMarker(this.state); this.props.nextStage(0)}}/> </li>
+        <li> <img className="cancel" src={cancel} alt="Cancel"
+              onClick={()=>this.props.nextStage(0)}/> </li>
 			</ul>
     const bar = <div className="Bar">Choose Meeting Point</div>;
     const header = this.props.header(bar,button);
