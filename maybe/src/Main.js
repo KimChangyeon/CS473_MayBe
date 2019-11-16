@@ -59,24 +59,24 @@ class Main extends Component {
 						D-{dday}
 					</Card.Header>
 					<Card.Body>
-					<div class="row">
-						<div class="content-left"><b>When</b><hr/>
+					<div className="row">
+						<div className="content-left"><b>When</b><hr/>
 							<a href="#">
 								<img src={checkbox} style={{width: "50%", marginLeft: "12px", marginTop: "8px"}}
 									onClick={()=>this.nextStage(4)}/>
 							</a>
 						</div>
-						<div class="content-left"><b>Who</b><hr/>
+						<div className="content-left"><b>Who</b><hr/>
 							<li>Sangho Lim</li>
 							<li>Changyeon Kim</li>
 						</div>
-						<div class="content-left"><b>Where</b><hr/>
+						<div className="content-left"><b>Where</b><hr/>
 							<a href="#">
 								<img src={gps} style={{width: "65%"}}
 									onClick={()=>this.nextStage(5)}/>
 							</a>
 						</div>
-						<div class="content-right"><b>What</b><hr/>
+						<div className="content-right"><b>What</b><hr/>
 							<img src={align} style={{width: "45%", marginTop: "13px"}}/>
 						</div>
 					</div>

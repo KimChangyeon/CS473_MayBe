@@ -1,0 +1,41 @@
+h5 {
+    margin-left: 15px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+#rewards {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+/* horizontally centered */
+.frequent_friends {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.freq_friend {
+    height: 140px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.freq_friend_name {
+    text-align: center;
+}
+
+.friend_doughnut {
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+
+.freq_time {
+    text-align: center;
+    position: relative;
+    top: -80px;
+}
