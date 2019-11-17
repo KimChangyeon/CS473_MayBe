@@ -3,6 +3,7 @@ import './App.css';
 import {DropdownButton, Dropdown} from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
 import DragSelect from './DragSelect';
+import Weekly from './weekly'
 
 
 class App extends Component {
@@ -33,9 +34,9 @@ class App extends Component {
       <header>
         {this.state.header}
         <body>
-					<Bar title="bar"/>
+					{/* <Bar title="bar"/> */}
           <div className='wrap'>
-            <DragSelect/>
+            <Weekly/>
           </div>
         </body>  
       </header>
