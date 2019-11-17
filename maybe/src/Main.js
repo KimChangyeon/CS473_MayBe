@@ -65,10 +65,9 @@ class Main extends Component {
 
 	appointment_list(dday) {
 		return (
-				<Card className='app_list' bg="light" border="dark">
-					<Card.Header><img src={timer} style={{width: "20px", marginRight: "10px"}} alt="Appointment" />
-						<b> D-{dday} &nbsp; &nbsp;</b>
-						Dinner Party
+				<Card className='app_list'>
+					<Card.Header><img src={timer} style={{width: "20px", marginRight: "10px", textcolor: "white"}}/>
+						<b> D-{dday} &nbsp;&nbsp; Dinner Party</b>
 					</Card.Header>
 					<Card.Body>
 					<div className="row">
