@@ -34,6 +34,7 @@ class Login extends Component {
             //     this.props.nextStage()
             // else
             //     alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
+            this.props.nextStage();
         }
     }
 
