@@ -29,6 +29,7 @@ class Main extends Component {
 		super(props);
 		this.state = {
 			initialCenter: { lat: 36.368, lng: 127.355 },
+			user_id: this.props.user_id,
 			marker: { lat: 36.3636944, lng: 127.359529 },
 			place: null,
 			memo: null,
