@@ -4,18 +4,19 @@ import './Statistics_Friend.css';
 import { Bar } from "react-chartjs-2";
 import { ListGroup } from 'react-bootstrap';
 
-import satisfaction from './img/statistics_satisfaction.png';
-import recent from './img/statistics_recent.png';
-import last_date from './img/statistics_last_date.png';
-import last_location from './img/statistics_last_location.png';
+import satisfaction_img from './img/statistics_satisfaction.png';
+import recent_img from './img/statistics_recent.png';
+import last_date_img from './img/statistics_last_date.png';
+import last_location_img from './img/statistics_last_location.png';
 
 class Statistics_Friend extends Component {
     state = {
         name: "Sangho Lim",
-        total_times: 300,
+        total_times: 726,
         satisfaction: 98,
+        recent: 5,
         last_date: "Nov 17",
-        last_place: "KAIST Library",
+        last_location: "KAIST Library",
 
         data_bar: {
             labels: [
@@ -42,24 +43,24 @@ class Statistics_Friend extends Component {
                     />
                 <ListGroup variant="flush">
                     <ListGroup.Item>
-                        <img id="icon" src={satisfaction} alt="satisfaction" />
-                        <span>Satisfaction</span>
+                        <img id="icon" src={satisfaction_img} alt="satisfaction" />
+                        <b>Satisfaction</b>
                         <span className="value">{this.state.satisfaction}%</span>
                     </ListGroup.Item>
                     <ListGroup.Item>
-                        <img id="icon" src={recent} alt="recent # of appointments" />
-                        <span># of Recent Meetings Last Week</span>
-                        <span className="value"></span>
+                        <img id="icon" src={recent_img} alt="recent # of appointments" />
+                        <b>Number of Recent Meetings Last Week</b>
+                        <span className="value">{this.state.recent} times</span>
                     </ListGroup.Item>
                     <ListGroup.Item>
-                        <img id="icon" src={last_date} alt="last date" />
-                        <span>Last Meeting Date</span>
-                        <span className="value"></span>
+                        <img id="icon" src={last_date_img} alt="last date" />
+                        <b>Last Meeting Date</b>
+                        <span className="value">{this.state.last_date}</span>
                     </ListGroup.Item>
                     <ListGroup.Item>
-                        <img id="icon" src={last_location} alt="last location" />
-                        <span>Last Meeting Point</span>
-                        <span className="value"></span>
+                        <img id="icon" src={last_location_img} alt="last location" />
+                        <b>Last Meeting Point</b>
+                        <span className="value">{this.state.last_location}</span>
                     </ListGroup.Item>
                 </ListGroup>
             </div>
