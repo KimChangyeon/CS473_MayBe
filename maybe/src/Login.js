@@ -28,7 +28,8 @@ class Login extends Component {
             .catch((error)=>{
                 console.log('Error fetching man',error);
             });
-
+        
+        this.setState({l: 0});
         if (this.state.l === 0){
             if (pw.length <= 0)
                 alert('YOU SHOULD WRITE YOUR PASSWORD.');
