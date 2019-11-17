@@ -1,0 +1,16 @@
+.month {
+    height: 30px;
+    width:550px
+}
+
+.timeslot {
+    border-right: solid 1px rgb(48, 45, 46);
+    height : 70px
+}
+th{
+    width: 100px;
+    height : 50px
+}
+table {
+    font-size: 13px;
+}

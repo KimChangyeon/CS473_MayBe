@@ -1,0 +1,47 @@
+/* Cells that can be interacted with */
+.table-drag-select td.cell-enabled {
+    color: #806E52;
+    height:30px;
+    border : 1px solid pink;
+  }
+  
+  /* Cells that cannot be interacted with */
+  .table-drag-select td.cell-disabled {
+    /* Put yer css here */
+    width: 100px
+  }
+  
+  /* Cells that have been selected */
+  .table-drag-select td.cell-selected {
+    background-color: #FBD5D4;
+  }
+  
+  /* Cells that are in the process of being selected */
+  .table-drag-select td.cell-being-selected {
+    background-color: #EACA96;
+  }
+  
+  /* Cells in first row */
+  .table-drag-select tr:first-child td {
+    /* Remove empty space at top of table */
+    border-top: 100;
+    line-height: 50px;
+    font-size: 15px;
+    font-family: arial;
+	  font-weight: bolder;
+    width:11%;
+  }
+  
+  /* Cells in first column */
+  .table-drag-select td:first-child {
+    /* Consume less whitespace */
+    width: 50px;
+    height: 25px;
+    font-size: 15px;
+    font-family: arial;
+	  font-weight: bolder;
+  }
+  .Button{
+    width: 100%;
+    height: 100%;
+  }

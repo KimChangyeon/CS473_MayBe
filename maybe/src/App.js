@@ -1,7 +1,13 @@
 import React, {Component} from 'react';
 import './App.css';
+
 import Main from './Main'
 import Login from './Login'
+import Weekly from './weekly'
+import DragSelect from './DragSelect';
+
+import {DropdownButton, Dropdown} from 'react-bootstrap';
+import Image from 'react-bootstrap/Image';
 
 class App extends Component {
   constructor(props){
@@ -12,12 +18,12 @@ class App extends Component {
   
     }
     this.nextStage = this.nextStage.bind(this);
-}
+  }
 
   nextStage() {
     this.setState({stage_id: this.state.stage_id + 1});
   }
-
+  
   render () {
     var stage = this.state.stages[this.state.stage_id];
     let content;
