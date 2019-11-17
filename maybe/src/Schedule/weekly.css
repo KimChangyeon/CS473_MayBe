@@ -27,9 +27,7 @@
 }
 
 .MuiGrid-container {
-    width: 10px;
-    display: flex;
-    box-sizing: border-box;
+    width: 500px;
 }
 
 .MuiPickersToolbarButton-toolbarBtn {
