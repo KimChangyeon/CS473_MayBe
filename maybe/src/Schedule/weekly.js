@@ -7,16 +7,18 @@ import {
   AppointmentForm,
   AppointmentTooltip,
   WeekView,
+  MonthView,
   EditRecurrenceMenu,
   AllDayPanel,
-  DragDropProvider,
   ConfirmationDialog,
+  Toolbar,
+  ViewSwitcher
 } from '@devexpress/dx-react-scheduler-material-ui';
 import { appointments } from './Data';
 import './weekly.css'
 
 
-const currentDate = new Date(2019,11,26,10,33);
+const currentDate = new Date(2019,9,26,10,33);
 
 export default class Demo extends React.PureComponent {
   constructor(props) {
@@ -24,12 +26,17 @@ export default class Demo extends React.PureComponent {
     this.state = {
       data: appointments,
       currentDate: currentDate,
+      currentViewName : 'Week',
 
       addedAppointment: {},
       appointmentChanges: {},
       editingAppointmentId: undefined,
     };
 
+    this.currentViewNameChange = (currentViewName) => {
+      console.log(this.state.currentViewName)
+      this.setState({currentViewName})
+    }
     this.commitChanges = this.commitChanges.bind(this);
     this.changeAddedAppointment = this.changeAddedAppointment.bind(this);
     this.changeAppointmentChanges = this.changeAppointmentChanges.bind(this);
@@ -58,7 +65,8 @@ export default class Demo extends React.PureComponent {
       if (changed) {
         data = data.map(appointment => (
           changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment));
-      }
+          console.log(data)
+        }
       if (deleted !== undefined) {
         data = data.filter(appointment => appointment.id !== deleted);
       }
@@ -68,7 +76,7 @@ export default class Demo extends React.PureComponent {
 
   render() {
     const {
-      currentDate, data, addedAppointment, appointmentChanges, editingAppointmentId,
+      currentDate, data, currentViewName, addedAppointment, appointmentChanges, editingAppointmentId,
     } = this.state;
 
     return (
@@ -79,6 +87,8 @@ export default class Demo extends React.PureComponent {
         >
           <ViewState
             currentDate={currentDate}
+            currentViewName = {currentViewName}
+            onCurrentViewNameChange = {this.currentViewNameChange}
           />
           <EditingState
             onCommitChanges={this.commitChanges}
@@ -96,6 +106,9 @@ export default class Demo extends React.PureComponent {
             startDayHour={9}
             endDayHour={22}
           />
+          <MonthView />
+          <Toolbar />
+          <ViewSwitcher />
           <AllDayPanel />
           <EditRecurrenceMenu />
           <ConfirmationDialog />
@@ -103,9 +116,8 @@ export default class Demo extends React.PureComponent {
           <AppointmentTooltip
             showOpenButton
             showDeleteButton
-            width = {50}
           />
-          <AppointmentForm />
+          <AppointmentForm  style = {{width:500}}/>
         </Scheduler>
       </Paper>
     );
