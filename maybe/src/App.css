@@ -151,3 +151,10 @@ hr {
 	padding: 15px;
 	background-color: #fffcfc;
 }
+
+/* horizontally centered */
+.horizontal_center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

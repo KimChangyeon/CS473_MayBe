@@ -7,7 +7,18 @@ const mysql = require('mysql')
 router.get('/api/hello', (req, res) => {
     res.send({ message: 'Hello Express!' });
     });
-    
+
+router.get('/login/:id/:pw', (req, res) => {
+        var query = "SELECT UserId FROM MayBe.User WHERE Username = ? and password = ?"
+        db.query(query, [req.params.id, req.params.pw], (err, rows) => {
+            if (!err) {
+                res.send({data: rows});
+            }
+            else {
+                res.send({data: err});
+            }
+        })
+    });
 // router.get('/api/getUsername', (req, res, next) => {
 //     res.send({ username: os.userInfo().username });
 // });
