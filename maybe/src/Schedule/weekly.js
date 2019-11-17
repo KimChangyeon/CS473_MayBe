@@ -105,6 +105,8 @@ export default class Demo extends React.PureComponent {
       currentDate, data, addedAppointment, appointmentChanges, editingAppointmentId,
     } = this.state;
 
+    this.importData();
+
     return (
       <Paper>
         <Scheduler
