@@ -19,6 +19,16 @@ class Login extends Component {
 
     login_process ()  {
         const pw = this.state.pw
+        var url_final = '/login/'.concat(this.state.id).concat('/').concat(this.state.pw);
+            fetch(url_final)
+                .then(res => res.json())
+                .then(answer => this.setState({result: answer.data[0]}))
+            .catch((error)=>{
+                console.log('Error fetching man',error);
+            });
+
+        setTimeout(function(){
+        }, 500); 
         if (pw.length <= 0)
             alert('YOU SHOULD WRITE YOUR PASSWORD.');
         else
@@ -39,13 +49,6 @@ class Login extends Component {
 
     handlePw() {
         this.setState({pw: this.pw.current.value});
-        var url_final = '/login/'.concat(this.state.id).concat('/').concat(this.state.pw);
-            fetch(url_final)
-                .then(res => res.json())
-                .then(answer => this.setState({result: answer.data[0]}))
-            .catch((error)=>{
-                console.log('Error fetching man',error);
-            });
     }
 
     render() {
