@@ -26,7 +26,7 @@ class Login extends Component {
             var url_final = '/login/'.concat(this.state.id).concat('/').concat(this.state.pw);
             fetch(url_final)
                 .then(res => res.json())
-                .then(answer => result = answer.data)
+                .then(answer => console.log(answer.data))
             .catch((error)=>{
                 console.log('Error fetching man',error);
             });
