@@ -65,17 +65,15 @@ export default class Weekly extends React.PureComponent {
     this.changeEditingAppointmentId = this.changeEditingAppointmentId.bind(this);
   }
 
-  importData () {
-    var url_final = '/sch/'.concat(this.props.user_id);
-    console.log(url_final);
-    fetch(url_final)
-        .then(res => res.json())
-        .then(wow => console.log(handling_appointments(wow.data)))
-        // .then(answer => this.setState({data: handling_appointments(answer.data)}))        
-    .catch((error)=>{
-        console.log('Error fetching man',error);
-    });
-    // console.log(this.state.data);
+  componentDidMount () {
+      var url_final = '/sch/'.concat(this.props.user_id);
+      console.log(url_final);
+      fetch(url_final)
+          .then(res => res.json())
+          .then(answer => this.setState({data: handling_appointments(answer.data)}))        
+      .catch((error)=>{
+          console.log('Error fetching man',error);
+      });
   }
 
   changeAddedAppointment(addedAppointment) {
