@@ -41,7 +41,6 @@ body{
   width: 500px;
   margin: 0px auto;
   margin-top: 70px ; 
-  background-color: ;
   background-size: cover;
 }
 
@@ -138,12 +137,21 @@ hr {
 	margin: 10px;
 }
 
+.card {
+	border: 0px;
+	box-shadow: 2px 3px 3px 0px #8a8686;
+}
+
 .card-header {
 	padding-top: 7px;
 	padding-bottom: 7px;
 	padding-left: 12px;
+	background-color: #cc9880;
+	border-bottom: #cc9880;
+	color: white;
 }
 
 .card-body {
 	padding: 15px;
+	background-color: #fffcfc;
 }
