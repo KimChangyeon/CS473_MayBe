@@ -27,7 +27,8 @@ class Main extends Component {
 		this.state = {
 				marker: { lat: 36.3636944, lng: 127.359529 },
 				stage_id: 0,
-				stages : ['upcoming','make','schedule','statistics','vote','location']
+				stages : ['upcoming','make','schedule','statistics','vote','location'],
+				user_id: this.props.user_id
 		}
 		this.setMarker = this.setMarker.bind(this);
 		this.nextStage = this.nextStage.bind(this);
@@ -122,15 +123,15 @@ class Main extends Component {
         break;
 
       case ('make'):
-        content = <Make nextStage = {this.nextStage} header = {this.header}/>;
+        content = <Make nextStage = {this.nextStage} header = {this.header} user_id = {this.state.user_id}/>;
         break;
 
       case ('schedule'):
-      	content = <Schedule nextStage = {this.nextStage} header = {this.header}/>;
+      	content = <Schedule nextStage = {this.nextStage} header = {this.header} user_id = {this.state.user_id}/>;
         break;
 
       case ('statistics'):
-        content = <Statistics_Monthly nextStage = {this.nextStage} header = {this.header}/>;
+        content = <Statistics_Monthly nextStage = {this.nextStage} header = {this.header} user_id = {this.state.user_id}/>;
 		break;
 
 			case ('vote'):

@@ -16,12 +16,33 @@ import { appointments } from './Data';
 import './weekly.css'
 
 
+function handling_appointments (schedules) {
+  var answer = [];
+  for (var i = 0 ; i < schedules.length ; i ++) {
+    var modified = {};
+    var schedule = schedules[i];
+    var year = schedule['DateId'].slice(0,4);
+    var month = schedule['DateId'].slice(4,6);
+    var day = schedule['DateId'].slice(6,8);
+    var StartTime = schedule['StartTimeslot'];
+    var EndTime = schedule['EndTimeslot'];
+    modified['id'] = i;
+    modified['title'] = schedule['Memo'];
+    modified['startDate'] = new Date(year, month, day, StartTime, 0);
+    modified['endDate'] = new Date(year, month, day, EndTime, 0);
+    answer.push(modified);
+  }
+
+  return answer;
+}
+
 const currentDate = new Date(2019,11,26,10,33);
 
 export default class Demo extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+      user_id: this.props.user_id,
       data: appointments,
       currentDate: currentDate,
 
@@ -34,6 +55,19 @@ export default class Demo extends React.PureComponent {
     this.changeAddedAppointment = this.changeAddedAppointment.bind(this);
     this.changeAppointmentChanges = this.changeAppointmentChanges.bind(this);
     this.changeEditingAppointmentId = this.changeEditingAppointmentId.bind(this);
+  }
+
+  importData () {
+    var url_final = '/sch/'.concat(this.props.user_id);
+    fetch(url_final)
+        .then(res => res.json())
+        // .then(answer => this.setState({data: handling_appointments(answer.data)}))
+        .then(answer => handling_appointments(answer.data))
+        .then(wow => console.log(wow))
+    .catch((error)=>{
+        console.log('Error fetching man',error);
+    });
+    // console.log(this.state.data);
   }
 
   changeAddedAppointment(addedAppointment) {
