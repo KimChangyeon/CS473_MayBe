@@ -35,11 +35,14 @@ class Make extends Component {
 
 		switch (make_stage) {
 			case 'list':
-				button = <img className="makebutton" src={makebutton} onClick={()=>this.nextStage(2)}/>;
+				button = <img className="makebutton" src={makebutton} alt="Make Appointment"
+							onClick={()=>this.nextStage(2)}/>;
 				bar =
 					<ButtonGroup id="Tap" size='lg' style={{top: "-12px", width: "100%", height: "50px"}}>
-						<Button id="Button1" onClick={() => this.nextStage(0)}><img src={friendlist_light}/></Button>
-						<Button id="Button2" onClick={() => this.nextStage(1)}><img src={timeslot_dark}/></Button>
+						<Button id="Button1" onClick={() => this.nextStage(0)}>
+							<img src={friendlist_light} alt="friend list" /></Button>
+						<Button id="Button2" onClick={() => this.nextStage(1)}>
+							<img src={timeslot_dark} alt="time slot" /></Button>
 					</ButtonGroup>
 				header = this.props.header(bar, button);
 				body = <body className="Body">abc</body>
@@ -47,11 +50,14 @@ class Make extends Component {
 				break;
 
 			case 'slot':
-				button = <img className="makebutton" src={makebutton} onClick={()=>this.nextStage(2)}/>;
+				button = <img className="makebutton" src={makebutton} alt="Make Appointment"
+							onClick={()=>this.nextStage(2)}/>;
 				bar =
 					<ButtonGroup id="Tap" size='lg' style={{top: "-12px", width: "100%", height: "50px"}}>
-						<Button id="Button2" onClick={() => this.nextStage(0)}><img src={friendlist_dark}/></Button>
-						<Button id="Button1" onClick={() => this.nextStage(1)}><img src={timeslot_light}/></Button>
+						<Button id="Button2" onClick={() => this.nextStage(0)}>
+							<img src={friendlist_dark} alt="friend list" /></Button>
+						<Button id="Button1" onClick={() => this.nextStage(1)}>
+							<img src={timeslot_light} alt="time slot" /></Button>
 					</ButtonGroup>
 				header = this.props.header(bar, button);
 				body = <body className="Body">def</body>
@@ -61,8 +67,10 @@ class Make extends Component {
 			case 'choose':
 				button =
 					<ul>
-						<li> <img className="complete" src={complete} onClick={()=>this.props.nextStage(0)}/> </li>
-						<li> <img className="cancel" src={cancel} onClick={()=>this.props.nextStage(0)}/> </li>
+						<li> <img className="complete" src={complete} alt="Complete"
+								onClick={()=>this.props.nextStage(0)}/> </li>
+						<li> <img className="cancel" src={cancel} alt="Cancel"
+								onClick={()=>this.props.nextStage(0)}/> </li>
 					</ul>
 				bar = <div className="Bar">Choose Available Time Slots</div>;
 				header = this.props.header(bar, button);
