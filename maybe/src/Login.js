@@ -18,7 +18,7 @@ class Login extends Component {
 
     login_process ()  {
         const pw = this.state.pw
-        var result;
+        var result = [];
         if (pw.length <= 0)
             alert('YOU SHOULD WRITE YOUR PASSWORD.');
         else
