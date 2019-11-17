@@ -3,11 +3,6 @@ import './App.css';
 
 import Main from './Main'
 import Login from './Login'
-import Weekly from './weekly'
-import DragSelect from './DragSelect';
-
-import {DropdownButton, Dropdown} from 'react-bootstrap';
-import Image from 'react-bootstrap/Image';
 
 class App extends Component {
   constructor(props){
@@ -30,7 +25,6 @@ class App extends Component {
     switch (stage) {
         case 'login':
           content = <Login nextStage = {this.nextStage}/>;
-          // content = 'login page'
           break;
         case 'Main':
           content = <Main nextStage = {this.nextStage}/>;

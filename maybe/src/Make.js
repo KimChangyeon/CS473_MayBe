@@ -3,6 +3,7 @@ import {ButtonGroup, Button} from 'react-bootstrap';
 import './App.css';
 
 import Statistics_Friend from './Statistics_Friend';
+import DragSelect from './DragSelect';
 
 /* Icons */
 import makebutton from './img/button_make_appointment.png';
@@ -62,7 +63,7 @@ class Make extends Component {
 							<img src={timeslot_light} alt="time slot" /></Button>
 					</ButtonGroup>
 				header = this.props.header(bar, button);
-				body = <body className="Body">def</body>
+				body = <body className="Body"><DragSelect /></body>
 				content = <div>{header}{body}</div>
 				break;
 
