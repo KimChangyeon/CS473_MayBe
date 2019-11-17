@@ -23,9 +23,10 @@ function handling_appointments (schedules) {
   for (var i = 0 ; i < schedules.length ; i ++) {
     var modified = {};
     var schedule = schedules[i];
-    var year = schedule['DateId'].slice(0,4);
-    var month = schedule['DateId'].slice(4,6);
-    var day = schedule['DateId'].slice(6,8);
+    var date = String(schedule['DateId']);
+    var year = date.slice(0,4);
+    var month = date.slice(4,6);
+    var day = date.slice(6,8);
     var StartTime = schedule['StartTimeslot'];
     var EndTime = schedule['EndTimeslot'];
     modified['id'] = i;
