@@ -1,4 +1,4 @@
-* {
+*{
 	font-family: "Ubuntu";
 }
 
@@ -115,18 +115,31 @@ body{
 	content-align: center;
 	border-right: 1px solid;
 	border-color: #8a8686;
-	width: 25%;
+	width: 20%;
 	word-break: keep-all;
 }
 
 .content-right {
 	text-align: center;
-	width: 25%;
+	width: 20%;
 	word-break: keep-all;
 }
 
+.content-left ul {
+	padding: 0px;
+}
+
 .content-left li {
-	margin: 5px;
+	margin: 10px 10px -3px 25px;
+	text-align: left;
+	font-size: 10pt;
+	line-height: 15px;
+	list-style: circle;
+}
+
+.content-left li span {
+	position: relative;
+	left: -7px
 }
 
 hr {
@@ -152,6 +165,30 @@ hr {
 	background-color: #fffcfc;
 }
 
+#basic-addon1 {
+	width: 63px;
+}
+
+#basic-addon2 {
+	width: 70px;
+}
+
+.app_list .edit {
+	font-size: 11pt;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.app_list .btn {
+	line-height: 0px;
+}
+
+.app_list .btn-outlineflat {
+	border-color: #564c4c;
+	color: #564c4c;
+	width: 80%;
+	height: 30px;
+}
 /* horizontally centered */
 .horizontal_center {
     display: flex;
