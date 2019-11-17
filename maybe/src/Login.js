@@ -11,6 +11,7 @@ class Login extends Component {
             id: '',
             pw: '',
             result: {},
+            l: 1
         }
         this.id = React.createRef(); 
         this.pw = React.createRef(); 
@@ -23,24 +24,24 @@ class Login extends Component {
             fetch(url_final)
                 .then(res => res.json())
                 .then(answer => this.setState({result: answer.data[0]}))
+                .then(lock => this.setState({l: 0}))
             .catch((error)=>{
                 console.log('Error fetching man',error);
             });
 
-        setTimeout(function(){
-        }, 2000);
-         
-        if (pw.length <= 0)
-            alert('YOU SHOULD WRITE YOUR PASSWORD.');
-        else
-        {
-            if (Object.keys(this.state.result).length > 0){
-                this.props.setUserId(this.state.result['UserId']);
-                this.props.nextStage();
-            }
+        if (this.state.l === 0){
+            if (pw.length <= 0)
+                alert('YOU SHOULD WRITE YOUR PASSWORD.');
             else
-                alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
-            // this.props.nextStage();
+            {
+                if (Object.keys(this.state.result).length > 0){
+                    this.props.setUserId(this.state.result['UserId']);
+                    this.props.nextStage();
+                }
+                else
+                    alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
+                // this.props.nextStage();
+            }
         }
     }
 
