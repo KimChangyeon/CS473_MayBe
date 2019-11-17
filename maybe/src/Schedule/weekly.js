@@ -69,9 +69,8 @@ export default class Weekly extends React.PureComponent {
     console.log(url_final);
     fetch(url_final)
         .then(res => res.json())
-        .then(wow => console.log(wow.data))
-        .then(answer => this.setState({data: handling_appointments(answer.data)}))
-        .then(answer => console.log(handling_appointments(answer.data)))
+        .then(wow => console.log(handling_appointments(wow.data)))
+        // .then(answer => this.setState({data: handling_appointments(answer.data)}))        
     .catch((error)=>{
         console.log('Error fetching man',error);
     });
