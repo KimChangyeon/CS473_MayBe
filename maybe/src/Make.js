@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {ButtonGroup, Button} from 'react-bootstrap';
 import './App.css';
 
+import Statistics_Friend from './Statistics_Friend';
+
 /* Icons */
 import makebutton from './img/button_make_appointment.png';
 import friendlist_light from './img/friend_list_tab_friend_light.png';
@@ -16,7 +18,7 @@ class Make extends Component {
 		super(props);
 		this.state = {
 			stage_id: 0,
-			stages: ['list','slot','choose']
+			stages: ['list','slot','choose', 'stat_friend']
 		}
 		this.nextStage = this.nextStage.bind(this);
 	}
@@ -45,7 +47,7 @@ class Make extends Component {
 							<img src={timeslot_dark} alt="time slot" /></Button>
 					</ButtonGroup>
 				header = this.props.header(bar, button);
-				body = <body className="Body">abc</body>
+				body = <body className="Body" onClick={()=>this.nextStage(3)}>stat_friend</body>
 				content = <div>{header}{body}</div>
 				break;
 
@@ -78,9 +80,15 @@ class Make extends Component {
 				content = <div>{header}{body}</div>;
 				break;
 
-      default:
-        alert('YOU SHOULD NOT BE HERE IN MAIN PAGE.');
-		}
+			case 'stat_friend':
+				bar = <div className="Bar"> Sangho Lim </div>;
+				header = this.props.header(bar, button);
+				content = <div>{header}<Statistics_Friend/></div>;
+				break;
+
+    		default:
+        		alert('YOU SHOULD NOT BE HERE IN MAIN PAGE.');
+			}
 
 		return (content);
 	}

@@ -10,6 +10,7 @@ import Schedule from './Schedule.js';
 import Statistics_Monthly from './Statistics_Monthly.js';
 import Vote from './Vote.js';
 import Location from './Location.js';
+import Statistics_Friend from './Statistics_Friend.js';
 
 /* Icons */
 import calendar from './img/hamburger_calendar.png';
@@ -131,7 +132,7 @@ class Main extends Component {
 
       case ('statistics'):
         content = <Statistics_Monthly nextStage = {this.nextStage} header = {this.header}/>;
-        break;
+		break;
 
 			case ('vote'):
 				content = <Vote nextStage = {this.nextStage} header = {this.header}/>;
