@@ -1,63 +1,45 @@
 import React, {Component} from 'react';
 import './App.css';
+
+import Main from './Main'
+import Login from './Login'
+import Weekly from './weekly'
+import DragSelect from './DragSelect';
+
 import {DropdownButton, Dropdown} from 'react-bootstrap';
 import Image from 'react-bootstrap/Image';
-import DragSelect from './DragSelect';
-import Weekly from './weekly'
-
 
 class App extends Component {
-  state = {
-    header: <header>
-              <div className = "wrapper">
-                <h1 className="Darkblue"><a href="#">MayBe</a></h1>
-                <nav>
-                  <ul className="menu">
-                    <li><a href="#"><Image src={require('./icon/Show_Menu.png')}/></a></li>
-                  </ul>
-                </nav>
-              </div>
-            </header>,
-    page_id: 0,
-    page : ['home','scenario','about','feedback'],
-    stage_id: 0,
-    stage : ['intro','discription'],
-    language_list : ['English', 'Korean'],
-    language: 0,
-    stopper: 0,
-    request: 0,
+  constructor(props){
+    super(props)
+    this.state = {
+      stage_id: 0,
+      stages: ['login', 'Main'],
+  
+    }
+    this.nextStage = this.nextStage.bind(this);
   }
+
+  nextStage() {
+    this.setState({stage_id: this.state.stage_id + 1});
+  }
+  
   render () {
-    const {information} = this.state;
-    return (
-    <div>
-      <header>
-        {this.state.header}
-        <body>
-					{/* <Bar title="bar"/> */}
-          <div className='wrap'>
-            <Weekly/>
-          </div>
-        </body>  
-      </header>
-    </div>
-    )
+    var stage = this.state.stages[this.state.stage_id];
+    let content;
+    switch (stage) {
+        case 'login':
+          content = <Login nextStage = {this.nextStage}/>;
+          // content = 'login page'
+          break;
+        case 'Main':
+          content = <Main nextStage = {this.nextStage}/>;
+          break;
+        default:
+          alert('YOU SHOULD NOT BE HERE.') 
+    }
+    return content;
   }
-}
-
-class Bar extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			title: this.props.title,
-		};
-	}
-
-	render () {
-		return (
-			<div className="square" color="red">{this.state.title}</div>
-		)
-	}
 }
 
 export default App;

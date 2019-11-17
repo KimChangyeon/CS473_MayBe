@@ -7,8 +7,10 @@
     "heroku-postbuild": "cd maybe && yarn && yarn run build"
   },
   "dependencies": {
+    "@babel/runtime": "^7.7.2",
     "@expo/vector-icons": "^10.0.6",
     "express": "^4.17.1",
+    "google-maps-react": "^2.0.2",
     "morgan": "^1.9.1",
     "mysql": "^2.17.1",
     "native-base": "^2.13.8",

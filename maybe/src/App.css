@@ -1,5 +1,5 @@
-
 * {
+	font-family: "Ubuntu";
 }
 
 .wrapper {
@@ -8,12 +8,12 @@
 
 header{
   height: 70px;
+	background-color: white;
   position: fixed ; width: 1000px auto; z-index: 9999; top: 0 ;
-  }
+}
 
 h1{
-	font-family: arial;
-	font-weight: bolder;
+	font-weight: 1000;
   line-height: 70px;
 	float: left;
 	margin-left: 20px;
@@ -25,45 +25,129 @@ a:visited {color: inherit; text-decoration: none;}
 a:active {color: inherit; text-decoration: none;}
 a:hover {color: inherit; text-decoration: none;}
 
-.menu{
-  float: right;
+li {
+	list-style: none;
 }
 
-.menu li img {
-	width: 60px; height: 60px; margin-top: 5.5px;
-}
-
-.menu li {
-  list-style: none;
-}
+.menu{float: right;}
+.menu li {display: inline-block;}
+.menu li img {width: 60px; height: 60px; margin-top: 5.5px;}
 
 body{
   width: 500px;
-  /* align-content: center; */
   margin: 0px auto;
   margin-top: 70px ; 
-  text-align: center;
-  background-color: ;
   background-size: cover;
 }
 
 .Darkbrown {color: #564c4d;}
-
 .Brown {color: #a87f72;}
-
 .Lightbrown {color: #cc9880;}
-
 .Beige {color: #ecdfcf;}
-
 .Skyblue {color: #9bbfd7;}
-
 .Darkblue {color: #3d4965;}
-
 .Gray {color: #8a8686;}
-
 .Darkgray {color: #3c3c3c;}
 
-.square {
-      width: 100%;
-      height: 50px;
+.Bar {
+	width: 100%;
+	height: 50px;
+	background-color: #564c4d;
+	color: White;
+	margin-top: 70px;
+	padding: 10px 0px 0px 20px;
+	font-size: 20px;
+}
+
+.listbutton {
+	position: relative;
+	left: 370px;
+	top: 490px;
+	width: 100px;
+}
+
+.makebutton {
+	position: absolute;
+	left: 300px;
+	top: 600px;
+	width: 200px;
+}
+
+.complete {
+	position: absolute;
+	right: 50px;
+	top: 600px;
+	width: 180px;	
+}
+
+.cancel {
+	position: absolute;
+	left: 50px;
+	top: 600px;
+	width: 180px;	
+}
+
+.Body {
+	margin-top: 140px;
+	margin-bottom: 50px;
+}
+
+.Body li {
+	margin: 20px;
+}
+
+#Tap img {
+	width: 20px;
+}
+
+#Button1{
+	background-color: #564c4d;
+	border-color: #564c4d;
+}
+
+#Button2 {
+	background-color: white;
+	border-color: #564c4d;
+}
+
+.content-left {
+	text-align: center;
+	content-align: center;
+	border-right: 1px solid;
+	border-color: #8a8686;
+	width: 25%;
+	word-break: keep-all;
+}
+
+.content-right {
+	text-align: center;
+	width: 25%;
+	word-break: keep-all;
+}
+
+.content-left li {
+	margin: 5px;
+}
+
+hr {
+	margin: 10px;
+}
+
+.card {
+	border: 0px;
+	box-shadow: 2px 3px 3px 0px #8a8686;
+}
+
+.card-header {
+	padding-top: 7px;
+	padding-bottom: 7px;
+	padding-left: 12px;
+	background-color: #cc9880;
+	border-bottom: #cc9880;
+	color: white;
+}
+
+.card-body {
+	padding: 15px;
+	background-color: #fffcfc;
 }
