@@ -10,7 +10,7 @@ class Login extends Component {
 		this.state = {
             id: '',
             pw: '',
-            result: [],
+            result: {},
         }
         this.id = React.createRef(); 
         this.pw = React.createRef(); 
@@ -23,13 +23,6 @@ class Login extends Component {
             alert('YOU SHOULD WRITE YOUR PASSWORD.');
         else
         {
-            var url_final = '/login/'.concat(this.state.id).concat('/').concat(this.state.pw);
-            fetch(url_final)
-                .then(res => res.json())
-                .then(answer => this.setState({result: answer.data[0]}))
-            .catch((error)=>{
-                console.log('Error fetching man',error);
-            });
             if (Object.keys(this.state.result).length > 0){
                 this.props.setUserId(this.state.result['UserId']);
                 this.props.nextStage();
@@ -46,6 +39,13 @@ class Login extends Component {
 
     handlePw() {
         this.setState({pw: this.pw.current.value});
+        var url_final = '/login/'.concat(this.state.id).concat('/').concat(this.state.pw);
+            fetch(url_final)
+                .then(res => res.json())
+                .then(answer => this.setState({result: answer.data[0]}))
+            .catch((error)=>{
+                console.log('Error fetching man',error);
+            });
     }
 
     render() {

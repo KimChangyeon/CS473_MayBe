@@ -62,7 +62,7 @@ export default class Demo extends React.PureComponent {
     fetch(url_final)
         .then(res => res.json())
         // .then(answer => this.setState({data: handling_appointments(answer.data)}))
-        .then(answer => handling_appointments(answer.data))
+        // .then(answer => handling_appointments(answer.data))
         .then(wow => console.log(wow))
     .catch((error)=>{
         console.log('Error fetching man',error);
