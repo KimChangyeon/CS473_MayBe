@@ -9,7 +9,8 @@ class Login extends Component {
 		super(props);
 		this.state = {
             id: '',
-            pw: ''
+            pw: '',
+            result: [],
         }
         this.id = React.createRef(); 
         this.pw = React.createRef(); 
@@ -26,11 +27,11 @@ class Login extends Component {
             var url_final = '/login/'.concat(this.state.id).concat('/').concat(this.state.pw);
             fetch(url_final)
                 .then(res => res.json())
-                .then(answer => console.log(answer.data))
+                .then(answer => this.setState({result: answer.data}))
             .catch((error)=>{
                 console.log('Error fetching man',error);
             });
-            if (result.length > 0)
+            if (this.state.answer.length > 0)
                 this.props.nextStage()
             else
                 alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
