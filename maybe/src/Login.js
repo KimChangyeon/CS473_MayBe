@@ -26,12 +26,14 @@ class Login extends Component {
             var url_final = '/login/'.concat(this.state.id).concat('/').concat(this.state.pw);
             fetch(url_final)
                 .then(res => res.json())
-                .then(answer => this.setState({result: answer.data}))
+                .then(answer => this.setState({result: answer.data[0]}))
             .catch((error)=>{
                 console.log('Error fetching man',error);
             });
-            // if (this.state.result.length > 0)
+            // if (this.state.result.length > 0){
+            //     this.props.setUserId(this.state.result['UserId']]);
             //     this.props.nextStage()
+            // }
             // else
             //     alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
             this.props.nextStage();

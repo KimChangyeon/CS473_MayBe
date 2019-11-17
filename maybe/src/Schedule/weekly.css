@@ -59,8 +59,7 @@
     text-transform: uppercase;
 }
 
-.style {
-    transform: none;
-    width: 500px !important;
-    transition: transform 400ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+.LayoutBase-root-273 {
+    width: 500px;
+    float: left;
 }
