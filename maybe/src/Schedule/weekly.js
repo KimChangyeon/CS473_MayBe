@@ -66,11 +66,12 @@ export default class Demo extends React.PureComponent {
 
   importData () {
     var url_final = '/sch/'.concat(this.props.user_id);
+    console.log(url_final);
     fetch(url_final)
         .then(res => res.json())
+        .then(wow => console.log(wow.data))
         // .then(answer => this.setState({data: handling_appointments(answer.data)}))
         // .then(answer => handling_appointments(answer.data))
-        .then(wow => console.log(wow))
     .catch((error)=>{
         console.log('Error fetching man',error);
     });

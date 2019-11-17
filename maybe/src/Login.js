@@ -28,7 +28,8 @@ class Login extends Component {
             });
 
         setTimeout(function(){
-        }, 500); 
+        }, 2000);
+         
         if (pw.length <= 0)
             alert('YOU SHOULD WRITE YOUR PASSWORD.');
         else
