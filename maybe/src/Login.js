@@ -30,10 +30,10 @@ class Login extends Component {
             .catch((error)=>{
                 console.log('Error fetching man',error);
             });
-            if (this.state.result.length > 0)
-                this.props.nextStage()
-            else
-                alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
+            // if (this.state.result.length > 0)
+            //     this.props.nextStage()
+            // else
+            //     alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
         }
     }
 
