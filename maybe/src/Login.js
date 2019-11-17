@@ -19,7 +19,6 @@ class Login extends Component {
 
     login_process ()  {
         const pw = this.state.pw
-        var result = [];
         if (pw.length <= 0)
             alert('YOU SHOULD WRITE YOUR PASSWORD.');
         else
@@ -31,7 +30,7 @@ class Login extends Component {
             .catch((error)=>{
                 console.log('Error fetching man',error);
             });
-            if (this.state.answer.length > 0)
+            if (this.state.result.length > 0)
                 this.props.nextStage()
             else
                 alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
