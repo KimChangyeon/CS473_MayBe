@@ -1,7 +1,8 @@
 h5 {
     margin-left: 15px;
-    margin-top: 30px;
+    margin-top: 15px;
     margin-bottom: 15px;
+    font-weight: bold;
 }
 
 #rewards {
@@ -11,31 +12,11 @@ h5 {
     height: 25px;
 }
 
-/* horizontally centered */
-.frequent_friends {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.reward_val {
+    float: right;
+    margin-right: 15px;
 }
 
-.freq_friend {
-    height: 140px;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.freq_friend_name {
-    text-align: center;
-}
-
-.friend_doughnut {
-    width: 50px;
-    height: 50px;
-    position: relative;
-}
-
-.freq_time {
-    text-align: center;
-    position: relative;
-    top: -80px;
+.month {
+    color: #9bbfd7;
 }

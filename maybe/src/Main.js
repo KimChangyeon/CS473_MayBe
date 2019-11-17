@@ -7,7 +7,7 @@ import './App.css';
 
 /* Classes */
 import Make from './Make.js';
-import Schedule from './Schedule.js';
+import Schedule from './Schedule/Schedule.js';
 import Statistics_Monthly from './Statistics_Monthly.js';
 import Vote from './Vote.js';
 import Location from './Location.js';
@@ -163,11 +163,11 @@ class Main extends Component {
         break;
 
       case ('make'):
-        content = <Make nextStage = {this.nextStage} header = {this.header}/>;
+        content = <Make nextStage = {this.nextStage} header = {this.header} user_id = {this.state.user_id}/>;
         break;
 
       case ('schedule'):
-      	content = <Schedule nextStage = {this.nextStage} header = {this.header}/>;
+      	content = <Schedule nextStage = {this.nextStage} header = {this.header} user_id = {this.state.user_id}/>;
         break;
 
       case ('statistics'):

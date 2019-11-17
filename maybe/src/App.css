@@ -189,3 +189,9 @@ hr {
 	width: 80%;
 	height: 30px;
 }
+/* horizontally centered */
+.horizontal_center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

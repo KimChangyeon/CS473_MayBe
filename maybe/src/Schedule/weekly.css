@@ -1,0 +1,65 @@
+.LayoutBase-basic-1296 {
+    width: 500px;
+}
+.LayoutBase-root-1350 {
+    width: 550;
+    box-sizing: border-box;
+    transition: all 400ms cubic-bezier(0, 0, 0.2, 1);
+    padding-top: 24px;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 24px;
+}
+
+.MuiTypography-h4 {
+    font-size: 20px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.17;
+    letter-spacing: 0.00735em;
+}
+.MuiTypography-h3 {
+    font-size: 20px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: 0em;
+}
+
+.MuiGrid-container {
+    width: 500px;
+}
+
+.MuiPickersToolbarButton-toolbarBtn {
+    padding: 0;
+    width: 16px;
+    text-transform: none;
+}
+
+.MuiTypography-h3 {
+    font-size: 20px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 4.5;
+    letter-spacing: 0em;
+}
+
+.MuiButton-root {
+    color: rgba(0, 0, 0, 0.87);
+    padding: 6px 16px;
+    font-size: 0.875rem;
+    min-width: 50px;
+    box-sizing: border-box;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 500;
+    line-height: 1;
+    border-radius: 4px;
+    letter-spacing: 0.02857em;
+    text-transform: uppercase;
+}
+
+.LayoutBase-root-273 {
+    width: 500px;
+    float: left;
+}
