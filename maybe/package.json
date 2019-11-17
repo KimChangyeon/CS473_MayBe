@@ -16,6 +16,8 @@
     "chart.js": "^2.9.3",
     "date-fns": "^2.0.0-beta.5",
     "daypilot-pro-react": "https://npm.daypilot.org/daypilot-pro-react/trial/2019.3.4012.tar.gz",
+    "devextreme": "19.2.3",
+    "devextreme-react": "19.2.3",
     "material-ui-icons": "^1.0.0-beta.36",
     "mdbreact": "^4.22.1",
     "morgan": "^1.9.1",

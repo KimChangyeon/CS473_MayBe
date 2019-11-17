@@ -6,7 +6,7 @@ import './App.css';
 
 /* Classes */
 import Make from './Make.js';
-import Schedule from './Schedule.js';
+import Schedule from './Schedule/Schedule.js';
 import Statistics_Monthly from './Statistics_Monthly.js';
 import Vote from './Vote.js';
 import Location from './Location.js';
