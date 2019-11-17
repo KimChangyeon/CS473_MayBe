@@ -40,7 +40,7 @@ function handling_appointments (schedules) {
 
 const currentDate = new Date(2019,11,26,10,33);
 
-export default class Demo extends React.PureComponent {
+export default class Weekly extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
