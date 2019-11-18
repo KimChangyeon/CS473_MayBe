@@ -112,8 +112,6 @@ export default class Weekly extends React.PureComponent {
       currentDate, data, currentViewName, addedAppointment, appointmentChanges, editingAppointmentId,
     } = this.state;
 
-    this.importData();
-
     return (
       <Paper>
         <Scheduler
