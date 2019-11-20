@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ButtonGroup, Button} from 'react-bootstrap';
+import {ButtonGroup, Button, ListGroup, Form} from 'react-bootstrap';
 import './App.css';
 
 import Statistics_Friend from './Statistics_Friend';
@@ -13,13 +13,18 @@ import timeslot_light from './img/friend_list_tab_calendar_light.png';
 import timeslot_dark from './img/friend_list_tab_calendar_dark.png';
 import complete from './img/button_complete.png';
 import cancel from './img/button_cancel.png';
+import statistics from './img/statistics.png';
+import calendar from './img/friend_list_friend_calendar.png';
 
 class Make extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			stage_id: 0,
-			stages: ['list','slot','choose', 'stat_friend']
+			stages: ['list','slot','choose', 'stat_friend'],
+			friends: ['Alice Oh', 'Chaeyeon Son', 'Changyeon Kim', 'Hyeonjae Gil',
+					  'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
+					  'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon'],
 		}
 		this.nextStage = this.nextStage.bind(this);
 	}
@@ -30,6 +35,15 @@ class Make extends Component {
 
 	render () {
 		var make_stage = this.state.stages[this.state.stage_id];
+		const friends_list = this.state.friends.map((friend) =>
+			<ListGroup.Item>
+				<img src={statistics} alt="statistics" id="friendlist_statistics"
+					onClick={()=>this.nextStage(3)} />
+				<img src={calendar} alt="calendar" id ="friendlist_calendar"
+					 />
+				<Form.Check type='checkbox' label={friend} />
+			</ListGroup.Item>);
+
 		let button; 
 		let bar;
 		let header;
@@ -48,7 +62,9 @@ class Make extends Component {
 							<img src={timeslot_dark} alt="time slot" /></Button>
 					</ButtonGroup>
 				header = this.props.header(bar, button);
-				body = <body className="Body" onClick={()=>this.nextStage(3)}>stat_friend</body>
+				body = <body className="Body">
+					<ListGroup><Form>{friends_list}</Form></ListGroup>
+				</body>
 				content = <div>{header}{body}</div>
 				break;
 
