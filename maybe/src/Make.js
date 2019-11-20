@@ -31,10 +31,10 @@ class Make extends Component {
 			stage_id: 0,
 			user_id: this.props.user_id,
 			stages: ['list', 'slot', 'choose', 'stat_friend', 'schedule_friend'],
-			// friends: ['Alice Oh', 'Chaeyeon Son', 'Changyeon Kim', 'Hyeonjae Gil',
-			// 'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
-			// 'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon']
-			friends: []
+			friends: ['Alice Oh', 'Chaeyeon Son', 'Changyeon Kim', 'Hyeonjae Gil',
+			'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
+			'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon']
+			// friends: []
 		}
 		this.nextStage = this.nextStage.bind(this);
 	}
@@ -44,6 +44,7 @@ class Make extends Component {
 		console.log(url_final);
 		fetch(url_final)
 			.then(res => res.json())
+			.then(result => console.log(result))
 			.then(answer => this.setState({friends: make_friends(answer.data)}))        
 		.catch((error)=>{
 			console.log('Error fetching man',error);
