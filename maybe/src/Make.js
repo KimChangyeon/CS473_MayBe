@@ -44,7 +44,6 @@ class Make extends Component {
 		console.log(url_final);
 		fetch(url_final)
 			.then(res => res.json())
-			.then(result => console.log(result))
 			.then(answer => this.setState({friends: make_friends(answer.data)}))        
 		.catch((error)=>{
 			console.log('Error fetching man',error);
