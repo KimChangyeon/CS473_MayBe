@@ -20,8 +20,7 @@ import calendar from './img/friend_list_friend_calendar.png';
 function make_friends(answer){
 	var friend_list = [];
 	for (var i = 0 ; i < answer.length ; i++)
-		friend_list.add(answer[i]['name']);
-	
+		friend_list.push(answer[i]['name']);
 	return friend_list
 }
 
@@ -32,9 +31,10 @@ class Make extends Component {
 			stage_id: 0,
 			user_id: this.props.user_id,
 			stages: ['list', 'slot', 'choose', 'stat_friend', 'schedule_friend'],
-			friends: ['Alice Oh', 'Chaeyeon Son', 'Changyeon Kim', 'Hyeonjae Gil',
-					  'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
-					  'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon'],
+			// friends: ['Alice Oh', 'Chaeyeon Son', 'Changyeon Kim', 'Hyeonjae Gil',
+			// 'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
+			// 'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon']
+			friends: []
 		}
 		this.nextStage = this.nextStage.bind(this);
 	}
@@ -44,7 +44,7 @@ class Make extends Component {
 		console.log(url_final);
 		fetch(url_final)
 			.then(res => res.json())
-			.then(answer => this.setState({friends: make_friends(answer.data)}))        
+			.then(answer => this.setState({friends: make_friends(this.state.friends)}))        
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
