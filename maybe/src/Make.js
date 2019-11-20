@@ -17,6 +17,7 @@ import cancel from './img/button_cancel.png';
 import statistics from './img/statistics.png';
 import calendar from './img/friend_list_friend_calendar.png';
 import search from './img/search.png'
+import xmark from './img/x_mark.png'
 
 
 function make_friends(answer){
@@ -35,10 +36,15 @@ class Make extends Component {
 			stages: ['list', 'slot', 'choose', 'stat_friend', 'schedule_friend'],
 			friends: ['Alice Oh', 'Chaeyeon Son', 'Changyeon Kim', 'Hyeonjae Gil',
 			'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
-			'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon']
+			'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon'],
+			friends_original: ['Alice Oh', 'Chaeyeon Son', 'Changyeon Kim', 'Hyeonjae Gil',
+			'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
+			'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon'],
 			// friends: []
+			search: ''
 		}
 		this.nextStage = this.nextStage.bind(this);
+		this.search = React.createRef(); 
 	}
 
 	componentDidMount () {
@@ -46,11 +52,31 @@ class Make extends Component {
 		console.log(url_final);
 		fetch(url_final)
 			.then(res => res.json())
-			.then(answer => this.setState({friends: make_friends(answer.data)}))        
+			.then(answer => this.setState({friends: make_friends(answer.data), friends_original: make_friends(answer.data)}))        
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
 	}
+
+	handleSearch = (e) => {
+		this.setState({search: e.target.value});
+	}
+	
+	click_search () {
+		var idx = this.state.friends.indexOf(this.state.search)
+		if ( idx >= 0)
+			this.setState({friends: [this.state.friends[idx]]})
+		else
+			this.setState({friends: []})
+	}
+
+	delete_search () {
+		if ( this.state.search.length > 0){
+			console.log("HERE.");
+			this.setState({search: '', friends: this.state.friends_original});
+		}
+	}
+
 
 	nextStage (number) {
 		this.setState({stage_id: number});
@@ -87,13 +113,21 @@ class Make extends Component {
 				header = this.props.header(bar, button);
 				body = <body className="Body">
 						<InputGroup className="search">
-							<FormControl
+							<input
+								style = {{width: "410px"}}
 								placeholder="Search"
 								aria-label="Recipient's username"
-      							aria-describedby="basic-addon2"
+								aria-describedby="basic-addon2"
+								// ref = {this.search}
+								value = {this.state.search}
+								onChange={this.handleSearch}
+								
 							/>
 							<InputGroup.Append>
-								<Button variant="search" className="search_button">
+								<Button variant="xmark" className="search_button" onClick={()=>this.delete_search()}>
+									<img style={{width: 10, height: 10}} src={xmark} alt="xmark" id="xmark"/>
+								</Button>
+								<Button variant="search" className="search_button" onClick={()=>this.click_search()}>
 									<img src={search} alt="search" id="search"/>
 								</Button>
 							</InputGroup.Append>
