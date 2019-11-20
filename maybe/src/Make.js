@@ -21,7 +21,7 @@ class Make extends Component {
 		super(props);
 		this.state = {
 			stage_id: 0,
-			stages: ['list','slot','choose', 'stat_friend'],
+			stages: ['list', 'slot', 'choose', 'stat_friend', 'schedule_friend'],
 			friends: ['Alice Oh', 'Chaeyeon Son', 'Changyeon Kim', 'Hyeonjae Gil',
 					  'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
 					  'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon'],
@@ -40,7 +40,7 @@ class Make extends Component {
 				<img src={statistics} alt="statistics" id="friendlist_statistics"
 					onClick={()=>this.nextStage(3)} />
 				<img src={calendar} alt="calendar" id ="friendlist_calendar"
-					 />
+					 onClick={()=>this.nextStage(4)} />
 				<Form.Check type='checkbox' label={friend} />
 			</ListGroup.Item>);
 
@@ -98,9 +98,27 @@ class Make extends Component {
 				break;
 
 			case 'stat_friend':
-				bar = <div className="Bar"> Sangho Lim </div>;
+				bar =
+					<ButtonGroup id="Tap" size='lg' style={{top: "-12px", width: "100%", height: "50px"}}>
+						<Button id="Button1" onClick={() => this.nextStage(0)}>
+							<img src={friendlist_light} alt="friend list" /></Button>
+						<Button id="Button2" onClick={() => this.nextStage(1)}>
+							<img src={timeslot_dark} alt="time slot" /></Button>
+					</ButtonGroup>
 				header = this.props.header(bar, button);
 				content = <div>{header}<Statistics_Friend/></div>;
+				break;
+
+			case 'schedule_friend':
+				bar = 
+					<ButtonGroup id="Tap" size='lg' style={{top: "-12px", width: "100%", height: "50px"}}>
+						<Button id="Button1" onClick={() => this.nextStage(0)}>
+							<img src={friendlist_light} alt="friend list" /></Button>
+						<Button id="Button2" onClick={() => this.nextStage(1)}>
+							<img src={timeslot_dark} alt="time slot" /></Button>
+					</ButtonGroup>
+				header = this.props.header(bar, button);
+				content = <div>{header}<div className="Body">friend schedule</div></div>
 				break;
 
     		default:
