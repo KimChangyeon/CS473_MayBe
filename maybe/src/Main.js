@@ -24,6 +24,14 @@ import align from './img/align.png';
 import checkbox from './img/checkbox.png';
 import coin from './img/appointment_list_reward.png';
 
+function parse(str) {
+    var y = str.substring(0,4),
+        m = str.substring(4,6) - 1,
+        d = str.substring(6,8);
+    return new Date(y,m,d);
+}
+
+
 class Main extends Component {
 	constructor (props) {
 		super(props);
@@ -34,12 +42,23 @@ class Main extends Component {
 			place: null,
 			memo: null,
 			stage_id: 0,
-			stages : ['upcoming','make','schedule','statistics','vote','location', 'memo']
+			stages : ['upcoming','make','schedule','statistics','vote','location', 'memo'],
+			schedule: [{"AppointmentId":1,"DateId":20191123,"StartTime":10,"EndTime":12,"Place":"KAIST","What":"Group Meeting","participants":"Sangho Lim,Jiho Jin,Jisu Choi,Changyeon Kim"}],
 		}
 		this.setMarker = this.setMarker.bind(this);
 		this.setPlace = this.setPlace.bind(this);
 		this.setMemo = this.setMemo.bind(this);
 		this.nextStage = this.nextStage.bind(this);
+	}
+
+	componentDidMount () {
+		var url_final = '/appt/'.concat(this.props.user_id);
+		fetch(url_final)
+			.then(res => res.json())
+			.then(answer => this.setState({schedule: answer.data}))        
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
 	}
 
 	setMarker(marker) {
@@ -54,9 +73,9 @@ class Main extends Component {
 		this.setState(memo);
 	}
 
-  nextStage(number) {
-    this.setState({stage_id: number});
-  }
+	nextStage(number) {
+		this.setState({stage_id: number});
+	}
 
 	header(bar, button) {
 		return (
@@ -80,7 +99,17 @@ class Main extends Component {
 		);
 	}
 
-	appointment_list(dday) {
+	appointment_list(info) {
+
+				const date = parse(String(info.DateId));
+				var today = new Date();
+				const diffTime = date - today;
+				const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) ; 
+
+				const Title = info.What;
+				const participants = info.participants.split(',');
+				const participants_list = participants.map((person) => <li><span>{person}</span></li>)
+				
 				const place = this.state.place == null ?
 					<img src={gps} style={{width: "65%"}}
 						onClick={()=>this.nextStage(5)} alt="Where"/> :
@@ -106,7 +135,7 @@ class Main extends Component {
 		return (
 				<Card className='app_list'>
 					<Card.Header><img src={timer} style={{width: "20px", marginRight: "10px", textcolor: "white"}}/>
-						<b> D-{dday} &nbsp;&nbsp; Dinner Party</b>
+					<b> D-{diffDays} &nbsp;&nbsp; {Title}</b>
 					</Card.Header>
 					<Card.Body>
 					<div className="row">
@@ -119,8 +148,9 @@ class Main extends Component {
 						</div>
 						<div className="content-left"><b>Who</b><hr/>
 							<ul>
-								<li><span>Sangho</span></li>
-								<li><span>Chang-yeon Kim</span></li>
+								{/* <li><span>Sangho</span></li> */}
+								{/* <li><span>Chang-yeon Kim</span></li> */}
+								{participants_list}
 							</ul>
 						</div>
 						<div className="content-left"><b>Where</b><hr/>
@@ -145,6 +175,8 @@ class Main extends Component {
 		let header;
 		let body;
 		let content;
+
+	const upcoming_list = this.state.schedule.map((sch) => <li>{this.appointment_list(sch)}</li>)
     
     switch (main_stage) {
       case ('upcoming'):
@@ -154,11 +186,12 @@ class Main extends Component {
 				header = this.header(bar, button);
         body =
 					<body className="Body"> 
-						<li>{this.appointment_list(2)}</li>
-						<li>{this.appointment_list(3)}</li>
-						<li>{this.appointment_list(4)}</li>
-						<li>{this.appointment_list(5)}</li>
-						<li>{this.appointment_list(6)}</li>
+						{/* <li>{this.appointment_list(2, this.state.schedule[0])}</li>
+						<li>{this.appointment_list(3, this.state.schedule[0])}</li>
+						<li>{this.appointment_list(4, this.state.schedule[0])}</li>
+						<li>{this.appointment_list(5, this.state.schedule[0])}</li>
+						<li>{this.appointment_list(6, this.state.schedule[0])}</li> */}
+						{upcoming_list}
 					</body>
 				content = <div>{header}{body}</div>;
         break;
@@ -175,29 +208,29 @@ class Main extends Component {
         content = <Statistics_Monthly nextStage = {this.nextStage} header = {this.header}/>;
 				break;
 
-			case ('vote'):
-				content = <Vote nextStage = {this.nextStage} header = {this.header}/>;
-				break;
+	  case ('vote'):
+		content = <Vote nextStage = {this.nextStage} header = {this.header}/>;
+		break;
 
-			case ('location'):
-				content =
-					<Location
-						nextStage = {this.nextStage}
-						header = {this.header}
-						initialCenter = {this.state.initialCenter}
-						marker = {this.state.marker}
-						setMarker = {this.setMarker}
-						setPlace = {this.setPlace}
-					/>;
-				break;
+	  case ('location'):
+		content =
+			<Location
+				nextStage = {this.nextStage}
+				header = {this.header}
+				initialCenter = {this.state.initialCenter}
+				marker = {this.state.marker}
+				setMarker = {this.setMarker}
+				setPlace = {this.setPlace}
+			/>;
+		break;
 
-			case ('memo'):
-				content = <Memo
-					nextStage = {this.nextStage}
-					header = {this.header}
-					setMemo = {this.setMemo}
-				/>;
-				break;
+	  case ('memo'):
+		content = <Memo
+			nextStage = {this.nextStage}
+			header = {this.header}
+			setMemo = {this.setMemo}
+		/>;
+		break;
 
       default:
         alert('YOU SHOULD NOT BE HERE IN MAIN PAGE.');

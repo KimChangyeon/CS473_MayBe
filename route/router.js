@@ -48,6 +48,20 @@ router.get('/sch/:id', (req, res) => {
     })
 });
 
+// 한 유저의 약속 정보 불러오기.
+router.get('/appt/:id', (req, res) => {
+    var query = 'SELECT a.*, b.participants FROM (SELECT * FROM Appointment WHERE AppointmentId IN (SELECT Appointmentid FROM Appointment_participants WHERE ParticipantsId = 1)) a JOIN (SELECT AppointmentId, GROUP_CONCAT(participant) AS participants FROM (SELECT AppointmentId, (SELECT name from User where userid = ParticipantsId) participant from Appointment_participants) c GROUP BY AppointmentId) b ON a.AppointmentId = b.AppointmentId '
+
+    db.query(query, req.params.id, (err, rows) => {
+        if (!err) {
+            res.send({data: rows});
+        }
+        else {
+            res.send({data: err});
+        }
+    })
+});
+
 router.get('/fri/:id', (req, res) => {
     var query = 'SELECT name from User where userid in (SELECT FriendId FROM Friend where userId = ?)'
     db.query(query, req.params.id, (err, rows) => {
