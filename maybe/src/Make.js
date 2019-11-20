@@ -63,18 +63,18 @@ class Make extends Component {
 	}
 	
 	click_search () {
-		var idx = this.state.friends.indexOf(this.state.search)
-		if ( idx >= 0)
-			this.setState({friends: [this.state.friends[idx]]})
-		else
-			this.setState({friends: []})
+		if (this.state.search.length > 0){
+			var idx = this.state.friends.indexOf(this.state.search)
+			if ( idx >= 0)
+				this.setState({friends: [this.state.friends[idx]]})
+			else
+				this.setState({friends: []})
+		}
 	}
 
 	delete_search () {
-		if ( this.state.search.length > 0){
-			console.log("HERE.");
+		if ( this.state.search.length > 0)
 			this.setState({search: '', friends: this.state.friends_original});
-		}
 	}
 
 
