@@ -35,13 +35,13 @@ class Login extends Component {
                 alert('YOU SHOULD WRITE YOUR PASSWORD.');
             else
             {
-                // if (Object.keys(this.state.result).length > 0){
-                //     this.props.setUserId(this.state.result['UserId']);
-                //     this.props.nextStage();
-                // }
-                // else
-                //     alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
-                this.props.nextStage();
+                if (Object.keys(this.state.result).length > 0){
+                    this.props.setUserId(this.state.result['UserId']);
+                    this.props.nextStage();
+                }
+                else
+                    alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
+                // this.props.nextStage();
             }
         }
     }

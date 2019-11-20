@@ -18,17 +18,38 @@ import statistics from './img/statistics.png';
 import calendar from './img/friend_list_friend_calendar.png';
 import search from './img/search.png'
 
+
+function make_friends(answer){
+	var friend_list = [];
+	for (var i = 0 ; i < answer.length ; i++)
+		friend_list.push(answer[i]['name']);
+	return friend_list
+}
+
 class Make extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			stage_id: 0,
+			user_id: this.props.user_id,
 			stages: ['list', 'slot', 'choose', 'stat_friend', 'schedule_friend'],
 			friends: ['Alice Oh', 'Chaeyeon Son', 'Changyeon Kim', 'Hyeonjae Gil',
-					  'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
-					  'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon'],
+			'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
+			'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon']
+			// friends: []
 		}
 		this.nextStage = this.nextStage.bind(this);
+	}
+
+	componentDidMount () {
+		var url_final = '/fri/'.concat(this.props.user_id);
+		console.log(url_final);
+		fetch(url_final)
+			.then(res => res.json())
+			.then(answer => this.setState({friends: make_friends(answer.data)}))        
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
 	}
 
 	nextStage (number) {
