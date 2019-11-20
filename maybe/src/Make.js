@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ButtonGroup, Button, ListGroup, Form, Col, Row, InputGroup, FormControl} from 'react-bootstrap';
+import {ButtonGroup, Button, ListGroup, Form, InputGroup, FormControl} from 'react-bootstrap';
 import './App.css';
 import './Make.css'
 
@@ -98,15 +98,6 @@ class Make extends Component {
 								</Button>
 							</InputGroup.Append>
 						</InputGroup>
-
-						{/* <Row>
-						<Col>
-							<input className="search form-control" type="text" placeholder="Search" />
-						</Col>
-						<Col xs="auto">
-							<img src={search} alt="search" id="search"/>
-						</Col>
-						</Row> */}
 					<ListGroup><Form>{friends_list}</Form></ListGroup>
 				</body>
 				content = <div>{header}{body}</div>
