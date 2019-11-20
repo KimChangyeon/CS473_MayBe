@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {ButtonGroup, Button, ListGroup, Form} from 'react-bootstrap';
+import {ButtonGroup, Button, ListGroup, Form, Col, Row, InputGroup, FormControl} from 'react-bootstrap';
 import './App.css';
+import './Make.css'
 
 import Statistics_Friend from './Statistics_Friend';
 import DragSelect from './DragSelect';
@@ -15,6 +16,7 @@ import complete from './img/button_complete.png';
 import cancel from './img/button_cancel.png';
 import statistics from './img/statistics.png';
 import calendar from './img/friend_list_friend_calendar.png';
+import search from './img/search.png'
 
 class Make extends Component {
 	constructor(props) {
@@ -63,6 +65,27 @@ class Make extends Component {
 					</ButtonGroup>
 				header = this.props.header(bar, button);
 				body = <body className="Body">
+						<InputGroup className="search">
+							<FormControl
+								placeholder="Search"
+								aria-label="Recipient's username"
+      							aria-describedby="basic-addon2"
+							/>
+							<InputGroup.Append>
+								<Button variant="search" className="search_button">
+									<img src={search} alt="search" id="search"/>
+								</Button>
+							</InputGroup.Append>
+						</InputGroup>
+
+						{/* <Row>
+						<Col>
+							<input className="search form-control" type="text" placeholder="Search" />
+						</Col>
+						<Col xs="auto">
+							<img src={search} alt="search" id="search"/>
+						</Col>
+						</Row> */}
 					<ListGroup><Form>{friends_list}</Form></ListGroup>
 				</body>
 				content = <div>{header}{body}</div>
