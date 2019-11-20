@@ -5,6 +5,15 @@
     /* float: left; */
 }
 
+.header_name {
+    margin-left: 5px;
+    font-size: 27px;
+}
+
+.header_times {
+    float: right;
+}
+
 .total_times {
     font-size: 30px;
 }

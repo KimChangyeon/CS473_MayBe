@@ -37,7 +37,11 @@ class Statistics_Friend extends Component {
 
         return (
             <div className="Body">
-                <div><b className="total_times">{this.state.total_times}</b> times you met</div>
+                <div><b className="header_name">{this.state.name}</b>
+                    <span className="header_times">
+                        <b className="total_times">{this.state.total_times}</b>  times you met
+                    </span>
+                </div>
                 <Bar data={this.state.data_bar}
                     legend={{ display: false }}
                     />
