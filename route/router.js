@@ -48,4 +48,17 @@ router.get('/sch/:id', (req, res) => {
     })
 });
 
+router.get('/fri/:id', (req, res) => {
+    var query = 'SELECT name from User where userid in (SELECT FriendId FROM Friend where userId = ?)'
+    db.query(query, req.params.id, (err, rows) => {
+        if (!err) {
+            res.send({data: rows});
+        }
+        else {
+            res.send({data: err});
+        }
+    })
+});
+
+
 module.exports = router;
