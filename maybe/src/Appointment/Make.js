@@ -117,7 +117,7 @@ class Make extends Component {
 				body = <body className="Body">
 						<InputGroup className="search">
 							<input
-								style = {{width: "410px"}}
+								style = {{width: "455px"}}
 								placeholder="Search"
 								aria-label="Recipient's username"
 								aria-describedby="basic-addon2"
@@ -127,9 +127,9 @@ class Make extends Component {
 								
 							/>
 							<InputGroup.Append>
-								<Button variant="xmark" className="search_button">
+								{/* <Button variant="xmark" className="search_button">
 									<img style={{width: 10, height: 10}} src={xmark} alt="xmark" id="xmark"/>
-								</Button>
+								</Button> */}
 								<Button variant="search" className="search_button">
 									<img src={search} alt="search" id="search"/>
 								</Button>
