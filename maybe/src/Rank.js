@@ -1,32 +1,32 @@
 import React, {Component} from 'react'
-import {HorizontalBar} from 'react-chartjs-2'
+import {Container, Row, Col, ListGroup} from 'react-bootstrap'
 import './App.css'
 
 class Rank extends Component {
     state = {
-        friends_rewards_rank: {
-            labels: [
-                'Juho Kim', 'Sangho Lim', 'Jisu Choi', 'Changyeon Kim', 'Jiho Jin'
-            ],
-            datasets: [
-                {
-                    label: "rewards",
-                    data: [300, 200, 190, 150, 50]
-                }
-            ]
+        friends_reward_rank: {
+            "Juho Kim": 500,
+            "Sangho Lim": 427,
+            "Jisu Choi": 359,
+            "Changyeon Kim": 288,
+            "(YOU)": 125,
+            "Jiho Jin": 59
         }
     }
 
     body() {
         return (
             <div className="Body">
-                <HorizontalBar data={this.state.friends_rewards_rank}
-                    options= {{
-                        scales: {xAxes: [{ticks: {
-                            beginAtZero: true
-                        }}]}
-                    }}
-                />
+                <ListGroup style={{margin: "70px"}}>
+                    {Object.entries(this.state.friends_reward_rank).map(([key, value], idx)=>
+                    <ListGroup.Item>
+                        <Row>
+                            <Col xs="auto">{idx+1}</Col>
+                            <Col>{key}</Col>
+                            <Col style={{textAlign: "right"}}>{value}pt</Col>
+                        </Row>
+                    </ListGroup.Item>)}
+                </ListGroup>
             </div>
         );
     }
