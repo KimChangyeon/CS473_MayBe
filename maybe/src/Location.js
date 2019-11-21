@@ -43,7 +43,7 @@ class Location extends Component {
 				<li>
 						<img className="complete" src={complete} alt="Complete"
 						  onClick={() => {
-								this.props.setMarker({marker: this.state.marker});
+								this.props.setMarker({marker: this.state.marker, initialCenter: this.state.initialCenter});
 								this.props.setPlace({place: this.state.place});
 								this.props.nextStage(0);
 							}}/>
@@ -70,9 +70,10 @@ class Location extends Component {
 				<Map
           google={this.props.google}
           zoom={14.2}
-          style={{width: "500px", height: "380px"}}
           initialCenter={this.state.initialCenter}
           onClick={this.onClick}
+					style={{width: "500px", height: "380px"}}
+					containerStyle={{width: "500px", height: "380px"}}
         >
           <Marker position={this.state.marker}/>
         </Map>
