@@ -6,12 +6,12 @@ import {Button} from 'react-bootstrap';
 import './App.css';
 
 /* Classes */
-import Make from './Make.js';
+import Make from './Appointment/Make.js';
 import Schedule from './Schedule/Schedule.js';
-import Statistics_Monthly from './Statistics_Monthly.js';
+import Statistics_Monthly from './Statistics/Statistics_Monthly.js';
 import Vote from './Vote.js';
 import Location from './Location.js';
-import Statistics_Friend from './Statistics_Friend.js';
+import Statistics_Friend from './Statistics/Statistics_Friend.js';
 import Memo from './Memo.js';
 
 /* Icons */
