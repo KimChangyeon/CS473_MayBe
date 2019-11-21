@@ -14,6 +14,7 @@ import Vote from './Vote.js';
 import Location from './Location.js';
 import Statistics_Friend from './Statistics_Friend.js';
 import Memo from './Memo.js';
+import Rank from './Rank.js';
 
 /* Icons */
 import calendar from './img/hamburger_calendar.png';
@@ -25,6 +26,7 @@ import align from './img/align.png';
 import checkbox from './img/checkbox.png';
 import coins from './img/appointment_list_reward.png';
 import coin from './img/coin.png';
+import rank from './img/rank.png';
 
 function parse(str) {
     var y = str.substring(0,4),
@@ -44,7 +46,7 @@ class Main extends Component {
 			place: null,
 			memo: null,
 			stage_id: 0,
-			stages : ['upcoming','make','schedule','statistics','vote','location', 'memo'],
+			stages : ['upcoming','make','schedule','statistics','vote','location', 'memo', 'rank'],
 			schedule: [{"AppointmentId":1,"DateId":20191123,"StartTime":10,"EndTime":12,"Place":"KAIST","What":"Group Meeting","participants":"Sangho Lim,Jiho Jin,Jisu Choi,Changyeon Kim"}],
 		}
 		this.setMarker = this.setMarker.bind(this);
@@ -86,6 +88,9 @@ class Main extends Component {
 						<h1 className="Darkblue" onClick={()=>this.nextStage(0)}><a href="#">MayBe</a></h1>
 						<nav>
 							<ul className="menu">
+								<li><a href="#">
+									<img src={rank} onClick={()=>this.nextStage(7)} alt="rank" />
+								</a></li>
 								<li><a href="#">
 									<img src={statistics} onClick={()=>this.nextStage(3)} alt="statistics" />
 								</a></li>
@@ -243,6 +248,10 @@ class Main extends Component {
 			header = {this.header}
 			setMemo = {this.setMemo}
 		/>;
+		break;
+	
+	case ('rank'):
+		content = <Rank nextStage = {this.nextStage} header = {this.header}/>;
 		break;
 
       default:
