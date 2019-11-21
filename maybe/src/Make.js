@@ -27,6 +27,15 @@ function make_friends(answer){
 	return friend_list
 }
 
+function make_dict (friends) {
+	var dict = {}
+	for (var i = 0 ; i < friends.length ; i++){
+		dict[friends[i]] = false;
+	}
+
+	return dict;
+}
+
 class Make extends Component {
 	constructor(props) {
 		super(props);
@@ -40,14 +49,14 @@ class Make extends Component {
 			friends_original: ['Alice Oh', 'Chaeyeon Son', 'Changyeon Kim', 'Hyeonjae Gil',
 			'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
 			'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon'],
-			// friends: []
-			search: ''
+			search: '',
+			onSearch: false,
 		}
 		this.nextStage = this.nextStage.bind(this);
 		this.search = React.createRef(); 
 	}
 
-	componentDidMount () {
+	componentWillMount () {
 		var url_final = '/fri/'.concat(this.props.user_id);
 		console.log(url_final);
 		fetch(url_final)
@@ -56,25 +65,17 @@ class Make extends Component {
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
+		this.setState({friends_check: make_dict(this.state.friends_original)});
 	}
 
 	handleSearch = (e) => {
 		this.setState({search: e.target.value});
 	}
 	
-	click_search () {
-		if (this.state.search.length > 0){
-			var idx = this.state.friends.indexOf(this.state.search)
-			if ( idx >= 0)
-				this.setState({friends: [this.state.friends[idx]]})
-			else
-				this.setState({friends: []})
-		}
-	}
-
-	delete_search () {
-		if ( this.state.search.length > 0)
-			this.setState({search: '', friends: this.state.friends_original});
+	onCheck = (name, e) => {
+		var f_check = this.state.friends_check;
+		f_check[name] = e.target.checked;
+		this.setState({freinds_check: f_check})
 	}
 
 
@@ -90,7 +91,9 @@ class Make extends Component {
 					onClick={()=>this.nextStage(3)} />
 				<img src={calendar} alt="calendar" id ="friendlist_calendar"
 					 onClick={()=>this.nextStage(4)} />
-				<Form.Check type='checkbox' label={friend} />
+				<Form.Check type='checkbox' label={friend} 
+					defaultValue={this.state.friends_check[friend]}
+					onChange={(e) => this.onCheck(friend, e)} />
 			</ListGroup.Item>);
 
 		let button; 
@@ -124,15 +127,15 @@ class Make extends Component {
 								
 							/>
 							<InputGroup.Append>
-								<Button variant="xmark" className="search_button" onClick={()=>this.delete_search()}>
+								<Button variant="xmark" className="search_button">
 									<img style={{width: 10, height: 10}} src={xmark} alt="xmark" id="xmark"/>
 								</Button>
-								<Button variant="search" className="search_button" onClick={()=>this.click_search()}>
+								<Button variant="search" className="search_button">
 									<img src={search} alt="search" id="search"/>
 								</Button>
 							</InputGroup.Append>
 						</InputGroup>
-					<ListGroup><Form>{friends_list}</Form></ListGroup>
+						<ListGroup><Form>{friends_list}</Form></ListGroup>
 				</body>
 				content = <div>{header}{body}</div>
 				break;
