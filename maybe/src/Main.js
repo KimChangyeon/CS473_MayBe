@@ -3,16 +3,18 @@ import React, {Component} from 'react';
 import {CardGroup, Card} from 'react-bootstrap';
 import {ListGroup} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
+import Popup from 'reactjs-popup';
 import './App.css';
 
 /* Classes */
-import Make from './Make.js';
+import Make from './Appointment/Make.js';
 import Schedule from './Schedule/Schedule.js';
-import Statistics_Monthly from './Statistics_Monthly.js';
+import Statistics_Monthly from './Statistics/Statistics_Monthly.js';
 import Vote from './Vote.js';
 import Location from './Location.js';
-import Statistics_Friend from './Statistics_Friend.js';
+import Statistics_Friend from './Statistics/Statistics_Friend.js';
 import Memo from './Memo.js';
+import Rank from './Rank.js';
 
 /* Icons */
 import calendar from './img/hamburger_calendar.png';
@@ -22,7 +24,9 @@ import listbutton from './img/button_friend_list.png';
 import gps from './img/appointment_list_gps_location.png';
 import align from './img/align.png';
 import checkbox from './img/checkbox.png';
-import coin from './img/appointment_list_reward.png';
+import coins from './img/appointment_list_reward.png';
+import coin from './img/coin.png';
+import rank from './img/rank.png';
 
 function parse(str) {
     var y = str.substring(0,4),
@@ -42,7 +46,7 @@ class Main extends Component {
 			place: null,
 			memo: null,
 			stage_id: 0,
-			stages : ['upcoming','make','schedule','statistics','vote','location', 'memo'],
+			stages : ['upcoming','make','schedule','statistics','vote','location', 'memo', 'rank'],
 			schedule: [{"AppointmentId":1,"DateId":20191123,"StartTime":10,"EndTime":12,"Place":"KAIST","What":"Group Meeting","participants":"Sangho Lim,Jiho Jin,Jisu Choi,Changyeon Kim"}],
 		}
 		this.setMarker = this.setMarker.bind(this);
@@ -84,6 +88,9 @@ class Main extends Component {
 						<h1 className="Darkblue" onClick={()=>this.nextStage(0)}><a href="#">MayBe</a></h1>
 						<nav>
 							<ul className="menu">
+								<li><a href="#">
+									<img src={rank} onClick={()=>this.nextStage(7)} alt="rank" />
+								</a></li>
 								<li><a href="#">
 									<img src={statistics} onClick={()=>this.nextStage(3)} alt="statistics" />
 								</a></li>
@@ -129,41 +136,52 @@ class Main extends Component {
 
 				const reward = this.state.place == null ?
 					<div style={{fontSize: "11pt", lineHeight: "20px", marginTop: "2px"}}> Please choose the location </div> :
-					<img src={coin} style={{width: "60%", marginTop: "2px"}}/>;
-
+					<Popup trigger={<img src={coins} style={{width: "60%", marginTop: "2px"}}/>} contentStyle={{width: "250px"}}>
+						{close => (
+							<div style={{margin: "5px"}}>
+								<img src={coin} style={{float: "right", width: "50px"}} onClick={close}/>
+								You've arrived at your appointment on time! <br/>
+								<u>3 min</u> earlier <br/>
+								<Button variant="outlineflat" onClick={close}>OK</Button>
+							</div>
+						)}
+					</Popup>;
 		
 		return (
 				<Card className='app_list'>
+
 					<Card.Header><img src={timer} style={{width: "20px", marginRight: "10px", textcolor: "white"}}/>
 					<b> D-{diffDays} &nbsp;&nbsp; {Title}</b>
 					</Card.Header>
+
 					<Card.Body>
-					<div className="row">
-						<div className="content-left"><b>When</b><hr/>
-							<a href="#">
-								<img src={checkbox} style={{width: "50%", marginLeft: "12px", marginTop: "5px"}}
-									onClick={()=>this.nextStage(4)}
-									alt="When"/>
-							</a>
+						<div className="row">
+							<div className="content-left"><b>When</b><hr/>
+								<a href="#">
+									<img src={checkbox} style={{width: "50%", marginLeft: "12px", marginTop: "5px"}}
+										onClick={()=>this.nextStage(4)}
+										alt="When"/>
+								</a>
+							</div>
+							<div className="content-left"><b>Who</b><hr/>
+								<ul>
+									{/* <li><span>Sangho</span></li> */}
+									{/* <li><span>Chang-yeon Kim</span></li> */}
+									{participants_list}
+								</ul>
+							</div>
+							<div className="content-left"><b>Where</b><hr/>
+									{place}
+							</div>
+							<div className="content-left"><b>Memo</b><hr/>
+									{memo}
+							</div>
+							<div className="content-right"><b>Reward</b><hr/>
+								{reward}
+							</div>
 						</div>
-						<div className="content-left"><b>Who</b><hr/>
-							<ul>
-								{/* <li><span>Sangho</span></li> */}
-								{/* <li><span>Chang-yeon Kim</span></li> */}
-								{participants_list}
-							</ul>
-						</div>
-						<div className="content-left"><b>Where</b><hr/>
-								{place}
-						</div>
-						<div className="content-left"><b>Memo</b><hr/>
-								{memo}
-						</div>
-						<div className="content-right"><b>Reward</b><hr/>
-							{reward}
-						</div>
-					</div>
 					</Card.Body>
+
 				</Card>
 		);
 	}
@@ -230,6 +248,10 @@ class Main extends Component {
 			header = {this.header}
 			setMemo = {this.setMemo}
 		/>;
+		break;
+	
+	case ('rank'):
+		content = <Rank nextStage = {this.nextStage} header = {this.header}/>;
 		break;
 
       default:
