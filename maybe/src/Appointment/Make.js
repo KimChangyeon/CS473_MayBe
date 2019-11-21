@@ -5,7 +5,7 @@ import './Make.css'
 
 import Statistics_Friend from '../Statistics/Statistics_Friend';
 import DragSelect from './DragSelect';
-import Choose from './Choose';
+import Choose from './choose.js';
 
 /* Icons */
 import makebutton from '../img/button_make_appointment.png';
