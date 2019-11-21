@@ -5,6 +5,7 @@ import './Make.css'
 
 import Statistics_Friend from '../Statistics/Statistics_Friend';
 import DragSelect from './DragSelect';
+import Choose from './Choose';
 
 /* Icons */
 import makebutton from '../img/button_make_appointment.png';
@@ -18,7 +19,6 @@ import statistics from '../img/statistics.png';
 import calendar from '../img/friend_list_friend_calendar.png';
 import search from '../img/search.png'
 import xmark from '../img/x_mark.png'
-
 
 function make_friends(answer){
 	var friend_list = [];
@@ -162,7 +162,7 @@ class Make extends Component {
 					</ul>
 				bar = <div className="Bar">Choose Available Time Slots</div>;
 				header = this.props.header(bar, button);
-				body = <body className="Body">choose</body>;
+				body = <body className="Body"><Choose /></body>;
 				content = <div>{header}{body}</div>;
 				break;
 

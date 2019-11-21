@@ -8,7 +8,7 @@
   /* Cells that cannot be interacted with */
   .table-drag-select td.cell-disabled {
     /* Put yer css here */
-    width: 100px
+    /* width: 100px; */
   }
   
   /* Cells that have been selected */
@@ -18,7 +18,7 @@
   
   /* Cells that are in the process of being selected */
   .table-drag-select td.cell-being-selected {
-    background-color: #EACA96;
+    /* background-color: #EACA96; */
   }
   
   /* Cells in first row */

@@ -41,7 +41,7 @@ class DragSelect extends Component {
             </tr>
           <tr>
             <td disabled>11</td>
-            <td />
+            <td/>
             <td />
             <td />
             <td />
