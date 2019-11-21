@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from 'react';
-import {CardGroup, Card} from 'react-bootstrap';
-import {ListGroup} from 'react-bootstrap';
+import {Card} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 import './App.css';
@@ -12,7 +11,6 @@ import Schedule from './Schedule/Schedule.js';
 import Statistics_Monthly from './Statistics/Statistics_Monthly.js';
 import Vote from './Vote.js';
 import Location from './Location.js';
-import Statistics_Friend from './Statistics/Statistics_Friend.js';
 import Memo from './Memo.js';
 import Rank from './Rank.js';
 
@@ -116,7 +114,7 @@ class Main extends Component {
 
 				const Title = info.What;
 				const participants = info.participants.split(',');
-				const participants_list = participants.map((person) => <li><span>{person}</span></li>)
+				const participants_list = participants.map((person) => <li key={person}><span>{person}</span></li>)
 				
 				const place = this.state.place == null ?
 					<img src={gps} style={{width: "65%"}}
@@ -137,10 +135,10 @@ class Main extends Component {
 
 				const reward = this.state.place == null ?
 					<div style={{fontSize: "11pt", lineHeight: "20px", marginTop: "2px"}}> Please choose the location </div> :
-					<Popup trigger={<img src={coins} style={{width: "60%", marginTop: "2px"}}/>} contentStyle={{width: "250px"}}>
+					<Popup trigger={<img src={coins} style={{width: "60%", marginTop: "2px"}} alt="reward"/>} contentStyle={{width: "250px"}}>
 						{close => (
 							<div style={{margin: "5px"}}>
-								<img src={coin} style={{float: "right", width: "50px"}} onClick={close}/>
+								<img src={coin} style={{float: "right", width: "50px"}} onClick={close} alt="reward"/>
 								You've arrived at your appointment on time! <br/>
 								<u>3 min</u> earlier <br/>
 								<Button variant="outlineflat" onClick={close}>OK</Button>
@@ -151,7 +149,7 @@ class Main extends Component {
 		return (
 				<Card className='app_list'>
 
-					<Card.Header><img src={timer} style={{width: "20px", marginRight: "10px", textcolor: "white"}}/>
+					<Card.Header><img src={timer} style={{width: "20px", marginRight: "10px", textcolor: "white"}} alt="appointment" />
 					<b> D-{diffDays} &nbsp;&nbsp; {Title}</b>
 					</Card.Header>
 
@@ -195,7 +193,7 @@ class Main extends Component {
 		let body;
 		let content;
 
-	const upcoming_list = this.state.schedule.map((sch) => <li>{this.appointment_list(sch)}</li>)
+	const upcoming_list = this.state.schedule.map((sch) => <li key={sch}>{this.appointment_list(sch)}</li>)
     
     switch (main_stage) {
       case ('upcoming'):

@@ -16,7 +16,7 @@ class Memo extends Component {
 	}
 
 	onChange (e) {
-		const value = e.target.value == "" ? null : e.target.value;
+		const value = e.target.value === "" ? null : e.target.value;
 		this.setState({
 			memo: value
 		});
