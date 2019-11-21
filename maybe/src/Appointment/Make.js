@@ -1,23 +1,23 @@
 import React, {Component} from 'react';
 import {ButtonGroup, Button, ListGroup, Form, InputGroup, FormControl} from 'react-bootstrap';
-import './App.css';
+import '../App.css';
 import './Make.css'
 
-import Statistics_Friend from './Statistics_Friend';
+import Statistics_Friend from '../Statistics/Statistics_Friend';
 import DragSelect from './DragSelect';
 
 /* Icons */
-import makebutton from './img/button_make_appointment.png';
-import friendlist_light from './img/friend_list_tab_friend_light.png';
-import friendlist_dark from './img/friend_list_tab_friend_dark.png';
-import timeslot_light from './img/friend_list_tab_calendar_light.png';
-import timeslot_dark from './img/friend_list_tab_calendar_dark.png';
-import complete from './img/button_complete.png';
-import cancel from './img/button_cancel.png';
-import statistics from './img/statistics.png';
-import calendar from './img/friend_list_friend_calendar.png';
-import search from './img/search.png'
-import xmark from './img/x_mark.png'
+import makebutton from '../img/button_make_appointment.png';
+import friendlist_light from '../img/friend_list_tab_friend_light.png';
+import friendlist_dark from '../img/friend_list_tab_friend_dark.png';
+import timeslot_light from '../img/friend_list_tab_calendar_light.png';
+import timeslot_dark from '../img/friend_list_tab_calendar_dark.png';
+import complete from '../img/button_complete.png';
+import cancel from '../img/button_cancel.png';
+import statistics from '../img/statistics.png';
+import calendar from '../img/friend_list_friend_calendar.png';
+import search from '../img/search.png'
+import xmark from '../img/x_mark.png'
 
 
 function make_friends(answer){

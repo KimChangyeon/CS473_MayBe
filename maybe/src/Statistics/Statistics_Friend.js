@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
-import './App.css';
+import '../App.css';
 import './Statistics_Friend.css';
 import { Bar } from "react-chartjs-2";
 import { ListGroup } from 'react-bootstrap';
 
-import satisfaction_img from './img/statistics_satisfaction.png';
-import recent_img from './img/statistics_recent.png';
-import last_date_img from './img/statistics_last_date.png';
-import last_location_img from './img/statistics_last_location.png';
+import satisfaction_img from '../img/statistics_satisfaction.png';
+import recent_img from '../img/statistics_recent.png';
+import last_date_img from '../img/statistics_last_date.png';
+import last_location_img from '../img/statistics_last_location.png';
 
 class Statistics_Friend extends Component {
     state = {

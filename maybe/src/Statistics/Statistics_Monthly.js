@@ -1,9 +1,9 @@
 // https://www.chartjs.org/docs/latest/axes/styling.html#tick-configuration
 import React, {Component} from 'react';
-import './App.css';
+import '../App.css';
 import './Statistics_Monthly.css';
 import { Radar, HorizontalBar } from "react-chartjs-2";
-import rewards from "./img/reward.png";
+import rewards from "../img/reward.png";
 
 class Statistics_Monthly extends Component {
     state = {
