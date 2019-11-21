@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Container, Row, Col, ListGroup} from 'react-bootstrap'
+import {Row, Col, ListGroup} from 'react-bootstrap'
 import './App.css'
 
 class Rank extends Component {
@@ -19,7 +19,7 @@ class Rank extends Component {
             <div className="Body">
                 <ListGroup style={{margin: "70px"}}>
                     {Object.entries(this.state.friends_reward_rank).map(([key, value], idx)=>
-                    <ListGroup.Item>
+                    <ListGroup.Item key={key}>
                         <Row>
                             <Col xs="auto">{idx+1}</Col>
                             <Col>{key}</Col>
