@@ -65,7 +65,7 @@ export default class Weekly extends React.PureComponent {
     this.changeEditingAppointmentId = this.changeEditingAppointmentId.bind(this);
   }
 
-  componentDidMount () {
+  componentWillMount () {
       var url_final = '/sch/'.concat(this.props.user_id);
       console.log(url_final);
       fetch(url_final)

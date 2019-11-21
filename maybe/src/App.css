@@ -190,6 +190,16 @@ hr {
 	height: 30px;
 }
 
+#crown {
+	width: 18px;
+	height:15px;
+	position: relative;
+	top: 18px;
+	left: 50px;
+	z-index: 100;
+    transform: rotate(-20deg);
+}
+
 /* horizontally centered */
 .horizontal_center {
     display: flex;

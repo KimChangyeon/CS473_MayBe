@@ -1,24 +1,24 @@
 import React, {Component} from 'react';
 import {ButtonGroup, Button, ListGroup, Form, InputGroup, FormControl} from 'react-bootstrap';
-import '../App.css';
+import './App.css';
 import './Make.css'
 
-import Statistics_Friend from '../Statistics/Statistics_Friend';
+import Statistics_Friend from './Statistics_Friend';
 import DragSelect from './DragSelect';
-import Choose from './Choose';
 
 /* Icons */
-import makebutton from '../img/button_make_appointment.png';
-import friendlist_light from '../img/friend_list_tab_friend_light.png';
-import friendlist_dark from '../img/friend_list_tab_friend_dark.png';
-import timeslot_light from '../img/friend_list_tab_calendar_light.png';
-import timeslot_dark from '../img/friend_list_tab_calendar_dark.png';
-import complete from '../img/button_complete.png';
-import cancel from '../img/button_cancel.png';
-import statistics from '../img/statistics.png';
-import calendar from '../img/friend_list_friend_calendar.png';
-import search from '../img/search.png'
-import xmark from '../img/x_mark.png'
+import makebutton from './img/button_make_appointment.png';
+import friendlist_light from './img/friend_list_tab_friend_light.png';
+import friendlist_dark from './img/friend_list_tab_friend_dark.png';
+import timeslot_light from './img/friend_list_tab_calendar_light.png';
+import timeslot_dark from './img/friend_list_tab_calendar_dark.png';
+import complete from './img/button_complete.png';
+import cancel from './img/button_cancel.png';
+import statistics from './img/statistics.png';
+import calendar from './img/friend_list_friend_calendar.png';
+import search from './img/search.png'
+import xmark from './img/x_mark.png'
+
 
 function make_friends(answer){
 	var friend_list = [];
@@ -44,10 +44,10 @@ class Make extends Component {
 			user_id: this.props.user_id,
 			stages: ['list', 'slot', 'choose', 'stat_friend', 'schedule_friend'],
 			friends: ['Alice Oh', 'Chaeyeon Son', 'Changyeon Kim', 'Hyeonjae Gil',
-			'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
+			'Hyeonju Yun', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
 			'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon'],
 			friends_original: ['Alice Oh', 'Chaeyeon Son', 'Changyeon Kim', 'Hyeonjae Gil',
-			'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
+			'Hyeonju Yun', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
 			'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon'],
 			search: '',
 			onSearch: false,
@@ -71,7 +71,7 @@ class Make extends Component {
 	handleSearch = (e) => {
 		this.setState({search: e.target.value});
 	}
-	
+
 	onCheck = (name, e) => {
 		var f_check = this.state.friends_check;
 		f_check[name] = e.target.checked;
@@ -81,6 +81,18 @@ class Make extends Component {
 
 	nextStage (number) {
 		this.setState({stage_id: number});
+	}
+
+	choose_participants = () => {
+		var answer = [];
+		var f_check = this.state.friends_check;
+		var friend_names = Object.keys(f_check);
+		for (var i = 0 ; i < friend_names.length ; i++){
+			if (f_check[friend_names[i]])
+				answer.push(friend_names[i])
+		}
+
+		return answer;
 	}
 
 	render () {
@@ -117,7 +129,7 @@ class Make extends Component {
 				body = <body className="Body">
 						<InputGroup className="search">
 							<input
-								style = {{width: "455px"}}
+								style = {{width: "410px"}}
 								placeholder="Search"
 								aria-label="Recipient's username"
 								aria-describedby="basic-addon2"
@@ -127,9 +139,9 @@ class Make extends Component {
 								
 							/>
 							<InputGroup.Append>
-								{/* <Button variant="xmark" className="search_button">
+								<Button variant="xmark" className="search_button">
 									<img style={{width: 10, height: 10}} src={xmark} alt="xmark" id="xmark"/>
-								</Button> */}
+								</Button>
 								<Button variant="search" className="search_button">
 									<img src={search} alt="search" id="search"/>
 								</Button>
@@ -163,9 +175,9 @@ class Make extends Component {
 						<li> <img className="cancel" src={cancel} alt="Cancel"
 								onClick={()=>this.props.nextStage(0)}/> </li>
 					</ul>
-				bar = <div className="Bar">Choose Available Time Slots</div>;
+				bar = <div className="Bar">AA</div>;
 				header = this.props.header(bar, button);
-				body = <body className="Body"><Choose /></body>;
+				body = <body className="Body">{this.choose_participants()}</body>;
 				content = <div>{header}{body}</div>;
 				break;
 
