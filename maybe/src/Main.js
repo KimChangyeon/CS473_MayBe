@@ -31,9 +31,10 @@ import rank from './img/rank.png';
 function parse(str) {
     var y = str.substring(0,4),
         m = str.substring(4,6) - 1,
-        d = str.substring(6,8);
+		d = str.substring(6,8);
     return new Date(y,m,d);
 }
+
 
 
 class Main extends Component {
