@@ -62,6 +62,7 @@ router.get('/appt/:id', (req, res) => {
     })
 });
 
+//한 유저의 친구 목록 불러오기.
 router.get('/fri/:id', (req, res) => {
     var query = 'SELECT name from User where userid in (SELECT FriendId FROM Friend where userId = ?)'
     db.query(query, req.params.id, (err, rows) => {
@@ -73,6 +74,43 @@ router.get('/fri/:id', (req, res) => {
         }
     })
 });
+
+router.post('/make/:DateId/:StartTime/:EndTime/:Place/:What', (req, res) => {
+    var query = 'INSERT INTO Appointment(DateId, StartTime, EndTime, Place, What) VALUES (?,?,?,?,?)'
+    db.query(query, [req.params.DateId, req.params.StartTime, req.params.EndTime, req.params.Place, req.params.What], (err, rows) => {
+        if (!err) {
+            res.send({data: 'POSTING SUCCESSED.'});
+        }
+        else {
+            res.send({data: err});
+        }
+    })
+});
+
+router.post('/modify_time/:id/:DateId/:StartTime/:EndTime/', (req, res) => {
+    var query = 'UPDATE Appointment SET DateId = ?, StartTime = ?, EndTime = ? WHERE AppointmentId = ?'
+    db.query(query, [req.params.DateId, req.params.StartTime, req.params.EndTime, req.params.id], (err, rows) => {
+        if (!err) {
+            res.send({data: 'POSTING SUCCESSED.'});
+        }
+        else {
+            res.send({data: err});
+        }
+    })
+});
+
+router.post('/modify_place/:id/:Place/', (req, res) => {
+    var query = 'UPDATE Appointment SET Place WHERE AppointmentId = ?'
+    db.query(query, [req.params.Place, req.params.id], (err, rows) => {
+        if (!err) {
+            res.send({data: 'POSTING SUCCESSED.'});
+        }
+        else {
+            res.send({data: err});
+        }
+    })
+});
+
 
 
 module.exports = router;
