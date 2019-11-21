@@ -48,6 +48,7 @@ class Memo extends Component {
 					<FormControl as="textarea" /* aria-label="With textarea" */
 						placeholder="Enter a note"
 						onChange={this.onChange}
+						style = {{height: "300px"}}
 					/>
 				</InputGroup>
 			</body>
