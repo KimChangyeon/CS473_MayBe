@@ -48,7 +48,8 @@ class Choose extends Component {
                         row : '9PM',
                         cell : nineCandidates
                     }
-                ]
+                ],
+        friends: this.props.friends
     }
 
     cellClick =(row, id) => {

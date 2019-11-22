@@ -1,0 +1,73 @@
+{
+  "name": "@devexpress/dx-react-core",
+  "version": "2.2.1",
+  "description": "Core library for DevExtreme React Components",
+  "author": {
+    "name": "Developer Express Inc.",
+    "url": "https://www.devexpress.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/DevExpress/devextreme-reactive/issues"
+  },
+  "homepage": "https://devexpress.github.io/devextreme-reactive/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevExpress/devextreme-reactive.git"
+  },
+  "keywords": [
+    "react",
+    "component",
+    "react-component"
+  ],
+  "license": "SEE LICENSE IN README.md",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/dx-react-core.umd.js",
+  "module": "dist/dx-react-core.es.js",
+  "globalName": "DevExpress.DXReactCore",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/dx-react-core.d.ts",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "build": "rollup -c rollup.config.js",
+    "build:watch": "rollup -c rollup.config.js -w",
+    "dts": "tsc -p tsconfig.dts.json && node ./merge-dts.js",
+    "update-api": "api-extractor run",
+    "lint": "tslint -p tsconfig.lint.json",
+    "lint:fix": "yarn lint -- --fix",
+    "tsc": "tsc"
+  },
+  "devDependencies": {
+    "@types/enzyme": "^3.10.3",
+    "core-js": "^3.3.3",
+    "enzyme": "3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "jest": "^24.9.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-test-renderer": "^16.11.0",
+    "rollup": "^1.25.2",
+    "rollup-plugin-license": "^0.12.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-typescript2": "^0.25.2",
+    "ts-jest": "^24.1.0",
+    "tslint": "^5.20.0",
+    "tslint-config-airbnb": "^5.11.2",
+    "typescript": "3.6.4"
+  },
+  "dependencies": {
+    "@devexpress/dx-core": "2.2.1",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.10.2",
+    "react-dom": ">=16.10.2"
+  },
+  "gitHead": "1c98429f216cd54bdad126fbba2afeeda24989b1"
+}
