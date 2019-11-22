@@ -25,6 +25,7 @@ import checkbox from './img/checkbox.png';
 import coins from './img/appointment_list_reward.png';
 import coin from './img/coin.png';
 import rank from './img/rank.png';
+import { thisExpression } from '@babel/types';
 
 function parse(str) {
     var y = str.substring(0,4),
@@ -39,6 +40,10 @@ class Main extends Component {
 	constructor (props) {
 		super(props);
 		this.state = {
+			AppointmentId: 0,
+			AppointmentPlace: '',
+			AppointmentMemo: '',
+			AppointmentTime: [],
 			initialCenter: { lat: 36.368, lng: 127.355 },
 			user_id: this.props.user_id,
 			marker: { lat: 36.3636944, lng: 127.359529 },
@@ -46,12 +51,13 @@ class Main extends Component {
 			memo: null,
 			stage_id: 0,
 			stages : ['upcoming','make','schedule','statistics','vote','location', 'memo', 'rank'],
-			schedule: [{"AppointmentId":1,"DateId":20191123,"StartTime":10,"EndTime":12,"Place":"KAIST","What":"Group Meeting","participants":"Sangho Lim,Jiho Jin,Jisu Choi,Changyeon Kim"}],
+			schedule: [{"AppointmentId":1,"DateId":20191120,"StartTime":10,"EndTime":12,"Place":"KAIST","What":"Group Meeting","Memo":"늦지 말고 오기","participants":"Sangho Lim,Jiho Jin,Jisu Choi,Changyeon Kim"},{"AppointmentId":2,"DateId":20191118,"StartTime":20,"EndTime":23,"Place":"어은동","What":"Meal","Memo":"빨리 좀 와라 임마","participants":"Sangho Lim,Jiho Jin"}]
 		}
 		this.setMarker = this.setMarker.bind(this);
 		this.setPlace = this.setPlace.bind(this);
 		this.setMemo = this.setMemo.bind(this);
 		this.nextStage = this.nextStage.bind(this);
+		this.nextStageWithAppointment = this.nextStageWithAppointment.bind(this);
 	}
 
 	componentDidMount () {
@@ -79,6 +85,25 @@ class Main extends Component {
 	nextStage(number) {
 		this.setState({stage_id: number});
 	}
+
+	nextStageWithAppointment(number, appId, additional) {
+		console.log(appId);
+		this.setState({stage_id: number, AppointmentId: appId});
+		switch (number) {
+			case (4):
+				this.setState({AppointmentTime: additional})
+				break;
+			case (5):
+				this.setState({AppointmentPlace: additional})
+				break;
+			case (6):
+				this.setState({AppointmentMemo: additional})
+				break;
+			default:
+				//pass
+		}
+	}
+
 
 	header(bar, button) {
 		return (
@@ -116,24 +141,24 @@ class Main extends Component {
 				const participants = info.participants.split(',');
 				const participants_list = participants.map((person) => <li key={person}><span>{person}</span></li>)
 				
-				const place = this.state.place == null ?
+				const place = info.Place == null ?
 					<img src={gps} style={{width: "65%"}}
-						onClick={()=>this.nextStage(5)} alt="Where"/> :
+						onClick={()=>this.nextStageWithAppointment(5, info.AppointmentId, '')} alt="Where"/> :
 					<div className="edit">
-						{this.state.place} <br/>
-						<Button variant="outlineflat" onClick={()=>this.nextStage(5)}>Edit</Button>
+						{info.Place} <br/>
+						<Button variant="outlineflat" onClick={()=>this.nextStageWithAppointment(5, info.AppointmentId, info.Place)}>Edit</Button>
 					</div>;
 
-				const memo = this.state.memo == null ?
+				const memo = info.Memo == null ?
 					<img src={align} style={{width: "45%", marginTop: "8px"}}
-						onClick={()=>this.nextStage(6)}
+						onClick={()=>this.nextStageWithAppointment(6, info.AppointmentId, '')}
 						alt="Memo"/> :
 					<div className="edit">
-						{this.state.memo} <br/>
-						<Button variant="outlineflat" onClick={()=>this.nextStage(6)}>Edit</Button>
+						{info.Memo} <br/>
+						<Button variant="outlineflat" onClick={()=>this.nextStageWithAppointment(6, info.AppointmentId, info.Memo)}>Edit</Button>
 					</div>;
 
-				const reward = this.state.place == null ?
+				const reward = info.Place == null ?
 					<div style={{fontSize: "11pt", lineHeight: "20px", marginTop: "2px"}}> Please choose the location </div> :
 					<Popup trigger={<img src={coins} style={{width: "60%", marginTop: "2px"}} alt="reward"/>} contentStyle={{width: "250px"}}>
 						{close => (
@@ -158,7 +183,7 @@ class Main extends Component {
 							<div className="content-left"><b>When</b><hr/>
 								<a href="#">
 									<img src={checkbox} style={{width: "50%", marginLeft: "12px", marginTop: "5px"}}
-										onClick={()=>this.nextStage(4)}
+										onClick={()=>this.nextStageWithAppointment(4, info.AppointmentId, [info.StartTime, info.EndTime])}
 										alt="When"/>
 								</a>
 							</div>
@@ -218,7 +243,7 @@ class Main extends Component {
         break;
 
       case ('schedule'):
-      	content = <Schedule nextStage = {this.nextStage} header = {this.header} user_id = {this.state.user_id}/>;
+      	content = <Schedule nextStage = {this.nextStage} header = {this.header} user_id = {this.state.user_id} AppointmentId = {this.state.AppointmentId}/>;
         break;
 
       case ('statistics'):
@@ -226,26 +251,34 @@ class Main extends Component {
 				break;
 
 	  case ('vote'):
-		content = <Vote nextStage = {this.nextStage} header = {this.header}/>;
+		content = <Vote 
+					nextStage = {this.nextStage} nextStageWithAppointment = {this.nextStageWithAppointment}
+					header = {this.header} AppointmentId = {this.state.AppointmentId} AppointmentTime = {this.state.AppointmentTime}/>;
 		break;
 
 	  case ('location'):
 		content =
 			<Location
 				nextStage = {this.nextStage}
+				nextStageWithAppointment = {this.nextStageWithAppointment}
 				header = {this.header}
 				initialCenter = {this.state.initialCenter}
 				marker = {this.state.marker}
 				setMarker = {this.setMarker}
 				setPlace = {this.setPlace}
+				AppointmentId = {this.state.AppointmentId}
+				AppointmentPlace = {this.state.AppointmentPlace}
 			/>;
 		break;
 
 	  case ('memo'):
 		content = <Memo
 			nextStage = {this.nextStage}
+			nextStageWithAppointment = {this.nextStageWithAppointment}
 			header = {this.header}
 			setMemo = {this.setMemo}
+			AppointmentId = {this.state.AppointmentId}
+			AppointmentMemo = {this.state.AppointmentMemo}
 		/>;
 		break;
 	

@@ -100,10 +100,34 @@ router.post('/modify_time/:id/:DateId/:StartTime/:EndTime/', (req, res) => {
 });
 
 router.post('/modify_place/:id/:Place/', (req, res) => {
-    var query = 'UPDATE Appointment SET Place WHERE AppointmentId = ?'
+    var query = 'UPDATE Appointment SET Place = ? WHERE AppointmentId = ?'
     db.query(query, [req.params.Place, req.params.id], (err, rows) => {
         if (!err) {
             res.send({data: 'POSTING SUCCESSED.'});
+        }
+        else {
+            res.send({data: err});
+        }
+    })
+});
+
+router.post('/modify_memo/:id/:Memo/', (req, res) => {
+    var query = 'UPDATE Appointment SET Memo = ? WHERE AppointmentId = ?'
+    db.query(query, [req.params.Memo, req.params.id], (err, rows) => {
+        if (!err) {
+            res.send({data: 'POSTING SUCCESSED.'});
+        }
+        else {
+            res.send({data: err});
+        }
+    })
+});
+
+router.get('/AppId/', (req, res) => {
+    var query = 'SELECT LAST_INSERT_ID(AppointmentId) as AppointmentId from Appointment order by LAST_INSERT_ID(AppointmentId) desc limit 1'
+    db.query(query, req, (err, rows) => {
+        if (!err) {
+            res.send({data: rows});
         }
         else {
             res.send({data: err});

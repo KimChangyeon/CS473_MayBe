@@ -10,7 +10,7 @@ class Memo extends Component {
 	constructor (props) {
 		super(props);
 		this.state = {
-			memo: null
+			memo: this.props.AppointmentMemo
 		}
 		this.onChange = this.onChange.bind(this);
 	}
@@ -22,6 +22,16 @@ class Memo extends Component {
 		});
 	}
 
+	submission () {
+		var url_final = '/modify_memo/'.concat(this.props.AppointmentId).concat('/').concat(this.state.memo);
+		fetch(url_final)
+			.then(res => res.json())
+			.then(answer => console.log(answer.data))        
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
+	}
+
 	render () {
 		const bar = <div className="Bar">Memo</div>;
 		const button =
@@ -29,13 +39,14 @@ class Memo extends Component {
         	<li>
               <img className="complete" src={complete} alt="Complete"
                 onClick={() => {
-                  this.props.setMemo({memo: this.state.memo});
-                  this.props.nextStage(0);
+				  this.props.setMemo({memo: this.state.memo});
+				  this.submission();
+                  this.props.nextStageWithAppointment(0,0);
                 }}/>
           </li>
           <li>
               <img className="cancel" src={cancel} alt="Cancel"
-                onClick={() => this.props.nextStage(0)}/>
+                onClick={() => this.props.nextStageWithAppointment(0,0)}/>
           </li>
         </ul>;
 		const header = this.props.header(bar, button);
@@ -47,6 +58,7 @@ class Memo extends Component {
 					</InputGroup.Prepend>
 					<FormControl as="textarea" /* aria-label="With textarea" */
 						placeholder="Enter a note"
+						defaultValue = {this.props.AppointmentMemo}
 						onChange={this.onChange}
 						style = {{height: "300px"}}
 					/>

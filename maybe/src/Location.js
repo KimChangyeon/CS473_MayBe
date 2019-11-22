@@ -13,7 +13,7 @@ class Location extends Component {
     this.state = {
 			initialCenter: this.props.initialCenter,
 			marker: this.props.marker,
-			place: null
+			place: this.props.AppointmentPlace
 		};
     this.onClick = this.onClick.bind(this);
 		this.onChange = this.onChange.bind(this);
@@ -37,6 +37,16 @@ class Location extends Component {
 		});
 	}
 
+	submission () {
+		var url_final = '/modify_place/'.concat(this.props.AppointmentId).concat('/').concat(this.state.place);
+		fetch(url_final)
+			.then(res => res.json())
+			.then(answer => console.log(answer.data))        
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
+	}
+
 	render () {
 		const button =
 			<ul>
@@ -45,12 +55,13 @@ class Location extends Component {
 						  onClick={() => {
 								this.props.setMarker({marker: this.state.marker, initialCenter: this.state.initialCenter});
 								this.props.setPlace({place: this.state.place});
-								this.props.nextStage(0);
+								this.submission();
+								this.props.nextStageWithAppointment(0,0);
 							}}/>
 				</li>
         <li>
 						<img className="cancel" src={cancel} alt="Cancel"
-              onClick={() => this.props.nextStage(0)}/>
+              onClick={() => this.props.nextStageWithAppointment(0,0)}/>
 				</li>
 			</ul>
     const bar = <div className="Bar">Choose Meeting Point</div>;
@@ -63,6 +74,7 @@ class Location extends Component {
 					<FormControl
 						placeholder="Enter where to meet"
 						onChange={this.onChange}
+						defaultValue = {this.props.AppointmentPlace}
 						// aria-label="Place"
 						// aria-describedby="basic-addon1"
 					/>
