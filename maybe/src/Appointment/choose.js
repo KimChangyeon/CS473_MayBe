@@ -1,22 +1,52 @@
 import React, {Component} from 'react';
 import './Choose.css';
-import {fiveCandidates, sixCandidates, sevenCandidates} from './ChooseData';
+import {fiveCandidates, sixCandidates, sevenCandidates, fourCandidates, eightCandidates, nineCandidates, threeCandidates,
+    twelveCandidates,oneCandidates,twoCandidates} from './ChooseData';
 
 class Choose extends Component {
 
     state = {
         cells : [
                     {
-                        row : 5, 
+                        row : '12AM',
+                        cell : twelveCandidates
+                    },
+                    {
+                        row : '1PM',
+                        cell : oneCandidates
+                    },
+                    {
+                        row : '2PM',
+                        cell : twoCandidates
+                    },
+                    {
+                        row : '3PM',
+                        cell : threeCandidates
+                    },
+            
+                    {
+                        row : '4PM',
+                        cell : fourCandidates
+                    },
+                    {
+                        row : '5PM', 
                         cell : fiveCandidates
                     }, 
                     {
-                        row : 6, 
+                        row : '6PM', 
                         cell : sixCandidates
                     }, 
                     {
-                        row: 7, 
+                        row: '7PM', 
                         cell : sevenCandidates
+                    },
+                    {
+                        row : '8PM',
+                        cell : eightCandidates,
+                    },
+                    {
+                        row : '9PM',
+                        cell : nineCandidates
                     }
                 ]
     }
@@ -36,7 +66,7 @@ class Choose extends Component {
         this.state.cells.map((Row) => {
             return (
                 <tr>
-                    <td>{Row.row}</td>
+                    <td style = {{width : 50}}>{Row.row}</td>
                     {this.renderCell(Row.row,Row.cell)}
                 </tr>
             )
@@ -60,17 +90,19 @@ class Choose extends Component {
     render(){
         return (
             <table class="table table-bordered" >
-                <tbody>
                 <tr>
-                    <td style={{width : 30}}>#</td>
-                    <td>MON</td>
-                    <td>TUE</td>
-                    <td>WED</td>
-                    <td>THU</td>
-                    <td>FRI</td>
-                    <td>SAT</td>
-                    <td>SUN</td>
+                    <thead>
+                        <td style = {{width : 75}}>TIME</td>
+                        <td style = {{width : 60}}>MON</td>
+                        <td style = {{width : 65}}>TUE</td>
+                        <td style = {{width : 65}}>WED</td>
+                        <td style = {{width : 65}}>THU</td>
+                        <td style = {{width : 65}}>FRI</td>
+                        <td style = {{width : 65}}>SAT</td>
+                        <td style = {{width : 65}}>SUN</td>
+                    </thead>
                 </tr>
+                <tbody>
                 <tr>
                     {this.renderRow()}
                 </tr>
@@ -109,6 +141,7 @@ class Cell extends Component {
             <td
                 className = {className}
                 onClick = {this.handleClick}
+                style = {{width : 70}}
             ></td>
         )
     }
