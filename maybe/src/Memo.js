@@ -24,7 +24,7 @@ class Memo extends Component {
 
 	submission () {
 		var url_final = '/modify_memo/'.concat(this.props.AppointmentId).concat('/').concat(this.state.memo);
-		fetch(url_final)
+		fetch(url_final, {method: "POST"})
 			.then(res => res.json(), {method: "POST"})
 			.then(answer => console.log(answer.data))        
 		.catch((error)=>{

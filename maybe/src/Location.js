@@ -39,8 +39,8 @@ class Location extends Component {
 
 	submission () {
 		var url_final = '/modify_place/'.concat(this.props.AppointmentId).concat('/').concat(this.state.place);
-		fetch(url_final)
-			.then(res => res.json(), {method: "POST"})
+		fetch(url_final, {method: "POST"})
+			.then(res => res.json())
 			.then(answer => console.log(answer.data))        
 		.catch((error)=>{
 			console.log('Error fetching man',error);
