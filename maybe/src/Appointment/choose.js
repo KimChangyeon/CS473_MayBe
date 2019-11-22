@@ -11,36 +11,36 @@ class Choose extends Component {
         this.state = {
             cells : [
                 {
-                    row : '12AM',
+                    row : 12,
                     cell : twelveCandidates
                 },
                 {
-                    row : '1PM',
+                    row : 13,
                     cell : oneCandidates
                 },
                 {
-                    row : '2PM',
+                    row : 14,
                     cell : twoCandidates
                 },
                 {
-                    row : '3PM',
+                    row : 15,
                     cell : threeCandidates
                 },
         
                 {
-                    row : '4PM',
+                    row : 16,
                     cell : fourCandidates
                 },
                 {
-                    row : '5PM', 
+                    row : 17, 
                     cell : fiveCandidates
                 }, 
                 {
-                    row : '6PM', 
+                    row : 18, 
                     cell : sixCandidates
                 }, 
                 {
-                    row: '7PM', 
+                    row: 19, 
                     cell : sevenCandidates
                 },
             ],
