@@ -211,6 +211,15 @@ class Main extends Component {
 	}
 
   render () {
+
+	var url_final = '/appt/'.concat(this.props.user_id);
+		fetch(url_final)
+			.then(res => res.json())
+			.then(answer => this.setState({schedule: answer.data}))        
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
+		
     var main_stage = this.state.stages[this.state.stage_id];
 		let button;
 		let bar;
