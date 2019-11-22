@@ -19,6 +19,7 @@ class Vote extends Component {
     const body =
 			<body className= "Body">
 				{this.props.AppointmentTime}
+				votte
 			</body>
 		const content = <div>{header}{body}</div>;
 

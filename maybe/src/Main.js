@@ -160,7 +160,7 @@ class Main extends Component {
 
 				const reward = info.Place == null ?
 					<div style={{fontSize: "11pt", lineHeight: "20px", marginTop: "2px"}}> Please choose the location </div> :
-					<Popup trigger={<img src={coins} style={{width: "60%", marginTop: "2px"}} alt="reward"/>} contentStyle={{width: "250px"}}>
+					<Popup trigger={<img src={coins} style={{width: "60%", marginTop: "2px", zindex :9999}} alt="reward"/>} contentStyle={{width: "250px",zindex :9999}}>
 						{close => (
 							<div style={{margin: "5px"}}>
 								<img src={coin} style={{float: "right", width: "50px"}} onClick={close} alt="reward"/>
