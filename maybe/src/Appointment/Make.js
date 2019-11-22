@@ -83,6 +83,18 @@ class Make extends Component {
 		this.setState({stage_id: number});
 	}
 
+	appointment_friends () {
+		var answer = [];
+		var f_check = this.state.friends_check;
+		var friends = Object.keys(f_check);
+		for (var i = 0 ; i < friends.length ; i++){
+			var f_name = friends[i];
+			if (f_check[f_name])
+				answer.push(f_name)
+		}
+		return answer;
+	}
+
 	render () {
 		var make_stage = this.state.stages[this.state.stage_id];
 		const friends_list = this.state.friends.map((friend) =>
@@ -165,7 +177,8 @@ class Make extends Component {
 					</ul>
 				bar = <div className="Bar">Choose Available Time Slots</div>;
 				header = this.props.header(bar, button);
-				body = <body className="Body"><Choose /></body>;
+				var friends = this.appointment_friends();
+				body = <body className="Body"><Choose friends = {friends}/></body>;
 				content = <div>{header}{body}</div>;
 				break;
 
