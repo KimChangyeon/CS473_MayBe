@@ -99,6 +99,18 @@ router.post('/register/:id/:participants', (req, res) => {
     })
 });
 
+router.post('/reward/:id/:point', (req, res) => {
+    var query = 'UPDATE Appointment SET Reward = ? WHERE AppointmentId = ?'
+    db.query(query, [req.params.point, req.params.id], (err, rows) => {
+        if (!err) {
+            res.send({data: 'POSTING SUCCESSED.'});
+        }
+        else {
+            res.send({data: err});
+        }
+    })
+});
+
 router.post('/modify_time/:id/:DateId/:StartTime/:EndTime/', (req, res) => {
     var query = 'UPDATE Appointment SET DateId = ?, StartTime = ?, EndTime = ? WHERE AppointmentId = ?'
     db.query(query, [req.params.DateId, req.params.StartTime, req.params.EndTime, req.params.id], (err, rows) => {

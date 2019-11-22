@@ -115,6 +115,18 @@ class Main extends Component {
 		}
 	}
 
+	rewarding () {
+		var point = this.props.user_reward + 20;
+		var url_final = '/reward/'.concat(this.props.user_id).concat('/').concat(point);
+		fetch(url_final)
+			.then(res => res.json())
+			.then(answer => this.setState({schedule: answer.data}))        
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
+		this.props.setReward(point);
+	}
+
 
 	header(bar, button) {
 		return (
@@ -139,11 +151,6 @@ class Main extends Component {
 				<a href="#">{button}</a>
 			</header>
 		);
-	}
-
-	exp (close) {
-		this.props.setReward(this.props.user_reward + 20)
-		return close
 	}
 
 	appointment_list(info) {
@@ -179,7 +186,7 @@ class Main extends Component {
 					<Popup trigger={<img src={coins} style={{width: "60%", marginTop: "2px", zindex :9999}} alt="reward"/>} contentStyle={{width: "250px",zindex :9999}}>
 						{close => (
 							<div style={{margin: "5px"}}>
-								<img src={coin} style={{float: "right", width: "50px"}} onClick={close} alt="reward"/>
+								<img src={coin} style={{float: "right", width: "50px"}} onClick={()=>this.rewarding()} alt="reward"/>
 								You've arrived at your appointment on time! <br/>
 								<u>3 min</u> earlier <br/>
 								<Button variant="outlineflat" onClick={close}>OK</Button>
