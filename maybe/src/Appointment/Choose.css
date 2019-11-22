@@ -1,3 +1,6 @@
 .cell-selected {
     background-color: #FBD5D4;
 }
+table td{
+    width : 50px
+}
