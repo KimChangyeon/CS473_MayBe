@@ -60,7 +60,7 @@ class Main extends Component {
 		this.nextStageWithAppointment = this.nextStageWithAppointment.bind(this);
 	}
 
-	componentDidMount () {
+	componentWillMount () {
 		var url_final = '/appt/'.concat(this.props.user_id);
 		fetch(url_final)
 			.then(res => res.json())
