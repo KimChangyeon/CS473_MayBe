@@ -10,15 +10,15 @@ class Vote extends Component {
 		const button =
 			<ul>
 				<li> <img className="complete" src={complete} alt="Complete"
-						onClick={()=>this.props.nextStage(0)}/> </li>
+						onClick={()=>this.props.nextStageWithAppointment(0,0)}/> </li>
 				<li> <img className="cancel" src={cancel} alt="Cancel"
-						onClick={()=>this.props.nextStage(0)}/> </li>
+						onClick={()=>this.props.nextStageWithAppointment(0,0)}/> </li>
 			</ul>
     const bar = <div className="Bar">Vote Meeting Time</div>;
     const header = this.props.header(bar,button);
     const body =
 			<body className= "Body">
-				Vote
+				{this.props.AppointmentTime}
 			</body>
 		const content = <div>{header}{body}</div>;
 
