@@ -141,6 +141,11 @@ class Main extends Component {
 		);
 	}
 
+	exp (close) {
+		this.props.setReward(this.props.user_reward + 20)
+		return close
+	}
+
 	appointment_list(info) {
 
 				const date = parse(String(info.DateId));

@@ -10,10 +10,12 @@ class App extends Component {
     this.state = {
       stage_id: 0,
       stages: ['login', 'Main'],
-      user_id: 0
+      user_id: 0,
+      user_reward: 0,
     }
     this.nextStage = this.nextStage.bind(this);
     this.setUserId = this.setUserId.bind(this);
+    this.setReward = this.setReward.bind(this);
   }
 
   nextStage() {
@@ -22,6 +24,10 @@ class App extends Component {
 
   setUserId (id) {
 		this.setState({user_id: id});
+  }
+  
+  setReward (r) {
+		this.setState({user_reward: r});
 	}
   
   render () {
@@ -29,10 +35,10 @@ class App extends Component {
     let content;
     switch (stage) {
         case 'login':
-          content = <Login nextStage = {this.nextStage} setUserId = {this.setUserId}/>;
+          content = <Login nextStage = {this.nextStage} setUserId = {this.setUserId} setReward = {this.setReward}/>;
           break;
         case 'Main':
-          content = <Main nextStage = {this.nextStage} user_id = {this.state.user_id}/>;
+          content = <Main nextStage = {this.nextStage} user_id = {this.state.user_id} user_reward = {this.state.user_reward} setReward = {this.setReward}/>;
           break;
         default:
           alert('YOU SHOULD NOT BE HERE.') 

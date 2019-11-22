@@ -16,7 +16,7 @@ class Location extends Component {
 			place: this.props.AppointmentPlace
 		};
     this.onClick = this.onClick.bind(this);
-		this.onChange = this.onChange.bind(this);
+	this.onChange = this.onChange.bind(this);
   }
 
 	onClick(t, map, coord) {
@@ -41,7 +41,7 @@ class Location extends Component {
 		var url_final = '/modify_place/'.concat(this.props.AppointmentId).concat('/').concat(this.state.place);
 		fetch(url_final, {method: "POST"})
 			.then(res => res.json())
-			.then(answer => console.log(answer.data))        
+			.then(answer => console.log(answer.data))
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});

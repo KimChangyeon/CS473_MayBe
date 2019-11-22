@@ -11,7 +11,7 @@ router.get('/api/hello', (req, res) => {
 
 // 로그인 가능 여부에 관한 정보 리턴.
 router.get('/login/:id/:pw', (req, res) => {
-        var query = "SELECT UserId FROM MayBe.User WHERE Username = ? and password = ?"
+        var query = "SELECT UserId, Reward FROM MayBe.User WHERE Username = ? and password = ?"
         db.query(query, [req.params.id, req.params.pw], (err, rows) => {
             if (!err) {
                 res.send({data: rows});
@@ -75,9 +75,21 @@ router.get('/fri/:id', (req, res) => {
     })
 });
 
-router.post('/make/:DateId/:StartTime/:EndTime/:Place/:What', (req, res) => {
-    var query = 'INSERT INTO Appointment(DateId, StartTime, EndTime, Place, What) VALUES (?,?,?,?,?)'
-    db.query(query, [req.params.DateId, req.params.StartTime, req.params.EndTime, req.params.Place, req.params.What], (err, rows) => {
+router.post('/make/:DateId/:StartTime/:EndTime/:What', (req, res) => {
+    var query = 'INSERT INTO Appointment(DateId, StartTime, EndTime, What) VALUES (?,?,?,?,?)'
+    db.query(query, [req.params.DateId, req.params.StartTime, req.params.EndTime, req.params.What], (err, rows) => {
+        if (!err) {
+            res.send({data: 'POSTING SUCCESSED.'});
+        }
+        else {
+            res.send({data: err});
+        }
+    })
+});
+
+router.post('/register/:id/:participants', (req, res) => {
+    var query = 'INSERT INTO Appointment_participants VALUES (?,?)'
+    db.query(query, [req.params.id, req.params.participants], (err, rows) => {
         if (!err) {
             res.send({data: 'POSTING SUCCESSED.'});
         }

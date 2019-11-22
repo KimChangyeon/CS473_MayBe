@@ -51,9 +51,15 @@ class Make extends Component {
 			'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon'],
 			search: '',
 			onSearch: false,
+			AppointmentId: 0,
+			AppointmentName: '',
+			timeSlot: [],
+			friends_in_appointment: [],
 		}
 		this.nextStage = this.nextStage.bind(this);
 		this.search = React.createRef(); 
+		this.setAppointmnentName = this.setAppointmnentName.bind(this);
+		this.setTimeSlot = this.setTimeSlot.bind(this);
 	}
 
 	componentWillMount () {
@@ -68,6 +74,14 @@ class Make extends Component {
 		this.setState({friends_check: make_dict(this.state.friends_original)});
 	}
 
+	setAppointmnentName (name) {
+		this.setState({AppointmentName: name});
+	}
+
+	setTimeSlot (slot) {
+		this.setState({timeSlot: slot});
+	}
+
 	handleSearch = (e) => {
 		this.setState({search: e.target.value});
 	}
@@ -75,7 +89,7 @@ class Make extends Component {
 	onCheck = (name, e) => {
 		var f_check = this.state.friends_check;
 		f_check[name] = e.target.checked;
-		this.setState({freinds_check: f_check})
+		this.setState({friends_check: f_check})
 	}
 
 
@@ -92,7 +106,38 @@ class Make extends Component {
 			if (f_check[f_name])
 				answer.push(f_name)
 		}
-		return answer;
+		this.setState({friends_in_appointment: answer});
+	}
+
+	submit () {
+		// '/make/:DateId/:StartTime/:EndTime/:What'
+		var url_make = '/make/'.concat(this.state.DateId).concat('/').concat(this.state.DateId).concat('/').concat(this.state.DateId).concat('/').concat(this.state.AppointmentName);
+		fetch(url_make, {method: "POST"})
+			.then(res => res.json())
+			.then(answer => console.log(answer.data))
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
+
+		// Get Last Appointment Id.
+		fetch('/AppId/')
+			.then(res => res.json())
+			.then(answer => {this.setState({AppointmentId: answer.data.AppointmentId})})
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
+
+		// Participant registration.
+		for (var k = 0 ; k < this.state.friends_in_appointment.length ; k++){
+			var p = this.state.friends_in_appointment[k];
+			var url_participants = 'register'.concat(this.state.AppointmentId).concat('/').concat(p)
+			fetch(url_participants, {method: "POST"})
+				.then(res => res.json())
+				.then(answer => console.log(answer.data))
+			.catch((error)=>{
+				console.log('Error fetching man',error);
+			});
+		}
 	}
 
 	render () {
@@ -117,7 +162,10 @@ class Make extends Component {
 		switch (make_stage) {
 			case 'list':
 				button = <img className="makebutton" src={makebutton} alt="Make Appointment"
-							onClick={()=>this.nextStage(2)}/>;
+							onClick={()=>{
+								this.appointment_friends();
+								this.nextStage(2)
+							}}/>;
 				bar =
 					<ButtonGroup id="Tap" size='lg' style={{top: "-12px", width: "100%", height: "50px"}}>
 						<Button id="Button1" onClick={() => this.nextStage(0)}>
@@ -171,14 +219,16 @@ class Make extends Component {
 				button =
 					<ul>
 						<li> <img className="complete" src={complete} alt="Complete"
-								onClick={()=>this.props.nextStage(0)}/> </li>
+								onClick={()=>{
+									// this.submit()
+									this.props.nextStage(0)
+									}}/> </li>
 						<li> <img className="cancel" src={cancel} alt="Cancel"
 								onClick={()=>this.props.nextStage(0)}/> </li>
 					</ul>
 				bar = <div className="Bar">Choose Available Time Slots</div>;
 				header = this.props.header(bar, button);
-				var friends = this.appointment_friends();
-				body = <body className="Body"><Choose friends = {friends}/></body>;
+				body = <body className="Body"><Choose setAppointmnentName = {this.setAppointmnentName} setTimeSlot = {this.setTimeSlot}/></body>;
 				content = <div>{header}{body}</div>;
 				break;
 
