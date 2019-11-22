@@ -1,0 +1,57 @@
+{
+  "name": "@devexpress/dx-core",
+  "version": "2.2.1",
+  "description": "Core library for DevExtreme Reactive Components",
+  "author": {
+    "name": "Developer Express Inc.",
+    "url": "https://www.devexpress.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/DevExpress/devextreme-reactive/issues"
+  },
+  "homepage": "https://devexpress.github.io/devextreme-reactive/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevExpress/devextreme-reactive.git"
+  },
+  "keywords": [
+    "pluggable",
+    "reactive",
+    "components"
+  ],
+  "license": "SEE LICENSE IN README.md",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/dx-core.umd.js",
+  "module": "dist/dx-core.es.js",
+  "globalName": "DevExpress.DXCore",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "build": "rollup -c rollup.config.js",
+    "build:watch": "rollup -c rollup.config.js -w",
+    "lint": "tslint -p tsconfig.lint.json",
+    "lint:fix": "yarn lint -- --fix"
+  },
+  "devDependencies": {
+    "core-js": "^3.3.3",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2",
+    "rollup": "^1.25.2",
+    "rollup-plugin-license": "^0.12.1",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-typescript2": "^0.25.2",
+    "tslint": "^5.20.0",
+    "tslint-config-airbnb": "^5.11.2",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.1.0",
+    "typescript": "3.6.4",
+    "typescript-tslint-plugin": "^0.5.4"
+  },
+  "gitHead": "1c98429f216cd54bdad126fbba2afeeda24989b1"
+}

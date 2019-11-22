@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Paper from '@material-ui/core/Paper';
-import { ViewState, EditingState } from '@devexpress/dx-react-scheduler';
+import { ViewState, EditingState } from './devexpress/dx-react-scheduler';
 import {
   Scheduler,
   Appointments,
@@ -13,7 +13,7 @@ import {
   ConfirmationDialog,
   Toolbar,
   ViewSwitcher
-} from '@devexpress/dx-react-scheduler-material-ui';
+} from './devexpress/dx-react-scheduler-material-ui';
 import { appointments } from './Data';
 import './weekly.css'
 
@@ -48,7 +48,7 @@ export default class Weekly extends React.PureComponent {
       user_id: this.props.user_id,
       data: appointments,
       currentDate: currentDate,
-      currentViewName : 'Week',
+      currentViewName : this.props.currentViewName,
 
       addedAppointment: {},
       appointmentChanges: {},
@@ -64,6 +64,10 @@ export default class Weekly extends React.PureComponent {
     this.changeAppointmentChanges = this.changeAppointmentChanges.bind(this);
     this.changeEditingAppointmentId = this.changeEditingAppointmentId.bind(this);
   }
+
+	componentWillReceiveProps (newProps) {
+		this.setState({currentViewName: newProps.currentViewName});
+	}
 
   componentWillMount () {
       var url_final = '/sch/'.concat(this.props.user_id);
@@ -112,7 +116,7 @@ export default class Weekly extends React.PureComponent {
       currentDate, data, currentViewName, addedAppointment, appointmentChanges, editingAppointmentId,
     } = this.state;
 
-    return (
+		return (
       <Paper>
         <Scheduler
           data={data}
@@ -140,8 +144,6 @@ export default class Weekly extends React.PureComponent {
             endDayHour={22}
           />
           <MonthView />
-          <Toolbar />
-          <ViewSwitcher />
           <AllDayPanel />
           <EditRecurrenceMenu />
           <ConfirmationDialog />
@@ -150,10 +152,9 @@ export default class Weekly extends React.PureComponent {
             showOpenButton
             showDeleteButton
           />
-          <AppointmentForm  style = {{width:500}}/>
+          <AppointmentForm />
         </Scheduler>
       </Paper>
-    );
+		)
   }
 }
-
