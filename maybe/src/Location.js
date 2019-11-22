@@ -57,6 +57,7 @@ class Location extends Component {
 								this.props.setPlace({place: this.state.place});
 								this.submission();
 								this.props.nextStageWithAppointment(0,0);
+								this.props.update();
 							}}/>
 				</li>
         <li>

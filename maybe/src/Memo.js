@@ -41,7 +41,8 @@ class Memo extends Component {
                 onClick={() => {
 				  this.props.setMemo({memo: this.state.memo});
 				  this.submission();
-                  this.props.nextStageWithAppointment(0,0);
+				  this.props.nextStageWithAppointment(0,0);
+				  this.props.update();
                 }}/>
           </li>
           <li>
