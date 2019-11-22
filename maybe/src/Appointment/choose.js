@@ -3,6 +3,7 @@ import './Choose.css';
 import {fiveCandidates, sixCandidates, sevenCandidates, fourCandidates, eightCandidates, nineCandidates, threeCandidates,
     twelveCandidates,oneCandidates,twoCandidates} from './ChooseData';
 
+      
 class Choose extends Component {
     state = {
         cells : [
@@ -42,16 +43,20 @@ class Choose extends Component {
         ],
         choice : []
     }
-    
-    
-    cellClick =(row, id) => {
+  
+    cellClick =(row, id, selected) => {
         this.setState({cells : this.state.cells.map((Row) => 
             Row.row === row
             ? {...Row, cell : Row.cell.map((cell)=> cell.id === id
-                ?({...cell,selected : !cell.selected})
+                ?({...cell,selected : selected})
                 :cell)}
-            :Row),
-        choice : this.state.choice.concat({row: row, id: id})})
+            :Row)})
+        if (selected) {
+            this.setState({choice : this.state.choice.concat({row: row, id: id})})
+        }
+        else{
+            this.setState({choice: this.state.choice.filter(cell=>cell.row !== row && cell.id !== id)})
+        }
    }
    
     renderRow = () =>
@@ -63,8 +68,6 @@ class Choose extends Component {
                 </tr>
             )
         })
-    
-        
     
     renderCell = (row, cells) =>{
         return (
@@ -111,8 +114,8 @@ class Cell extends Component {
     this.props.selected !== nextProps.selected;
 
     handleClick =() => {
-        const {id, row, cellClick, disabled}= this.props
-        if (!disabled) cellClick(row,id)
+        const {id, row, cellClick, disabled, selected}= this.props
+        if (!disabled) cellClick(row,id,!selected)
     }
 
     render(){
