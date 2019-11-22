@@ -2,75 +2,82 @@ import React, {Component} from 'react';
 import './Choose.css';
 import {fiveCandidates, sixCandidates, sevenCandidates, fourCandidates, eightCandidates, nineCandidates, threeCandidates,
     twelveCandidates,oneCandidates,twoCandidates} from './ChooseData';
+import {InputGroup, FormControl} from 'react-bootstrap'
 
 let choiceDate = []   
 class Choose extends Component {
-    state = {
-        cells : [
-            {
-                row : 12,
-                cell : twelveCandidates
-            },
-            {
-                row : 13,
-                cell : oneCandidates
-            },
-            {
-                row : 14,
-                cell : twoCandidates
-            },
-            {
-                row : 15,
-                cell : threeCandidates
-            },
-    
-            {
-                row : 16,
-                cell : fourCandidates
-            },
-            {
-                row : 17, 
-                cell : fiveCandidates
-            }, 
-            {
-                row : 18, 
-                cell : sixCandidates
-            }, 
-            {
-                row: 19, 
-                cell : sevenCandidates
-            },
-        ],
-        choice : [
-            {
-                id: 20191125,
-                time : []
-            },
-            {
-                id : 20191126,
-                time : []
-            },
-            {
-                id : 20191127,
-                time : []
-            },
-            {
-                id : 20191128,
-                time: []
-            },
-            {
-                id : 20191129,
-                time : []
-            },
-            {
-                id: 20191130,
-                time : []
-            },
-            {
-                id : 20191201,
-                time : []
-            },
-        ]
+    constructor (props) {
+        super(props);
+        this.state = {
+            cells : [
+                {
+                    row : '12AM',
+                    cell : twelveCandidates
+                },
+                {
+                    row : '1PM',
+                    cell : oneCandidates
+                },
+                {
+                    row : '2PM',
+                    cell : twoCandidates
+                },
+                {
+                    row : '3PM',
+                    cell : threeCandidates
+                },
+        
+                {
+                    row : '4PM',
+                    cell : fourCandidates
+                },
+                {
+                    row : '5PM', 
+                    cell : fiveCandidates
+                }, 
+                {
+                    row : '6PM', 
+                    cell : sixCandidates
+                }, 
+                {
+                    row: '7PM', 
+                    cell : sevenCandidates
+                },
+            ],
+            choice : [
+                {
+                    id: 20191125,
+                    time : []
+                },
+                {
+                    id : 20191126,
+                    time : []
+                },
+                {
+                    id : 20191127,
+                    time : []
+                },
+                {
+                    id : 20191128,
+                    time: []
+                },
+                {
+                    id : 20191129,
+                    time : []
+                },
+                {
+                    id: 20191130,
+                    time : []
+                },
+                {
+                    id : 20191201,
+                    time : []
+                },
+            ],
+            what: '',
+            };
+        this.onChange = this.onChange.bind(this);
+        
     }
   
     cellClick =(row, id, selected) => {
@@ -154,27 +161,46 @@ class Choose extends Component {
         })
         console.log("choiceDate : ",choiceDate)
     }
+
+    onChange (e) {
+		const value = e.target.value === "" ? null : e.target.value;
+		this.props.setAppointmnentName(value);
+	}
+
     render(){
         this.updateDates()
         console.log("state : ",this.state)
         return (
-            <table class="table table-bordered" >
-                <thead>
-                    <tr>
-                        <th scope = "col" >TIME</th>
-                        <th scope="col">MON</th>
-                        <th scope="col">TUE</th>
-                        <th scope="col">WED</th>
-                        <th scope="col">THU</th>
-                        <th scope="col">FRI</th>
-                        <th scope="col">SAT</th>
-                        <th scope="col">SUN</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {this.renderRow()}
-                </tbody>
-            </table>
+            <div>
+                <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="basic-addon1">Place</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl
+                            placeholder="Enter the name of Appointment"
+                            onChange={this.onChange}
+                            // aria-label="Place"
+                            // aria-describedby="basic-addon1"
+                        />
+                </InputGroup>
+                <table class="table table-bordered" >
+                    <thead>
+                        <tr>
+                            <th scope = "col" >TIME</th>
+                            <th scope="col">MON</th>
+                            <th scope="col">TUE</th>
+                            <th scope="col">WED</th>
+                            <th scope="col">THU</th>
+                            <th scope="col">FRI</th>
+                            <th scope="col">SAT</th>
+                            <th scope="col">SUN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.renderRow()}
+                    </tbody>
+                </table>
+            </div>
         )
     }
     

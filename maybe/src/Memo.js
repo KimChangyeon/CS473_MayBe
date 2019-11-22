@@ -24,8 +24,8 @@ class Memo extends Component {
 
 	submission () {
 		var url_final = '/modify_memo/'.concat(this.props.AppointmentId).concat('/').concat(this.state.memo);
-		fetch(url_final)
-			.then(res => res.json())
+		fetch(url_final, {method: "POST"})
+			.then(res => res.json(), {method: "POST"})
 			.then(answer => console.log(answer.data))        
 		.catch((error)=>{
 			console.log('Error fetching man',error);
@@ -41,7 +41,8 @@ class Memo extends Component {
                 onClick={() => {
 				  this.props.setMemo({memo: this.state.memo});
 				  this.submission();
-                  this.props.nextStageWithAppointment(0,0);
+				  this.props.nextStageWithAppointment(0,0);
+				  this.props.update();
                 }}/>
           </li>
           <li>

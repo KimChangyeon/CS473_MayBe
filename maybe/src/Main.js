@@ -58,9 +58,20 @@ class Main extends Component {
 		this.setMemo = this.setMemo.bind(this);
 		this.nextStage = this.nextStage.bind(this);
 		this.nextStageWithAppointment = this.nextStageWithAppointment.bind(this);
+		this.update = this.update.bind(this);
 	}
 
-	componentDidMount () {
+	componentWillMount () {
+		var url_final = '/appt/'.concat(this.props.user_id);
+		fetch(url_final)
+			.then(res => res.json())
+			.then(answer => this.setState({schedule: answer.data}))        
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
+	}
+
+	update () {
 		var url_final = '/appt/'.concat(this.props.user_id);
 		fetch(url_final)
 			.then(res => res.json())
@@ -102,6 +113,18 @@ class Main extends Component {
 			default:
 				//pass
 		}
+	}
+
+	rewarding () {
+		var point = this.props.user_reward + 20;
+		var url_final = '/reward/'.concat(this.props.user_id).concat('/').concat(point);
+		fetch(url_final)
+			.then(res => res.json())
+			.then(answer => this.setState({schedule: answer.data}))        
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
+		this.props.setReward(point);
 	}
 
 
@@ -163,7 +186,7 @@ class Main extends Component {
 					<Popup trigger={<img src={coins} style={{width: "60%", marginTop: "2px", zindex :9999}} alt="reward"/>} contentStyle={{width: "250px",zindex :9999}}>
 						{close => (
 							<div style={{margin: "5px"}}>
-								<img src={coin} style={{float: "right", width: "50px"}} onClick={close} alt="reward"/>
+								<img src={coin} style={{float: "right", width: "50px"}} onClick={()=>this.rewarding()} alt="reward"/>
 								You've arrived at your appointment on time! <br/>
 								<u>3 min</u> earlier <br/>
 								<Button variant="outlineflat" onClick={close}>OK</Button>
@@ -211,6 +234,7 @@ class Main extends Component {
 	}
 
   render () {
+		
     var main_stage = this.state.stages[this.state.stage_id];
 		let button;
 		let bar;
@@ -253,7 +277,8 @@ class Main extends Component {
 	  case ('vote'):
 		content = <Vote 
 					nextStage = {this.nextStage} nextStageWithAppointment = {this.nextStageWithAppointment}
-					header = {this.header} AppointmentId = {this.state.AppointmentId} AppointmentTime = {this.state.AppointmentTime}/>;
+					header = {this.header} AppointmentId = {this.state.AppointmentId} AppointmentTime = {this.state.AppointmentTime}
+					update = {this.update} />;
 		break;
 
 	  case ('location'):
@@ -268,6 +293,7 @@ class Main extends Component {
 				setPlace = {this.setPlace}
 				AppointmentId = {this.state.AppointmentId}
 				AppointmentPlace = {this.state.AppointmentPlace}
+				update = {this.update}
 			/>;
 		break;
 
@@ -279,6 +305,7 @@ class Main extends Component {
 			setMemo = {this.setMemo}
 			AppointmentId = {this.state.AppointmentId}
 			AppointmentMemo = {this.state.AppointmentMemo}
+			update = {this.update}
 		/>;
 		break;
 	
