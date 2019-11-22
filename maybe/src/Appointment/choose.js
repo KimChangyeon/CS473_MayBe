@@ -4,78 +4,71 @@ import {fiveCandidates, sixCandidates, sevenCandidates, fourCandidates, eightCan
     twelveCandidates,oneCandidates,twoCandidates} from './ChooseData';
 
 class Choose extends Component {
-
     state = {
         cells : [
-                    {
-                        row : '12AM',
-                        cell : twelveCandidates
-                    },
-                    {
-                        row : '1PM',
-                        cell : oneCandidates
-                    },
-                    {
-                        row : '2PM',
-                        cell : twoCandidates
-                    },
-                    {
-                        row : '3PM',
-                        cell : threeCandidates
-                    },
-            
-                    {
-                        row : '4PM',
-                        cell : fourCandidates
-                    },
-                    {
-                        row : '5PM', 
-                        cell : fiveCandidates
-                    }, 
-                    {
-                        row : '6PM', 
-                        cell : sixCandidates
-                    }, 
-                    {
-                        row: '7PM', 
-                        cell : sevenCandidates
-                    },
-                    {
-                        row : '8PM',
-                        cell : eightCandidates,
-                    },
-                    {
-                        row : '9PM',
-                        cell : nineCandidates
-                    }
-                ],
-        friends: this.props.friends
+            {
+                row : '12AM',
+                cell : twelveCandidates
+            },
+            {
+                row : '1PM',
+                cell : oneCandidates
+            },
+            {
+                row : '2PM',
+                cell : twoCandidates
+            },
+            {
+                row : '3PM',
+                cell : threeCandidates
+            },
+    
+            {
+                row : '4PM',
+                cell : fourCandidates
+            },
+            {
+                row : '5PM', 
+                cell : fiveCandidates
+            }, 
+            {
+                row : '6PM', 
+                cell : sixCandidates
+            }, 
+            {
+                row: '7PM', 
+                cell : sevenCandidates
+            },
+        ],
+        choice : []
     }
-
+    
+    
     cellClick =(row, id) => {
-        this.setState({
-            cells : this.state.cells.map((Row) => 
-                Row.row === row
-                ? {...Row, cell : Row.cell.map((cell)=> cell.id === id
-                    ?({...cell,selected : !cell.selected})
-                    :cell)}
-                :Row)
-        })
-    }
-
-    renderRow = () => 
+        this.setState({cells : this.state.cells.map((Row) => 
+            Row.row === row
+            ? {...Row, cell : Row.cell.map((cell)=> cell.id === id
+                ?({...cell,selected : !cell.selected})
+                :cell)}
+            :Row),
+        choice : this.state.choice.concat({row: row, id: id})})
+   }
+   
+    renderRow = () =>
         this.state.cells.map((Row) => {
             return (
                 <tr>
-                    <td style = {{width : 50}}>{Row.row}</td>
+                    <td scope = "row">{Row.row}</td>
                     {this.renderCell(Row.row,Row.cell)}
                 </tr>
             )
         })
-
-    renderCell = (row, cells)=>{
+    
+        
+    
+    renderCell = (row, cells) =>{
         return (
-            cells.map((cell)=>
+                cells.map((cell)=>
                     <Cell 
                         id = {cell.id}
                         row = {row}
@@ -83,30 +76,28 @@ class Choose extends Component {
                         selected = {cell.selected}
                         cellClick = {this.cellClick}
                     />
-            )
+                )
         )
     }
-        
 
     render(){
+        console.log(this.state)
         return (
             <table class="table table-bordered" >
-                <tr>
-                    <thead>
-                        <td style = {{width : 75}}>TIME</td>
-                        <td style = {{width : 60}}>MON</td>
-                        <td style = {{width : 65}}>TUE</td>
-                        <td style = {{width : 65}}>WED</td>
-                        <td style = {{width : 65}}>THU</td>
-                        <td style = {{width : 65}}>FRI</td>
-                        <td style = {{width : 65}}>SAT</td>
-                        <td style = {{width : 65}}>SUN</td>
-                    </thead>
-                </tr>
+                <thead>
+                    <tr>
+                        <th scope = "col" >TIME</th>
+                        <th scope="col">MON</th>
+                        <th scope="col">TUE</th>
+                        <th scope="col">WED</th>
+                        <th scope="col">THU</th>
+                        <th scope="col">FRI</th>
+                        <th scope="col">SAT</th>
+                        <th scope="col">SUN</th>
+                    </tr>
+                </thead>
                 <tbody>
-                <tr>
                     {this.renderRow()}
-                </tr>
                 </tbody>
             </table>
         )
@@ -120,8 +111,8 @@ class Cell extends Component {
     this.props.selected !== nextProps.selected;
 
     handleClick =() => {
-        const {id, row, cellClick}= this.props
-        cellClick(row,id)
+        const {id, row, cellClick, disabled}= this.props
+        if (!disabled) cellClick(row,id)
     }
 
     render(){

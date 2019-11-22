@@ -4,6 +4,8 @@
   "private": true,
   "license": "SEE LICENSE IN license/LicenseAgreement.pdf",
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/plugin-proposal-decorators": "^7.7.0",
     "@babel/runtime": "^7.7.2",
     "@date-io/date-fns": "^1.3.11",
     "@devexpress/dx-react-core": "^2.2.1",
@@ -21,9 +23,12 @@
     "devextreme-react": "19.2.3",
     "material-ui-icons": "^1.0.0-beta.36",
     "mdbreact": "^4.22.1",
+    "mobx": "^5.15.0",
+    "mobx-react": "^6.1.4",
     "morgan": "^1.9.1",
     "mysql": "^2.17.1",
     "native-base": "^2.13.8",
+    "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-agenda": "0.0.8",
     "react-bootstrap": "^1.0.0-beta.14",
@@ -31,8 +36,11 @@
     "react-dom": "^16.11.0",
     "react-script": "^2.0.5",
     "react-scripts": "^3.2.0",
+    "react-select": "^3.0.8",
     "react-selectable": "^2.0.2",
-    "react-table-drag-select": "^0.3.1"
+    "react-table": "^6.10.3",
+    "react-table-drag-select": "^0.3.1",
+    "react-table-hoc-select-cell": "^0.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -42,6 +50,15 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "babel" : {
+    "presents" : [
+      "react-app"
+    ],
+    "plugins":[
+      ["@babel/plugin-proposal-decorators", { "legacy": true}],
+      ["@babel/plugin-proposal-class-properties", { "loose": true}]
+    ]
   },
   "browserslist": {
     "production": [
