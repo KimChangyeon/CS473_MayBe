@@ -3,45 +3,74 @@ import './Choose.css';
 import {fiveCandidates, sixCandidates, sevenCandidates, fourCandidates, eightCandidates, nineCandidates, threeCandidates,
     twelveCandidates,oneCandidates,twoCandidates} from './ChooseData';
 
-      
+let choiceDate = []   
 class Choose extends Component {
     state = {
         cells : [
             {
-                row : '12AM',
+                row : 12,
                 cell : twelveCandidates
             },
             {
-                row : '1PM',
+                row : 13,
                 cell : oneCandidates
             },
             {
-                row : '2PM',
+                row : 14,
                 cell : twoCandidates
             },
             {
-                row : '3PM',
+                row : 15,
                 cell : threeCandidates
             },
     
             {
-                row : '4PM',
+                row : 16,
                 cell : fourCandidates
             },
             {
-                row : '5PM', 
+                row : 17, 
                 cell : fiveCandidates
             }, 
             {
-                row : '6PM', 
+                row : 18, 
                 cell : sixCandidates
             }, 
             {
-                row: '7PM', 
+                row: 19, 
                 cell : sevenCandidates
             },
         ],
-        choice : []
+        choice : [
+            {
+                id: 20191125,
+                time : []
+            },
+            {
+                id : 20191126,
+                time : []
+            },
+            {
+                id : 20191127,
+                time : []
+            },
+            {
+                id : 20191128,
+                time: []
+            },
+            {
+                id : 20191129,
+                time : []
+            },
+            {
+                id: 20191130,
+                time : []
+            },
+            {
+                id : 20191201,
+                time : []
+            },
+        ]
     }
   
     cellClick =(row, id, selected) => {
@@ -51,11 +80,16 @@ class Choose extends Component {
                 ?({...cell,selected : selected})
                 :cell)}
             :Row)})
-        if (selected) {
-            this.setState({choice : this.state.choice.concat({row: row, id: id})})
-        }
+        if (selected)
+            this.setState({choice : this.state.choice.map((Day) =>
+                Day.id === id
+                ? ({...Day, time: Day.time.concat(row)})
+                : Day)})
         else{
-            this.setState({choice: this.state.choice.filter(cell=>cell.row !== row && cell.id !== id)})
+            this.setState({choice: this.state.choice.map((Day) => 
+                Day.id === id
+                ? ({...Day, time: Day.time.filter((time) => time !== row ) })
+                : Day)})
         }
    }
    
@@ -82,9 +116,47 @@ class Choose extends Component {
                 )
         )
     }
-
+    updateDates =() => {
+        const choice = this.state.choice.map((day)=> {
+            const time = day.time.sort((a,b)=>a>b)
+            return {...day, time : time}
+        })
+        choiceDate = choice.map((day)=>{
+            const times = day.time
+            let result = []
+            let startTime = 0
+            let endTime= 0
+            let i=0
+            for (i=0; i<times.length;i++){
+                if(startTime != 0 && endTime ==0 && times[i] === startTime+1)
+                {
+                    endTime = times[i]
+                    continue;
+                }
+                else if (times[i] === endTime +1) 
+                {   
+                    endTime = times[i]
+                    continue;
+                }
+                else
+                {
+                    if (startTime!= 0 && endTime != 0) result.push(startTime.toString()+" " + (endTime+1).toString())
+                    else if (startTime != 0 && endTime == 0) result.push(startTime.toString()+" "+ (startTime+1).toString())
+                    startTime = times[i]
+                    endTime = 0
+                }
+            }
+            if(startTime != 0 && endTime == 0)
+                result.push(startTime.toString()+" " + (startTime+1).toString())
+            else if(startTime != 0 && endTime != 0)
+                result.push(startTime.toString()+ " "+ (endTime+1).toString())
+            return ({id: day.id, time : result})
+        })
+        console.log("choiceDate : ",choiceDate)
+    }
     render(){
-        console.log(this.state)
+        this.updateDates()
+        console.log("state : ",this.state)
         return (
             <table class="table table-bordered" >
                 <thead>
