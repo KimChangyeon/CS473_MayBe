@@ -134,7 +134,7 @@ class Make extends Component {
 			.then(res => res.json())
 			.then(answer => {
 				this.setState({AppointmentId: answer.data[0].AppointmentId},
-				console.log(answer.data[0].AppointmentId)),
+				console.log(answer.data[0].AppointmentId))
 			})
 		.catch((error)=>{
 			console.log('Error fetching man',error);

@@ -3,6 +3,7 @@ import {fiveCandidates, sixCandidates, sevenCandidates, fourCandidates, eightCan
     twelveCandidates,oneCandidates,twoCandidates} from './ChooseData';
 import {InputGroup, FormControl} from 'react-bootstrap'
 import Cell from './Cell'
+import {handling_appointments} from '../Main'
 
 let choiceDate = []   
 class ChooseTable extends Component {
@@ -77,6 +78,17 @@ class ChooseTable extends Component {
             what: '',
             };
         this.onChange = this.onChange.bind(this);
+    }
+
+    componentWillMount () {
+        var url_final = '/sch/'.concat(this.props.user_id);
+        console.log(url_final);
+        fetch(url_final)
+            .then(res => res.json())
+            .then(answer => this.setState({data: handling_appointments(answer.data)}))        
+        .catch((error)=>{
+            console.log('Error fetching man',error);
+        });
     }
   
     cellClick =(row, id, selected) => {
