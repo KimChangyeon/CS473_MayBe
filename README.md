@@ -1,9 +1,13 @@
 # <b>MayBe</b>
 URL: https://cs473maybe.herokuapp.com/<br>
 GitHub: https://github.com/KimChangyeon/CS473_MayBe<br>
-This is web 
+## 
+This is web service for appointments. We provide three major service <br>
+1. Making Appointment
+2. Ranking system operated by rewards
+3. Statistics on past appointments
 
-## [Before Appointment] <b>Make Appointment</b>
+## <b>Make Appointment</b>
 ><b> Find friends available at selected time slots </b> is implemented in <br>
 - select time slots : CS473_MayBe/maybe/src/Appointment/DragSelect.js<br>
     &rarr; use package named "react-table-drag-select" / selected time slots are mananged by state  named "cell" of component
@@ -17,13 +21,13 @@ This is web
 - vote : CS473_MayBe/maybe/src/appointment/ChooseTable
 
 
-## [During Appointment] <b>Be Punctual</b>
+## <b>Be Punctual</b>
 > <b>Earning Rewards</b> is implemented in<br>
 >
 > <b>Rank</b> is implemented in<br>
 > CS473_MayBe/maybe/src/
 
-## [After Appointment] <b>Recall Appointment</b>
+## <b>Recall Appointment</b>
 ><b>My Overall Monthly Statistics</b> is implemented in<br>
 CS473_MayBe/maybe/src/Statistics/<b>Statistics_Monthly.js</b><br>
 CS473_MayBe/maybe/src/Statistics/<b>Statistics_Monthly.css</b><br>
