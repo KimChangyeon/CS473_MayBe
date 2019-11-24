@@ -24,9 +24,9 @@ function handling_appointments (schedules) {
     var modified = {};
     var schedule = schedules[i];
     var date = String(schedule['DateId']);
-    var year = date.slice(0,4);
-    var month = date.slice(4,6);
-    var day = date.slice(6,8);
+    var year = Number(date.slice(0,4));
+    var month = Number(date.slice(4,6)) - 1;
+    var day = Number(date.slice(6,8));
     var StartTime = schedule['StartTimeslot'];
     var EndTime = schedule['EndTimeslot'];
     modified['id'] = i;
@@ -46,7 +46,7 @@ export default class Weekly extends React.PureComponent {
     super(props);
     this.state = {
       user_id: this.props.user_id,
-      data: appointments,
+      data: [],
       currentDate: currentDate,
       currentViewName : this.props.currentViewName,
 

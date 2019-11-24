@@ -19,7 +19,6 @@ import cancel from '../img/button_cancel.png';
 import statistics from '../img/statistics.png';
 import calendar from '../img/friend_list_friend_calendar.png';
 import search from '../img/search.png'
-import xmark from '../img/x_mark.png'
 
 function make_friends(answer){
 	var friend_list = [];
@@ -52,9 +51,7 @@ class Make extends Component {
 			stage_id: 0,
 			user_id: this.props.user_id,
 			stages: ['list', 'slot', 'choose', 'stat_friend', 'schedule_friend'],
-			friends: ['Alice Oh', 'Chaeyeon Son', 'Changyeon Kim', 'Hyeonjae Gil',
-			'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
-			'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon'],
+			friends: [],
 			friends_id: [],
 			selected_friend_id: 0,
 
@@ -67,6 +64,9 @@ class Make extends Component {
 		this.search = React.createRef(); 
 		this.setAppointmentName = this.setAppointmentName.bind(this);
 		this.setTimeSlot = this.setTimeSlot.bind(this);
+		this.appointment_friends = this.appointment_friends.bind(this);
+		this.onCheck = this.onCheck.bind(this);
+		this.chooseFriend = this.chooseFriend.bind(this);
 	}
 
 	componentWillMount () {
@@ -127,6 +127,10 @@ class Make extends Component {
 		this.setState({friends_in_appointment: answer});
 	}
 
+	chooseFriend (uid) {
+		this.setState({selected_friend_id: uid});
+	}
+
 	submit () {
 		// '/make/:DateId/:StartTime/:EndTime/:What'
 		var DateId = this.state.timeSlot.DateId;
@@ -136,11 +140,6 @@ class Make extends Component {
 		fetch(url_make, {method: "POST"})
 			.then(res => res.json())
 			.then(answer => console.log(answer.data))
-		.catch((error)=>{
-			console.log('Error fetching man',error);
-		});
-
-		let aid;
 
 		// // Get Last Appointment Id.
 		// fetch('/AppId/')
@@ -245,7 +244,10 @@ class Make extends Component {
 
 			case 'slot':
 				button = <img className="makebutton" src={makebutton} alt="Make Appointment"
-							onClick={()=>this.nextStage(2)}/>;
+							onClick={()=>{
+								this.appointment_friends();
+								this.nextStage(2)
+							}}/>;
 				bar =
 					<ButtonGroup id="Tap" size='lg' style={{top: "-12px", width: "100%", height: "50px"}}>
 						<Button id="Button2" onClick={() => this.nextStage(0)}>
@@ -254,7 +256,17 @@ class Make extends Component {
 							<img src={timeslot_light} alt="time slot" /></Button>
 					</ButtonGroup>
 				header = this.props.header(bar, button);
-				body = <body className="Body"><DragSelect /></body>
+				body = <body className="Body">
+					<DragSelect
+					nextStage = {this.nextStage}
+					friends = {this.state.friends} 
+					friends_check = {this.state.friends_check} 
+					onCheck={this.onCheck}
+					appointment_friends = {this.appointment_friends}
+					friends_id = {this.state.friends_id}
+					chooseFriend = {this.chooseFriend}
+					 />
+					</body>
 				content = <div>{header}{body}</div>
 				break;
 
