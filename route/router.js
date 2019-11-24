@@ -76,7 +76,7 @@ router.get('/fri/:id', (req, res) => {
 });
 
 router.post('/make/:DateId/:StartTime/:EndTime/:What', (req, res) => {
-    var query = 'INSERT INTO Appointment(DateId, StartTime, EndTime, What) VALUES (?,?,?,?,?)'
+    var query = 'INSERT INTO Appointment(DateId, StartTime, EndTime, What) VALUES (?,?,?,?)'
     db.query(query, [req.params.DateId, req.params.StartTime, req.params.EndTime, req.params.What], (err, rows) => {
         if (!err) {
             res.send({data: 'POSTING SUCCESSED.'});
@@ -88,7 +88,7 @@ router.post('/make/:DateId/:StartTime/:EndTime/:What', (req, res) => {
 });
 
 router.post('/register/:id/:participants', (req, res) => {
-    var query = 'INSERT INTO Appointment_participants VALUES (?,?)'
+    var query = 'INSERT INTO Appointment_participants VALUES (4,(SELECT UserId from User where name = \'?\'))'
     db.query(query, [req.params.id, req.params.participants], (err, rows) => {
         if (!err) {
             res.send({data: 'POSTING SUCCESSED.'});
