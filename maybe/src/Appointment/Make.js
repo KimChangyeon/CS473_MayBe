@@ -232,8 +232,9 @@ class Make extends Component {
 					<ul>
 						<li> <img className="complete" src={complete} alt="Complete"
 								onClick={()=>{
-									this.submit()
-									this.props.nextStage(0)
+									this.submit();
+									this.props.nextStage(0);
+									this.props.update();
 									}}/> </li>
 						<li> <img className="cancel" src={cancel} alt="Cancel"
 								onClick={()=>this.props.nextStage(0)}/> </li>

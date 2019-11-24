@@ -263,7 +263,7 @@ class Main extends Component {
         break;
 
       case ('make'):
-        content = <Make nextStage = {this.nextStage} header = {this.header} user_id = {this.state.user_id}/>;
+        content = <Make nextStage = {this.nextStage} header = {this.header} user_id = {this.state.user_id} update = {this.update}/>;
         break;
 
       case ('schedule'):
