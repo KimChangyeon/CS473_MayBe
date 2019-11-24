@@ -3548,7 +3548,7 @@ var styles$G = function styles(_ref) {
       width: '650px'
     },
     fullSize: {
-      width: '1150px',
+      width: '500px',
       '@media (min-width: 700px) and (max-width: 850px)': {
         width: '700px'
       },
