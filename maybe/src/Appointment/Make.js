@@ -159,7 +159,7 @@ class Make extends Component {
 			});
 		}
 
-		var url_self = 'register_self'.concat(this.state.user_id)
+		var url_self = 'register_self'.concat('/').concat(this.state.user_id)
 		console.log(url_self);
 		fetch(url_self, {method: "POST"})
 			.then(res => res.json())
