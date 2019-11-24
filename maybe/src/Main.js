@@ -271,7 +271,7 @@ class Main extends Component {
         break;
 
       case ('statistics'):
-        content = <Statistics_Monthly nextStage = {this.nextStage} header = {this.header}/>;
+        content = <Statistics_Monthly nextStage = {this.nextStage} header = {this.header} user_reward = {this.props.user_reward}/>;
 				break;
 
 	  case ('vote'):
