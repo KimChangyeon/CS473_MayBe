@@ -1,7 +1,3 @@
-### [CS473] Introduction to Social Computing
-# <b>High-Fi Prototype</b>
-## Team: <b>MayBe</b>
-Changyeon Kim<br>
-Sangho Lim<br>
-Jiho Jin<br>
-Jisu Choi<br>
+[2019 Fall CS473]<br><b>Design Project: High-Fi Prototype</b><br>
+by Changyeon Kim, Sangho Lim, Jiho Jin, Jisu Choi
+# Instruction for <b>MayBe</b>
