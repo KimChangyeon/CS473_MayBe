@@ -97,6 +97,7 @@ class ChooseTable extends Component {
                 ? ({...Day, time: Day.time.filter((time) => time !== row ) })
                 : Day)})
         }
+        this.updateDates();
    }
    
     renderRow = () =>
@@ -136,7 +137,7 @@ class ChooseTable extends Component {
             let endTime= 0
             let i=0
             for (i=0; i<times.length;i++){
-                if(startTime != 0 && endTime ==0 && times[i] === startTime+1)
+                if(startTime !== 0 && endTime === 0 && times[i] === startTime+1)
                 {
                     endTime = times[i]
                     continue;
@@ -148,19 +149,20 @@ class ChooseTable extends Component {
                 }
                 else
                 {
-                    if (startTime!= 0 && endTime != 0) result.push(startTime.toString()+" " + (endTime+1).toString())
-                    else if (startTime != 0 && endTime == 0) result.push(startTime.toString()+" "+ (startTime+1).toString())
+                    if (startTime!== 0 && endTime !== 0) result.push(startTime.toString()+" " + (endTime+1).toString())
+                    else if (startTime !== 0 && endTime === 0) result.push(startTime.toString()+" "+ (startTime+1).toString())
                     startTime = times[i]
                     endTime = 0
                 }
             }
-            if(startTime != 0 && endTime == 0)
+            if(startTime !== 0 && endTime === 0)
                 result.push(startTime.toString()+" " + (startTime+1).toString())
-            else if(startTime != 0 && endTime != 0)
+            else if(startTime !== 0 && endTime !== 0)
                 result.push(startTime.toString()+ " "+ (endTime+1).toString())
             return ({id: day.id, time : result})
         })
         console.log("choiceDate : ",choiceDate)
+        this.props.setTimeSlot(choiceDate);
     }
 
     onChange (e) {
@@ -169,7 +171,7 @@ class ChooseTable extends Component {
 	}
 
     render(){
-        this.updateDates()
+        // this.updateDates();
         console.log("state : ",this.state)
         return (
             <div>

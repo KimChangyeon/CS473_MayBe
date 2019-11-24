@@ -79,7 +79,19 @@ class Make extends Component {
 	}
 
 	setTimeSlot (slot) {
-		this.setState({timeSlot: slot});
+		var answer = {};
+		if (slot.length > 0) {
+			for (var i = 0 ; i < slot.length ; i++) {
+				var day = slot[i];
+				if (day.time.length > 0) {
+					answer.DateId = day.id;
+					answer.StartTime = day.time[0].slice(0,2);
+					answer.EndTime = day.time[0].slice(3,5);
+					break;
+				}
+			}
+		}
+		this.setState({timeSlot: answer});
 	}
 
 	handleSearch = (e) => {
@@ -111,7 +123,10 @@ class Make extends Component {
 
 	submit () {
 		// '/make/:DateId/:StartTime/:EndTime/:What'
-		var url_make = '/make/'.concat(this.state.DateId).concat('/').concat(this.state.DateId).concat('/').concat(this.state.DateId).concat('/').concat(this.state.AppointmentName);
+		var DateId = this.state.timeSlot.DateId;
+		var StartTime = this.state.timeSlot.StartTime;
+		var EndTime = this.state.timeSlot.EndTime;
+		var url_make = '/make/'.concat(DateId).concat('/').concat(StartTime).concat('/').concat(EndTime).concat('/').concat(this.state.AppointmentName);
 		fetch(url_make, {method: "POST"})
 			.then(res => res.json())
 			.then(answer => console.log(answer.data))
@@ -122,7 +137,9 @@ class Make extends Component {
 		// Get Last Appointment Id.
 		fetch('/AppId/')
 			.then(res => res.json())
-			.then(answer => {this.setState({AppointmentId: answer.data.AppointmentId})})
+			.then(answer => {
+				this.setState({AppointmentId: answer.data.AppointmentId},
+				console.log(answer.data))})
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
@@ -220,7 +237,7 @@ class Make extends Component {
 					<ul>
 						<li> <img className="complete" src={complete} alt="Complete"
 								onClick={()=>{
-									// this.submit()
+									this.submit()
 									this.props.nextStage(0)
 									}}/> </li>
 						<li> <img className="cancel" src={cancel} alt="Cancel"
