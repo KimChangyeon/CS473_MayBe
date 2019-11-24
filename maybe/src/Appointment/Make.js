@@ -149,7 +149,7 @@ class Make extends Component {
 		// Participant registration.
 		for (var k = 0 ; k < this.state.friends_in_appointment.length ; k++){
 			var p = this.state.friends_in_appointment[k];
-			var url_participants = 'register'.concat('/').concat(aid).concat('/').concat(p)
+			var url_participants = 'register'.concat('/').concat(p)
 			console.log(url_participants);
 			fetch(url_participants, {method: "POST"})
 				.then(res => res.json())
@@ -159,7 +159,7 @@ class Make extends Component {
 			});
 		}
 
-		var url_self = 'register_self'.concat('/').concat(aid).concat('/').concat(this.state.user_id)
+		var url_self = 'register_self'.concat(this.state.user_id)
 		console.log(url_self);
 		fetch(url_self, {method: "POST"})
 			.then(res => res.json())
