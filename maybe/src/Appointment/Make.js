@@ -6,6 +6,7 @@ import './Make.css'
 import Statistics_Friend from '../Statistics/Statistics_Friend';
 import DragSelect from './DragSelect';
 import ChooseTable from './ChooseTable';
+import Schedule from '../Schedule/Schedule'
 
 /* Icons */
 import makebutton from '../img/button_make_appointment.png';
@@ -27,6 +28,14 @@ function make_friends(answer){
 	return friend_list
 }
 
+function friend_id_dict (answer) {
+	var dict = {}
+	for (var i = 0 ; i < answer.length ; i++){
+		dict[answer[i]['name']] = answer[i]['UserId'];
+	}
+	return dict;
+}
+
 function make_dict (friends) {
 	var dict = {}
 	for (var i = 0 ; i < friends.length ; i++){
@@ -46,6 +55,9 @@ class Make extends Component {
 			friends: ['Alice Oh', 'Chaeyeon Son', 'Changyeon Kim', 'Hyeonjae Gil',
 			'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
 			'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon'],
+			friends_id: [],
+			selected_friend_id: 0,
+
 			AppointmentId: 0,
 			AppointmentName: '',
 			timeSlot: [],
@@ -62,7 +74,7 @@ class Make extends Component {
 		console.log(url_final);
 		fetch(url_final)
 			.then(res => res.json())
-			.then(answer => this.setState({friends: make_friends(answer.data)}))        
+			.then(answer => this.setState({friends: make_friends(answer.data), friends_id: friend_id_dict(answer.data)}))        
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
@@ -175,7 +187,10 @@ class Make extends Component {
 				<img src={statistics} alt="statistics" id="friendlist_statistics"
 					onClick={()=>this.nextStage(3)} />
 				<img src={calendar} alt="calendar" id ="friendlist_calendar"
-					 onClick={()=>this.nextStage(4)} />
+					 onClick={()=>{
+						this.nextStage(4)
+						this.setState({selected_friend_id: this.state.friends_id[friend]})
+					 }} />
 				<Form.Check type='checkbox' label={friend} 
 					defaultValue={this.state.friends_check[friend]}
 					onChange={(e) => this.onCheck(friend, e)} />
@@ -287,7 +302,9 @@ class Make extends Component {
 							<img src={timeslot_dark} alt="time slot" /></Button>
 					</ButtonGroup>
 				header = this.props.header(bar, button);
-				content = <div>{header}<div className="Body">friend schedule</div></div>
+				content = <div>{header}<div className="Body">
+					<Schedule nextStage = {this.props.nextStage} header = {this.props.header} user_id = {this.state.selected_friend_id} AppointmentId = {this.state.AppointmentId}/>
+					</div></div>
 				break;
 
     		default:
