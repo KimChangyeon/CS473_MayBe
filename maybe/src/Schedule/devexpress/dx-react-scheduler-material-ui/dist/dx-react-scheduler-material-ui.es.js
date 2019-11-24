@@ -3539,15 +3539,15 @@ var styles$G = function styles(_ref) {
       width: '650px'
     },
     fullSize: {
-      width: '1150px',
+      width: '500px',
       '@media (min-width: 700px) and (max-width: 850px)': {
-        width: '700px'
+        width: '500px'
       },
       '@media (min-width: 850px) and (max-width: 1000px)': {
-        width: '850px'
+        width: '500px'
       },
       '@media (min-width: 1000px) and (max-width: 1150px)': {
-        width: '1000px'
+        width: '500px'
       }
     },
     '@media (max-width: 700px)': {
@@ -3792,7 +3792,7 @@ var styles$K = function styles(_ref) {
     },
     fullSize: {
       height: '100%',
-      width: '1150px',
+      width: '500px',
       '@media (min-width: 700px) and (max-width: 850px)': {
         width: '500px'
       },
@@ -3803,7 +3803,7 @@ var styles$K = function styles(_ref) {
         width: '500px'
       },
       '@media (max-width: 700px)': {
-        width: '100%',
+        width: '500px',
         maxWidth: '500px'
       }
     },

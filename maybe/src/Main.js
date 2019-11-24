@@ -185,10 +185,10 @@ class Main extends Component {
 					<Popup trigger={<img src={coins} style={{width: "60%", marginTop: "2px", zindex :9999}} alt="reward"/>} contentStyle={{width: "250px",zindex :9999}}>
 						{close => (
 							<div style={{margin: "5px"}}>
-								<img src={coin} style={{float: "right", width: "50px"}} onClick={()=>this.rewarding()} alt="reward"/>
+								<img src={coin} style={{float: "right", width: "50px"}} onClick={()=>{this.rewarding(); close()}} alt="reward"/>
 								You've arrived at your appointment on time! <br/>
 								<u>3 min</u> earlier <br/>
-								<Button variant="outlineflat" onClick={close}>OK</Button>
+								<Button variant="outlineflat" onClick={()=>{this.rewarding(); close()}}>OK</Button>
 							</div>
 						)}
 					</Popup>;
