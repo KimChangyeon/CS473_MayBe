@@ -64,7 +64,7 @@ router.get('/appt/:id', (req, res) => {
 
 //한 유저의 친구 목록 불러오기.
 router.get('/fri/:id', (req, res) => {
-    var query = 'SELECT name from User where userid in (SELECT FriendId FROM Friend where userId = ?)'
+    var query = 'SELECT name, UserId from User where userid in (SELECT FriendId FROM Friend where userId = ?)'
     db.query(query, req.params.id, (err, rows) => {
         if (!err) {
             res.send({data: rows});
@@ -112,7 +112,7 @@ router.post('/register_self/:partid', (req, res) => {
 });
 
 router.post('/reward/:id/:point', (req, res) => {
-    var query = 'UPDATE User SET Reward = ? WHERE AppointmentId = ?'
+    var query = 'UPDATE User SET Reward = ? WHERE UserId = ?'
     db.query(query, [req.params.point, req.params.id], (err, rows) => {
         if (!err) {
             res.send({data: 'POSTING SUCCESSED FOR UPDATING REWARD.'});
