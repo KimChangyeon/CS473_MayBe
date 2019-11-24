@@ -46,11 +46,6 @@ class Make extends Component {
 			friends: ['Alice Oh', 'Chaeyeon Son', 'Changyeon Kim', 'Hyeonjae Gil',
 			'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
 			'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon'],
-			friends_original: ['Alice Oh', 'Chaeyeon Son', 'Changyeon Kim', 'Hyeonjae Gil',
-			'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
-			'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon'],
-			search: '',
-			onSearch: false,
 			AppointmentId: 0,
 			AppointmentName: '',
 			timeSlot: [],
@@ -67,11 +62,11 @@ class Make extends Component {
 		console.log(url_final);
 		fetch(url_final)
 			.then(res => res.json())
-			.then(answer => this.setState({friends: make_friends(answer.data), friends_original: make_friends(answer.data)}))        
+			.then(answer => this.setState({friends: make_friends(answer.data)}))        
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
-		this.setState({friends_check: make_dict(this.state.friends_original)});
+		this.setState({friends_check: make_dict(this.state.friends)});
 	}
 
 	setAppointmentName (name) {
@@ -147,7 +142,7 @@ class Make extends Component {
 		// Participant registration.
 		for (var k = 0 ; k < this.state.friends_in_appointment.length ; k++){
 			var p = this.state.friends_in_appointment[k];
-			var url_participants = 'register'.concat(this.state.AppointmentId).concat('/').concat(p)
+			var url_participants = 'register'.concat('/').concat(this.state.AppointmentId).concat('/').concat(p)
 			fetch(url_participants, {method: "POST"})
 				.then(res => res.json())
 				.then(answer => console.log(answer.data))

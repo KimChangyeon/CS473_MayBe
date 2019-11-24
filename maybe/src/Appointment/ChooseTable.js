@@ -167,7 +167,7 @@ class ChooseTable extends Component {
 
     onChange (e) {
 		const value = e.target.value === "" ? null : e.target.value;
-		this.props.setAppointmnentName(value);
+		this.props.setAppointmentName(value);
 	}
 
     render(){
