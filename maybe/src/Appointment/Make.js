@@ -51,9 +51,7 @@ class Make extends Component {
 			stage_id: 0,
 			user_id: this.props.user_id,
 			stages: ['list', 'slot', 'choose', 'stat_friend', 'schedule_friend'],
-			friends: ['Alice Oh', 'Chaeyeon Son', 'Changyeon Kim', 'Hyeonjae Gil',
-			'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
-			'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon'],
+			friends: [],
 			friends_id: [],
 			selected_friend_id: 0,
 

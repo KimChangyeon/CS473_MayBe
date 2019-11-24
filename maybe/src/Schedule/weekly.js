@@ -46,7 +46,7 @@ export default class Weekly extends React.PureComponent {
     super(props);
     this.state = {
       user_id: this.props.user_id,
-      data: appointments,
+      data: [],
       currentDate: currentDate,
       currentViewName : this.props.currentViewName,
 

@@ -51,7 +51,7 @@ class Main extends Component {
 			memo: null,
 			stage_id: 0,
 			stages : ['upcoming','make','schedule','statistics','vote','location', 'memo', 'rank'],
-			schedule: [{"AppointmentId":1,"DateId":20191120,"StartTime":10,"EndTime":12,"Place":"KAIST","What":"Group Meeting","Memo":"늦지 말고 오기","participants":"Sangho Lim,Jiho Jin,Jisu Choi,Changyeon Kim"},{"AppointmentId":2,"DateId":20191118,"StartTime":20,"EndTime":23,"Place":"어은동","What":"Meal","Memo":"노트북 들고 오기","participants":"Sangho Lim,Jiho Jin"}]
+			schedule: [],
 		}
 		this.setMarker = this.setMarker.bind(this);
 		this.setPlace = this.setPlace.bind(this);
