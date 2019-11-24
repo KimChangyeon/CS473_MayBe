@@ -1,9 +1,9 @@
 /* <div>아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div> */
 import React, {Component} from 'react'
 import {Row, Col, ListGroup} from 'react-bootstrap'
-import './App.css'
+import '../App.css'
 
-import crown from './img/crown.png'
+import crown from '../img/crown.png'
 
 class Rank extends Component {
     constructor (props) {

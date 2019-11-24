@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import { InputGroup, FormControl } from 'react-bootstrap';
-import './App.css';
+import '../App.css';
 
 /* Icons */
-import complete from './img/button_complete.png';
-import cancel from './img/button_cancel.png';
+import complete from '../img/button_complete.png';
+import cancel from '../img/button_cancel.png';
 
 class Memo extends Component {
 	constructor (props) {
