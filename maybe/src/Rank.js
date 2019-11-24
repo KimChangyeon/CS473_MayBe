@@ -4,7 +4,6 @@ import {Row, Col, ListGroup} from 'react-bootstrap'
 import './App.css'
 
 import crown from './img/crown.png'
-import { func } from 'prop-types';
 
 class Rank extends Component {
     constructor (props) {
@@ -35,7 +34,7 @@ class Rank extends Component {
         return (
             <div className="Body">
                 <ListGroup style={{margin: "70px", position: "relative"}}>
-                    <img src={crown} id="crown" />
+                    <img src={crown} id="crown" alt="crown"/>
                     {this.reward_rank().map((friend, idx)=>
                     {
                             return <ListGroup.Item key={friend}>
