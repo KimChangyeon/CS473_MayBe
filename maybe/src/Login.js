@@ -30,7 +30,6 @@ class Login extends Component {
             });
         
         this.setState({l: 0});
-        setTimeout(function() {}, 2000);
         if (this.state.l === 0){
             if (pw.length <= 0)
                 alert('YOU SHOULD WRITE YOUR PASSWORD.');
@@ -46,6 +45,7 @@ class Login extends Component {
                 this.props.nextStage();
             }
         }
+        
     }
 
     handleId() {
