@@ -39,7 +39,7 @@ function handling_appointments (schedules) {
   return answer;
 }
 
-const currentDate = new Date(2019,11,26,10,33);
+const currentDate = new Date(2019,10,26,10,33);
 
 export default class Weekly extends React.PureComponent {
   constructor(props) {
