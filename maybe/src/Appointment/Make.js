@@ -19,7 +19,6 @@ import cancel from '../img/button_cancel.png';
 import statistics from '../img/statistics.png';
 import calendar from '../img/friend_list_friend_calendar.png';
 import search from '../img/search.png'
-import xmark from '../img/x_mark.png'
 
 function make_friends(answer){
 	var friend_list = [];
@@ -67,6 +66,9 @@ class Make extends Component {
 		this.search = React.createRef(); 
 		this.setAppointmentName = this.setAppointmentName.bind(this);
 		this.setTimeSlot = this.setTimeSlot.bind(this);
+		this.appointment_friends = this.appointment_friends.bind(this);
+		this.onCheck = this.onCheck.bind(this);
+		this.chooseFriend = this.chooseFriend.bind(this);
 	}
 
 	componentWillMount () {
@@ -125,6 +127,10 @@ class Make extends Component {
 				answer.push(f_name)
 		}
 		this.setState({friends_in_appointment: answer});
+	}
+
+	chooseFriend (uid) {
+		this.setState({selected_friend_id: uid});
 	}
 
 	submit () {
@@ -254,7 +260,17 @@ class Make extends Component {
 							<img src={timeslot_light} alt="time slot" /></Button>
 					</ButtonGroup>
 				header = this.props.header(bar, button);
-				body = <body className="Body"><DragSelect /></body>
+				body = <body className="Body">
+					<DragSelect
+					nextStage = {this.nextStage}
+					friends = {this.state.friends} 
+					friends_check = {this.state.friends_check} 
+					onCheck={this.onCheck}
+					appointment_friends = {this.appointment_friends}
+					friends_id = {this.state.friends_id}
+					chooseFriend = {this.chooseFriend}
+					 />
+					</body>
 				content = <div>{header}{body}</div>
 				break;
 

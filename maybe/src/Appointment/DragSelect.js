@@ -30,9 +30,9 @@ class DragSelect extends Component {
     updateFriendList = () => {
       const checkCell = this.state.cells.filter((cell) => {
         let check = cell.filter((state)=> state)
-        return (check.length != 0)
+        return (check.length !== 0)
       })
-      if (checkCell.length != 0) isDrag = true
+      if (checkCell.length !== 0) isDrag = true
       else isDrag = false
     }
 
@@ -40,7 +40,10 @@ class DragSelect extends Component {
       if (isDrag) {
         return(
         <div>
-          <CheckboxesGroup />
+          <CheckboxesGroup friend = {this.props.friend}
+          friends = {this.props.friends} 
+					friends_check = {this.props.friends_check} onCheck={this.props.onCheck}
+					appointment_friends = {this.props.appointment_friends}/>
         </div>)
       }
       else 

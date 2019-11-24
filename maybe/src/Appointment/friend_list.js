@@ -1,4 +1,5 @@
 import React from 'react';
+import {ListGroup, Form} from 'react-bootstrap';
 import { makeStyles } from '@material-ui/core/styles';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -11,6 +12,9 @@ import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import Typography from '@material-ui/core/Typography';
 
 import './friend_list.css';
+import statistics from '../img/statistics.png';
+import calendar from '../img/friend_list_friend_calendar.png';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,9 +40,24 @@ function CheckboxesGroup() {
   const { gilad, jason, antoine } = state;
   const error = [gilad, jason, antoine].filter(v => v).length !== 2;
 
+  const friends_list = this.props.friends.map((friend) =>
+			<ListGroup.Item>
+				<img src={statistics} alt="statistics" id="friendlist_statistics"
+					onClick={()=>this.nextStage(3)} />
+				<img src={calendar} alt="calendar" id ="friendlist_calendar"
+					 onClick={()=>{
+						this.props.nextStage(4)
+            // this.setState({selected_friend_id: this.props.friends_id[friend]})
+            this.props.chooseFrined(this.props.friends_id[friend])
+					 }} />
+				<Form.Check type='checkbox' label={friend} 
+					defaultValue={this.props.friends_check[friend]}
+					onChange={(e) => this.onCheck(friend, e)} />
+			</ListGroup.Item>);
   return (
+    
     <div className={classes.root}>
-      <FormControl component="fieldset" className={classes.formControl}>
+      {/* <FormControl component="fieldset" className={classes.formControl}>
         <FormGroup >
           <FormControlLabel
             control={<Checkbox 
@@ -71,7 +90,9 @@ function CheckboxesGroup() {
             label={<Typography><span className="name">Jisu Choi</span> </Typography>}
           />
         </FormGroup>
-      </FormControl>
+      </FormControl> */}
+      {friends_list}
+
     </div>
   );
 }
