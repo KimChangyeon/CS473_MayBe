@@ -11,8 +11,6 @@ URL: https://cs473maybe.herokuapp.com/
 >
 
 >### <b>Be Punctual</b>
-> Test
-> <img src="./screenshots/reward_0.png"/>
+> <img src="./screenshots/reward_0.png" width="300"/>
 
 >### <b>Recall Appointment</b>
-Test
