@@ -99,7 +99,6 @@ class Make extends Component {
 		this.setState({friends_check: f_check})
 	}
 
-
 	nextStage (number) {
 		this.setState({stage_id: number});
 	}
