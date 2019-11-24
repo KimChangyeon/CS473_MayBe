@@ -47,8 +47,8 @@ class Main extends Component {
 			initialCenter: { lat: 36.368, lng: 127.355 },
 			user_id: this.props.user_id,
 			marker: { lat: 36.3636944, lng: 127.359529 },
-			place: null,
-			memo: null,
+			place: '',
+			memo: '',
 			stage_id: 0,
 			stages : ['upcoming','make','schedule','statistics','vote','location', 'memo', 'rank'],
 			schedule: [{"AppointmentId":1,"DateId":20191120,"StartTime":10,"EndTime":12,"Place":"KAIST","What":"Group Meeting","Memo":"늦지 말고 오기","participants":"Sangho Lim,Jiho Jin,Jisu Choi,Changyeon Kim"},{"AppointmentId":2,"DateId":20191118,"StartTime":20,"EndTime":23,"Place":"어은동","What":"Meal","Memo":"노트북 들고 오기","participants":"Sangho Lim,Jiho Jin"}]
