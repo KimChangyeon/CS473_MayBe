@@ -118,7 +118,7 @@ class Main extends Component {
 	rewarding () {
 		var point = this.props.user_reward + 20;
 		var url_final = '/reward/'.concat(this.props.user_id).concat('/').concat(point);
-		fetch(url_final)
+		fetch(url_final, {method: "POST"})
 			.then(answer => console.log(answer.data))        
 		.catch((error)=>{
 			console.log('Error fetching man',error);
