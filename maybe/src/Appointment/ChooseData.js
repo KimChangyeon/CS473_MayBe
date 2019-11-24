@@ -135,13 +135,13 @@ export const fourCandidates = [
         id:20191125,
         disabled : false,
         selected : false,
-        selectNum : 0
+        selectNum : 2
     },
     {   
         id:20191126,
         disabled : false,
         selected : false,
-        selectNum : 0
+        selectNum : 1
     },
     {
         id:20191127,
@@ -185,13 +185,13 @@ export const twelveCandidates = [
         id:20191126,
         disabled : false,
         selected : false,
-        selectNum : 0
+        selectNum : 1
     },
     {
         id:20191127,
         disabled : false,
         selected : false,
-        selectNum : 0
+        selectNum : 1
     },
     {
         id:20191128,
