@@ -41,14 +41,14 @@ class Main extends Component {
 		super(props);
 		this.state = {
 			AppointmentId: 0,
-			AppointmentPlace: '',
-			AppointmentMemo: '',
+			AppointmentPlace: null,
+			AppointmentMemo: null,
 			AppointmentTime: [],
 			initialCenter: { lat: 36.368, lng: 127.355 },
 			user_id: this.props.user_id,
 			marker: { lat: 36.3636944, lng: 127.359529 },
-			place: '',
-			memo: '',
+			place: null,
+			memo: null,
 			stage_id: 0,
 			stages : ['upcoming','make','schedule','statistics','vote','location', 'memo', 'rank'],
 			schedule: [{"AppointmentId":1,"DateId":20191120,"StartTime":10,"EndTime":12,"Place":"KAIST","What":"Group Meeting","Memo":"늦지 말고 오기","participants":"Sangho Lim,Jiho Jin,Jisu Choi,Changyeon Kim"},{"AppointmentId":2,"DateId":20191118,"StartTime":20,"EndTime":23,"Place":"어은동","What":"Meal","Memo":"노트북 들고 오기","participants":"Sangho Lim,Jiho Jin"}]
@@ -163,7 +163,7 @@ class Main extends Component {
 				const participants = info.participants.split(',');
 				const participants_list = participants.map((person) => <li key={person}><span>{person}</span></li>)
 				
-				const place = info.Place === '' ?
+				const place = info.Place === null ?
 					<img src={gps} style={{width: "65%"}}
 						onClick={()=>this.nextStageWithAppointment(5, info.AppointmentId, '')} alt="Where"/> :
 					<div className="edit">
@@ -171,7 +171,7 @@ class Main extends Component {
 						<Button variant="outlineflat" onClick={()=>this.nextStageWithAppointment(5, info.AppointmentId, info.Place)}>Edit</Button>
 					</div>;
 
-				const memo = info.Memo === '' ?
+				const memo = info.Memo === null ?
 					<img src={align} style={{width: "45%", marginTop: "8px"}}
 						onClick={()=>this.nextStageWithAppointment(6, info.AppointmentId, '')}
 						alt="Memo"/> :
@@ -180,7 +180,7 @@ class Main extends Component {
 						<Button variant="outlineflat" onClick={()=>this.nextStageWithAppointment(6, info.AppointmentId, info.Memo)}>Edit</Button>
 					</div>;
 
-				const reward = info.Place === '' ?
+				const reward = info.Place === null ?
 					<div style={{fontSize: "11pt", lineHeight: "20px", marginTop: "2px"}}> Please choose the location </div> :
 					<Popup trigger={<img src={coins} style={{width: "60%", marginTop: "2px", zindex :9999}} alt="reward"/>} contentStyle={{width: "250px",zindex :9999}}>
 						{close => (

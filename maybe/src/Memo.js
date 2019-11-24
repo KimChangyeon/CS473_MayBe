@@ -16,8 +16,9 @@ class Memo extends Component {
 	}
 
 	onChange (e) {
+		const value = e.target.value === '' ? null : e.target.value;
 		this.setState({
-			memo: e.target.value
+			memo: value
 		});
 	}
 
