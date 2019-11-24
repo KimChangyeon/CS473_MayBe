@@ -131,20 +131,20 @@ class Make extends Component {
 
 		let aid;
 
-		// Get Last Appointment Id.
-		fetch('/AppId/')
-			.then(res => res.json())
-			.then(function (answer) {
-				aid = answer.data[0].AppointmentId;
-				console.log(aid);
-			})
-		.catch((error)=>{
-			console.log('Error fetching man',error);
-		});
+		// // Get Last Appointment Id.
+		// fetch('/AppId/')
+		// 	.then(res => res.json())
+		// 	.then(function (answer) {
+		// 		aid = answer.data[0].AppointmentId;
+		// 		console.log(aid);
+		// 	})
+		// .catch((error)=>{
+		// 	console.log('Error fetching man',error);
+		// });
 
-		setTimeout(function(){
+		// setTimeout(function(){
 
-		}, 10000); 
+		// }, 10000); 
 
 		// Participant registration.
 		for (var k = 0 ; k < this.state.friends_in_appointment.length ; k++){
