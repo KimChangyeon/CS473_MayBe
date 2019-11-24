@@ -136,11 +136,15 @@ class Make extends Component {
 			.then(res => res.json())
 			.then(function (answer) {
 				aid = answer.data[0].AppointmentId;
-				console.log(answer.data[0].AppointmentId);
+				console.log(aid);
 			})
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
+
+		setTimeout(function(){
+
+		}, 10000); 
 
 		// Participant registration.
 		for (var k = 0 ; k < this.state.friends_in_appointment.length ; k++){
