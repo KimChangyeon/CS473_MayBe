@@ -46,11 +46,6 @@ class Make extends Component {
 			friends: ['Alice Oh', 'Chaeyeon Son', 'Changyeon Kim', 'Hyeonjae Gil',
 			'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
 			'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon'],
-			friends_original: ['Alice Oh', 'Chaeyeon Son', 'Changyeon Kim', 'Hyeonjae Gil',
-			'Hyeonju Yun', 'Jiho Jin', 'Jisu Choi', 'Juho Kim', 'Maria Kim',
-			'Sangho Lim', 'Seunghee Koh', 'Soeun Park', 'Yongbin Kwon'],
-			search: '',
-			onSearch: false,
 			AppointmentId: 0,
 			AppointmentName: '',
 			timeSlot: [],
@@ -67,11 +62,11 @@ class Make extends Component {
 		console.log(url_final);
 		fetch(url_final)
 			.then(res => res.json())
-			.then(answer => this.setState({friends: make_friends(answer.data), friends_original: make_friends(answer.data)}))        
+			.then(answer => this.setState({friends: make_friends(answer.data)}))        
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
-		this.setState({friends_check: make_dict(this.state.friends_original)});
+		this.setState({friends_check: make_dict(this.state.friends)});
 	}
 
 	setAppointmentName (name) {
@@ -79,7 +74,19 @@ class Make extends Component {
 	}
 
 	setTimeSlot (slot) {
-		this.setState({timeSlot: slot});
+		var answer = {};
+		if (slot.length > 0) {
+			for (var i = 0 ; i < slot.length ; i++) {
+				var day = slot[i];
+				if (day.time.length > 0) {
+					answer.DateId = day.id;
+					answer.StartTime = day.time[0].slice(0,2);
+					answer.EndTime = day.time[0].slice(3,5);
+					break;
+				}
+			}
+		}
+		this.setState({timeSlot: answer});
 	}
 
 	handleSearch = (e) => {
@@ -110,7 +117,10 @@ class Make extends Component {
 
 	submit () {
 		// '/make/:DateId/:StartTime/:EndTime/:What'
-		var url_make = '/make/'.concat(this.state.DateId).concat('/').concat(this.state.DateId).concat('/').concat(this.state.DateId).concat('/').concat(this.state.AppointmentName);
+		var DateId = this.state.timeSlot.DateId;
+		var StartTime = this.state.timeSlot.StartTime;
+		var EndTime = this.state.timeSlot.EndTime;
+		var url_make = '/make/'.concat(DateId).concat('/').concat(StartTime).concat('/').concat(EndTime).concat('/').concat(this.state.AppointmentName);
 		fetch(url_make, {method: "POST"})
 			.then(res => res.json())
 			.then(answer => console.log(answer.data))
@@ -118,18 +128,28 @@ class Make extends Component {
 			console.log('Error fetching man',error);
 		});
 
-		// Get Last Appointment Id.
-		fetch('/AppId/')
-			.then(res => res.json())
-			.then(answer => {this.setState({AppointmentId: answer.data.AppointmentId})})
-		.catch((error)=>{
-			console.log('Error fetching man',error);
-		});
+		let aid;
+
+		// // Get Last Appointment Id.
+		// fetch('/AppId/')
+		// 	.then(res => res.json())
+		// 	.then(function (answer) {
+		// 		aid = answer.data[0].AppointmentId;
+		// 		console.log(aid);
+		// 	})
+		// .catch((error)=>{
+		// 	console.log('Error fetching man',error);
+		// });
+
+		// setTimeout(function(){
+
+		// }, 10000); 
 
 		// Participant registration.
 		for (var k = 0 ; k < this.state.friends_in_appointment.length ; k++){
 			var p = this.state.friends_in_appointment[k];
-			var url_participants = 'register'.concat(this.state.AppointmentId).concat('/').concat(p)
+			var url_participants = 'register'.concat('/').concat(p)
+			console.log(url_participants);
 			fetch(url_participants, {method: "POST"})
 				.then(res => res.json())
 				.then(answer => console.log(answer.data))
@@ -137,6 +157,15 @@ class Make extends Component {
 				console.log('Error fetching man',error);
 			});
 		}
+
+		var url_self = 'register_self'.concat('/').concat(this.state.user_id)
+		console.log(url_self);
+		fetch(url_self, {method: "POST"})
+			.then(res => res.json())
+			.then(answer => console.log(answer.data))
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
 	}
 
 	render () {
@@ -219,8 +248,9 @@ class Make extends Component {
 					<ul>
 						<li> <img className="complete" src={complete} alt="Complete"
 								onClick={()=>{
-									// this.submit()
-									this.props.nextStage(0)
+									this.submit();
+									this.props.nextStage(0);
+									this.props.update();
 									}}/> </li>
 						<li> <img className="cancel" src={cancel} alt="Cancel"
 								onClick={()=>this.props.nextStage(0)}/> </li>
@@ -231,6 +261,7 @@ class Make extends Component {
 						<ChooseTable 
 							setAppointmentName = {this.setAppointmentName} 
 							setTimeSlot = {this.setTimeSlot}
+							user_id = {this.state.user_id}
 							type = {"Choose"}/></body>;
 				content = <div>{header}{body}</div>;
 				break;

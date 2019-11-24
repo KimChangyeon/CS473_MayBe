@@ -118,9 +118,8 @@ class Main extends Component {
 	rewarding () {
 		var point = this.props.user_reward + 20;
 		var url_final = '/reward/'.concat(this.props.user_id).concat('/').concat(point);
-		fetch(url_final)
-			.then(res => res.json())
-			.then(answer => this.setState({schedule: answer.data}))        
+		fetch(url_final, {method: "POST"})
+			.then(answer => console.log(answer.data))        
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
@@ -263,7 +262,7 @@ class Main extends Component {
         break;
 
       case ('make'):
-        content = <Make nextStage = {this.nextStage} header = {this.header} user_id = {this.state.user_id}/>;
+        content = <Make nextStage = {this.nextStage} header = {this.header} user_id = {this.state.user_id} update = {this.update}/>;
         break;
 
       case ('schedule'):
@@ -271,7 +270,7 @@ class Main extends Component {
         break;
 
       case ('statistics'):
-        content = <Statistics_Monthly nextStage = {this.nextStage} header = {this.header}/>;
+        content = <Statistics_Monthly nextStage = {this.nextStage} header = {this.header} user_reward = {this.props.user_reward}/>;
 				break;
 
 	  case ('vote'):
@@ -310,7 +309,7 @@ class Main extends Component {
 		break;
 	
 	case ('rank'):
-		content = <Rank nextStage = {this.nextStage} header = {this.header}/>;
+		content = <Rank nextStage = {this.nextStage} header = {this.header} user_reward = {this.props.user_reward} />;
 		break;
 
       default:

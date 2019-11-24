@@ -4,7 +4,26 @@ import {fiveCandidates, sixCandidates, sevenCandidates, fourCandidates, eightCan
 import {InputGroup, FormControl} from 'react-bootstrap'
 import Cell from './Cell'
 
-let choiceDate = []   
+
+let choiceDate = []
+function handling_schedule (schedules) {
+    var answer = [];
+    for (var i = 0 ; i < schedules.length ; i ++) {
+      var modified = {};
+      var schedule = schedules[i];
+      var StartTime = schedule['StartTimeslot'];
+      var EndTime = schedule['EndTimeslot'];
+      modified['id'] = i;
+      modified['DateId'] = schedule['DateId']; //20191128
+      modified['title'] = schedule['What']; //제목
+      modified['startDate'] = StartTime;
+      modified['endDate'] = EndTime;
+      answer.push(modified);
+    }
+  
+    return answer;
+  }
+
 class ChooseTable extends Component {
     constructor (props) {
         super(props);
@@ -75,8 +94,20 @@ class ChooseTable extends Component {
                 },
             ],
             what: '',
+            user_schedule: []
             };
         this.onChange = this.onChange.bind(this);
+    }
+
+    componentWillMount () {
+        var url_final = '/sch/'.concat(this.props.user_id);
+        console.log(url_final);
+        fetch(url_final)
+            .then(res => res.json())
+            .then(answer => this.setState({user_schedule: handling_schedule(answer.data)}))        
+        .catch((error)=>{
+            console.log('Error fetching man',error);
+        });
     }
   
     cellClick =(row, id, selected) => {
@@ -97,6 +128,7 @@ class ChooseTable extends Component {
                 ? ({...Day, time: Day.time.filter((time) => time !== row ) })
                 : Day)})
         }
+        this.updateDates();
    }
    
     renderRow = () =>
@@ -136,7 +168,7 @@ class ChooseTable extends Component {
             let endTime= 0
             let i=0
             for (i=0; i<times.length;i++){
-                if(startTime != 0 && endTime ==0 && times[i] === startTime+1)
+                if(startTime !== 0 && endTime === 0 && times[i] === startTime+1)
                 {
                     endTime = times[i]
                     continue;
@@ -148,28 +180,29 @@ class ChooseTable extends Component {
                 }
                 else
                 {
-                    if (startTime!= 0 && endTime != 0) result.push(startTime.toString()+" " + (endTime+1).toString())
-                    else if (startTime != 0 && endTime == 0) result.push(startTime.toString()+" "+ (startTime+1).toString())
+                    if (startTime!== 0 && endTime !== 0) result.push(startTime.toString()+" " + (endTime+1).toString())
+                    else if (startTime !== 0 && endTime === 0) result.push(startTime.toString()+" "+ (startTime+1).toString())
                     startTime = times[i]
                     endTime = 0
                 }
             }
-            if(startTime != 0 && endTime == 0)
+            if(startTime !== 0 && endTime === 0)
                 result.push(startTime.toString()+" " + (startTime+1).toString())
-            else if(startTime != 0 && endTime != 0)
+            else if(startTime !== 0 && endTime !== 0)
                 result.push(startTime.toString()+ " "+ (endTime+1).toString())
             return ({id: day.id, time : result})
         })
         console.log("choiceDate : ",choiceDate)
+        this.props.setTimeSlot(choiceDate);
     }
 
     onChange (e) {
 		const value = e.target.value === "" ? null : e.target.value;
-		this.props.setAppointmnentName(value);
+		this.props.setAppointmentName(value);
 	}
 
     render(){
-        this.updateDates()
+        // this.updateDates();
         console.log("state : ",this.state)
         return (
             <div>

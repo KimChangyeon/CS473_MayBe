@@ -69,21 +69,21 @@ body{
 .makebutton {
 	position: absolute;
 	left: 300px;
-	top: 600px;
+	top: 650px;
 	width: 200px;
 }
 
 .complete {
 	position: absolute;
 	right: 50px;
-	top: 600px;
+	top: 650px;
 	width: 180px;	
 }
 
 .cancel {
 	position: absolute;
 	left: 50px;
-	top: 600px;
+	top: 650px;
 	width: 180px;	
 }
 

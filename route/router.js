@@ -76,10 +76,10 @@ router.get('/fri/:id', (req, res) => {
 });
 
 router.post('/make/:DateId/:StartTime/:EndTime/:What', (req, res) => {
-    var query = 'INSERT INTO Appointment(DateId, StartTime, EndTime, What) VALUES (?,?,?,?,?)'
+    var query = 'INSERT INTO Appointment(DateId, StartTime, EndTime, What) VALUES (?,?,?,?)'
     db.query(query, [req.params.DateId, req.params.StartTime, req.params.EndTime, req.params.What], (err, rows) => {
         if (!err) {
-            res.send({data: 'POSTING SUCCESSED.'});
+            res.send({data: 'POSTING SUCCESSED FOR MAKING APPOINTMENT.'});
         }
         else {
             res.send({data: err});
@@ -87,11 +87,23 @@ router.post('/make/:DateId/:StartTime/:EndTime/:What', (req, res) => {
     })
 });
 
-router.post('/register/:id/:participants', (req, res) => {
-    var query = 'INSERT INTO Appointment_participants VALUES (?,?)'
-    db.query(query, [req.params.id, req.params.participants], (err, rows) => {
+router.post('/register/:partname', (req, res) => {
+    var query = 'INSERT INTO Appointment_participants VALUES ((SELECT LAST_INSERT_ID(AppointmentId) as AppointmentId from Appointment order by LAST_INSERT_ID(AppointmentId) desc limit 1),(SELECT UserId from User where name = ?))'
+    db.query(query, req.params.partname, (err, rows) => {
         if (!err) {
-            res.send({data: 'POSTING SUCCESSED.'});
+            res.send({data: 'POSTING SUCCESSED FOR REGISTERING APPOINTMENT PARTICIPANTS.'});
+        }
+        else {
+            res.send({data: err});
+        }
+    })
+});
+
+router.post('/register_self/:partid', (req, res) => {
+    var query = 'INSERT INTO Appointment_participants VALUES ((SELECT LAST_INSERT_ID(AppointmentId) as AppointmentId from Appointment order by LAST_INSERT_ID(AppointmentId) desc limit 1), ?)'
+    db.query(query, Number(req.params.partid), (err, rows) => {
+        if (!err) {
+            res.send({data: 'POSTING SUCCESSED FOR REGISTERING THIS USER.'});
         }
         else {
             res.send({data: err});
@@ -100,10 +112,10 @@ router.post('/register/:id/:participants', (req, res) => {
 });
 
 router.post('/reward/:id/:point', (req, res) => {
-    var query = 'UPDATE Appointment SET Reward = ? WHERE AppointmentId = ?'
+    var query = 'UPDATE User SET Reward = ? WHERE AppointmentId = ?'
     db.query(query, [req.params.point, req.params.id], (err, rows) => {
         if (!err) {
-            res.send({data: 'POSTING SUCCESSED.'});
+            res.send({data: 'POSTING SUCCESSED FOR UPDATING REWARD.'});
         }
         else {
             res.send({data: err});
@@ -127,7 +139,7 @@ router.post('/modify_place/:id/:Place/', (req, res) => {
     var query = 'UPDATE Appointment SET Place = ? WHERE AppointmentId = ?'
     db.query(query, [req.params.Place, req.params.id], (err, rows) => {
         if (!err) {
-            res.send({data: 'POSTING SUCCESSED.'});
+            res.send({data: 'POSTING SUCCESSED MODIFYING LOCATION.'});
         }
         else {
             res.send({data: err});
@@ -139,7 +151,7 @@ router.post('/modify_memo/:id/:Memo/', (req, res) => {
     var query = 'UPDATE Appointment SET Memo = ? WHERE AppointmentId = ?'
     db.query(query, [req.params.Memo, req.params.id], (err, rows) => {
         if (!err) {
-            res.send({data: 'POSTING SUCCESSED.'});
+            res.send({data: 'POSTING SUCCESSED FOR MODIFYING MEMO.'});
         }
         else {
             res.send({data: err});
