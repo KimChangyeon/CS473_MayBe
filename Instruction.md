@@ -24,8 +24,8 @@ The darkness of each time slot represents the preference for that time among you
 When you click to vote some time slot, the color of the slot gets darker. 
 
 >### <b>Be Punctual</b>
-<img src="./screenshots/reward_get.jpeg" width="250"/>
-<img src="./screenshots/reward_20.jpeg" width="250"/><br>
+<div><img src="./screenshots/reward_get.jpeg" width="250"/>
+<img src="./screenshots/reward_20.jpeg" width="250"/></div>
 (left) We assume that you arrive at the appointment on time. If you click the coin icon, you can earn some rewards.<br>
 (right) You can check the rank when you click the trophy icon.
 
@@ -36,6 +36,6 @@ When you click to vote some time slot, the color of the slot gets darker.
 (right) You can check the statistics on meeting with each friend, when you click the graph icon in the friend list.
 
 > ### <b>My Schedule</b>
-<img src="./screenshots/schedule_weekly.jpeg" width="250"/>
-<img src="./screenshots/schedule_monthly.jpeg" width="250"/><br>
+<div><img src="./screenshots/schedule_weekly.jpeg" width="250"/>
+<img src="./screenshots/schedule_monthly.jpeg" width="250"/></div>
 You can manage your schedule per week(left) or per month(right), when you click the calendar icon on the top right.
