@@ -251,7 +251,10 @@ class Make extends Component {
 
 			case 'slot':
 				button = <img className="makebutton" src={makebutton} alt="Make Appointment"
-							onClick={()=>this.nextStage(2)}/>;
+							onClick={()=>{
+								this.appointment_friends();
+								this.nextStage(2)
+							}}/>;
 				bar =
 					<ButtonGroup id="Tap" size='lg' style={{top: "-12px", width: "100%", height: "50px"}}>
 						<Button id="Button2" onClick={() => this.nextStage(0)}>

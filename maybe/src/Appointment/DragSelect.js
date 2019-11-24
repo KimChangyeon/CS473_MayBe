@@ -6,6 +6,11 @@ import { makeStyles } from '@material-ui/styles';
 import FormLabel from '@material-ui/core/FormLabel';
 import CheckboxesGroup from './friend_list';
 import Typography from '@material-ui/core/Typography';
+import {ListGroup, Form} from 'react-bootstrap';
+
+import statistics from '../img/statistics.png';
+import calendar from '../img/friend_list_friend_calendar.png';
+
 
 let isDrag = false
 class DragSelect extends Component {
@@ -37,13 +42,24 @@ class DragSelect extends Component {
     }
 
     renderFriendList = ()=>{
+      const friends_list = this.props.friends.map((friend) =>
+        <ListGroup.Item>
+          <img src={statistics} alt="statistics" id="friendlist_statistics"
+            onClick={()=>this.props.nextStage(3)} />
+          <img src={calendar} alt="calendar" id ="friendlist_calendar"
+            onClick={()=>{
+              this.props.nextStage(4)
+              // this.setState({selected_friend_id: this.props.friends_id[friend]})
+              this.props.chooseFriend(this.props.friends_id[friend])
+            }} />
+          <Form.Check type='checkbox' label={friend} 
+            defaultValue={this.props.friends_check[friend]}
+            onChange={(e) => this.props.onCheck(friend, e)} />
+        </ListGroup.Item>);
       if (isDrag) {
         return(
         <div>
-          <CheckboxesGroup friend = {this.props.friend}
-          friends = {this.props.friends} 
-					friends_check = {this.props.friends_check} onCheck={this.props.onCheck}
-					appointment_friends = {this.props.appointment_friends}/>
+          {friends_list}
         </div>)
       }
       else 
