@@ -30,8 +30,8 @@ When you click to vote some time slot, the color of the slot gets darker.
 (right) You can check the rank when you click the trophy icon.
 
 >### <b>Recall Appointment</b>
-<img src="./screenshots/statistics_monthly.jpeg" width="250"/>
-<img src="./screenshots/statistics_friend.jpeg" width="250"/><br>
+<div><img src="./screenshots/statistics_monthly.jpeg" width="250"/>
+<img src="./screenshots/statistics_friend.jpeg" width="250"/></div>
 (left) You can see your overall monthly appointment statistics, when you click the avatar icon on the top right.<br>
 (right) You can check the statistics on meeting with each friend, when you click the graph icon in the friend list.
 
