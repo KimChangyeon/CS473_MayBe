@@ -49,7 +49,7 @@ function CheckboxesGroup() {
                         icon={<CheckBoxOutlineBlankIcon style={{ fontSize: 15 }} />}
                         checkedIcon={<CheckBoxIcon style={{ fontSize: 15 }}/>}
                       />}  
-            label={<Typography variant="body2">Gilad</Typography>}
+            label={<Typography variant="body2">Juho Kim</Typography>}
           />
           <FormControlLabel
             control={<Checkbox 
@@ -59,8 +59,7 @@ function CheckboxesGroup() {
               icon={<CheckBoxOutlineBlankIcon style={{ fontSize: 15 }} />}
               checkedIcon={<CheckBoxIcon style={{ fontSize: 15 }}/>}
             />}
-            label={<Typography variant="body2">Gilad</Typography>}
-            style={{ width: 30, height: 30}}
+            label={<Typography variant="body2">Alice Oh</Typography>}
           />
           <FormControlLabel
               control={<Checkbox 
