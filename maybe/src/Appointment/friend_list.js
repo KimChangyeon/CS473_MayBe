@@ -39,7 +39,7 @@ function CheckboxesGroup() {
   return (
     <div className={classes.root}>
       <FormControl component="fieldset" className={classes.formControl}>
-        <FormGroup>
+        <FormGroup >
           <FormControlLabel
             control={<Checkbox 
                         checked={gilad} 
@@ -48,7 +48,7 @@ function CheckboxesGroup() {
                         icon={<CheckBoxOutlineBlankIcon style={{ fontSize: 20 }} />}
                         checkedIcon={<CheckBoxIcon style={{ fontSize: 20 }}/>}
                       />}  
-            label={<Typography ><span className="name">Juho Kim</span></Typography>}
+            label={<Typography ><span className="name" >Juho Kim</span></Typography>}
           />
           <FormControlLabel
             control={<Checkbox 

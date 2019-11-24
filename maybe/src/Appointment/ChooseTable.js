@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import {fiveCandidates, sixCandidates, sevenCandidates, fourCandidates, eightCandidates, nineCandidates, threeCandidates,
+import {fiveCandidates, sixCandidates, sevenCandidates, fourCandidates, threeCandidates,
     twelveCandidates,oneCandidates,twoCandidates} from './ChooseData';
+import {fiveVoteCandidates, sixVoteCandidates, sevenVoteCandidates, fourVoteCandidates,
+        threeVoteCandidates, twelveVoteCandidates, oneVoteCandidates, twoVoteCandidates} from './VoteData'
 import {InputGroup, FormControl} from 'react-bootstrap'
 import Cell from './Cell'
 
@@ -20,7 +22,6 @@ function handling_schedule (schedules) {
       modified['endDate'] = EndTime;
       answer.push(modified);
     }
-  
     return answer;
   }
 
@@ -28,7 +29,7 @@ class ChooseTable extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            cells : [
+            chooseCells : [
                 {
                     row : 12,
                     cell : twelveCandidates
@@ -61,6 +62,41 @@ class ChooseTable extends Component {
                 {
                     row: 19, 
                     cell : sevenCandidates
+                },
+            ],
+            voteCells : [
+                {
+                    row : 12,
+                    cell : twelveVoteCandidates
+                },
+                {
+                    row : 13,
+                    cell : oneVoteCandidates
+                },
+                {
+                    row : 14,
+                    cell : twoVoteCandidates
+                },
+                {
+                    row : 15,
+                    cell : threeVoteCandidates
+                },
+        
+                {
+                    row : 16,
+                    cell : fourVoteCandidates
+                },
+                {
+                    row : 17, 
+                    cell : fiveVoteCandidates
+                }, 
+                {
+                    row : 18, 
+                    cell : sixVoteCandidates
+                }, 
+                {
+                    row: 19, 
+                    cell : sevenVoteCandidates
                 },
             ],
             choice : [
@@ -108,20 +144,33 @@ class ChooseTable extends Component {
         .catch((error)=>{
             console.log('Error fetching man',error);
         });
+        
     }
   
     cellClick =(row, id, selected) => {
-        this.setState({cells : this.state.cells.map((Row) => 
-            Row.row === row
-            ? {...Row, cell : Row.cell.map((cell)=> cell.id === id
-                ?({...cell,selected : selected})
-                :cell)}
-            :Row)})
-        if (selected)
+        if (this.props.type == "Choose"){
+            this.setState({chooseCells : this.state.chooseCells.map((Row) => 
+                Row.row === row
+                ? {...Row, cell : Row.cell.map((cell)=> cell.id === id
+                    ?({...cell,selected : selected})
+                    :cell)}
+                :Row)})
+        }
+        if (this.props.type == "Vote") {
+            this.setState({voteCells : this.state.voteCells.map((Row) => 
+                Row.row === row
+                ? {...Row, cell : Row.cell.map((cell)=> cell.id === id
+                    ?({...cell,selected : selected})
+                    :cell)}
+                :Row)})
+        }
+        if (selected){
             this.setState({choice : this.state.choice.map((Day) =>
                 Day.id === id
                 ? ({...Day, time: Day.time.concat(row)})
                 : Day)})
+        }
+            
         else{
             this.setState({choice: this.state.choice.map((Day) => 
                 Day.id === id
@@ -131,15 +180,33 @@ class ChooseTable extends Component {
         this.updateDates();
    }
    
-    renderRow = () =>
-        this.state.cells.map((Row) => {
-            return (
-                <tr>
-                    <td scope = "row">{Row.row}</td>
-                    {this.renderCell(Row.row,Row.cell)}
-                </tr>
-            )
-        })
+    renderRow = () =>{
+        console.log("hihis")
+        console.log(this.props.type)
+        let renderCells = []
+        if (this.props.type === "Choose") {
+            renderCells = this.state.chooseCells.map((Row) => {
+                return (
+                    <tr>
+                        <td scope = "row">{Row.row}</td>
+                        {this.renderCell(Row.row,Row.cell)}
+                    </tr>
+                )
+            })
+        }
+        else {
+            renderCells = this.state.voteCells.map((Row) => {
+                return (
+                    <tr>
+                        <td scope = "row">{Row.row}</td>
+                        {this.renderCell(Row.row,Row.cell)}
+                    </tr>
+                )
+            })
+        }
+        return renderCells
+    }
+        
     
     renderCell = (row, cells) =>{
         return (
@@ -193,7 +260,8 @@ class ChooseTable extends Component {
             return ({id: day.id, time : result})
         })
         console.log("choiceDate : ",choiceDate)
-        this.props.setTimeSlot(choiceDate);
+        if (this.props.type == "Choose")
+            this.props.setTimeSlot(choiceDate);
     }
 
     onChange (e) {
@@ -201,11 +269,9 @@ class ChooseTable extends Component {
 		this.props.setAppointmentName(value);
 	}
 
-    render(){
-        // this.updateDates();
-        console.log("state : ",this.state)
-        return (
-            <div>
+    renderInputBox = () => {
+        if (this.props.type == "Choose")
+            return (
                 <InputGroup className="mb-3">
                         <InputGroup.Prepend>
                             <InputGroup.Text id="basic-addon1">Place</InputGroup.Text>
@@ -217,6 +283,16 @@ class ChooseTable extends Component {
                             // aria-describedby="basic-addon1"
                         />
                 </InputGroup>
+            )
+        else return null
+    }
+
+    render(){
+        // this.updateDates();
+        console.log("state : ",this.state)
+        return (
+            <div>
+                {this.renderInputBox()}
                 <table class="table table-bordered" >
                     <thead>
                         <tr>
