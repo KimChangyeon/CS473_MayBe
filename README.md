@@ -1,11 +1,12 @@
 # <b>MayBe</b>
 URL: https://cs473maybe.herokuapp.com/<br>
 GitHub: https://github.com/KimChangyeon/CS473_MayBe<br>
+This is web 
 
 ## [Before Appointment] <b>Make Appointment</b>
 ><b> Find friends available at selected time slots </b> is implemented in <br>
-- select time slots : CS473_MayBe/maybe/src/DragSelect.js<br>
-    &rarr; use package named "react-table-drag-select"
+- select time slots : CS473_MayBe/maybe/src/Appointment/DragSelect.js<br>
+    &rarr; use package named "react-table-drag-select" / selected time slots are mananged by state  named "cell" of component
 - show available friends : CS473_MayBe/maybe/src/friend_list.js<br>
 
 ><b> Choose available appointment time slots with selected appointment partners</b> is implemented in <br>
