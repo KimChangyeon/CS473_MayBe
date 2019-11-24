@@ -99,6 +99,18 @@ router.post('/register/:id/:participants', (req, res) => {
     })
 });
 
+router.post('/register_self/:id/:partid', (req, res) => {
+    var query = 'INSERT INTO Appointment_participants VALUES (?, ?)'
+    db.query(query, [req.params.id, req.params.partid], (err, rows) => {
+        if (!err) {
+            res.send({data: 'POSTING SUCCESSED.'});
+        }
+        else {
+            res.send({data: err});
+        }
+    })
+});
+
 router.post('/reward/:id/:point', (req, res) => {
     var query = 'UPDATE Appointment SET Reward = ? WHERE AppointmentId = ?'
     db.query(query, [req.params.point, req.params.id], (err, rows) => {

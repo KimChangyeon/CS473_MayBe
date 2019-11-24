@@ -150,6 +150,14 @@ class Make extends Component {
 				console.log('Error fetching man',error);
 			});
 		}
+
+		var url_self = 'register_self'.concat('/').concat(this.state.AppointmentId).concat('/').concat(this.state.user_id)
+		fetch(url_self, {method: "POST"})
+			.then(res => res.json())
+			.then(answer => console.log(answer.data))
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
 	}
 
 	render () {
