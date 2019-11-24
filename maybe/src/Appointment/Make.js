@@ -166,8 +166,6 @@ class Make extends Component {
 				});
 			})
 
-		let aid;
-
 		// // Get Last Appointment Id.
 		// fetch('/AppId/')
 		// 	.then(res => res.json())

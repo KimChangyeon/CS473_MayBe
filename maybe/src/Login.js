@@ -30,23 +30,21 @@ class Login extends Component {
             });
         
         this.setState({l: 0});
-        setTimeout(function() {
-            if (this.state.l === 0){
-                if (pw.length <= 0)
-                    alert('YOU SHOULD WRITE YOUR PASSWORD.');
-                else
-                {
-                    if (Object.keys(this.state.result).length > 0){
-                        this.props.setUserId(this.state.result['UserId']);
-                        this.props.setReward(this.state.result['Reward']);
-                        this.props.nextStage();
-                    }
-                    // else
-                    //     alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
-                    // this.props.nextStage();
+        if (this.state.l === 0){
+            if (pw.length <= 0)
+                alert('YOU SHOULD WRITE YOUR PASSWORD.');
+            else
+            {
+                if (Object.keys(this.state.result).length > 0){
+                    this.props.setUserId(this.state.result['UserId']);
+                    this.props.setReward(this.state.result['Reward']);
+                    this.props.nextStage();
                 }
+                // else
+                //     alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
+                // this.props.nextStage();
             }
-        }, 2000);
+        }
         
     }
 
