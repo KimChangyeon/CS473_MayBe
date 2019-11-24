@@ -310,7 +310,7 @@ class Main extends Component {
 		break;
 	
 	case ('rank'):
-		content = <Rank nextStage = {this.nextStage} header = {this.header}/>;
+		content = <Rank nextStage = {this.nextStage} header = {this.header} user_reward = {this.props.user_reward} />;
 		break;
 
       default:
