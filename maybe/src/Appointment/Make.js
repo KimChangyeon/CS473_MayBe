@@ -140,6 +140,8 @@ class Make extends Component {
 			console.log('Error fetching man',error);
 		});
 
+		console.log(this.state.AppointmentId);
+
 		// Participant registration.
 		for (var k = 0 ; k < this.state.friends_in_appointment.length ; k++){
 			var p = this.state.friends_in_appointment[k];
