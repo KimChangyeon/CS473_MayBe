@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import './Choose.css';
 import {fiveCandidates, sixCandidates, sevenCandidates, fourCandidates, eightCandidates, nineCandidates, threeCandidates,
     twelveCandidates,oneCandidates,twoCandidates} from './ChooseData';
 import {InputGroup, FormControl} from 'react-bootstrap'
+import Cell from './Cell'
 
 let choiceDate = []   
-class Choose extends Component {
+class ChooseTable extends Component {
     constructor (props) {
         super(props);
         this.state = {
@@ -77,7 +77,6 @@ class Choose extends Component {
             what: '',
             };
         this.onChange = this.onChange.bind(this);
-        
     }
   
     cellClick =(row, id, selected) => {
@@ -119,6 +118,8 @@ class Choose extends Component {
                         disabled = {cell.disabled}
                         selected = {cell.selected}
                         cellClick = {this.cellClick}
+                        type = {this.props.type}
+                        selectNum = {cell.selectNum}
                     />
                 )
         )
@@ -206,37 +207,4 @@ class Choose extends Component {
     
 }
 
-class Cell extends Component {
-
-    shouldComponentUpdate = nextProps =>
-    this.props.selected !== nextProps.selected;
-
-    handleClick =() => {
-        const {id, row, cellClick, disabled, selected}= this.props
-        if (!disabled) cellClick(row,id,!selected)
-    }
-
-    render(){
-        let className = ""
-        let {
-            disabled,
-            selected,
-        } = this.props
-        if (disabled){
-            className = "cell-disabled"
-        }else{
-            className = "cell-enabled"
-            if (selected){
-                className = "cell-selected"
-            }
-        }
-        return (
-            <td
-                className = {className}
-                onClick = {this.handleClick}
-                style = {{width : 70}}
-            ></td>
-        )
-    }
-}
-export default Choose;
+export default ChooseTable;

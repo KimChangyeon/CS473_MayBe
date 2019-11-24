@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import './App.css';
+import '../App.css';
+import ChooseTable from './ChooseTable';
 
 /* Icons */
-import complete from './img/button_complete.png';
-import cancel from './img/button_cancel.png';
+import complete from '../img/button_complete.png';
+import cancel from '../img/button_cancel.png';
 
 class Vote extends Component {
 	render () {
@@ -18,8 +19,10 @@ class Vote extends Component {
     const header = this.props.header(bar,button);
     const body =
 			<body className= "Body">
-				{this.props.AppointmentTime}
-				votte
+				<ChooseTable 
+					type = "Vote"
+					AppointmentTime = {this.props.AppointmentTime}
+				/>
 			</body>
 		const content = <div>{header}{body}</div>;
 

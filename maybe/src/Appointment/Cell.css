@@ -1,0 +1,14 @@
+:root {
+    --select-1 : #ffe6e6;
+    --select-2 : #ffcccc;
+    --select-3 : #ffb3b3;
+    --select-4 : #ff9999;
+    --select-5 : #ff8080;
+}
+
+.cell-selected {
+    background-color: var(--select-num);
+}
+table td{
+    width : 50px
+}

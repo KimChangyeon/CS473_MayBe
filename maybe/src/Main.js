@@ -9,7 +9,7 @@ import './App.css';
 import Make from './Appointment/Make.js';
 import Schedule from './Schedule/Schedule.js';
 import Statistics_Monthly from './Statistics/Statistics_Monthly.js';
-import Vote from './Vote.js';
+import Vote from './Appointment/Vote.js';
 import Location from './Location.js';
 import Memo from './Memo.js';
 import Rank from './Rank.js';

@@ -5,7 +5,7 @@ import './Make.css'
 
 import Statistics_Friend from '../Statistics/Statistics_Friend';
 import DragSelect from './DragSelect';
-import Choose from './choose.js';
+import ChooseTable from './ChooseTable';
 
 /* Icons */
 import makebutton from '../img/button_make_appointment.png';
@@ -58,7 +58,7 @@ class Make extends Component {
 		}
 		this.nextStage = this.nextStage.bind(this);
 		this.search = React.createRef(); 
-		this.setAppointmnentName = this.setAppointmnentName.bind(this);
+		this.setAppointmentName = this.setAppointmentName.bind(this);
 		this.setTimeSlot = this.setTimeSlot.bind(this);
 	}
 
@@ -74,7 +74,7 @@ class Make extends Component {
 		this.setState({friends_check: make_dict(this.state.friends_original)});
 	}
 
-	setAppointmnentName (name) {
+	setAppointmentName (name) {
 		this.setState({AppointmentName: name});
 	}
 
@@ -228,7 +228,11 @@ class Make extends Component {
 					</ul>
 				bar = <div className="Bar">Choose Available Time Slots</div>;
 				header = this.props.header(bar, button);
-				body = <body className="Body"><Choose setAppointmnentName = {this.setAppointmnentName} setTimeSlot = {this.setTimeSlot}/></body>;
+				body = <body className="Body">
+						<ChooseTable 
+							setAppointmentName = {this.setAppointmentName} 
+							setTimeSlot = {this.setTimeSlot}
+							type = {"Choose"}/></body>;
 				content = <div>{header}{body}</div>;
 				break;
 
