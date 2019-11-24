@@ -18,7 +18,7 @@ import { appointments } from './Data';
 import './weekly.css'
 
 
-export function handling_appointments (schedules) {
+function handling_appointments (schedules) {
   var answer = [];
   for (var i = 0 ; i < schedules.length ; i ++) {
     var modified = {};

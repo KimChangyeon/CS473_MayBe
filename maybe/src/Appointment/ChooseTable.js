@@ -3,9 +3,27 @@ import {fiveCandidates, sixCandidates, sevenCandidates, fourCandidates, eightCan
     twelveCandidates,oneCandidates,twoCandidates} from './ChooseData';
 import {InputGroup, FormControl} from 'react-bootstrap'
 import Cell from './Cell'
-import {handling_appointments} from '../Main'
 
-let choiceDate = []   
+
+let choiceDate = []
+function handling_schedule (schedules) {
+    var answer = [];
+    for (var i = 0 ; i < schedules.length ; i ++) {
+      var modified = {};
+      var schedule = schedules[i];
+      var StartTime = schedule['StartTimeslot'];
+      var EndTime = schedule['EndTimeslot'];
+      modified['id'] = i;
+      modified['DateId'] = schedule['DateId'];
+      modified['title'] = schedule['Memo'];
+      modified['startDate'] = StartTime;
+      modified['endDate'] = EndTime;
+      answer.push(modified);
+    }
+  
+    return answer;
+  }
+
 class ChooseTable extends Component {
     constructor (props) {
         super(props);
@@ -76,6 +94,7 @@ class ChooseTable extends Component {
                 },
             ],
             what: '',
+            user_schedule: []
             };
         this.onChange = this.onChange.bind(this);
     }
@@ -85,7 +104,7 @@ class ChooseTable extends Component {
         console.log(url_final);
         fetch(url_final)
             .then(res => res.json())
-            .then(answer => this.setState({data: handling_appointments(answer.data)}))        
+            .then(answer => this.setState({user_schedule: handling_schedule(answer.data)}))        
         .catch((error)=>{
             console.log('Error fetching man',error);
         });

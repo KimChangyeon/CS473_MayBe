@@ -256,6 +256,7 @@ class Make extends Component {
 						<ChooseTable 
 							setAppointmentName = {this.setAppointmentName} 
 							setTimeSlot = {this.setTimeSlot}
+							user_id = {this.state.user_id}
 							type = {"Choose"}/></body>;
 				content = <div>{header}{body}</div>;
 				break;

@@ -119,8 +119,7 @@ class Main extends Component {
 		var point = this.props.user_reward + 20;
 		var url_final = '/reward/'.concat(this.props.user_id).concat('/').concat(point);
 		fetch(url_final)
-			.then(res => res.json())
-			.then(answer => this.setState({schedule: answer.data}))        
+			.then(answer => console.log(answer.data))        
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});

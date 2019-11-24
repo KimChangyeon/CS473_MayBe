@@ -89,7 +89,7 @@ router.post('/make/:DateId/:StartTime/:EndTime/:What', (req, res) => {
 
 router.post('/register/:id/:participants', (req, res) => {
     var query = 'INSERT INTO Appointment_participants VALUES (?,(SELECT UserId from User where name = ?))'
-    db.query(query, [req.params.id, req.params.participants], (err, rows) => {
+    db.query(query, [Number(req.params.id), req.params.participants], (err, rows) => {
         if (!err) {
             res.send({data: 'POSTING SUCCESSED.'});
         }
@@ -101,7 +101,7 @@ router.post('/register/:id/:participants', (req, res) => {
 
 router.post('/register_self/:id/:partid', (req, res) => {
     var query = 'INSERT INTO Appointment_participants VALUES (?, ?)'
-    db.query(query, [req.params.id, req.params.partid], (err, rows) => {
+    db.query(query, [Number(req.params.id), Number(req.params.partid)], (err, rows) => {
         if (!err) {
             res.send({data: 'POSTING SUCCESSED.'});
         }
