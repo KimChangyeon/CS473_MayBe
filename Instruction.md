@@ -46,6 +46,7 @@ When you click to vote some time slot, the color of the slot gets darker.
 ***
 
 > ### <b>My Schedule</b>
-<center><img src="./screenshots/schedule_weekly.jpeg" width="250"/>
-<img src="./screenshots/schedule_monthly.jpeg" width="250"/></center>
--  You can manage your schedule per week(left) or per month(right), when you click the calendar icon on the top right.
+<div style="text-align:center"><img src="./screenshots/schedule_weekly.jpeg" width="250"/>
+<img src="./screenshots/schedule_monthly.jpeg" width="250"/></div>
+<br>
+- You can manage your schedule per week(left) or per month(right), when you click the calendar icon on the top right.
