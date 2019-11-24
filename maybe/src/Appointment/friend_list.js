@@ -10,6 +10,8 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import Typography from '@material-ui/core/Typography';
 
+import './friend_list.css';
+
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -22,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 function CheckboxesGroup() {
   const classes = useStyles();
   const [state, setState] = React.useState({
-    gilad: true,
+    gilad: false,
     jason: false,
     antoine: false,
   });
@@ -37,40 +39,36 @@ function CheckboxesGroup() {
   return (
     <div className={classes.root}>
       <FormControl component="fieldset" className={classes.formControl}>
-        <FormLabel component="legend">
-          <Typography variant = "h6" fontFamily = 'Arial'>Available Friends</Typography>
-        </FormLabel>
         <FormGroup>
           <FormControlLabel
             control={<Checkbox 
                         checked={gilad} 
                         onChange={handleChange('gilad')} 
                         value="gilad" 
-                        icon={<CheckBoxOutlineBlankIcon style={{ fontSize: 15 }} />}
-                        checkedIcon={<CheckBoxIcon style={{ fontSize: 15 }}/>}
+                        icon={<CheckBoxOutlineBlankIcon style={{ fontSize: 20 }} />}
+                        checkedIcon={<CheckBoxIcon style={{ fontSize: 20 }}/>}
                       />}  
-            label={<Typography variant="body2">Juho Kim</Typography>}
+            label={<Typography ><span className="name">Juho Kim</span></Typography>}
           />
           <FormControlLabel
             control={<Checkbox 
               checked={jason} 
               onChange={handleChange('jason')} 
               value="jason" 
-              icon={<CheckBoxOutlineBlankIcon style={{ fontSize: 15 }} />}
-              checkedIcon={<CheckBoxIcon style={{ fontSize: 15 }}/>}
+              icon={<CheckBoxOutlineBlankIcon style={{ fontSize: 20 }} />}
+              checkedIcon={<CheckBoxIcon style={{ fontSize: 20 }}/>}
             />}
-            label={<Typography variant="body2">Alice Oh</Typography>}
+            label={<Typography ><span className="name">Alice Oh</span></Typography>}
           />
           <FormControlLabel
               control={<Checkbox 
                 checked={antoine} 
                 onChange={handleChange('antoine')} 
                 value="antoine" 
-                icon={<CheckBoxOutlineBlankIcon style={{ fontSize: 15 }} />}
-                checkedIcon={<CheckBoxIcon style={{ fontSize: 15 }}/>}
+                icon={<CheckBoxOutlineBlankIcon style={{ fontSize: 20 }} />}
+                checkedIcon={<CheckBoxIcon style={{ fontSize: 20 }}/>}
               />}
-            label={<Typography variant="body2">Gilad</Typography>}
-            style={{ width: 30, height: 30}}
+            label={<Typography><span className="name">Jisu Choi</span> </Typography>}
           />
         </FormGroup>
       </FormControl>

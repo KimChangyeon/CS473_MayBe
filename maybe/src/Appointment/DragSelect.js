@@ -172,12 +172,12 @@ class DragSelect extends Component {
                   variant = "outlined"
                   color ="secondary" 
                   onClick = {this.handleClick}
-                  style={{left: 170, top : 10 }}
+                  style={{left: 200, top : 10 }}
           >
                     RESET
           </Button>
           <FormLabel component="legend">
-          <Typography variant = "h6" fontFamily = 'Arial'>Available Friends</Typography>
+          <Typography variant = "h6" ><span style = {{fontFamily : "ubuntu"}}>Available Friends</span></Typography>
         </FormLabel>
             {this.renderFriendList()}
         </div>

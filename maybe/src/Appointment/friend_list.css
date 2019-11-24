@@ -1,0 +1,23 @@
+.name {
+    font-size : 15;
+    font-family : "Ubuntu";
+    width: 100px
+}
+
+.MuiFormControlLabel-root {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    margin-left: -11px;
+    margin-right: 16px;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    /* position: absolute; */
+    height: 25px;
+}
+
+.makeStyles-root-80 {
+    display: flex;
+    position: absolute;
+    top: 570px;
+}
