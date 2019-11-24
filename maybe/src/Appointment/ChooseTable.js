@@ -14,8 +14,8 @@ function handling_schedule (schedules) {
       var StartTime = schedule['StartTimeslot'];
       var EndTime = schedule['EndTimeslot'];
       modified['id'] = i;
-      modified['DateId'] = schedule['DateId'];
-      modified['title'] = schedule['Memo'];
+      modified['DateId'] = schedule['DateId']; //20191128
+      modified['title'] = schedule['What']; //제목
       modified['startDate'] = StartTime;
       modified['endDate'] = EndTime;
       answer.push(modified);
