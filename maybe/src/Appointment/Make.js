@@ -142,9 +142,29 @@ class Make extends Component {
 		fetch(url_make, {method: "POST"})
 			.then(res => res.json())
 			.then(answer => console.log(answer.data))
-		.catch((error)=>{
-			console.log('Error fetching man',error);
-		});
+			.then(function () {
+				for (var k = 0 ; k < this.state.friends_in_appointment.length ; k++){
+					var p = this.state.friends_in_appointment[k];
+					var url_participants = 'register'.concat('/').concat(p)
+					console.log(url_participants);
+					fetch(url_participants, {method: "POST"})
+						.then(res => res.json())
+						.then(answer => console.log(answer.data))
+					.catch((error)=>{
+						console.log('Error fetching man',error);
+					});
+				}
+			})
+			.then(function () {
+				var url_self = 'register_self'.concat('/').concat(this.state.user_id)
+				console.log(url_self);
+				fetch(url_self, {method: "POST"})
+					.then(res => res.json())
+					.then(answer => console.log(answer.data))
+				.catch((error)=>{
+					console.log('Error fetching man',error);
+				});
+			})
 
 		let aid;
 
@@ -164,26 +184,26 @@ class Make extends Component {
 		// }, 10000); 
 
 		// Participant registration.
-		for (var k = 0 ; k < this.state.friends_in_appointment.length ; k++){
-			var p = this.state.friends_in_appointment[k];
-			var url_participants = 'register'.concat('/').concat(p)
-			console.log(url_participants);
-			fetch(url_participants, {method: "POST"})
-				.then(res => res.json())
-				.then(answer => console.log(answer.data))
-			.catch((error)=>{
-				console.log('Error fetching man',error);
-			});
-		}
+		// for (var k = 0 ; k < this.state.friends_in_appointment.length ; k++){
+		// 	var p = this.state.friends_in_appointment[k];
+		// 	var url_participants = 'register'.concat('/').concat(p)
+		// 	console.log(url_participants);
+		// 	fetch(url_participants, {method: "POST"})
+		// 		.then(res => res.json())
+		// 		.then(answer => console.log(answer.data))
+		// 	.catch((error)=>{
+		// 		console.log('Error fetching man',error);
+		// 	});
+		// }
 
-		var url_self = 'register_self'.concat('/').concat(this.state.user_id)
-		console.log(url_self);
-		fetch(url_self, {method: "POST"})
-			.then(res => res.json())
-			.then(answer => console.log(answer.data))
-		.catch((error)=>{
-			console.log('Error fetching man',error);
-		});
+		// var url_self = 'register_self'.concat('/').concat(this.state.user_id)
+		// console.log(url_self);
+		// fetch(url_self, {method: "POST"})
+		// 	.then(res => res.json())
+		// 	.then(answer => console.log(answer.data))
+		// .catch((error)=>{
+		// 	console.log('Error fetching man',error);
+		// });
 	}
 
 	render () {
