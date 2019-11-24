@@ -129,23 +129,23 @@ class Make extends Component {
 			console.log('Error fetching man',error);
 		});
 
+		let aid;
+
 		// Get Last Appointment Id.
 		fetch('/AppId/')
 			.then(res => res.json())
-			.then(answer => {
-				this.setState({AppointmentId: answer.data[0].AppointmentId},
-				console.log(answer.data[0].AppointmentId))
+			.then(function (answer) {
+				aid = answer.data[0].AppointmentId;
+				console.log(answer.data[0].AppointmentId);
 			})
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
 
-		console.log(this.state.AppointmentId);
-
 		// Participant registration.
 		for (var k = 0 ; k < this.state.friends_in_appointment.length ; k++){
 			var p = this.state.friends_in_appointment[k];
-			var url_participants = 'register'.concat('/').concat(this.state.AppointmentId).concat('/').concat(p)
+			var url_participants = 'register'.concat('/').concat(aid).concat('/').concat(p)
 			console.log(url_participants);
 			fetch(url_participants, {method: "POST"})
 				.then(res => res.json())
@@ -155,7 +155,7 @@ class Make extends Component {
 			});
 		}
 
-		var url_self = 'register_self'.concat('/').concat(this.state.AppointmentId).concat('/').concat(this.state.user_id)
+		var url_self = 'register_self'.concat('/').concat(aid).concat('/').concat(this.state.user_id)
 		console.log(url_self);
 		fetch(url_self, {method: "POST"})
 			.then(res => res.json())
