@@ -31,9 +31,8 @@ class Location extends Component {
   }
 
 	onChange (e) {
-		const value = e.target.value === "" ? null : e.target.value;
 		this.setState({
-			place: value
+			place: e.target.value
 		});
 	}
 

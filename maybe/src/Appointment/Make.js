@@ -310,17 +310,7 @@ class Make extends Component {
 				break;
 
 			case 'schedule_friend':
-				bar = 
-					<ButtonGroup id="Tap" size='lg' style={{top: "-12px", width: "100%", height: "50px"}}>
-						<Button id="Button1" onClick={() => this.nextStage(0)}>
-							<img src={friendlist_light} alt="friend list" /></Button>
-						<Button id="Button2" onClick={() => this.nextStage(1)}>
-							<img src={timeslot_dark} alt="time slot" /></Button>
-					</ButtonGroup>
-				header = this.props.header(bar, button);
-				content = <div>{header}<div className="Body">
-					<Schedule nextStage = {this.props.nextStage} header = {this.props.header} user_id = {this.state.selected_friend_id} AppointmentId = {this.state.AppointmentId}/>
-					</div></div>
+				content = <Schedule nextStage = {this.props.nextStage} header = {this.props.header} user_id = {this.state.user_id} AppointmentId = {this.state.AppointmentId}/>;
 				break;
 
     		default:
