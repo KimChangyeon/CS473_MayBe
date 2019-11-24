@@ -10,9 +10,9 @@ import Make from './Appointment/Make.js';
 import Schedule from './Schedule/Schedule.js';
 import Statistics_Monthly from './Statistics/Statistics_Monthly.js';
 import Vote from './Appointment/Vote.js';
-import Location from './Location.js';
-import Memo from './Memo.js';
-import Rank from './Rank.js';
+import Location from './Appointment/Location.js';
+import Memo from './Appointment/Memo.js';
+import Rank from './Statistics/Rank.js';
 
 /* Icons */
 import calendar from './img/hamburger_calendar.png';
