@@ -43,7 +43,11 @@ class DragSelect extends Component {
           <CheckboxesGroup />
         </div>)
       }
-      else return null
+      else return (
+        <div>
+          <span style = {{fontFamily : 'ubuntu', fontSize : '18'}}>Drag some slots!</span>
+        </div>
+      )
     }
 
     render () {
