@@ -140,22 +140,7 @@ class Make extends Component {
 		fetch(url_make, {method: "POST"})
 			.then(res => res.json())
 			.then(answer => console.log(answer.data))
-
-		// // Get Last Appointment Id.
-		// fetch('/AppId/')
-		// 	.then(res => res.json())
-		// 	.then(function (answer) {
-		// 		aid = answer.data[0].AppointmentId;
-		// 		console.log(aid);
-		// 	})
-		// .catch((error)=>{
-		// 	console.log('Error fetching man',error);
-		// });
-
-		// setTimeout(function(){
-
-		// }, 10000); 
-
+			
 		// Participant registration.
 		for (var k = 0 ; k < this.state.friends_in_appointment.length ; k++){
 			var p = this.state.friends_in_appointment[k];
@@ -306,7 +291,7 @@ class Make extends Component {
 				break;
 
 			case 'schedule_friend':
-				content = <Schedule nextStage = {this.props.nextStage} header = {this.props.header} user_id = {this.state.user_id} AppointmentId = {this.state.AppointmentId}/>;
+				content = <Schedule nextStage = {this.props.nextStage} header = {this.props.header} user_id = {this.state.selected_friend_id} AppointmentId = {this.state.AppointmentId}/>;
 				break;
 
     		default:
