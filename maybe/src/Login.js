@@ -89,8 +89,8 @@ class Login extends Component {
                     </InputGroup>
                 </div>
                 <div className="IDPW">
-                    <Button variant="outlineflat" style={{marginRight: "10px"}}>Sign in</Button>
-                    <Button variant="flat" onClick={this.login_process}>Log in</Button>
+                    <Button variant="outlineflat" style={{marginRight: "10px"}}>Sign-up</Button>
+                    <Button variant="flat" onClick={this.login_process}>Log-in</Button>
                 </div>                    
             </form>
         </div>
