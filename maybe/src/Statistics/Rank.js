@@ -2,28 +2,35 @@
 import React, {Component} from 'react'
 import {Row, Col, ListGroup} from 'react-bootstrap'
 import '../App.css'
+import './Rank.css'
 
 import crown from '../img/crown.png'
+// import rewards from "../img/reward.png";
+import b1 from "../img/badge1.png";
+import b2 from "../img/badge2.png";
+import b3 from "../img/badge3.png";
+import b4 from "../img/badge4.png";
+import b5 from "../img/badge5.png";
 
 class Rank extends Component {
     constructor (props) {
         super(props);
         this.state = {
             friends_reward_rank: [
-                {name: "Juho Kim", reward: 500},
-                {name: "Sangho Lim", reward: 427},
-                {name: "Jisu Choi", reward: 359},
+                {name: "Juho Kim", reward: 1000},
+                {name: "Sangho Lim", reward: 727},
+                {name: "Jisu Choi", reward: 459},
                 {name: "Seunghee Koh", reward: 120},
                 {name: "Changyeon Kim", reward: 58},
                 {name: "Jiho Jin", reward: 19},
-                // {name: "(YOU)", reward: 0},
+                {name: "(YOU)", reward: this.props.user_reward},
             ]
         }
     }
 
     reward_rank() {
         var reward_rank = this.state.friends_reward_rank;
-        reward_rank.push({name: "(YOU)", reward: this.props.user_reward});
+        // reward_rank.push({name: "(YOU)", reward: this.props.user_reward});
         reward_rank.sort(function(a,b) {
             return b.reward - a.reward;
         });
@@ -31,9 +38,31 @@ class Rank extends Component {
     }
 
     body() {
+        const reward = this.props.user_reward;
+        const badge = reward >= 1000 ? "Lv.5 Always" :
+                      reward >= 700 ? "Lv.4 Usually": 
+                      reward >= 400 ? "Lv.3 Often":
+                      reward >= 100 ? "Lv.2 Sometimes":
+                      "Lv.1 Never";
+        const badge_img = reward >= 1000 ? b5 :
+                      reward >= 700 ? b4: 
+                      reward >= 400 ? b3:
+                      reward >= 100 ? b2:
+                      b1;
+
         return (
             <div className="Body">
-                <ListGroup style={{margin: "70px", position: "relative"}}>
+                <img id="badge" src={badge_img} alt="badge img"/>
+                <h5>Rewards
+                    {/* <img id="rewards" src={rewards} alt="rewards img"/> */}
+                    {/* <span className="reward_val">{this.state.reward_pt}pt</span> */}
+                    <span className="right_val">{reward}pt</span>
+                </h5>
+                <h5>Badge
+                    <span className="right_val">{badge}</span>
+                </h5><hr/>
+                <h5>Rank</h5>
+                <ListGroup className="rank_chart">
                     <img src={crown} id="crown" alt="crown"/>
                     {this.reward_rank().map((friend, idx)=>
                     {
@@ -51,7 +80,7 @@ class Rank extends Component {
     }
 
     render() {
-        const bar = <div className="Bar">Rank</div>;
+		const bar = <div className="Bar">Rank</div>;
 		const header = this.props.header(bar, null);
 		const body = this.body();
 		const content = <div>{header}{body}</div>;

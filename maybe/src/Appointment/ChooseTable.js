@@ -274,7 +274,7 @@ class ChooseTable extends Component {
             return (
                 <InputGroup className="mb-3">
                         <InputGroup.Prepend>
-                            <InputGroup.Text id="basic-addon1">Place</InputGroup.Text>
+                            <InputGroup.Text id="basic-addon1">Title</InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
                             placeholder="Enter the name of Appointment"

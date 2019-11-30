@@ -1,9 +1,9 @@
 // https://www.chartjs.org/docs/latest/axes/styling.html#tick-configuration
+// https://pngtree.com/so/병아리
 import React, {Component} from 'react';
 import '../App.css';
 import './Statistics_Monthly.css';
 import { Radar, HorizontalBar } from "react-chartjs-2";
-import rewards from "../img/reward.png";
 
 class Statistics_Monthly extends Component {
     constructor (props) {
@@ -45,11 +45,6 @@ class Statistics_Monthly extends Component {
 	body () {
 		return (
 			<div className="Body">
-                <h5>Rewards
-                    <img id="rewards" src={rewards} alt="rewards img"/>
-                    {/* <span className="reward_val">{this.state.reward_pt}pt</span> */}
-                    <span className="reward_val">{this.props.user_reward}pt</span>
-                </h5><hr/>
                 <h5>Overall Score of <span className="month">{this.state.month}</span></h5>
                 <div>
                     <Radar data={this.state.dataRadar}
