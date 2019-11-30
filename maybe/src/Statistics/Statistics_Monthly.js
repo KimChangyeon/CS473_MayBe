@@ -65,7 +65,7 @@ class Statistics_Monthly extends Component {
 			<div className="Body">
                 <img id="badge" src={badge_img} alt="badge img"/>
                 <h5>Rewards
-                    <img id="rewards" src={rewards} alt="rewards img"/>
+                    {/* <img id="rewards" src={rewards} alt="rewards img"/> */}
                     {/* <span className="reward_val">{this.state.reward_pt}pt</span> */}
                     <span className="right_val">{reward}pt</span>
                 </h5><hr/>

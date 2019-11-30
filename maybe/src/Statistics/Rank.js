@@ -10,9 +10,9 @@ class Rank extends Component {
         super(props);
         this.state = {
             friends_reward_rank: [
-                {name: "Juho Kim", reward: 500},
-                {name: "Sangho Lim", reward: 427},
-                {name: "Jisu Choi", reward: 359},
+                {name: "Juho Kim", reward: 1000},
+                {name: "Sangho Lim", reward: 727},
+                {name: "Jisu Choi", reward: 459},
                 {name: "Seunghee Koh", reward: 120},
                 {name: "Changyeon Kim", reward: 58},
                 {name: "Jiho Jin", reward: 19},
