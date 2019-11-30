@@ -5,24 +5,6 @@ h5 {
     font-weight: bold;
 }
 
-#badge {
-    width: 17%;
-    height: 17%;
-    float: right;
-}
-
-/* #rewards {
-    margin-left: 10px;
-    margin-right: 10px;
-    width: 25px;
-    height: 25px;
-} */
-
-.right_val {
-    float: right;
-    margin-right: 15px;
-}
-
 .month {
     color: #9bbfd7;
 }
