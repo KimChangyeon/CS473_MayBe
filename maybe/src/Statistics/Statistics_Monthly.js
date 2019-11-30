@@ -49,8 +49,7 @@ class Statistics_Monthly extends Component {
     }
 
 	body () {
-        // const reward = this.props.user_reward;
-        const reward = 400;
+        const reward = this.props.user_reward;
         const badge = reward >= 1000 ? "Lv.5 Always" :
                       reward >= 700 ? "Lv.4 Usually": 
                       reward >= 400 ? "Lv.3 Often":
