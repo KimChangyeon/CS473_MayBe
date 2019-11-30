@@ -1,9 +1,15 @@
 // https://www.chartjs.org/docs/latest/axes/styling.html#tick-configuration
+// https://pngtree.com/so/병아리
 import React, {Component} from 'react';
 import '../App.css';
 import './Statistics_Monthly.css';
 import { Radar, HorizontalBar } from "react-chartjs-2";
 import rewards from "../img/reward.png";
+import b1 from "../img/badge1.png";
+import b2 from "../img/badge2.png";
+import b3 from "../img/badge3.png";
+import b4 from "../img/badge4.png";
+import b5 from "../img/badge5.png";
 
 class Statistics_Monthly extends Component {
     constructor (props) {
@@ -43,12 +49,28 @@ class Statistics_Monthly extends Component {
     }
 
 	body () {
+        // const reward = this.props.user_reward;
+        const reward = 400;
+        const badge = reward >= 1000 ? "Lv.5 Always" :
+                      reward >= 700 ? "Lv.4 Usually": 
+                      reward >= 400 ? "Lv.3 Often":
+                      reward >= 100 ? "Lv.2 Sometimes":
+                      "Lv.1 Never";
+        const badge_img = reward >= 1000 ? b5 :
+                      reward >= 700 ? b4: 
+                      reward >= 400 ? b3:
+                      reward >= 100 ? b2:
+                      b1;
 		return (
 			<div className="Body">
+                <img id="badge" src={badge_img} alt="badge img"/>
                 <h5>Rewards
                     <img id="rewards" src={rewards} alt="rewards img"/>
                     {/* <span className="reward_val">{this.state.reward_pt}pt</span> */}
-                    <span className="reward_val">{this.props.user_reward}pt</span>
+                    <span className="right_val">{reward}pt</span>
+                </h5><hr/>
+                <h5>Badge
+                    <span className="right_val">{badge}</span>
                 </h5><hr/>
                 <h5>Overall Score of <span className="month">{this.state.month}</span></h5>
                 <div>

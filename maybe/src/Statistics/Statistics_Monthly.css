@@ -5,6 +5,12 @@ h5 {
     font-weight: bold;
 }
 
+#badge {
+    width: 17%;
+    height: 17%;
+    float: right;
+}
+
 #rewards {
     margin-left: 10px;
     margin-right: 10px;
@@ -12,7 +18,7 @@ h5 {
     height: 25px;
 }
 
-.reward_val {
+.right_val {
     float: right;
     margin-right: 15px;
 }
