@@ -211,7 +211,7 @@ class Main extends Component {
 							</div>
 							<div className="content-left"><b>Who</b><hr/>
 								<ul>
-									{/* <li><span>Sangho</span></li> */}
+									{/* <li><span>Sangho</span></li> /*}
 									{/* <li><span>Chang-yeon Kim</span></li> */}
 									{participants_list}
 								</ul>

@@ -16,14 +16,14 @@ class Rank extends Component {
                 {name: "Seunghee Koh", reward: 120},
                 {name: "Changyeon Kim", reward: 58},
                 {name: "Jiho Jin", reward: 19},
-                // {name: "(YOU)", reward: 0},
+                {name: "(YOU)", reward: this.props.user_reward},
             ]
         }
     }
 
     reward_rank() {
         var reward_rank = this.state.friends_reward_rank;
-        reward_rank.push({name: "(YOU)", reward: this.props.user_reward});
+        // reward_rank.push({name: "(YOU)", reward: this.props.user_reward});
         reward_rank.sort(function(a,b) {
             return b.reward - a.reward;
         });
@@ -51,7 +51,7 @@ class Rank extends Component {
     }
 
     render() {
-        const bar = <div className="Bar">Rank</div>;
+		const bar = <div className="Bar">Rank</div>;
 		const header = this.props.header(bar, null);
 		const body = this.body();
 		const content = <div>{header}{body}</div>;
