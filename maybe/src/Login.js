@@ -96,7 +96,7 @@ class Login extends Component {
                     <Button variant="flat" onClick={this.login_process}>Log-in</Button>
                 </div>                    
             </form>
-            <Popup trigger={<img id="help" src={help} alt="help"/>} 
+            <Popup trigger={<img id="help_login" src={help} alt="help"/>} 
                 position = "right center"
                 contentStyle={{width: "350px",zindex :9999}}>
 						{close => (

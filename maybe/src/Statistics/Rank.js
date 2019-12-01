@@ -86,9 +86,7 @@ class Rank extends Component {
 		const bar = <div className="Bar">
                         Punctuality Rewards
                         <Popup
-                        trigger={
-                            <img id="help" src={help} 
-                                style={{position: "absolute", top: "78px", left: "330px"}} alt="help"/>} 
+                        trigger={<img id="help" src={help} alt="help" />} 
                         position = "left top"
                         contentStyle={{width: "250px",zindex: 9999}}>
 						{close => (
