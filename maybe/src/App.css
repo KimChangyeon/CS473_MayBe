@@ -210,3 +210,8 @@ hr {
     justify-content: center;
     align-items: center;
 }
+
+.instruction {
+	color: black;
+	font-size: 15px;
+}

@@ -1,16 +1,19 @@
 /* <div>아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div> */
 import React, {Component} from 'react'
-import {Row, Col, ListGroup} from 'react-bootstrap'
+import {Row, Col, ListGroup, Button} from 'react-bootstrap'
+import Popup from 'reactjs-popup'
+
 import '../App.css'
 import './Rank.css'
 
 import crown from '../img/crown.png'
 // import rewards from "../img/reward.png";
-import b1 from "../img/badge1.png";
-import b2 from "../img/badge2.png";
-import b3 from "../img/badge3.png";
-import b4 from "../img/badge4.png";
-import b5 from "../img/badge5.png";
+import b1 from "../img/badge1.png"
+import b2 from "../img/badge2.png"
+import b3 from "../img/badge3.png"
+import b4 from "../img/badge4.png"
+import b5 from "../img/badge5.png"
+import help from "../img/help.png"
 
 class Rank extends Component {
     constructor (props) {
@@ -80,7 +83,34 @@ class Rank extends Component {
     }
 
     render() {
-		const bar = <div className="Bar">Rank</div>;
+		const bar = <div className="Bar">
+                        Punctuality Rewards
+                        <Popup
+                        trigger={
+                            <img id="help" src={help} 
+                                style={{position: "absolute", top: "78px", left: "330px"}} alt="help"/>} 
+                        position = "left top"
+                        contentStyle={{width: "250px",zindex: 9999}}>
+						{close => (
+							<div className="instruction" style={{margin: "15px"}}>
+								<b>Reward System</b><hr/>
+                                You can get points <br/>
+                                as early as you arrived.<br/>
+                                (Max 50pt per appointment.)<br/>
+                                <br/>
+                                <b>Badge</b><hr/>
+                                Lv.4 Always &nbsp; &nbsp; &nbsp; &nbsp; &ge; 1000pt<br/>
+                                Lv.3 Usually &nbsp; &nbsp; &nbsp; &nbsp; &ge; &nbsp; 700pt<br/>
+                                Lv.2 Often &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &ge; &nbsp; 400pt<br/>
+                                Lv.1 Sometimes &ge; &nbsp; 100pt<br/>
+                                Lv.0 Never<br/>
+                                <br/>
+                                <Button variant="outlineflat" style={{float: "right"}}
+                                    onClick={()=>{close()}}>OK</Button>
+							</div>
+						)}
+			            </Popup>
+                    </div>;
 		const header = this.props.header(bar, null);
 		const body = this.body();
 		const content = <div>{header}{body}</div>;
