@@ -10,8 +10,8 @@ import help from "./img/help.png"
 class Login extends Component {
 
     constructor(props) {
-		super(props);
-		this.state = {
+				super(props);
+				this.state = {
             id: '',
             pw: '',
             result: {},
@@ -45,11 +45,11 @@ class Login extends Component {
                 if (Object.keys(this.state.result).length > 0){
                     this.props.setUserId(this.state.result['UserId']);
                     this.props.setReward(this.state.result['Reward']);
-                    this.props.nextStage();
+                    this.props.setStage(1);
                 }
                 else
                     alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
-                // this.props.nextStage();
+                // this.props.setStage(1);
             }
         }
         
