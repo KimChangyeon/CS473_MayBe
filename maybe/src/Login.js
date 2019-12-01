@@ -26,38 +26,26 @@ class Login extends Component {
         var url_final = '/login/'.concat(this.state.id).concat('/').concat(this.state.pw);
             fetch(url_final)
                 .then(res => res.json())
-                .then(answer => this.setState({result: answer.data[0]}))
-                .then(function (answer) {
-                    var result = answer.data[0];
-                    if (Object.keys(result).length > 0){
-                        this.props.setUserId(this.state.result['UserId']);
-                        this.props.setReward(this.state.result['Reward']);
-                        this.props.nextStage();
-                    }
-                    else {
-                        alert("THERE IS NO SUCH ID AND PASSWORD MATCHED.");
-                    }
-                })
-                // .then(lock => this.setState({l: 0}))
+                .then(answer => this.setState({result: answer.data[0], l: 0}))
             .catch((error)=>{
-                console.log('Error fetching man',error);
+                console.log('Error in LOGIN',error);
             });
         
-        // if (this.state.l === 0){
-        //     if (pw.length <= 0)
-        //         alert('YOU SHOULD WRITE YOUR PASSWORD.');
-        //     else
-        //     {
-        //         if (Object.keys(this.state.result).length > 0){
-        //             this.props.setUserId(this.state.result['UserId']);
-        //             this.props.setReward(this.state.result['Reward']);
-        //             this.props.nextStage();
-        //         }
-        //         // else
-        //         //     alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
-        //         // this.props.nextStage();
-        //     }
-        // }
+        if (this.state.l === 0){
+            if (pw.length <= 0)
+                alert('YOU SHOULD WRITE YOUR PASSWORD.');
+            else
+            {
+                if (Object.keys(this.state.result).length > 0){
+                    this.props.setUserId(this.state.result['UserId']);
+                    this.props.setReward(this.state.result['Reward']);
+                    this.props.nextStage();
+                }
+                else
+                    alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
+                // this.props.nextStage();
+            }
+        }
         
     }
 
