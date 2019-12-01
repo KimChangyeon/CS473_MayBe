@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Button, InputGroup, FormControl} from 'react-bootstrap'
+import {Button, InputGroup, FormControl, Form} from 'react-bootstrap'
 import './App.css'
 import './Signup.css'
 
@@ -38,7 +38,7 @@ class Signup extends Component {
                             placeholder="Enter ID"
                         />
                     </InputGroup>
-                    <InputGroup style={{width : "50%", marginLeft: "25%"}}>
+                    <InputGroup style={{marginBottom : "20px", width : "50%", marginLeft: "25%"}}>
                         <InputGroup.Prepend>
                             <InputGroup.Text name='pw'>PW</InputGroup.Text> 
                         </InputGroup.Prepend>
@@ -47,6 +47,9 @@ class Signup extends Component {
                             placeholder="Enter Password"
                         />
                     </InputGroup>
+                    <Form.Group controlId="formBasicCheckbox">
+                        <Form.Check type="checkbox" label="I consent to disclose my schedule and points to friends." />
+                    </Form.Group>
                 </div>
                 <div className="IDPW">
                     <Button variant="outlineflat" onClick={this.handleSignup}>Sign-up</Button>
