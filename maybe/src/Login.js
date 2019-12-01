@@ -14,12 +14,18 @@ class Login extends Component {
             id: '',
             pw: '',
             result: {},
-            l: 1
+            l: 1,
         }
         this.id = React.createRef(); 
         this.pw = React.createRef(); 
         this.login_process= this.login_process.bind(this);
-	}
+        this.signup = this.signup.bind(this);
+    }
+    
+    signup () {
+        console.log('Click happened');
+        this.props.setStage(2);
+    }
 
     login_process ()  {
         const pw = this.state.pw
@@ -92,7 +98,7 @@ class Login extends Component {
                     </InputGroup>
                 </div>
                 <div className="IDPW">
-                    <Button variant="outlineflat" style={{marginRight: "10px"}}>Sign-up</Button>
+                    <Button variant="outlineflat" style={{marginRight: "10px"}} onClick={this.signup}>Sign-up</Button>
                     <Button variant="flat" onClick={this.login_process}>Log-in</Button>
                 </div>                    
             </form>
