@@ -19,11 +19,10 @@ class Login extends Component {
         this.id = React.createRef(); 
         this.pw = React.createRef(); 
         this.login_process= this.login_process.bind(this);
-        // this.signup = this.signup.bind(this);
+        this.signup = this.signup.bind(this);
     }
     
     signup () {
-        console.log('Click happened');
         this.props.setStage(2);
     }
 
@@ -45,11 +44,11 @@ class Login extends Component {
                 if (Object.keys(this.state.result).length > 0){
                     this.props.setUserId(this.state.result['UserId']);
                     this.props.setReward(this.state.result['Reward']);
-                    this.props.nextStage();
+                    this.props.setStage(1);
                 }
                 else
                     alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
-                // this.props.nextStage();
+                // this.props.setStage(1);
             }
         }
         
