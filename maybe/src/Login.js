@@ -23,7 +23,6 @@ class Login extends Component {
     }
     
     signup () {
-        console.log('Click happened');
         this.props.setStage(2);
     }
 
