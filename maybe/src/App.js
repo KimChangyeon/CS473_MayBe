@@ -41,13 +41,13 @@ class App extends Component {
     let content;
     switch (stage) {
         case 'login':
-          content = <Login nextStage = {this.nextStage} setUserId = {this.setUserId} setReward = {this.setReward}/>;
+          content = <Login nextStage = {this.nextStage} setUserId = {this.setUserId} setReward = {this.setReward} setStage = {this.setStage}/>;
           break;
         case 'Main':
           content = <Main nextStage = {this.nextStage} user_id = {this.state.user_id} user_reward = {this.state.user_reward} setReward = {this.setReward}/>;
           break;
         case 'signup':
-          content = <Signup setStage = {this.setStage}/>;
+          content = <Signup />;
           break;
         default:
           alert('YOU SHOULD NOT BE HERE.') 
