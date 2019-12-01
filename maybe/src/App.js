@@ -15,17 +15,12 @@ class App extends Component {
       user_reward: 0,
     }
     this.setStage = this.setStage.bind(this);
-    this.nextStage = this.nextStage.bind(this);
     this.setUserId = this.setUserId.bind(this);
     this.setReward = this.setReward.bind(this);
   }
 
   setStage(i) {
     this.setState({stage_id: i});
-  }
-
-  nextStage() {
-    this.setState({stage_id: this.state.stage_id + 1});
   }
 
   setUserId (id) {
@@ -41,10 +36,10 @@ class App extends Component {
     let content;
     switch (stage) {
         case 'login':
-          content = <Login nextStage = {this.nextStage} setUserId = {this.setUserId} setReward = {this.setReward} setStage = {this.setStage}/>;
+          content = <Login setStage = {this.setStage} setUserId = {this.setUserId} setReward = {this.setReward}/>;
           break;
         case 'Main':
-          content = <Main nextStage = {this.nextStage} user_id = {this.state.user_id} user_reward = {this.state.user_reward} setReward = {this.setReward}/>;
+          content = <Main setStage = {this.setStage} user_id = {this.state.user_id} user_reward = {this.state.user_reward} setReward = {this.setReward}/>;
           break;
         case 'signup':
           content = <Signup setStage = {this.setStage}/>;

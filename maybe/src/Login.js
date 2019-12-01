@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './Login.css'
+import './App.css'
 import {Button, InputGroup, FormControl} from 'react-bootstrap'
 import Popup from 'reactjs-popup'
 
@@ -9,8 +10,8 @@ import help from "./img/help.png"
 class Login extends Component {
 
     constructor(props) {
-		super(props);
-		this.state = {
+				super(props);
+				this.state = {
             id: '',
             pw: '',
             result: {},
@@ -44,11 +45,11 @@ class Login extends Component {
                 if (Object.keys(this.state.result).length > 0){
                     this.props.setUserId(this.state.result['UserId']);
                     this.props.setReward(this.state.result['Reward']);
-                    this.props.nextStage();
+                    this.props.setStage(1);
                 }
                 else
                     alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
-                // this.props.nextStage();
+                // this.props.setStage(1);
             }
         }
         
@@ -71,8 +72,7 @@ class Login extends Component {
                 <div className="IDPW">
                     <InputGroup style={{marginBottom : "20px", width : "50%", marginLeft: "25%"}}>
                         <InputGroup.Prepend onChange={this.handleId} value={this.state.id} name='id'>
-                            <InputGroup.Text>ID</InputGroup.Text> 
-                            {/* <InputGroup.Text >ID</InputGroup.Text>  */}
+                            <InputGroup.Text id="basic-addon4">ID</InputGroup.Text> 
                         </InputGroup.Prepend>
                         <FormControl
                             placeholder="Enter ID"
@@ -82,9 +82,8 @@ class Login extends Component {
                         />
                     </InputGroup>
                     <InputGroup style={{width : "50%", marginLeft: "25%"}}>
-                        <InputGroup.Prepend>
-                            <InputGroup.Text onChange={this.handlePw} value={this.state.pw} name='pw'>PW</InputGroup.Text> 
-                            {/* <InputGroup.Text >PW</InputGroup.Text>  */}
+                        <InputGroup.Prepend onChange={this.handlePw} value={this.state.pw} name='pw'>
+                            <InputGroup.Text id="basic-addon4">PW</InputGroup.Text> 
                         </InputGroup.Prepend>
                         <FormControl
                             type="password"
