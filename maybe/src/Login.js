@@ -9,8 +9,8 @@ import help from "./img/help.png"
 class Login extends Component {
 
     constructor(props) {
-		super(props);
-		this.state = {
+				super(props);
+				this.state = {
             id: '',
             pw: '',
             result: {},
@@ -19,7 +19,7 @@ class Login extends Component {
         this.id = React.createRef(); 
         this.pw = React.createRef(); 
         this.login_process= this.login_process.bind(this);
-        this.signup = this.signup.bind(this);
+        // this.signup = this.signup.bind(this);
     }
     
     signup () {
