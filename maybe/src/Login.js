@@ -62,10 +62,8 @@ class Login extends Component {
     render() {
         return (
         <div>
-            <div>
             <img id="login_calendar" src={calendar} alt="logo calendar" />
             <div className="maybe">MayBe</div>
-            </div>
             <form>
                 <div className="IDPW">
                     <InputGroup style={{marginBottom : "20px", width : "50%", marginLeft: "25%"}}>
