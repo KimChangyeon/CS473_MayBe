@@ -91,7 +91,7 @@ class Rank extends Component {
                         contentStyle={{width: "250px",zindex: 9999}}>
 						{close => (
 							<div className="instruction" style={{margin: "15px"}}>
-								<b>Reward System</b><hr/>
+								<b>Be punctual!</b><hr/>
                                 You can get points <br/>
                                 as early as you arrived.<br/>
                                 (Max 50pt per appointment.)<br/>
