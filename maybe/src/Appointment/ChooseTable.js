@@ -260,7 +260,7 @@ class ChooseTable extends Component {
             return ({id: day.id, time : result})
         })
         console.log("choiceDate : ",choiceDate)
-        if (this.props.type == "Choose")
+        if (this.props.type === "Choose")
             this.props.setTimeSlot(choiceDate);
     }
 
@@ -270,7 +270,7 @@ class ChooseTable extends Component {
 	}
 
     renderInputBox = () => {
-        if (this.props.type == "Choose")
+        if (this.props.type === "Choose")
             return (
                 <InputGroup className="mb-3">
                         <InputGroup.Prepend>

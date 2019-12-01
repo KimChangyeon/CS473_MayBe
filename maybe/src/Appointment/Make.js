@@ -86,19 +86,20 @@ class Make extends Component {
 	}
 
 	setTimeSlot (slot) {
-		var answer = {};
+		var candidates = [];
 		if (slot.length > 0) {
+			var answer = {};
 			for (var i = 0 ; i < slot.length ; i++) {
 				var day = slot[i];
 				if (day.time.length > 0) {
 					answer.DateId = day.id;
 					answer.StartTime = day.time[0].slice(0,2);
 					answer.EndTime = day.time[0].slice(3,5);
-					break;
+					candidates.push(answer);
 				}
 			}
 		}
-		this.setState({timeSlot: answer});
+		this.setState({timeSlot: candidates});
 	}
 
 	handleSearch = (e) => {
@@ -133,13 +134,25 @@ class Make extends Component {
 
 	submit () {
 		// '/make/:DateId/:StartTime/:EndTime/:What'
-		var DateId = this.state.timeSlot.DateId;
-		var StartTime = this.state.timeSlot.StartTime;
-		var EndTime = this.state.timeSlot.EndTime;
-		var url_make = '/make/'.concat(DateId).concat('/').concat(StartTime).concat('/').concat(EndTime).concat('/').concat(this.state.AppointmentName);
+		var url_make = '/make/'.concat(this.state.AppointmentName);
 		fetch(url_make, {method: "POST"})
 			.then(res => res.json())
 			.then(answer => console.log(answer.data))
+
+		// candidate registration for the avaliable time for the user.
+		var timeSlot = this.state.timeSlot;
+		timeSlot.map(function (slot) {
+			var UserId = this.state.user_id;
+			var DateId = slot.DateId;
+			var StartTime = slot.StartTime;
+			var EndTime = slot.EndTime;
+
+			var url_vote = '/vote/'.concat(UserId).concat('/').concat(DateId).concat('/').concat(StartTime).concat('/').concat(EndTime);
+			fetch(url_vote, {method: "POST"})
+				.then(res => res.json())
+				.then(answer => console.log(answer.data))
+			return console.log("SUCCESS FOR VOTING ONE SLOT.")
+		})
 			
 		// Participant registration.
 		for (var k = 0 ; k < this.state.friends_in_appointment.length ; k++){

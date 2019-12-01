@@ -32,13 +32,11 @@ class Login extends Component {
         var url_final = '/login/'.concat(this.state.id).concat('/').concat(this.state.pw);
             fetch(url_final)
                 .then(res => res.json())
-                .then(answer => this.setState({result: answer.data[0]}))
-                .then(lock => this.setState({l: 0}))
+                .then(answer => this.setState({result: answer.data[0], l: 0}))
             .catch((error)=>{
-                console.log('Error fetching man',error);
+                console.log('Error in LOGIN',error);
             });
         
-        this.setState({l: 0});
         if (this.state.l === 0){
             if (pw.length <= 0)
                 alert('YOU SHOULD WRITE YOUR PASSWORD.');
@@ -49,8 +47,8 @@ class Login extends Component {
                     this.props.setReward(this.state.result['Reward']);
                     this.props.nextStage();
                 }
-                // else
-                //     alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
+                else
+                    alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
                 // this.props.nextStage();
             }
         }
