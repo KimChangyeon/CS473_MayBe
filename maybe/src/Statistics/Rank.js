@@ -88,13 +88,16 @@ class Rank extends Component {
                         <Popup
                         trigger={<img id="help" src={help} alt="help" />} 
                         position = "left top"
-                        contentStyle={{width: "250px",zindex: 9999}}>
+                        contentStyle={{width: "270px",zindex: 9999}}>
 						{close => (
 							<div className="instruction" style={{margin: "15px"}}>
 								<b>Be punctual!</b><hr/>
-                                You can get points <br/>
-                                as early as you arrived.<br/>
-                                (Max 50pt per appointment.)<br/>
+                                You can get points as early as<br/>
+                                you arrived at the appointment.<br/>
+                                - <b>5pt per minute</b><br/>
+                                - Max 50pt per appointment<br/>
+                                If all participants arrive on time,<br/>
+                                you get <b>double</b> points!<br/>
                                 <br/>
                                 <b>Badge</b><hr/>
                                 Lv.4 Always &nbsp; &nbsp; &nbsp; &nbsp; &ge; 1000pt<br/>
