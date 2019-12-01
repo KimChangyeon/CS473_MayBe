@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './Login.css'
+import './App.css'
 import {Button, InputGroup, FormControl} from 'react-bootstrap'
 import Popup from 'reactjs-popup'
 
