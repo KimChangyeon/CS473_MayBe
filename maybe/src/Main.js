@@ -69,15 +69,16 @@ class Main extends Component {
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
-		var schedule = this.state.schedule;
-		schedule.map((sch) => this.promoteVote(sch));
-		if (this.state.alert === 1)
-			alert("YOU HAVE TO VOTE FOR NEW APPOINTMENTS.");
-	}
-
-	promoteVote (sch) {
-		if (!sch.StartTime && !sch.EndTime && !sch.DateId) {
-			this.setState({alert: 1});
+		if (this.state.schedule.length > 0) {
+			var schedule = this.state.schedule;
+			for (var i = 0; i < schedule.length; i++) {
+				var sch = schedule[i];
+				if (!sch.StartTime && !sch.EndTime && !sch.DateId) {
+					this.setState({alert: 1});
+				}
+			}
+			if (this.state.alert === 1)
+				alert("YOU HAVE TO VOTE FOR NEW APPOINTMENTS.");
 		}
 	}
 
