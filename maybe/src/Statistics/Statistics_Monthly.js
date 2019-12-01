@@ -23,7 +23,7 @@ class Statistics_Monthly extends Component {
                     data: [75, 59, 80, 61, 40]
                 }]
             },
-            month: "Nov",
+            month: "Dec",
             dataHorizontal: {
               labels: ["Sangho Lim", "Jisu Choi", "Changyeon Kim"],
               datasets: [
@@ -55,7 +55,7 @@ class Statistics_Monthly extends Component {
                            legend={{ display: false }} />
                 </div>
                 <hr/>
-                <h5>Top3 Frequently Met Friends</h5>
+                <h5>Top3 Friends Frequently Met in <span className="month">{this.state.month}</span></h5>
                 <HorizontalBar data={this.state.dataHorizontal}
                   legend={{position: "bottom"}}
                   options= {{
@@ -69,7 +69,7 @@ class Statistics_Monthly extends Component {
 	}
 
 	render () {
-		const bar = <div className="Bar">Statistics</div>;
+		const bar = <div className="Bar">Monthly Statistics</div>;
 		const header = this.props.header(bar, null);
 		const body = this.body();
 		const content = <div>{header}{body}</div>;
