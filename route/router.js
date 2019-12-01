@@ -88,7 +88,7 @@ router.post('/make/:What', (req, res) => {
 });
 
 router.post('/vote/:UserId/:DateId/:StartTime/:EndTime', (req, res) => {
-    var query = 'INSERT INTO Appointment((SELECT LAST_INSERT_ID(AppointmentId) as AppointmentId from Appointment order by LAST_INSERT_ID(AppointmentId) desc limit 1), UserId, DateId, StartTime, EndTime) VALUES (?,?,?,?)'
+    var query = 'INSERT INTO Appointment(AppointmentId, UserId, DateId, StartTime, EndTime) VALUES ((SELECT LAST_INSERT_ID(AppointmentId) as AppointmentId from Appointment order by LAST_INSERT_ID(AppointmentId) desc limit 1),?,?,?,?)'
     db.query(query, [req.params.UserId,req.params.DateId,req.params.StartTime,req.params.EndTime], (err, rows) => {
         if (!err) {
             res.send({data: 'POSTING SUCCESSED FOR VOTING.'});
