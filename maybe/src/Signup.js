@@ -32,15 +32,15 @@ class Signup extends Component {
                     </InputGroup>
                     <InputGroup style={{marginBottom : "20px", width : "50%", marginLeft: "25%"}}>
                         <InputGroup.Prepend name='id'>
-                            <InputGroup.Text>ID</InputGroup.Text> 
+                            <InputGroup.Text style={{paddingLeft: "23px"}}>ID</InputGroup.Text> 
                         </InputGroup.Prepend>
                         <FormControl
                             placeholder="Enter ID"
                         />
                     </InputGroup>
                     <InputGroup style={{width : "50%", marginLeft: "25%"}}>
-                        <InputGroup.Prepend>
-                            <InputGroup.Text name='pw'>PW</InputGroup.Text> 
+                        <InputGroup.Prepend name='pw'>
+                            <InputGroup.Text style={{paddingLeft: "19px"}}>PW</InputGroup.Text> 
                         </InputGroup.Prepend>
                         <FormControl
                             type="password"

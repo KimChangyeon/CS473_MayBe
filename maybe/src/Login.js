@@ -72,8 +72,7 @@ class Login extends Component {
                 <div className="IDPW">
                     <InputGroup style={{marginBottom : "20px", width : "50%", marginLeft: "25%"}}>
                         <InputGroup.Prepend onChange={this.handleId} value={this.state.id} name='id'>
-                            <InputGroup.Text>ID</InputGroup.Text> 
-                            {/* <InputGroup.Text >ID</InputGroup.Text>  */}
+                            <InputGroup.Text id="basic-addon4">ID</InputGroup.Text> 
                         </InputGroup.Prepend>
                         <FormControl
                             placeholder="Enter ID"
@@ -83,9 +82,8 @@ class Login extends Component {
                         />
                     </InputGroup>
                     <InputGroup style={{width : "50%", marginLeft: "25%"}}>
-                        <InputGroup.Prepend>
-                            <InputGroup.Text onChange={this.handlePw} value={this.state.pw} name='pw'>PW</InputGroup.Text> 
-                            {/* <InputGroup.Text >PW</InputGroup.Text>  */}
+                        <InputGroup.Prepend onChange={this.handlePw} value={this.state.pw} name='pw'>
+                            <InputGroup.Text id="basic-addon4">PW</InputGroup.Text> 
                         </InputGroup.Prepend>
                         <FormControl
                             type="password"
