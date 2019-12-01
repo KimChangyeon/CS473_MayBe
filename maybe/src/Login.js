@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
 import './Login.css'
 import {Button, InputGroup, FormControl} from 'react-bootstrap'
+import Popup from 'reactjs-popup'
+
 import calendar from "./img/login_calendar.png"
+import help from "./img/help.png"
 
 class Login extends Component {
 
@@ -59,8 +62,10 @@ class Login extends Component {
     render() {
         return (
         <div>
+            <div>
             <img id="login_calendar" src={calendar} alt="logo calendar" />
             <div className="maybe">MayBe</div>
+            </div>
             <form>
                 <div className="IDPW">
                     <InputGroup style={{marginBottom : "20px", width : "50%", marginLeft: "25%"}}>
@@ -93,6 +98,19 @@ class Login extends Component {
                     <Button variant="flat" onClick={this.login_process}>Log-in</Button>
                 </div>                    
             </form>
+            <Popup trigger={<img id="help" src={help} alt="help"/>} 
+                position = "right center"
+                contentStyle={{width: "350px",zindex :9999}}>
+						{close => (
+							<div style={{margin: "5px"}}>
+								Login with the guest account to look around.<br/>
+                                <b>ID: guest PW: 0000</b><br/>
+                                Or contact us to make a private account.<br/>
+                                <Button variant="outlineflat" style={{float: "right"}}
+                                    onClick={()=>{close()}}>OK</Button>
+							</div>
+						)}
+			</Popup>
         </div>
         );
     };

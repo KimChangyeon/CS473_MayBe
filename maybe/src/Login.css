@@ -47,4 +47,10 @@ Button {
     color: #9bbfd7;
 }
 
+#help {
+    margin-left: 123px;
+    height: 35px;
+    width: 35px;
+}
+
 
