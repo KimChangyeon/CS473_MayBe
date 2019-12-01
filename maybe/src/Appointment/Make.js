@@ -88,8 +88,8 @@ class Make extends Component {
 	setTimeSlot (slot) {
 		var candidates = [];
 		if (slot.length > 0) {
-			var answer = {};
 			for (var i = 0 ; i < slot.length ; i++) {
+				var answer = {};
 				var day = slot[i];
 				if (day.time.length > 0) {
 					answer.DateId = day.id;
@@ -132,6 +132,17 @@ class Make extends Component {
 		this.setState({selected_friend_id: uid});
 	}
 
+	voting (slot) {
+		var UserId = this.state.user_id;
+		var DateId = slot.DateId;
+		var StartTime = slot.StartTime;
+		var EndTime = slot.EndTime;
+		var url_vote = '/vote/'.concat(UserId).concat('/').concat(DateId).concat('/').concat(StartTime).concat('/').concat(EndTime);
+		fetch(url_vote, {method: "POST"})
+			.then(res => res.json())
+			.then(answer => console.log(answer.data))
+	}
+
 	submit () {
 		// '/make/:DateId/:StartTime/:EndTime/:What'
 		var url_make = '/make/'.concat(this.state.AppointmentName);
@@ -140,20 +151,9 @@ class Make extends Component {
 			.then(answer => console.log(answer.data))
 
 		// candidate registration for the avaliable time for the user.
+		
 		var timeSlot = this.state.timeSlot;
-		timeSlot.map(function (slot) {
-			var UserId = this.state.user_id;
-			var DateId = slot.DateId;
-			var StartTime = slot.StartTime;
-			var EndTime = slot.EndTime;
-
-			var url_vote = '/vote/'.concat(UserId).concat('/').concat(DateId).concat('/').concat(StartTime).concat('/').concat(EndTime);
-			fetch(url_vote, {method: "POST"})
-				.then(res => res.json())
-				.then(answer => console.log(answer.data))
-			return console.log("SUCCESS FOR VOTING ONE SLOT.")
-		})
-			
+		timeSlot.map((slot) => this.voting(slot));
 		// Participant registration.
 		for (var k = 0 ; k < this.state.friends_in_appointment.length ; k++){
 			var p = this.state.friends_in_appointment[k];
