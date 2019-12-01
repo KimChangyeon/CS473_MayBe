@@ -25,7 +25,6 @@ import checkbox from './img/checkbox.png';
 import coins from './img/appointment_list_reward.png';
 import coin from './img/coin.png';
 import rank from './img/rank.png';
-import { thisExpression } from '@babel/types';
 
 function parse(str) {
     var y = str.substring(0,4),
@@ -52,6 +51,7 @@ class Main extends Component {
 			stage_id: 0,
 			stages : ['upcoming','make','schedule','statistics','vote','location', 'memo', 'rank'],
 			schedule: [],
+			alert: 0
 		}
 		this.setMarker = this.setMarker.bind(this);
 		this.setPlace = this.setPlace.bind(this);
@@ -69,6 +69,16 @@ class Main extends Component {
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
+		var schedule = this.state.schedule;
+		schedule.map((sch) => this.promoteVote(sch));
+		if (this.state.alert === 1)
+			alert("YOU HAVE TO VOTE FOR NEW APPOINTMENTS.");
+	}
+
+	promoteVote (sch) {
+		if (!sch.StartTime && !sch.EndTime && !sch.DateId) {
+			this.setState({alert: 1});
+		}
 	}
 
 	update () {
@@ -211,8 +221,6 @@ class Main extends Component {
 							</div>
 							<div className="content-left"><b>Who</b><hr/>
 								<ul>
-									{/* <li><span>Sangho</span></li> */}
-									{/* <li><span>Chang-yeon Kim</span></li> */}
 									{participants_list}
 								</ul>
 							</div>

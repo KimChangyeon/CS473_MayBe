@@ -13,8 +13,8 @@ class Login extends Component {
 		this.state = {
             id: '',
             pw: '',
-            result: {},
-            l: 1
+            result: {}, 
+            l: 1,
         }
         this.id = React.createRef(); 
         this.pw = React.createRef(); 
@@ -32,7 +32,6 @@ class Login extends Component {
                 console.log('Error fetching man',error);
             });
         
-        this.setState({l: 0});
         if (this.state.l === 0){
             if (pw.length <= 0)
                 alert('YOU SHOULD WRITE YOUR PASSWORD.');
