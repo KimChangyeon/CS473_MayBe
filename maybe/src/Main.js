@@ -165,6 +165,8 @@ class Main extends Component {
 
 	appointment_list(info) {
 
+				
+				
 				const date = parse(String(info.DateId));
 				var today = new Date();
 				const diffTime = date - today;
@@ -173,6 +175,9 @@ class Main extends Component {
 				const Title = info.What;
 				const participants = info.participants.split(',');
 				const participants_list = participants.map((person) => <li key={person}><span>{person}</span></li>)
+
+				const header = info.DateId === null ?
+				<b>TBD &nbsp;&nbsp; {Title}</b> : <b> D-{diffDays} &nbsp;&nbsp; {Title}</b>
 				
 				const place = info.Place === '' ?
 					<img src={gps} style={{width: "65%"}}
@@ -208,7 +213,7 @@ class Main extends Component {
 				<Card className='app_list'>
 
 					<Card.Header><img src={timer} style={{width: "20px", marginRight: "10px", textcolor: "white"}} alt="appointment" />
-					<b> D-{diffDays} &nbsp;&nbsp; {Title}</b>
+					{header}
 					</Card.Header>
 
 					<Card.Body>
