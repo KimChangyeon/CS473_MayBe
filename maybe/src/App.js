@@ -42,7 +42,7 @@ class App extends Component {
           content = <Main setStage = {this.setStage} user_id = {this.state.user_id} user_reward = {this.state.user_reward} setReward = {this.setReward}/>;
           break;
         case 'signup':
-          content = <Signup />;
+          content = <Signup setStage = {this.setStage}/>;
           break;
         default:
           alert('YOU SHOULD NOT BE HERE.') 

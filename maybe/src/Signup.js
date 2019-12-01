@@ -3,6 +3,15 @@ import {Button, InputGroup, FormControl} from 'react-bootstrap'
 import './App.css'
 
 class Signup extends Component {
+    constructor(props) {
+        super(props);
+        this.handleSignup = this.handleSignup.bind(this);
+    }
+
+    handleSignup() {
+        this.props.setStage(0);
+    }
+
     render() {
         return (
             <div>
@@ -35,7 +44,7 @@ class Signup extends Component {
                     </InputGroup>
                 </div>
                 <div className="IDPW">
-                    <Button variant="outlineflat">Sign-up</Button>
+                    <Button variant="outlineflat" onClick={this.handleSignup}>Sign-up</Button>
                 </div>                    
             </form>
             </div>
