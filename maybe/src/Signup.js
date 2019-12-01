@@ -3,6 +3,10 @@ import {Button, InputGroup, FormControl} from 'react-bootstrap'
 import './App.css'
 
 class Signup extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <div>
