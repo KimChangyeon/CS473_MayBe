@@ -73,7 +73,8 @@ class Main extends Component {
 			var schedule = this.state.schedule;
 			for (var i = 0; i < schedule.length; i++) {
 				var sch = schedule[i];
-				if (!sch.StartTime && !sch.EndTime && !sch.DateId) {
+				console.log(sch);
+				if (sch.DateId === null) {
 					this.setState({alert: 1});
 				}
 			}

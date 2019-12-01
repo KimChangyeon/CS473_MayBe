@@ -152,8 +152,6 @@ class Make extends Component {
 
 		// candidate registration for the avaliable time for the user.
 		
-		var timeSlot = this.state.timeSlot;
-		timeSlot.map((slot) => this.voting(slot));
 		// Participant registration.
 		for (var k = 0 ; k < this.state.friends_in_appointment.length ; k++){
 			var p = this.state.friends_in_appointment[k];
@@ -175,6 +173,10 @@ class Make extends Component {
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
+
+		var timeSlot = this.state.timeSlot;
+		timeSlot.map((slot) => this.voting(slot));
+		
 	}
 
 	render () {
