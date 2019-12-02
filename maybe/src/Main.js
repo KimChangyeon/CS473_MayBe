@@ -69,6 +69,18 @@ class Main extends Component {
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
+		if (this.state.schedule.length > 0) {
+			var schedule = this.state.schedule;
+			for (var i = 0; i < schedule.length; i++) {
+				var sch = schedule[i];
+				console.log(sch);
+				if (sch.DateId === null) {
+					this.setState({alert: 1});
+				}
+			}
+			if (this.state.alert === 1)
+				alert("YOU HAVE TO VOTE FOR NEW APPOINTMENTS.");
+		}
 	}
 
 	update () {
@@ -79,6 +91,18 @@ class Main extends Component {
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
+		if (this.state.schedule.length > 0) {
+			var schedule = this.state.schedule;
+			for (var i = 0; i < schedule.length; i++) {
+				var sch = schedule[i];
+				console.log(sch);
+				if (sch.DateId === null) {
+					this.setState({alert: 1});
+				}
+			}
+			if (this.state.alert === 1)
+				alert("YOU HAVE TO VOTE FOR NEW APPOINTMENTS.");
+		}
 	}
 
 	setMarker(marker) {
@@ -245,19 +269,6 @@ class Main extends Component {
 		let content;
 
 	const upcoming_list = this.state.schedule.map((sch) => <li key={sch}>{this.appointment_list(sch)}</li>)
-
-	if (this.state.schedule.length > 0) {
-		var schedule = this.state.schedule;
-		for (var i = 0; i < schedule.length; i++) {
-			var sch = schedule[i];
-			console.log(sch);
-			if (sch.DateId === null) {
-				this.setState({alert: 1});
-			}
-		}
-		if (this.state.alert === 1)
-			alert("YOU HAVE TO VOTE FOR NEW APPOINTMENTS.");
-	}
     
     switch (main_stage) {
       case ('upcoming'):
