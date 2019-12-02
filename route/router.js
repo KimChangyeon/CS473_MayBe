@@ -136,11 +136,11 @@ router.post('/reward/:id/:point', (req, res) => {
     })
 });
 
-router.post('/modify_time/:id/:DateId/:StartTime/:EndTime/', (req, res) => {
-    var query = 'UPDATE Appointment SET DateId = ?, StartTime = ?, EndTime = ? WHERE AppointmentId = ?'
-    db.query(query, [req.params.DateId, req.params.StartTime, req.params.EndTime, req.params.id], (err, rows) => {
+router.post('/modify_time/:id/', (req, res) => {
+    var query = 'UPDATE Appointment AS App,( SELECT DateId, StartTime, EndTime FROM (SELECT DateId, StartTime, EndTime, count(*) as count FROM (SELECT * FROM Vote WHERE AppointmentId = ?) A GROUP BY DateId, StartTime, EndTIme ORDER BY count, DateId LIMIT 1) Final ) AS vote_result SET App.DateId = vote_result.DateId, App.StartTime = vote_result.StartTime, App.EndTime = vote_result.EndTime WHERE App.AppointmentId = ?'
+    db.query(query, [req.params.id, req.params.id], (err, rows) => {
         if (!err) {
-            res.send({data: 'POSTING SUCCESSED.'});
+            res.send({data: 'POSTING SUCCESSED FOR SETTING VOTING RESULT.'});
         }
         else {
             res.send({data: err});
@@ -186,7 +186,7 @@ router.get('/AppId/', (req, res) => {
 
 //한 약속에 대한 투표 결과 가져오기.
 router.get('/vote_result/:id', (req, res) => {
-    var query = 'SELECT DateId, StartTime, EndTime FROM Vote WHERE AppointmentId = ?'
+    var query = 'SELECT Username, DateId, StartTime, EndTime FROM (SELECT UserId, DateId, StartTime, EndTime FROM Vote WHERE AppointmentId = ?) AS A INNER JOIN User as B ON A.UserId = B.userId'
     db.query(query, req.params.id, (err, rows) => {
         if (!err) {
             res.send({data: rows});
