@@ -69,6 +69,9 @@ class Main extends Component {
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
+	}
+
+	componentDidMount() {
 		if (this.state.schedule.length > 0) {
 			var schedule = this.state.schedule;
 			for (var i = 0; i < schedule.length; i++) {
@@ -91,18 +94,6 @@ class Main extends Component {
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
-		if (this.state.schedule.length > 0) {
-			var schedule = this.state.schedule;
-			for (var i = 0; i < schedule.length; i++) {
-				var sch = schedule[i];
-				console.log(sch);
-				if (sch.DateId === null) {
-					this.setState({alert: 1});
-				}
-			}
-			if (this.state.alert === 1)
-				alert("YOU HAVE TO VOTE FOR NEW APPOINTMENTS.");
-		}
 	}
 
 	setMarker(marker) {
