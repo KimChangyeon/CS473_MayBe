@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../App.css';
 import Weekly from './weekly';
-import Demo from './test.js';
+import Calendar from './Calendar';
 
 import week from '../img/week.png';
 import month from '../img/month.png';
@@ -22,7 +22,7 @@ class Schedule extends Component {
 				<a href="#"> <img src={month} style={{marginTop: "2px", marginLeft: "15px", width: "23px", position: "absolute", left: "440px"}} onClick={() => this.setState({currentViewName: "Month"})}/> </a>
 			</div>;
 		const header = this.props.header(bar, null);
-		const body = <body className="Body"><Demo user_id={this.props.user_id} currentViewName={this.state.currentViewName}/></body>;
+		const body = <body className="Body"><Calendar user_id={this.props.user_id} currentViewName={this.state.currentViewName}/></body>;
 		// const body = <body className="Body"><Weekly user_id={this.props.user_id} currentViewName={this.state.currentViewName}/></body>;
 		const content = <div>{header}{body}</div>;
 

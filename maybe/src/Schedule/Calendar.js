@@ -304,7 +304,7 @@ const styles = theme => ({
 });
 
 /* eslint-disable-next-line react/no-multi-comp */
-class Demo extends React.PureComponent {
+class Calendar extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -461,6 +461,8 @@ class Demo extends React.PureComponent {
         }
       if (deleted !== undefined) {
         data = data.filter(appointment => appointment.id !== deleted);
+				this.setDeletedAppointmentId(deleted);
+        this.toggleConfirmationVisible();
       }
       return { data };
     });
@@ -565,5 +567,5 @@ class Demo extends React.PureComponent {
   }
 }
 
-export default withStyles(styles, { name: 'EditingDemo' })(Demo);
+export default withStyles(styles, { name: 'EditingDemo' })(Calendar);
 
