@@ -24,7 +24,15 @@ class Signup extends Component {
 		if (this.state.new_name.length <= 0) alert('YOU SHOULD WRITE YOUR NAME.');
 		else if (this.state.new_id.length <= 0) alert('YOU SHOULD WRITE YOUR ID.');
 		else if (this.state.new_pw.length <= 0) alert('YOU SHOULD WRITE YOUR PASSWORD.');
-		else this.props.setStage(0);
+		else {
+            var url_register = '/register_account/'.concat(this.state.new_id).concat('/').concat(this.state.new_pw).concat('/').concat(this.state.new_name);
+            fetch(url_register, {method: "POST"})
+                .then(answer => console.log(answer.data))        
+            .catch((error)=>{
+                console.log('Error FOR USER REGISTRATION',error);
+            });
+            this.props.setStage(0);
+        }
     }
 
 	handleCancel() {
