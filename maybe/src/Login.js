@@ -15,7 +15,7 @@ class Login extends Component {
             id: '',
             pw: '',
             result: {},
-            l: 0,
+            l: 1,
         }
         this.id = React.createRef(); 
         this.pw = React.createRef(); 
@@ -42,14 +42,13 @@ class Login extends Component {
                 alert('YOU SHOULD WRITE YOUR PASSWORD.');
             else
             {
-            //     if (Object.keys(this.state.result).length > 0){
-            //         this.props.setUserId(this.state.result['UserId']);
-            //         this.props.setReward(this.state.result['Reward']);
-            //         this.props.setStage(1);
-            //     }
-            //     else
-            //         alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
-				this.props.setStage(1);
+                if (Object.keys(this.state.result).length > 0){
+                    this.props.setUserId(this.state.result['UserId']);
+                    this.props.setReward(this.state.result['Reward']);
+                    this.props.setStage(1);
+                }
+                else
+                    alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
             }
         }
         
