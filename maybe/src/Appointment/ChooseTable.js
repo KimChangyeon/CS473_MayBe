@@ -148,40 +148,45 @@ class ChooseTable extends Component {
     }
   
     cellClick =(row, id, selected) => {
+        let updatedCells=[]
+        let updatedChoice = []
         if (this.props.type == "Choose"){
-            this.setState({chooseCells : this.state.chooseCells.map((Row) => 
-                Row.row === row
-                ? {...Row, cell : Row.cell.map((cell)=> cell.id === id
-                    ?({...cell,selected : selected})
-                    :cell)}
-                :Row)})
+            updatedCells = this.state.chooseCells.map((Row) => 
+                    Row.row === row
+                    ? {...Row, cell : Row.cell.map((cell)=> cell.id === id
+                        ?({...cell,selected : selected})
+                        :cell)}
+                    :Row)
         }
         if (this.props.type == "Vote") {
-            this.setState({voteCells : this.state.voteCells.map((Row) => 
+            updatedCells = this.state.voteCells.map((Row) => 
                 Row.row === row
                 ? {...Row, cell : Row.cell.map((cell)=> cell.id === id
                     ?({...cell,selected : selected})
                     :cell)}
-                :Row)})
+                :Row)
         }
         if (selected){
-            this.setState({choice : this.state.choice.map((Day) =>
+            updatedChoice = this.state.choice.map((Day) =>
                 Day.id === id
                 ? ({...Day, time: Day.time.concat(row)})
-                : Day)})
+                : Day)
         }
             
         else{
-            this.setState({choice: this.state.choice.map((Day) => 
+            updatedChoice = this.state.choice.map((Day) => 
                 Day.id === id
                 ? ({...Day, time: Day.time.filter((time) => time !== row ) })
-                : Day)})
+                : Day)
         }
-        this.updateDates();
+        console.log("updatedChoice : ", updatedChoice)
+        this.updateDates(updatedChoice);
+        //setState
+        if(this.props.type == "Choose") this.setState({chooseCells : updatedCells, choice : updatedChoice})
+        else this.setState({chooseCells : updatedCells, choice : updatedChoice})
    }
    
     renderRow = () =>{
-        console.log("hihis")
         console.log(this.props.type)
         let renderCells = []
         if (this.props.type === "Choose") {
@@ -223,8 +228,9 @@ class ChooseTable extends Component {
                 )
         )
     }
-    updateDates =() => {
-        const choice = this.state.choice.map((day)=> {
+
+    updateDates =(updatedChoice) => {
+        const choice = updatedChoice.map((day)=> {
             const time = day.time.sort((a,b)=>a>b)
             return {...day, time : time}
         })
@@ -260,7 +266,7 @@ class ChooseTable extends Component {
             return ({id: day.id, time : result})
         })
         console.log("choiceDate : ",choiceDate)
-        if (this.props.type == "Choose")
+        if (this.props.type === "Choose")
             this.props.setTimeSlot(choiceDate);
     }
 
@@ -270,11 +276,11 @@ class ChooseTable extends Component {
 	}
 
     renderInputBox = () => {
-        if (this.props.type == "Choose")
+        if (this.props.type === "Choose")
             return (
                 <InputGroup className="mb-3">
                         <InputGroup.Prepend>
-                            <InputGroup.Text id="basic-addon1">Place</InputGroup.Text>
+                            <InputGroup.Text id="basic-addon1">Title</InputGroup.Text>
                         </InputGroup.Prepend>
                         <FormControl
                             placeholder="Enter the name of Appointment"
