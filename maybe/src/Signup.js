@@ -9,38 +9,43 @@ class Signup extends Component {
     constructor(props) {
         super(props);
 		this.state = {
-			new_name: null,	// 이름 입력됨
-			new_id:	null, // ID 입력됨
-			new_pw: null // PW 입력됨
+			new_name: '',	// Name 입력
+			new_id:	'', // ID 입력
+			new_pw: '' // PW 입력
 		}
         this.handleSignup = this.handleSignup.bind(this);
+		this.handleCancel = this.handleCancel.bind(this);
 		this.onChangeName = this.onChangeName.bind(this);
 		this.onChangeId = this.onChangeId.bind(this);
 		this.onChangePw = this.onChangePw.bind(this);
     }
 
     handleSignup() {
-        this.props.setStage(0);
+		if (this.state.new_name.length <= 0) alert('YOU SHOULD WRITE YOUR NAME.');
+		else if (this.state.new_id.length <= 0) alert('YOU SHOULD WRITE YOUR ID.');
+		else if (this.state.new_pw.length <= 0) alert('YOU SHOULD WRITE YOUR PASSWORD.');
+		else this.props.setStage(0);
     }
 
+	handleCancel() {
+		this.props.setStage(0);
+	}
+
 	onChangeName (e) {
-		const value = e.target.value === '' ? null : e.target.value;
 		this.setState({
-			new_name: value
+			new_name: e.target.value
 		})
 	}
 
 	onChangeId (e) {
-		const value = e.target.value === '' ? null : e.target.value;
 		this.setState({
-			new_id: value
+			new_id: e.target.value
 		})
 	}
 
 	onChangePw (e) {
-		const value = e.target.value === '' ? null : e.target.value;
 		this.setState({
-			new_pw: value
+			new_pw: e.target.value
 		})
 	}
 
@@ -85,7 +90,8 @@ class Signup extends Component {
                     </Form.Group>
                 </div>
                 <div className="IDPW">
-                    <Button variant="outlineflat" onClick={this.handleSignup}>Sign-up</Button>
+                    <Button variant="outlineflat" style={{marginRight: "10px"}}onClick={this.handleCancel}>Cancel</Button>
+                    <Button variant="flat" onClick={this.handleSignup}>Sign-up</Button>
                 </div>                    
             </form>
             </div>
