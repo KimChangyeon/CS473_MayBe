@@ -22,6 +22,18 @@ router.get('/login/:id/:pw', (req, res) => {
         })
     });
 
+router.post('/register_account/:Username/:password/:name', (req, res) => {
+    var query = 'INSERT INTO User(Username, password, name, Reward) VALUES (?, ?, ?, 0)'
+    db.query(query, [req.params.Username, req.params.password, req.params.name], (err, rows) => {
+        if (!err) {
+            res.send({data: 'POSTING SUCCESSED FOR NEW USER REGISTERATION.'});
+        }
+        else {
+            res.send({data: err});
+        }
+    })
+});
+
 // 한 유저가 포함되는 약속의 정보 리턴.
 router.get('/appoint/:id', (req, res) => {
         var query = 'SELECT * from Appointment where appointmentid IN (SELECT b.appointmentid FROM Appointment_participants b where b.participantsid = ?)'

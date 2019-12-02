@@ -9,38 +9,61 @@ class Signup extends Component {
     constructor(props) {
         super(props);
 		this.state = {
-			new_name: null,	// 이름 입력됨
-			new_id:	null, // ID 입력됨
-			new_pw: null // PW 입력됨
+			new_name: '',	// Name 입력
+			new_id:	'', // ID 입력
+			new_pw: '', // PW 입력
+			consent: false
 		}
         this.handleSignup = this.handleSignup.bind(this);
+		this.handleCancel = this.handleCancel.bind(this);
 		this.onChangeName = this.onChangeName.bind(this);
 		this.onChangeId = this.onChangeId.bind(this);
 		this.onChangePw = this.onChangePw.bind(this);
+		this.onClickConsent = this.onClickConsent.bind(this);
     }
 
     handleSignup() {
-        this.props.setStage(0);
+		if (this.state.new_name.length <= 0) alert('YOU SHOULD WRITE YOUR NAME.');
+		else if (this.state.new_id.length <= 0) alert('YOU SHOULD WRITE YOUR ID.');
+		else if (this.state.new_pw.length <= 0) alert('YOU SHOULD WRITE YOUR PASSWORD.');
+		else if (!this.state.consent) alert('YOU SHOULD CONSENT THE DISCLOSURE POLICY.');
+		else {
+            var url_register = '/register_account/'.concat(this.state.new_id).concat('/').concat(this.state.new_pw).concat('/').concat(this.state.new_name);
+            fetch(url_register, {method: "POST"})
+                .then(answer => console.log(answer.data))        
+            .catch((error)=>{
+                console.log('Error FOR USER REGISTRATION',error);
+            });
+            this.props.setStage(0);
+        }
     }
 
+	handleCancel() {
+		this.props.setStage(0);
+	}
+
 	onChangeName (e) {
-		const value = e.target.value === '' ? null : e.target.value;
 		this.setState({
-			new_name: value
+			new_name: e.target.value
 		})
 	}
 
 	onChangeId (e) {
-		const value = e.target.value === '' ? null : e.target.value;
 		this.setState({
-			new_id: value
+			new_id: e.target.value
 		})
 	}
 
 	onChangePw (e) {
-		const value = e.target.value === '' ? null : e.target.value;
 		this.setState({
-			new_pw: value
+			new_pw: e.target.value
+		})
+	}
+
+	onClickConsent () {
+		const consent = !this.state.consent;
+		this.setState({
+			consent: consent
 		})
 	}
 
@@ -79,13 +102,14 @@ class Signup extends Component {
                             placeholder="Enter Password"
                         />
                     </InputGroup>
-										<br/>
+					<br/>
                     <Form.Group controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="I consent to disclose my schedule and points to friends." />
+                        <Form.Check type="checkbox" onClick={this.onClickConsent}label="I consent to disclose my schedule and points to friends." />
                     </Form.Group>
                 </div>
                 <div className="IDPW">
-                    <Button variant="outlineflat" onClick={this.handleSignup}>Sign-up</Button>
+                    <Button variant="outlineflat" style={{marginRight: "10px"}} onClick={this.handleCancel}>Cancel</Button>
+                    <Button variant="flat" onClick={this.handleSignup}>Sign-up</Button>
                 </div>                    
             </form>
             </div>
