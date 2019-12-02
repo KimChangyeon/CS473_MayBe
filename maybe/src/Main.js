@@ -80,6 +80,7 @@ class Main extends Component {
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
+		this.setState({alert2: 0});
 	}
 
 	setMarker(marker) {
