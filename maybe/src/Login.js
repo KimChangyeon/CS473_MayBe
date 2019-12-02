@@ -49,7 +49,7 @@ class Login extends Component {
                 }
                 else
                     alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
-                // this.props.setStage(1);
+			//	this.props.setStage(1);
             }
         }
         
@@ -105,7 +105,7 @@ class Login extends Component {
 							<div style={{margin: "5px"}}>
 								Login with the guest account to look around.<br/>
                                 <b>ID: guest PW: 0000</b><br/>
-                                Or contact us to make a private account.<br/>
+                                Or sign up to make a private account.<br/>
                                 <Button variant="outlineflat" style={{float: "right"}}
                                     onClick={()=>{close()}}>OK</Button>
 							</div>
