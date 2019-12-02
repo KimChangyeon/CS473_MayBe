@@ -21,7 +21,6 @@ class Cell extends Component {
     }
 
     renderHeart = () => {
-        {/* <img className = "hamburger" src = {hamburger}/> */}
         if (this.props.selected) return <img className = "heart" src = {heart} />
         return null
     }

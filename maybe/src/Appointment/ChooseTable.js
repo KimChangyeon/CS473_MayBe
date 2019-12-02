@@ -1,13 +1,22 @@
 import React, {Component} from 'react';
+/* Data */
 import {fiveCandidates, sixCandidates, sevenCandidates, fourCandidates, threeCandidates,
     twelveCandidates,oneCandidates,twoCandidates} from './ChooseData';
 import {fiveVoteCandidates, sixVoteCandidates, sevenVoteCandidates, fourVoteCandidates,
         threeVoteCandidates, twelveVoteCandidates, oneVoteCandidates, twoVoteCandidates} from './VoteData'
+/* UI library */
 import {InputGroup, FormControl} from 'react-bootstrap'
-import Cell from './Cell'
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
+/* other files */
+import Cell from './Cell'
+import FriendIcons from './FriendIcons'
+import './ChooseTable.css'
 
 let choiceDate = []
+
+
 function handling_schedule (schedules) {
     var answer = [];
     for (var i = 0 ; i < schedules.length ; i ++) {
@@ -129,6 +138,16 @@ class ChooseTable extends Component {
                     time : []
                 },
             ],
+            friends : [
+                {
+                    name : "jisu",
+                    img : 0
+                },
+                {
+                    name : "jiho",
+                    img : 2
+                }
+            ],
             what: '',
             user_schedule: []
             };
@@ -187,7 +206,7 @@ class ChooseTable extends Component {
    }
    
     renderRow = () =>{
-        console.log(this.props.type)
+        console.log("renderRow",this.props.type)
         let renderCells = []
         if (this.props.type === "Choose") {
             renderCells = this.state.chooseCells.map((Row) => {
@@ -200,7 +219,6 @@ class ChooseTable extends Component {
             })
         }
         else {
-            console.log("vote")
             renderCells = this.state.voteCells.map((Row) => {
                 return (
                     <tr>
@@ -228,6 +246,25 @@ class ChooseTable extends Component {
                     />
                 )
         )
+    }
+
+    renderFriends = () => {
+        if (this.state.friends.length != 0) {
+            return (
+                <Grid container item xs = {20} spacing = {1}>
+                    <Grid item xs = {5}>
+                        <Typography variant = "h6" ><span style = {{fontFamily : "ubuntu"}}>Completed Friends</span></Typography>
+                    </Grid>
+                    {this.state.friends.map((friend)=>
+                        <Grid item xs = {1}>
+                            <FriendIcons
+                                img = {friend.img}
+                                name = {friend.name}/>
+                        </Grid>)}
+                </Grid>
+            )
+        }
+        return null
     }
 
     updateDates =(updatedChoice) => {
@@ -271,7 +308,7 @@ class ChooseTable extends Component {
             this.props.setTimeSlot(choiceDate);
     }
 
-    onChange (e) {
+    onChange = (e)=> {
 		const value = e.target.value === "" ? null : e.target.value;
 		this.props.setAppointmentName(value);
 	}
@@ -317,6 +354,7 @@ class ChooseTable extends Component {
                         {this.renderRow()}
                     </tbody>
                 </table>
+                {this.renderFriends()}
             </div>
         )
     }
