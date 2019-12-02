@@ -24,6 +24,7 @@
 
 .search {
 	margin-bottom: 20px;
+	flex-wrap: nowrap;
 }
 
 .search_button {

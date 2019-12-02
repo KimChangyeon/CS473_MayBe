@@ -271,7 +271,7 @@ class Main extends Component {
 				header = this.header(bar, button);
         body =
 					<body className="Body"> 
-						{/* <li>{this.appointment_list(2, this.state.schedule[0])}</li>
+					{/* <li>{this.appointment_list(2, this.state.schedule[0])}</li>
 						<li>{this.appointment_list(3, this.state.schedule[0])}</li>
 						<li>{this.appointment_list(4, this.state.schedule[0])}</li>
 						<li>{this.appointment_list(5, this.state.schedule[0])}</li>

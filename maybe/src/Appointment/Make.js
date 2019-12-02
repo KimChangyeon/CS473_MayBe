@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {ButtonGroup, Button, ListGroup, Form, InputGroup, FormControl} from 'react-bootstrap';
+import Popup from 'reactjs-popup';
 import '../App.css';
 import './Make.css'
 
@@ -61,7 +62,8 @@ class Make extends Component {
 			friends_in_appointment: [],
 		}
 		this.nextStage = this.nextStage.bind(this);
-		this.search = React.createRef(); 
+		this.search = React.createRef(); // 친구 리스트 검색
+		this.addSearch = React.createRef(); // 추가할 친구 검색
 		this.setAppointmentName = this.setAppointmentName.bind(this);
 		this.setTimeSlot = this.setTimeSlot.bind(this);
 		this.appointment_friends = this.appointment_friends.bind(this);
@@ -104,6 +106,14 @@ class Make extends Component {
 
 	handleSearch = (e) => {
 		this.setState({search: e.target.value});
+	}
+
+	handleAddSearch = (e) => {
+		this.setState({addSearch: e.target.value});
+	}
+
+	commitAdd () {
+		alert("Click Add!");
 	}
 	
 	onCheck = (name, e) => {
@@ -203,11 +213,13 @@ class Make extends Component {
 
 		switch (make_stage) {
 			case 'list':
-				button = <img className="makebutton" src={makebutton} alt="Make Appointment"
-							onClick={()=>{
-								this.appointment_friends();
-								this.nextStage(2)
-							}}/>;
+				button = 
+						<img className="makebutton" src={makebutton} alt="Make Appointment"
+								onClick={()=>{
+									this.appointment_friends();
+									this.nextStage(2)
+								}}
+						/>
 				bar =
 					<ButtonGroup id="Tap" size='lg' style={{top: "-12px", width: "100%", height: "50px"}}>
 						<Button id="Button1" onClick={() => this.nextStage(0)}>
@@ -216,10 +228,11 @@ class Make extends Component {
 							<img src={timeslot_dark} alt="time slot" /></Button>
 					</ButtonGroup>
 				header = this.props.header(bar, button);
-				body = <body className="Body">
+				body =
+					<body className="Body">
 						<InputGroup className="search">
 							<input
-								style = {{width: "455px"}}
+								style = {{width: "455px", paddingLeft: "10px"}}
 								placeholder="Search"
 								aria-label="Recipient's username"
 								aria-describedby="basic-addon2"
@@ -237,8 +250,37 @@ class Make extends Component {
 								</Button>
 							</InputGroup.Append>
 						</InputGroup>
-						<ListGroup><Form>{friends_list}</Form></ListGroup>
-				</body>
+						<ListGroup>
+							<Form>{friends_list}</Form>
+							{/* 추가할 친구 검색하는 팝업 시작*/}
+							<div style={{textAlign: "center"}}>
+								<Popup trigger={<a href="#"><u>Add Friend</u></a>} contentStyle={{width: "350px",zindex :9999}}>
+									{close => (
+										<div style={{margin: "5px"}}>
+											<InputGroup className="search">
+												<input
+													style = {{width: "100%", paddingLeft: "10px"}}
+													placeholder="Search Friend's Name"
+													aria-label="Recipient's username"
+													aria-describedby="basic-addon2"
+													value = {this.state.addSearch}
+													onChange={this.handleAddSearch}
+												/>
+												<InputGroup.Append>
+													<Button variant="search" className="search_button">
+														<img src={search} alt="search" id="search"/>
+													</Button>
+												</InputGroup.Append>
+											</InputGroup>
+											FriendList to add <br/>
+											<Button variant="outlineflat" style={{marginTop: "10px"}} onClick={()=>{this.commitAdd(); close()}}>Add</Button>
+										</div>
+									)}
+								</Popup>
+							</div>
+							{/* 추가할 친구 검색하는 팝업 끝*/}
+						</ListGroup>
+					</body>
 				content = <div>{header}{body}</div>
 				break;
 
