@@ -185,8 +185,8 @@ router.get('/AppId/', (req, res) => {
 });
 
 //한 약속에 대한 투표 결과 가져오기.
-router.get('/vote/:id', (req, res) => {
-    var query = 'SELECT * from Vote where AppointmentId = ?'
+router.get('/vote_result/:id', (req, res) => {
+    var query = 'SELECT DateId, StartTime, EndTime FROM Vote WHERE AppointmentId = ?'
     db.query(query, req.params.id, (err, rows) => {
         if (!err) {
             res.send({data: rows});
