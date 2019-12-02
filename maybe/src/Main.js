@@ -51,7 +51,8 @@ class Main extends Component {
 			stage_id: 0,
 			stages : ['upcoming','make','schedule','statistics','vote','location', 'memo', 'rank'],
 			schedule: [],
-			alert: 0
+			alert1: 0,
+			alert2: 0,
 		}
 		this.setMarker = this.setMarker.bind(this);
 		this.setPlace = this.setPlace.bind(this);
@@ -69,21 +70,6 @@ class Main extends Component {
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
-	}
-
-	componentDidMount() {
-		if (this.state.schedule.length > 0) {
-			var schedule = this.state.schedule;
-			for (var i = 0; i < schedule.length; i++) {
-				var sch = schedule[i];
-				console.log(sch);
-				if (sch.DateId === null) {
-					this.setState({alert: 1});
-				}
-			}
-			if (this.state.alert === 1)
-				alert("YOU HAVE TO VOTE FOR NEW APPOINTMENTS.");
-		}
 	}
 
 	update () {
@@ -260,6 +246,21 @@ class Main extends Component {
 		let content;
 
 	const upcoming_list = this.state.schedule.map((sch) => <li key={sch}>{this.appointment_list(sch)}</li>)
+
+	if (this.state.schedule.length > 0 && this.state.alert2 === 0) {
+		var schedule = this.state.schedule;
+		for (var i = 0; i < schedule.length; i++) {
+			var sch = schedule[i];
+			console.log(sch);
+			if (sch.DateId === null) {
+				this.setState({alert1: 1});
+			}
+		}
+		if (this.state.alert1 === 1){
+			alert("YOU HAVE TO VOTE FOR NEW APPOINTMENTS.");
+			this.setState({alert2: 1});
+		}
+	}
     
     switch (main_stage) {
       case ('upcoming'):
