@@ -1,36 +1,75 @@
 # <b>MayBe</b>
 URL: https://cs473maybe.herokuapp.com/<br>
 GitHub: https://github.com/KimChangyeon/CS473_MayBe<br>
-## 
-This is web service for appointments. We provide three major service <br>
+
+***
+>## <b>What is MayBe?</b>
+MayBe is a web service supporting various social interaction related to appointments.<br>
+We provide three major services: <br>
 1. Making Appointment
 2. Ranking system operated by rewards
 3. Statistics on past appointments
 
+***
+
+## <b>Login</b>
+You can log in with the following account.
+```
+ID: guest
+PW: 0000
+```
+Implementation: _CS473_MayBe/maybe/src/Login.js_
+
+# <b>Main Functionality</b>
+When you sign in, you will encounter the list of upcoming appointments.<br>
+Implementation: _CS473_MayBe/maybe/src/Main.js_<br>
+
+--- 
+
 ## <b>Make Appointment</b>
-><b> Find friends available at selected time slots </b> is implemented in <br>
-- select time slots : CS473_MayBe/maybe/src/Appointment/DragSelect.js<br>
-    &rarr; use package named "react-table-drag-select" / selected time slots are mananged by state  named "cell" of component
-- show available friends : CS473_MayBe/maybe/src/friend_list.js<br>
+You can make an appointment with your friends.
+All functions related to making appointments are in _CS473_MayBe/maybe/src/Appointment/_ directory.
 
-><b> Choose available appointment time slots with selected appointment partners</b> is implemented in <br>
-- select appointment partners : CS473_MayBe/maybe/src/
-- choose available appointment time slots : CS473_MayBe/maybe/src/appointment/ChooseTable
-&rarr; use bootstrap table / when a cell in table is selected, the state named "choice" of component is changed to contain selected cell
-><b> Vote for appointment</b> is implmented in <br>
-- vote : CS473_MayBe/maybe/src/appointment/ChooseTable
+><b> Friend list </b>
+- _CS473_MayBe/maybe/src/Appointment/Make.js_
 
+><b> Search available friends with time slots </b> 
+- Choose time slots : _CS473_MayBe/maybe/src/Appointment/DragSelect.js<br>_
+- Show available friends : _CS473_MayBe/maybe/src/Appointment/friend_list.js<br>_
+
+><b> Choose available appointment time slots </b>
+- _CS473_MayBe/maybe/src/Appointment/ChooseTable.js_
+
+><b> Vote for appointment </b>
+- _CS473_MayBe/maybe/src/Appointment/ChooseTable.js_
+
+><b> Make a note </b>
+- _CS473_MayBe/maybe/src/Appointment/Memo.js_
+
+---
 
 ## <b>Be Punctual</b>
-> <b>Earning Rewards</b> is implemented in<br>
->
-> <b>Rank</b> is implemented in<br>
-> CS473_MayBe/maybe/src/
+We assume you arrived at the meeting point on time. You can earn rewards by clicking coin icon. You can also check the reward ranking in ranking tab.
+
+><b>Earn rewards</b>
+- _CS473_MayBe/maybe/src/Main.js_
+
+><b>Rank</b> 
+- _CS473_MayBe/maybe/src/Statistics/Rank.js_
+
+---
 
 ## <b>Recall Appointment</b>
-><b>My Overall Monthly Statistics</b> is implemented in<br>
-CS473_MayBe/maybe/src/Statistics/<b>Statistics_Monthly.js</b><br>
-CS473_MayBe/maybe/src/Statistics/<b>Statistics_Monthly.css</b><br>
+You can recall your social life with some statistics and calendar memo function.
 
-> <b>Statistics for Each Friend</b> is implemented in<br>
-CS473_MayBe/maybe/src/Statistics/<b>Statistics_Friend.js</b><br> CS473_MayBe/maybe/src/Statistics/<b>Statistics_Friend.css</b><br>
+><b> Your overall monthly statistics </b>
+- _CS473_MayBe/maybe/src/Statistics/Statistics_Monthly.js_
+
+><b> Your friends' statistics </b>
+- _CS473_MayBe/maybe/src/Statistics/Statistics_Friend.js_
+
+---
+
+## <b>Manage Schedule</b>
+You can manage your own schedules in schedule tab.
+All functions related to schedule management are in _CS473_MayBe/maybe/src/Schedule/_ directory.

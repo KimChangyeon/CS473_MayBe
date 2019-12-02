@@ -25,7 +25,6 @@ import checkbox from './img/checkbox.png';
 import coins from './img/appointment_list_reward.png';
 import coin from './img/coin.png';
 import rank from './img/rank.png';
-import { thisExpression } from '@babel/types';
 
 function parse(str) {
     var y = str.substring(0,4),
@@ -52,6 +51,8 @@ class Main extends Component {
 			stage_id: 0,
 			stages : ['upcoming','make','schedule','statistics','vote','location', 'memo', 'rank'],
 			schedule: [],
+			alert1: 0,
+			alert2: 0,
 		}
 		this.setMarker = this.setMarker.bind(this);
 		this.setPlace = this.setPlace.bind(this);
@@ -79,6 +80,7 @@ class Main extends Component {
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
+		this.setState({alert2: 0});
 	}
 
 	setMarker(marker) {
@@ -154,6 +156,8 @@ class Main extends Component {
 
 	appointment_list(info) {
 
+				
+				
 				const date = parse(String(info.DateId));
 				var today = new Date();
 				const diffTime = date - today;
@@ -162,6 +166,9 @@ class Main extends Component {
 				const Title = info.What;
 				const participants = info.participants.split(',');
 				const participants_list = participants.map((person) => <li key={person}><span>{person}</span></li>)
+
+				const header = info.DateId === null ?
+				<b>TBD &nbsp;&nbsp; {Title}</b> : <b> D-{diffDays} &nbsp;&nbsp; {Title}</b>
 				
 				const place = info.Place === '' ?
 					<img src={gps} style={{width: "65%"}}
@@ -187,7 +194,7 @@ class Main extends Component {
 							<div style={{margin: "5px"}}>
 								<img src={coin} style={{float: "right", width: "50px"}} onClick={()=>{this.rewarding(); close()}} alt="reward"/>
 								You've arrived at your appointment on time! <br/>
-								<u>3 min</u> earlier <br/>
+								<u>4 min</u> earlier <br/>
 								<Button variant="outlineflat" onClick={()=>{this.rewarding(); close()}}>OK</Button>
 							</div>
 						)}
@@ -197,7 +204,7 @@ class Main extends Component {
 				<Card className='app_list'>
 
 					<Card.Header><img src={timer} style={{width: "20px", marginRight: "10px", textcolor: "white"}} alt="appointment" />
-					<b> D-{diffDays} &nbsp;&nbsp; {Title}</b>
+					{header}
 					</Card.Header>
 
 					<Card.Body>
@@ -211,8 +218,6 @@ class Main extends Component {
 							</div>
 							<div className="content-left"><b>Who</b><hr/>
 								<ul>
-									{/* <li><span>Sangho</span></li> */}
-									{/* <li><span>Chang-yeon Kim</span></li> */}
 									{participants_list}
 								</ul>
 							</div>
@@ -242,6 +247,21 @@ class Main extends Component {
 		let content;
 
 	const upcoming_list = this.state.schedule.map((sch) => <li key={sch}>{this.appointment_list(sch)}</li>)
+
+	if (this.state.schedule.length > 0 && this.state.alert2 === 0) {
+		var schedule = this.state.schedule;
+		for (var i = 0; i < schedule.length; i++) {
+			var sch = schedule[i];
+			console.log(sch);
+			if (sch.DateId === null) {
+				this.setState({alert1: 1});
+			}
+		}
+		if (this.state.alert1 === 1){
+			alert("YOU HAVE TO VOTE FOR NEW APPOINTMENTS.");
+			this.setState({alert2: 1});
+		}
+	}
     
     switch (main_stage) {
       case ('upcoming'):

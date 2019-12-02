@@ -7,6 +7,27 @@ import complete from '../img/button_complete.png';
 import cancel from '../img/button_cancel.png';
 
 class Vote extends Component {
+
+	constructor (props) {
+		super(props);
+		this.state = {
+			AppointmentId: this.props.AppointmentId,
+			AppointmentTime: [],
+			vote_result: [],
+		}
+	}
+
+	componentWillMount () {
+		var url_vote = '/vote_result/'.concat(this.props.AppointmentId);
+		fetch(url_vote)
+			.then(res => res.json())
+			.then(answer => this.setState({vote_result: answer.data}))        
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
+		console.log(this.state.vote_result);
+	}
+
 	render () {
 		const button =
 			<ul>

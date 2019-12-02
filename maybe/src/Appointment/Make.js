@@ -86,19 +86,20 @@ class Make extends Component {
 	}
 
 	setTimeSlot (slot) {
-		var answer = {};
+		var candidates = [];
 		if (slot.length > 0) {
 			for (var i = 0 ; i < slot.length ; i++) {
+				var answer = {};
 				var day = slot[i];
 				if (day.time.length > 0) {
 					answer.DateId = day.id;
 					answer.StartTime = day.time[0].slice(0,2);
 					answer.EndTime = day.time[0].slice(3,5);
-					break;
+					candidates.push(answer);
 				}
 			}
 		}
-		this.setState({timeSlot: answer});
+		this.setState({timeSlot: candidates});
 	}
 
 	handleSearch = (e) => {
@@ -131,31 +132,26 @@ class Make extends Component {
 		this.setState({selected_friend_id: uid});
 	}
 
+	voting (slot) {
+		var UserId = this.state.user_id;
+		var DateId = slot.DateId;
+		var StartTime = slot.StartTime;
+		var EndTime = slot.EndTime;
+		var url_vote = '/vote/'.concat(UserId).concat('/').concat(DateId).concat('/').concat(StartTime).concat('/').concat(EndTime);
+		fetch(url_vote, {method: "POST"})
+			.then(res => res.json())
+			.then(answer => console.log(answer.data))
+	}
+
 	submit () {
 		// '/make/:DateId/:StartTime/:EndTime/:What'
-		var DateId = this.state.timeSlot.DateId;
-		var StartTime = this.state.timeSlot.StartTime;
-		var EndTime = this.state.timeSlot.EndTime;
-		var url_make = '/make/'.concat(DateId).concat('/').concat(StartTime).concat('/').concat(EndTime).concat('/').concat(this.state.AppointmentName);
+		var url_make = '/make/'.concat(this.state.AppointmentName);
 		fetch(url_make, {method: "POST"})
 			.then(res => res.json())
 			.then(answer => console.log(answer.data))
 
-		// // Get Last Appointment Id.
-		// fetch('/AppId/')
-		// 	.then(res => res.json())
-		// 	.then(function (answer) {
-		// 		aid = answer.data[0].AppointmentId;
-		// 		console.log(aid);
-		// 	})
-		// .catch((error)=>{
-		// 	console.log('Error fetching man',error);
-		// });
-
-		// setTimeout(function(){
-
-		// }, 10000); 
-
+		// candidate registration for the avaliable time for the user.
+		
 		// Participant registration.
 		for (var k = 0 ; k < this.state.friends_in_appointment.length ; k++){
 			var p = this.state.friends_in_appointment[k];
@@ -177,6 +173,10 @@ class Make extends Component {
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
+
+		var timeSlot = this.state.timeSlot;
+		timeSlot.map((slot) => this.voting(slot));
+		
 	}
 
 	render () {
@@ -306,7 +306,7 @@ class Make extends Component {
 				break;
 
 			case 'schedule_friend':
-				content = <Schedule nextStage = {this.props.nextStage} header = {this.props.header} user_id = {this.state.user_id} AppointmentId = {this.state.AppointmentId}/>;
+				content = <Schedule nextStage = {this.props.nextStage} header = {this.props.header} user_id = {this.state.selected_friend_id} AppointmentId = {this.state.AppointmentId}/>;
 				break;
 
     		default:

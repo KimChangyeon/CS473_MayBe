@@ -70,7 +70,7 @@ class Location extends Component {
 		const body = <body className= "Body">
 				<InputGroup className="mb-3">
 					<InputGroup.Prepend>
-						<InputGroup.Text id="basic-addon1">Place</InputGroup.Text>
+						<InputGroup.Text id="basic-addon3">Location</InputGroup.Text>
 					</InputGroup.Prepend>
 					<FormControl
 						placeholder="Enter where to meet"

@@ -75,9 +75,9 @@ router.get('/fri/:id', (req, res) => {
     })
 });
 
-router.post('/make/:DateId/:StartTime/:EndTime/:What', (req, res) => {
-    var query = 'INSERT INTO Appointment(DateId, StartTime, EndTime, What) VALUES (?,?,?,?)'
-    db.query(query, [req.params.DateId, req.params.StartTime, req.params.EndTime, req.params.What], (err, rows) => {
+router.post('/make/:What', (req, res) => {
+    var query = 'INSERT INTO Appointment(What) VALUES (?)'
+    db.query(query, req.params.What, (err, rows) => {
         if (!err) {
             res.send({data: 'POSTING SUCCESSED FOR MAKING APPOINTMENT.'});
         }
@@ -86,6 +86,19 @@ router.post('/make/:DateId/:StartTime/:EndTime/:What', (req, res) => {
         }
     })
 });
+
+router.post('/vote/:UserId/:DateId/:StartTime/:EndTime', (req, res) => {
+    var query = 'INSERT INTO Vote(AppointmentId, UserId, DateId, StartTime, EndTime) VALUES ((SELECT LAST_INSERT_ID(AppointmentId) as AppointmentId from Appointment order by LAST_INSERT_ID(AppointmentId) desc limit 1),?,?,?,?)'
+    db.query(query, [req.params.UserId,req.params.DateId,req.params.StartTime,req.params.EndTime], (err, rows) => {
+        if (!err) {
+            res.send({data: 'POSTING SUCCESSED FOR VOTING.'});
+        }
+        else {
+            res.send({data: err});
+        }
+    })
+});
+
 
 router.post('/register/:partname', (req, res) => {
     var query = 'INSERT INTO Appointment_participants VALUES ((SELECT LAST_INSERT_ID(AppointmentId) as AppointmentId from Appointment order by LAST_INSERT_ID(AppointmentId) desc limit 1),(SELECT UserId from User where name = ?))'
@@ -162,6 +175,19 @@ router.post('/modify_memo/:id/:Memo/', (req, res) => {
 router.get('/AppId/', (req, res) => {
     var query = 'SELECT LAST_INSERT_ID(AppointmentId) as AppointmentId from Appointment order by LAST_INSERT_ID(AppointmentId) desc limit 1'
     db.query(query, req, (err, rows) => {
+        if (!err) {
+            res.send({data: rows});
+        }
+        else {
+            res.send({data: err});
+        }
+    })
+});
+
+//한 약속에 대한 투표 결과 가져오기.
+router.get('/vote_result/:id', (req, res) => {
+    var query = 'SELECT DateId, StartTime, EndTime FROM Vote WHERE AppointmentId = ?'
+    db.query(query, req.params.id, (err, rows) => {
         if (!err) {
             res.send({data: rows});
         }
