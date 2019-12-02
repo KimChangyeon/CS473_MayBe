@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Cell.css'
+import heart from '../img/heart.png'
 
 const bgColors = {
     1 : "#ffe6e6",
@@ -19,6 +20,11 @@ class Cell extends Component {
         if (!disabled) cellClick(row,id,!selected)
     }
 
+    renderHeart = () => {
+        {/* <img className = "hamburger" src = {hamburger}/> */}
+        if (this.props.selected) return <img className = "heart" src = {heart} />
+        return null
+    }
     render(){
         let className = ""
         let {
@@ -37,6 +43,7 @@ class Cell extends Component {
         }
         switch (type) {
             case "Choose" :
+                console.log("props type : choose")
                 if (selected) {
                     return (
                         <td
@@ -53,16 +60,18 @@ class Cell extends Component {
                     )
                 }
             case "Vote" :
+                console.log ("props type : vote")
                 if (selected) {
                     if (selectNum >= 5) selectNum = 5
                     else selectNum += 1
-                    console.log(selectNum)
                 }
                 return(
                     <td
                         onClick = {this.handleClick}
                         style = {{backgroundColor : bgColors[selectNum]}}
-                    ></td>
+                    >
+                        {this.renderHeart()}
+                    </td>
                 )
              }
     }

@@ -183,7 +183,7 @@ class ChooseTable extends Component {
         this.updateDates(updatedChoice);
         //setState
         if(this.props.type == "Choose") this.setState({chooseCells : updatedCells, choice : updatedChoice})
-        else this.setState({chooseCells : updatedCells, choice : updatedChoice})
+        else this.setState({voteCells : updatedCells, choice : updatedChoice})
    }
    
     renderRow = () =>{
@@ -200,6 +200,7 @@ class ChooseTable extends Component {
             })
         }
         else {
+            console.log("vote")
             renderCells = this.state.voteCells.map((Row) => {
                 return (
                     <tr>
@@ -295,7 +296,7 @@ class ChooseTable extends Component {
 
     render(){
         // this.updateDates();
-        console.log("state : ",this.state)
+        console.log("type : ",this.props.type)
         return (
             <div>
                 {this.renderInputBox()}
