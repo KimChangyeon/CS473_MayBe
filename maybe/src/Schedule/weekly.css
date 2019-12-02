@@ -59,7 +59,8 @@
     text-transform: uppercase;
 }
 
-.LayoutBase-root-273 {
-    width: 500px;
-    float: left;
+.scheduleAddButton {
+	position: relative;
+	left: 400px;
+	top: -100px;
 }
