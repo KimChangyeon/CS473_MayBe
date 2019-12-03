@@ -100,6 +100,18 @@ router.post('/vote/:UserId/:DateId/:StartTime/:EndTime', (req, res) => {
     })
 });
 
+router.post('/votee/:aid/:UserId/:DateId/:StartTime/:EndTime', (req, res) => {
+    var query = 'INSERT INTO Vote(AppointmentId, UserId, DateId, StartTime, EndTime) VALUES (?,?,?,?,?)'
+    db.query(query, [req.params.aid, eq.params.UserId,req.params.DateId,req.params.StartTime,req.params.EndTime], (err, rows) => {
+        if (!err) {
+            res.send({data: 'POSTING SUCCESSED FOR VOTING WITH WHEN BUTTON.'});
+        }
+        else {
+            res.send({data: err});
+        }
+    })
+});
+
 
 router.post('/register/:partname', (req, res) => {
     var query = 'INSERT INTO Appointment_participants VALUES ((SELECT LAST_INSERT_ID(AppointmentId) as AppointmentId from Appointment order by LAST_INSERT_ID(AppointmentId) desc limit 1),(SELECT UserId from User where name = ?))'
@@ -136,6 +148,20 @@ router.post('/reward/:id/:point', (req, res) => {
         }
     })
 });
+
+
+router.get('/vote_decision/:id', (req, res) => {
+    var query = 'SELECT IF ((SELECT COUNT(*) AS count FROM (SELECT * FROM Appointment_participants WHERE AppointmentId = 49) B) = (SELECT COUNT(*) as count FROM (SELECT UserId FROM (SELECT UserId from Vote Where AppointmentId = 49) B GROUP BY UserId) C), \'true\', \'false\') as decision;'
+    db.query(query, req.params.id, (err, rows) => {
+        if (!err) {
+            res.send({data: rows});
+        }
+        else {
+            res.send({data: err});
+        }
+    })
+});
+
 
 router.post('/modify_time/:id/', (req, res) => {
     var query = 'UPDATE Appointment AS App,( SELECT DateId, StartTime, EndTime FROM (SELECT DateId, StartTime, EndTime, count(*) as count FROM (SELECT * FROM Vote WHERE AppointmentId = ?) A GROUP BY DateId, StartTime, EndTIme ORDER BY count, DateId LIMIT 1) Final ) AS vote_result SET App.DateId = vote_result.DateId, App.StartTime = vote_result.StartTime, App.EndTime = vote_result.EndTime WHERE App.AppointmentId = ?'
@@ -234,8 +260,6 @@ router.get('/friend_reward/:id', (req, res) => {
         }
     })
 });
-
-
 
 
 module.exports = router;

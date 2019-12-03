@@ -17,7 +17,8 @@ class Vote extends Component {
 		this.state = {
 			AppointmentId: this.props.AppointmentId,
 			AppointmentTime: [],
-			choiceDate : []
+			choiceDate : [],
+			decision: ''
 		}
 	}
 
@@ -26,11 +27,58 @@ class Vote extends Component {
 		console.log(this.state.updated)
 	}
 
+	voting (slot) {
+		var UserId = this.props.user_id;
+		var DateId = slot.DateId;
+		var StartTime = slot.StartTime;
+		var EndTime = slot.EndTime;
+		var url_vote = '/votee/'.concat(this.props.AppointmentId).concat('/').concat(UserId).concat('/').concat(DateId).concat('/').concat(StartTime).concat('/').concat(EndTime);
+		fetch(url_vote, {method: "POST"})
+			.then(res => res.json())
+			.then(answer => console.log(answer.data))
+	}
+
+	Complete () {
+		var candidates = [];
+		var slot = this.state.choiceDate;
+		if (slot.length > 0) {
+			for (var i = 0 ; i < slot.length ; i++) {
+				var answer = {};
+				var day = slot[i];
+				if (day.time.length > 0) {
+					answer.DateId = day.id;
+					answer.StartTime = day.time[0].slice(0,2);
+					answer.EndTime = day.time[0].slice(3,5);
+					candidates.push(answer);
+				}
+			}
+		}
+		candidates.map((slot) => this.voting(slot));
+		var url_decision = '/vote_decision/'.concat(this.props.AppointmentId);
+		fetch(url_decision)
+			.then(res => res.json())
+			.then(answer => this.setState({decision: answer.data}))
+		
+		if (this.state.decision === 'true') {
+			var url_time = '/modify_time/'.concat(this.props.AppointmentId);
+			fetch(url_time, {method: "POST"})
+				.then(res => res.json())
+				.then(answer => console.log(answer.data))
+			alert('MAKING APPOINTMENT COMPLETED.');
+			this.props.nextStageWithAppointment(0,0)
+		}
+
+		else if (this.state.decision === 'false') {
+			alert('VOTING COMPLETED.');
+			this.props.nextStageWithAppointment(0,0)
+		}
+	}
+
 	render () {
 		const button =
 			<ul>
 				<li> <img className="complete" src={complete} alt="Complete"
-						onClick={()=>this.props.nextStageWithAppointment(0,0)}/> </li>
+						onClick={()=>this.Complete()}/> </li>
 				<li> <img className="cancel" src={cancel} alt="Cancel"
 						onClick={()=>this.props.nextStageWithAppointment(0,0)}/> </li>
 			</ul>
