@@ -90,21 +90,18 @@ class Vote extends Component {
 		// Promise
 			// .all(promises)
 			// .then(this.setState({l: 0}))
-		this.setState({l: 0});
 
-		if (this.state.l === 0){
-			if (this.state.decision[0].decision === 'true') {
-				var url_time = '/modify_time/'.concat(this.props.AppointmentId);
-				fetch(url_time, {method: "POST"})
-					.then(answer => console.log(answer.data))
-				alert('MAKING APPOINTMENT COMPLETED.');
-				this.props.nextStageWithAppointment(0,0)
-			}
+		if (this.state.decision[0].decision === 'true') {
+			var url_time = '/modify_time/'.concat(this.props.AppointmentId);
+			fetch(url_time, {method: "POST"})
+				.then(answer => console.log(answer.data))
+			alert('MAKING APPOINTMENT COMPLETED.');
+			this.props.nextStageWithAppointment(0,0)
+		}
 
-			else if (this.state.decision[0].decision === 'false') {
-				alert('VOTING COMPLETED.');
-				this.props.nextStageWithAppointment(0,0)
-			}
+		else if (this.state.decision[0].decision === 'false') {
+			alert('VOTING COMPLETED.');
+			this.props.nextStageWithAppointment(0,0)
 		}
 	}
 
