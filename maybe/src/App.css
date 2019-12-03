@@ -31,7 +31,8 @@ li {
 
 .menu{float: right;}
 .menu li {display: inline-block;}
-.menu li img {width: 60px; height: 60px; margin-top: 5.5px;}
+.menu li .fab {width: 57px; height: 57px; margin-top: 6px; margin-right: 5px; background: #3d4965;}
+.menu li .fab .White {width: 30px; height: 30px;}
 
 body{
   width: 500px;
@@ -48,6 +49,7 @@ body{
 .Darkblue {color: #3d4965;}
 .Gray {color: #8a8686;}
 .Darkgray {color: #3c3c3c;}
+.White {color: white;}
 
 .Bar {
 	width: 100%;

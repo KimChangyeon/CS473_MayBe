@@ -3,6 +3,11 @@ import React, {Component} from 'react';
 import {Card} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import Popup from 'reactjs-popup';
+import Fab from '@material-ui/core/Fab';
+import EmojiEventsRoundedIcon from '@material-ui/icons/EmojiEventsRounded';
+import PeopleAltRoundedIcon from '@material-ui/icons/PeopleAltRounded';
+import EventNoteRoundedIcon from '@material-ui/icons/EventNoteRounded';
+import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import './App.css';
 
 /* Classes */
@@ -15,8 +20,6 @@ import Memo from './Appointment/Memo.js';
 import Rank from './Statistics/Rank.js';
 
 /* Icons */
-import calendar from './img/hamburger_calendar.png';
-import statistics from './img/hamburger_statistics.png';
 import timer from './img/appointment_list_timer.png';
 import listbutton from './img/button_friend_list.png';
 import gps from './img/appointment_list_gps_location.png';
@@ -24,7 +27,6 @@ import align from './img/align.png';
 import checkbox from './img/checkbox.png';
 import coins from './img/appointment_list_reward.png';
 import coin from './img/coin.png';
-import rank from './img/rank.png';
 
 function parse(str) {
     var y = str.substring(0,4),
@@ -136,15 +138,21 @@ class Main extends Component {
 						<h1 className="Darkblue" onClick={()=>this.nextStage(0)}><a href="#">MayBe</a></h1>
 						<nav>
 							<ul className="menu">
-								<li><a href="#">
-									<img src={rank} onClick={()=>this.nextStage(7)} alt="rank" />
-								</a></li>
-								<li><a href="#">
-									<img src={statistics} onClick={()=>this.nextStage(3)} alt="statistics" />
-								</a></li>
-								<li><a href="#">
-									<img src={calendar} onClick={()=>this.nextStage(2)} alt="schedule" />
-								</a></li>
+								<li>
+									<Fab className="fab" onClick={()=>this.nextStage(7)}>
+										<EmojiEventsRoundedIcon className="White"/>
+									</Fab>
+								</li>
+								<li>
+									<Fab className="fab" onClick={()=>this.nextStage(3)}>
+										<PeopleAltRoundedIcon className="White"/>
+									</Fab>
+								</li>
+								<li>
+									<Fab className="fab" onClick={()=>this.nextStage(2)}>
+										<EventNoteRoundedIcon className="White"/>
+									</Fab>
+								</li>
 							</ul>
 						</nav>
 				</div>
@@ -167,11 +175,11 @@ class Main extends Component {
 				const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) ; 
 
 				const Title = info.What;
-				const participants = info.participants.split(',');
-				const participants_list = participants.map((person) => <li key={person}><span>{person}</span></li>)
+				// const participants = info.participants.split(',');
+				// const participants_list = participants.map((person) => <li key={person}><span>{person}</span></li>)
 
 				const header = info.DateId === null ?
-				<b>TBD &nbsp;&nbsp; {Title}</b> : <b> D-{diffDays} &nbsp;&nbsp; {Title}</b>
+				<b>TBD &nbsp;&nbsp; {Title} <CloseRoundedIcon style={{float: "right"}}/></b> : <b> D-{diffDays} &nbsp;&nbsp; {Title} <CloseRoundedIcon style={{float: "right"}}/></b>
 				
 				const place = info.Place === '' ?
 					<img src={gps} style={{width: "65%"}}
@@ -226,7 +234,8 @@ class Main extends Component {
 							</div>
 							<div className="content-left"><b>Who</b><hr/>
 								<ul>
-									{participants_list}
+									{/*{participants_list}*/}
+									Sangho Lim Kim
 								</ul>
 							</div>
 							<div className="content-left"><b>Where</b><hr/>
@@ -279,11 +288,11 @@ class Main extends Component {
 				header = this.header(bar, button);
         body =
 					<body className="Body"> 
-					{/* <li>{this.appointment_list(2, this.state.schedule[0])}</li>
+						<li>{this.appointment_list(2, this.state.schedule[0])}</li>
 						<li>{this.appointment_list(3, this.state.schedule[0])}</li>
 						<li>{this.appointment_list(4, this.state.schedule[0])}</li>
 						<li>{this.appointment_list(5, this.state.schedule[0])}</li>
-						<li>{this.appointment_list(6, this.state.schedule[0])}</li> */}
+						<li>{this.appointment_list(6, this.state.schedule[0])}</li>
 						{upcoming_list}
 					</body>
 				content = <div>{header}{body}</div>;
