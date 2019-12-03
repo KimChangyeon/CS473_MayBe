@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ButtonGroup, Button, ListGroup, Form, InputGroup, FormControl} from 'react-bootstrap';
+import {ButtonGroup, Button, ListGroup, Form, InputGroup} from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 import AddIcon from '@material-ui/icons/Add'
 import '../App.css';
@@ -20,8 +20,7 @@ import complete from '../img/button_complete.png';
 import cancel from '../img/button_cancel.png';
 import statistics from '../img/statistics.png';
 import calendar from '../img/friend_list_friend_calendar.png';
-import search from '../img/search.png'
-import help from '../img/help.png';
+import search from '../img/search.png';
 
 function make_friends(answer){
 	var friend_list = [];

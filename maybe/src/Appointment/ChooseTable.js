@@ -16,7 +16,14 @@ import './ChooseTable.css'
 
 let choiceDate = []
 let friendSet= new Set()
-let vote_result = []
+let fakeData = [
+    {
+        DateId : 20191128,
+        EndTime : 14,
+        StartTime : 13,
+        UserName : "guest"
+    }
+]
 
 function handling_schedule (schedules) {
     var answer = [];
@@ -111,37 +118,38 @@ class ChooseTable extends Component {
             ],
             choice : [
                 {
-                    id: 20191125,
+                    id: 20191202,
                     time : []
                 },
                 {
-                    id : 20191126,
+                    id : 20191203,
                     time : []
                 },
                 {
-                    id : 20191127,
+                    id : 20191204,
                     time : []
                 },
                 {
-                    id : 20191128,
+                    id : 20191205,
                     time: []
                 },
                 {
-                    id : 20191129,
+                    id : 20191206,
                     time : []
                 },
                 {
-                    id: 20191130,
+                    id: 20191207,
                     time : []
                 },
                 {
-                    id : 20191201,
+                    id : 20191208,
                     time : []
                 },
             ],
             friends : [],
             what: '',
-            user_schedule: []
+            user_schedule: [],
+            vote_result : []
             };
         this.onChange = this.onChange.bind(this);
     }
@@ -157,24 +165,15 @@ class ChooseTable extends Component {
         });
         /*update cells with props*/
         if (this.props.type === "Vote") {
-
             var url_vote = '/vote_result/'.concat(this.props.AppointmentId);
             fetch(url_vote)
                 .then(res => res.json())
-                .then(answer => vote_result = answer.data)   
+                .then(answer => this.setState({ vote_result : answer.data }))   
             .catch((error)=>{
                 console.log('Error fetching man',error);
             });
             console.log(this.state.vote_result);
-            // vote_result = [
-            //     {
-            //         DateId : 20191128,
-            //         EndTime : 14,
-            //         StartTime : 13,
-            //         UserName : "guest"
-            //     }
-            // ]
-            const voteResults = vote_result
+            const voteResults = this.state.vote_result
             let DateId
             let EndTime
             let StartTime
@@ -398,7 +397,7 @@ class ChooseTable extends Component {
 
     render(){
         // this.updateDates();
-        console.log("type : ",this.props.type)
+        console.log("vote result : ",this.state.vote_result)
         return (
             <div>
                 {this.renderInputBox()}

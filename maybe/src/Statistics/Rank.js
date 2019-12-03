@@ -1,6 +1,6 @@
 /* <div>아이콘 제작자 <a href="https://www.flaticon.com/kr/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/kr/" title="Flaticon">www.flaticon.com</a></div> */
 import React, {Component} from 'react'
-import {Row, Col, ListGroup, Button} from 'react-bootstrap'
+import {Row, Col, ListGroup} from 'react-bootstrap'
 import Popup from 'reactjs-popup'
 import HelpRoundedIcon from '@material-ui/icons/HelpRounded';
 
@@ -14,7 +14,6 @@ import b2 from "../img/badge2.png"
 import b3 from "../img/badge3.png"
 import b4 from "../img/badge4.png"
 import b5 from "../img/badge5.png"
-import help from "../img/help.png"
 
 class Rank extends Component {
     constructor (props) {
@@ -27,7 +26,7 @@ class Rank extends Component {
                 // {name: "Seunghee Koh", reward: 120},
                 // {name: "Changyeon Kim", reward: 58},
                 // {name: "Jiho Jin", reward: 19},
-                {name: "(YOU)", reward: this.props.user_reward},
+                // {name: "(YOU)", reward: this.props.user_reward},
             ]
         }
     }
@@ -41,9 +40,6 @@ class Rank extends Component {
 		.catch((error)=>{
 			console.log('Error fetching man',error);
         });
-        var k = this.state.friends_reward_rank;
-        k.push({name: "(YOU)", reward: this.props.user_reward});
-        this.setState({friends_reward_rank: k});
     }
 
     reward_rank() {

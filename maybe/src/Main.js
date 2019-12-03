@@ -207,9 +207,9 @@ class Main extends Component {
 			msg = "You are late!"
 		}
 	
-		this.state.early_min = early_min;
-		this.state.reward_pt = reward_pt;
-		this.state.early_msg = msg;
+		this.setState({early_min: early_min});
+		this.setState({reward_pt: reward_pt});
+		this.setState({early_msg: msg});
 	}
 
 	appointment_list(info) {
@@ -260,7 +260,8 @@ class Main extends Component {
 
 				const reward = info.Place === '' ?
 					<div style={{fontSize: "11pt", lineHeight: "20px", marginTop: "2px"}}> Please choose the location </div> :
-					<Popup trigger={<img src={coins} style={{width: "60%", marginTop: "2px", zindex :9999}} alt="reward"/>} contentStyle={{width: "250px",zindex :9999}}>
+					<Popup trigger={<img src={coins} style={{width: "60%", marginTop: "2px", zindex :9999}} alt="reward"/>}
+						contentStyle={{width: "250px",zindex :9999}} position="left top">
 						{close => (
 							<div style={{margin: "5px"}}>
 								{this.early_cal(info, diffDays)}
