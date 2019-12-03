@@ -133,6 +133,24 @@ class Main extends Component {
 		this.props.setReward(point);
 	}
 
+	delete_appointment (aid) {
+		var url_delete = '/delete_appt/'.concat(aid);
+		fetch(url_delete, {method: "POST"})
+			.then(answer => console.log(answer.data))        
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
+		var url_final = '/appt/'.concat(this.props.user_id);
+		fetch(url_final)
+			.then(res => res.json())
+			.then(answer => this.setState({schedule: answer.data}))        
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
+	}
+
+
+
 
 	header(bar, button) {
 		return (
@@ -207,7 +225,7 @@ class Main extends Component {
 				const participants_list = participants.map((person) => <li key={person}><span>{person}</span></li>)
 
 				const header = info.DateId === null ?
-				<b>TBD &nbsp;&nbsp; {Title} <CloseRoundedIcon style={{float: "right"}}/></b> : <b> {D_day} &nbsp;&nbsp; {Title} <CloseRoundedIcon style={{float: "right"}}/></b>
+				<b>TBD &nbsp;&nbsp; {Title} <CloseRoundedIcon style={{float: "right"}} onClick = {()=>{this.delete_appointment(info.AppointmentId)}}/></b> : <b> {D_day} &nbsp;&nbsp; {Title} <CloseRoundedIcon style={{float: "right"}} onClick = {()=>{this.delete_appointment(info.AppointmentId)}}/></b>
 				
 				const place = info.Place === '' ?
 					<img src={gps} style={{width: "65%"}}
