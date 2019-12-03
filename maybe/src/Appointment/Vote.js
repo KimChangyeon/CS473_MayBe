@@ -16,7 +16,14 @@ class Vote extends Component {
 		this.state = {
 			AppointmentId: this.props.AppointmentId,
 			AppointmentTime: [],
-			vote_result: [],
+			vote_result: [
+				{
+					DateId : 20191128,
+					EndTime : 14,
+					StartTime : 13,
+					UserName : "guest"
+				}
+			],
 		}
 	}
 
@@ -61,6 +68,9 @@ class Vote extends Component {
 								  the darker the color of timeslots becomes<br/>
 								- You can check friends  <br/>
 								  who completed vote by clicking animal icons <br/>
+								<b> Warning </b><hr/>
+								Once you push 'Complete' button, you cannot vote again! <br/>
+								So please think carefully!<br/>								
                                 <br/>
                                 <Button variant="outlineflat" style={{float: "right"}}
                                     onClick={()=>{close()}}>OK</Button>
@@ -74,6 +84,7 @@ class Vote extends Component {
 					<ChooseTable 
 						type = "Vote"
 						AppointmentTime = {this.props.AppointmentTime}
+						vote_result = {this.state.vote_result}
 					/>
 				</body>
 		const content = <div>

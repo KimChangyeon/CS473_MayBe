@@ -15,7 +15,7 @@ import FriendIcons from './FriendIcons'
 import './ChooseTable.css'
 
 let choiceDate = []
-
+let friendSet= new Set()
 
 function handling_schedule (schedules) {
     var answer = [];
@@ -138,16 +138,7 @@ class ChooseTable extends Component {
                     time : []
                 },
             ],
-            friends : [
-                {
-                    name : "jisu",
-                    img : 0
-                },
-                {
-                    name : "jiho",
-                    img : 2
-                }
-            ],
+            friends : [],
             what: '',
             user_schedule: []
             };
@@ -163,7 +154,65 @@ class ChooseTable extends Component {
         .catch((error)=>{
             console.log('Error fetching man',error);
         });
-        
+        /*update cells with props*/
+        if (this.props.type === "Vote") {
+            const voteResults = this.props.vote_result
+            console.log(voteResults)
+            let DateId
+            let EndTime
+            let StartTime
+            let time = []
+            let Username
+            let updatedCell
+            let updatedVoteCells = this.state.voteCells
+            let i = 0
+            voteResults.map((vote)=>{
+                DateId = vote.DateId
+                EndTime = vote.EndTime
+                StartTime = vote.StartTime
+                Username = vote.UserName
+                i = 0
+                
+                //set user name first
+                friendSet.add(Username)
+
+                //update votedata using given vote results
+                for (i=StartTime; i<EndTime; i++){
+                    updatedVoteCells = updatedVoteCells.map((data)=>{
+                        if (data.row == i){
+                           updatedCell = data.cell.map((content)=>
+                            content.id === DateId
+                            ? {...content, 
+                                disabled : false,
+                                selected : content.selected,
+                                selectNum : content.selectNum + 1}
+                            :content)
+                            return {...data, cell : updatedCell}
+                        }
+                        else{
+                            return data
+                        }
+                    })
+                }
+                this.setState({voteCells : updatedVoteCells })
+            })
+    
+            /* update friends list */
+            const friendList = Array.from(friendSet)
+            let friend
+            let friendState =[]
+            let index = 0
+            for (friend of friendList) {
+                friendState.push({
+                    name : friend,
+                    img : index
+                })
+                index ++
+            }
+            this.setState({friends : friendState})
+        }
+       
+
     }
   
     cellClick =(row, id, selected) => {
@@ -248,11 +297,11 @@ class ChooseTable extends Component {
         )
     }
 
-    renderFriends = () => {
-        if (this.state.friends.length != 0 && this.props.type == "Vote") {
+    renderFriends = () => {        
+        if ( this.props.type == "Vote") {
             return (
                 <Grid container item xs = {20} spacing = {1}>
-                    <Grid item xs = {5}>
+                    <Grid item xs = {4.5}>
                         <Typography variant = "h6" ><span style = {{fontFamily : "ubuntu"}}>Completed Friends</span></Typography>
                     </Grid>
                     {this.state.friends.map((friend)=>
@@ -265,6 +314,24 @@ class ChooseTable extends Component {
             )
         }
         return null
+    }
+
+    renderInputBox = () => {
+        if (this.props.type === "Choose")
+            return (
+                <InputGroup className="mb-3">
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="basic-addon1">Title</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <FormControl
+                            placeholder="Enter the name of Appointment"
+                            onChange={this.onChange}
+                            // aria-label="Place"
+                            // aria-describedby="basic-addon1"
+                        />
+                </InputGroup>
+            )
+        else return null
     }
 
     updateDates =(updatedChoice) => {
@@ -312,24 +379,6 @@ class ChooseTable extends Component {
 		const value = e.target.value === "" ? null : e.target.value;
 		this.props.setAppointmentName(value);
 	}
-
-    renderInputBox = () => {
-        if (this.props.type === "Choose")
-            return (
-                <InputGroup className="mb-3">
-                        <InputGroup.Prepend>
-                            <InputGroup.Text id="basic-addon1">Title</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <FormControl
-                            placeholder="Enter the name of Appointment"
-                            onChange={this.onChange}
-                            // aria-label="Place"
-                            // aria-describedby="basic-addon1"
-                        />
-                </InputGroup>
-            )
-        else return null
-    }
 
     render(){
         // this.updateDates();

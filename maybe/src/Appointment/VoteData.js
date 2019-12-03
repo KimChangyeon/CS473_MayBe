@@ -1,9 +1,9 @@
 export const fiveVoteCandidates = [
     {
         id:20191125,
-        disabled : false,
+        disabled : true,
         selected : false,
-        selectNum : 1
+        selectNum : 0
     },
     {   
         id:20191126,
@@ -51,9 +51,9 @@ export const sixVoteCandidates = [
     },
     {   
         id:20191126,
-        disabled : false,
+        disabled : true,
         selected : false,
-        selectNum : 2
+        selectNum : 0
     },
     {
         id:20191127,
@@ -133,15 +133,15 @@ export const sevenVoteCandidates = [
 export const fourVoteCandidates = [
     {
         id:20191125,
-        disabled : false,
+        disabled : true,
         selected : false,
-        selectNum : 2
+        selectNum : 0
     },
     {   
         id:20191126,
-        disabled : false,
+        disabled : true,
         selected : false,
-        selectNum : 1
+        selectNum : 0
     },
     {
         id:20191127,
@@ -151,15 +151,15 @@ export const fourVoteCandidates = [
     },
     {
         id:20191128,
-        disabled : false,
+        disabled : true,
         selected : false,
-        selectNum : 4
+        selectNum : 0
     },
     {
         id:20191129,
-        disabled : false,
+        disabled : true,
         selected : false,
-        selectNum : 1
+        selectNum : 0
     },
     {
         id:20191130,
@@ -183,15 +183,15 @@ export const twelveVoteCandidates = [
     },
     {   
         id:20191126,
-        disabled : false,
+        disabled : true,
         selected : false,
-        selectNum : 1
+        selectNum : 0
     },
     {
         id:20191127,
-        disabled : false,
+        disabled : true,
         selected : false,
-        selectNum : 2
+        selectNum : 0
     },
     {
         id:20191128,
@@ -201,9 +201,9 @@ export const twelveVoteCandidates = [
     },
     {
         id:20191129,
-        disabled : false,
+        disabled : true,
         selected : false,
-        selectNum : 3
+        selectNum : 0
     },
     {
         id:20191130,
@@ -321,15 +321,15 @@ export const threeVoteCandidates = [
     },
     {
         id:20191127,
-        disabled : false,
+        disabled : true,
         selected : false,
-        selectNum : 1
+        selectNum : 0
     },
     {
         id:20191128,
-        disabled : false,
+        disabled : true,
         selected : false,
-        selectNum : 3
+        selectNum : 0
     },
     {
         id:20191129,
