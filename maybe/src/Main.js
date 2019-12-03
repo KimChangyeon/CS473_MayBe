@@ -195,13 +195,13 @@ class Main extends Component {
 		} else if (diffDays > 0) {
 			early_min = 0;
 			reward_pt = 50;
-			msg += "(" + String(diffDays) + " days early)";
+			msg += "\n(" + String(diffDays) + " days early)";
 		} else if (diffDays < 0) {
 			early_min = 0;
 			msg = "You are late!";
 		} else if (early_min >= 0) {
 			reward_pt = early_min >= 10 ? 50 : 5 * early_min + 5;
-			msg += "(" + String(early_min) + " minutes early)";
+			msg += "\n(" + String(early_min) + " minutes early)";
 		} else {
 			early_min = 0;
 			msg = "You are late!"
@@ -221,16 +221,17 @@ class Main extends Component {
 							 diffDays === 0 ? "D-Day" :
 							 "D+" + String(-diffDays); 
 
-				const vote = info.DateID === null ?
-							<a href="#">
-								<img src={checkbox} style={{width: "50%", marginLeft: "12px", marginTop: "5px"}}
-									onClick={()=>this.nextStageWithAppointment(4, info.AppointmentId, [info.StartTime, info.EndTime])}
-									alt="When"/>
-							</a>
+				const vote = info.DateId === null ?
+							<div>
+								<a href="#">
+									<img src={checkbox} style={{width: "50%", marginLeft: "12px", marginTop: "5px"}}
+										onClick={()=>this.nextStageWithAppointment(4, info.AppointmentId, [info.StartTime, info.EndTime])}
+										alt="When"/>
+								</a>
+							</div>
 							: <div className="edit">
-								{info.DateId}
-								{info.StartTime}
-								{info.EndTime}
+								{parseInt(info.DateId/10000)}/{parseInt((info.DateId%10000)/100)}/{(info.DateId%100)}<br/>
+								{info.StartTime}:00 ~ {info.EndTime}:00
 							</div>
 
 				const Title = info.What;
