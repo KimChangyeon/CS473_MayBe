@@ -43,8 +43,9 @@ class Vote extends Component {
 							<div className="instruction" style={{margin: "15px"}}>
 								<b>Vote Meeting Time!</b><hr/>
                                 When do you want to meet your friends?<br/>
-                                Choose desirable timeslots <br/>
-								- The more friends choose certain timeslots, the darker the color of timeslots becomes<br/>
+								<br/>	
+                                Choose desirable timeslots! <br/>
+								- The more friends choose certai	n timeslots, the darker the color of timeslots becomes<br/>
 								- You can check friends who completed vote by clicking animal icons <br/>
 								  <br/>
 								<b> Warning </b><hr/>
