@@ -2,6 +2,7 @@
 import React, {Component} from 'react'
 import {Row, Col, ListGroup, Button} from 'react-bootstrap'
 import Popup from 'reactjs-popup'
+import HelpRoundedIcon from '@material-ui/icons/HelpRounded';
 
 import '../App.css'
 import './Rank.css'
@@ -20,12 +21,12 @@ class Rank extends Component {
         super(props);
         this.state = {
             friends_reward_rank: [
-                {name: "Juho Kim", reward: 1000},
-                {name: "Sangho Lim", reward: 727},
-                {name: "Jisu Choi", reward: 459},
-                {name: "Seunghee Koh", reward: 120},
-                {name: "Changyeon Kim", reward: 58},
-                {name: "Jiho Jin", reward: 19},
+                // {name: "Juho Kim", reward: 1000},
+                // {name: "Sangho Lim", reward: 727},
+                // {name: "Jisu Choi", reward: 459},
+                // {name: "Seunghee Koh", reward: 120},
+                // {name: "Changyeon Kim", reward: 58},
+                // {name: "Jiho Jin", reward: 19},
                 {name: "(YOU)", reward: this.props.user_reward},
             ]
         }
@@ -98,28 +99,25 @@ class Rank extends Component {
 		const bar = <div className="Bar">
                         Punctuality Rewards
                         <Popup
-                        trigger={<img id="help" src={help} alt="help" />} 
+                        trigger={<a href="#"><HelpRoundedIcon style={{width: "23px", position: "relative", left: "10px", top: "-1px"}}/></a>} 
                         position = "left top"
-                        contentStyle={{width: "270px",zindex: 9999}}>
+                        contentStyle={{width: "250px",zindex: 9999}}>
 						{close => (
-							<div className="instruction" style={{margin: "15px"}}>
-								<b>Be Punctual!</b><hr/>
-                                You can get points as early as<br/>
-                                you arrived at the appointment.<br/>
-                                - <b>5pt per minute</b><br/>
-                                - Max 50pt per appointment<br/>
-                                If all participants arrive on time,<br/>
-                                you get <b>double</b> points!<br/>
-                                <br/>
-                                <b>Badge</b><hr/>
-                                Lv.4 Always &nbsp; &nbsp; &nbsp; &nbsp; &ge; 1000pt<br/>
-                                Lv.3 Usually &nbsp; &nbsp; &nbsp; &nbsp; &ge; &nbsp; 700pt<br/>
-                                Lv.2 Often &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &ge; &nbsp; 400pt<br/>
-                                Lv.1 Sometimes &ge; &nbsp; 100pt<br/>
-                                Lv.0 Never<br/>
-                                <br/>
-                                <Button variant="outlineflat" style={{float: "right"}}
-                                    onClick={()=>{close()}}>OK</Button>
+							<div className="instruction">
+								<b className="title">Be Punctual!</b><hr/>
+											You can get points as early as<br/>
+											you arrived at the appointment.<br/>
+											- <b>5pt per minute</b><br/>
+											- Max 50pt per appointment<br/>
+											If all participants arrive on time,<br/>
+											you get <b>double</b> points!<br/>
+											<br/>
+											<b className="title">Badge</b><hr/>
+											Lv.4 Always &nbsp; &nbsp; &nbsp; &nbsp; &ge; 1000pt<br/>
+											Lv.3 Usually &nbsp; &nbsp; &nbsp; &nbsp; &ge; &nbsp; 700pt<br/>
+											Lv.2 Often &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &ge; &nbsp; 400pt<br/>
+											Lv.1 Sometimes &ge; &nbsp; 100pt<br/>
+											Lv.0 Never<br/>
 							</div>
 						)}
 			            </Popup>

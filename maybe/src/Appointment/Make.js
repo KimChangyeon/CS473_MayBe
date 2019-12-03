@@ -62,8 +62,6 @@ class Make extends Component {
 			AppointmentName: '',
 			timeSlot: [],
 			friends_in_appointment: [],
-
-			find_friend_id: 0,
 		}
 		this.nextStage = this.nextStage.bind(this);
 		this.search = React.createRef(); // 친구 리스트 검색
@@ -117,26 +115,7 @@ class Make extends Component {
 	}
 
 	commitAdd () {
-		var url_friend = '/add_friend/'.concat(this.state.user_id).concat('/').concat(this.state.addSearch);
-		fetch(url_friend, {method: "POST"})
-			.then(res => res.json())
-			.then(function (answer) {
-				if (answer.data === 'SUCCESS') {
-					alert("Adding Friend is completed.");
-				}
-				else {
-					alert("There's no such friend matched.");
-				}
-			})
-		var url_final = '/fri/'.concat(this.props.user_id);
-		console.log(url_final);
-		fetch(url_final)
-			.then(res => res.json())
-			.then(answer => this.setState({friends: make_friends(answer.data), friends_id: friend_id_dict(answer.data)}))        
-		.catch((error)=>{
-			console.log('Error fetching man',error);
-		});
-		this.setState({friends_check: make_dict(this.state.friends)});
+		alert("Click Add!");
 	}
 	
 	onCheck = (name, e) => {
@@ -244,7 +223,7 @@ class Make extends Component {
 								}}
 						/>
 				bar =
-					<ButtonGroup id="Tap" size='lg' style={{top: "-12px", width: "100%", height: "50px"}}>
+					<ButtonGroup id="Tap" size='lg' style={{top: "-8px", width: "100%", height: "50px"}}>
 						<Button id="Button1" onClick={() => this.nextStage(0)}>
 							<img src={friendlist_light} alt="friend list" /></Button>
 						<Button id="Button2" onClick={() => this.nextStage(1)}>
@@ -275,9 +254,8 @@ class Make extends Component {
 						</InputGroup>
 						<ListGroup>
 							<Form>{friends_list}</Form>
-							{/* 추가할 친구 검색하는 팝업 시작*/}
 							<div style={{textAlign: "center"}}>
-								<Popup trigger={<a href="#"><u>Add Friend</u></a>} contentStyle={{width: "350px", zindex: 9999}}>
+								<Popup trigger={<a href="#"><u>Add Friend</u></a>} contentStyle={{width: "350px",zindex :9999}}>
 									{close => (
 										<InputGroup className="add">
 											<input
@@ -289,7 +267,7 @@ class Make extends Component {
 												onChange={this.handleAddSearch}
 											/>
 											<InputGroup.Append>
-												<Button variant="search" className="add_button" onClick={()=>this.commitAdd()}>
+												<Button variant="search" className="add_button" onClick={()=>{this.commitAdd(); close();}}>
 													<AddIcon/>
 												</Button>
 											</InputGroup.Append>
@@ -297,7 +275,6 @@ class Make extends Component {
 									)}
 								</Popup>
 							</div>
-							{/* 추가할 친구 검색하는 팝업 끝*/}
 						</ListGroup>
 					</body>
 				content = <div>{header}{body}</div>
@@ -310,7 +287,7 @@ class Make extends Component {
 								this.nextStage(2)
 							}}/>;
 				bar =
-					<ButtonGroup id="Tap" size='lg' style={{top: "-12px", width: "100%", height: "50px"}}>
+					<ButtonGroup id="Tap" size='lg' style={{top: "-8px", width: "100%", height: "50px"}}>
 						<Button id="Button2" onClick={() => this.nextStage(0)}>
 							<img src={friendlist_dark} alt="friend list" /></Button>
 						<Button id="Button1" onClick={() => this.nextStage(1)}>

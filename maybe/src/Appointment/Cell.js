@@ -16,8 +16,8 @@ class Cell extends Component {
     this.props.selected !== nextProps.selected;
 
     handleClick =() => {
-        const {id, row, cellClick, disabled, selected}= this.props
-        if (!disabled) cellClick(row,id,!selected)
+        const {id, row, cellClick, selected}= this.props
+        cellClick(row,id,!selected)
     }
 
     renderHeart = () => {
@@ -27,18 +27,13 @@ class Cell extends Component {
     render(){
         let className = ""
         let {
-            disabled,
             selected,
             type,
             selectNum
         } = this.props
-        if (disabled){
-            className = "cell-disabled"
-        }else{
-            className = "cell-enabled"
-            if (selected){
-                className = "cell-selected"
-            }
+        className = "cell-enabled"
+        if (selected){
+            className = "cell-selected"
         }
         switch (type) {
             case "Choose" :
