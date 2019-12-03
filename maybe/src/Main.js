@@ -133,6 +133,18 @@ class Main extends Component {
 		this.props.setReward(point);
 	}
 
+	delete_appointment (aid) {
+		var url_delete = '/delete_appt/'.concat(aid);
+		fetch(url_delete, {method: "POST"})
+			.then(answer => console.log(answer.data))        
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
+		this.update();
+	}
+
+
+
 
 	header(bar, button) {
 		return (
@@ -204,7 +216,7 @@ class Main extends Component {
 				const participants_list = participants.map((person) => <li key={person}><span>{person}</span></li>)
 
 				const header = info.DateId === null ?
-				<b>TBD &nbsp;&nbsp; {Title} <CloseRoundedIcon style={{float: "right"}}/></b> : <b> D-{diffDays} &nbsp;&nbsp; {Title} <CloseRoundedIcon style={{float: "right"}}/></b>
+				<b>TBD &nbsp;&nbsp; {Title} <CloseRoundedIcon style={{float: "right"}} onClick = {()=>{this.delete_appointment(info.AppointmentId)}}/></b> : <b> D-{diffDays} &nbsp;&nbsp; {Title} <CloseRoundedIcon style={{float: "right"}} onClick = {()=>{this.delete_appointment(info.AppointmentId)}}/></b>
 				
 				const place = info.Place === '' ?
 					<img src={gps} style={{width: "65%"}}
