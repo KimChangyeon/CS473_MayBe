@@ -209,6 +209,18 @@ router.get('/vote_result/:id', (req, res) => {
     })
 });
 
+router.post('/add_friend/:id/:fname/', (req, res) => {
+    var query = 'INSERT INTO Friend VALUES(?,(SELECT UserId from User where name = ?),1)'
+    db.query(query, [req.params.id, req.params.fname], (err, rows) => {
+        if (!err) {
+            res.send({data: 'SUCCESS'});
+        }
+        else {
+            res.send({data: 'FAIL'});
+        }
+    })
+});
+
 
 
 module.exports = router;
