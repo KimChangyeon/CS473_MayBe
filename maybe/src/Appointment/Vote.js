@@ -74,24 +74,25 @@ class Vote extends Component {
 			var EndTime = cand.EndTime;
 			var url_vote = '/votee/'.concat(this.props.AppointmentId).concat('/').concat(UserId).concat('/').concat(DateId).concat('/').concat(StartTime).concat('/').concat(EndTime);
 			console.log(url_vote);
-			promises.push(
-				fetch(url_vote, {method: "POST"})
-				.then(res => res.json())
-				.then(answer => console.log(answer.data))
-				)
+			// promises.push(
+			fetch(url_vote, {method: "POST"})
+			.then(res => res.json())
+			.then(answer => console.log(answer.data))
+				// )
 		}
 
 		var url_decision = '/vote_decision/'.concat(this.props.AppointmentId);
-		promises.push(
-			fetch(url_decision)
-			.then(res => res.json())
-			.then(answer => this.setState({decision: answer.data}))
-			)
+		// promises.push(
+		fetch(url_decision)
+		.then(res => res.json())
+		.then(answer => this.setState({decision: answer.data}))
+			// )
 
-		Promise
-			.all(promises)
-			.then(this.setState({l: 0}))
-
+		// Promise
+			// .all(promises)
+			// .then(this.setState({l: 0}))
+		this.setState({l: 0});
+		
 		if (this.state.l === 0){
 			if (this.state.decision === 'true') {
 				var url_time = '/modify_time/'.concat(this.props.AppointmentId);
