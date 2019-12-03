@@ -56,7 +56,7 @@ class Vote extends Component {
 		console.log(candidates);
 		var promises = [];
 		for (var j = 0 ; j < candidates.length ; j ++) {
-			var cand = candidates[jsbn];
+			var cand = candidates[j];
 			var UserId = this.props.user_id;
 			var DateId = cand.DateId;
 			var StartTime = cand.StartTime;
