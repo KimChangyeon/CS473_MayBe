@@ -49,8 +49,8 @@ class Login extends Component {
                 }
                 else
                     alert("THERE'S NO SUCH ID AND PASSWORD MATCHED.");
-				// this.props.setStage(1);
             }
+				// this.props.setStage(1);
         }
         
     }
@@ -101,7 +101,7 @@ class Login extends Component {
             <Popup trigger={<img id="help_login" src={help} alt="help"/>} 
                 position = "right center"
                 contentStyle={{width: "350px",zindex :9999}}>
-						{close => (
+						{close => ( 
 							<div style={{margin: "5px"}}>
 								Login with the guest account to look around.<br/>
                                 <b>ID: guest PW: 0000</b><br/>

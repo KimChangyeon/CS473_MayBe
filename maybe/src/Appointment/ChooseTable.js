@@ -249,7 +249,7 @@ class ChooseTable extends Component {
     }
 
     renderFriends = () => {
-        if (this.state.friends.length != 0) {
+        if (this.state.friends.length != 0 && this.props.type == "Vote") {
             return (
                 <Grid container item xs = {20} spacing = {1}>
                     <Grid item xs = {5}>
