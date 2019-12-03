@@ -18,7 +18,7 @@ let choiceDate = []
 let friendSet= new Set()
 let fakeData = [
     {
-        DateId : 20191128,
+        DateId : 20191202,
         EndTime : 14,
         StartTime : 13,
         UserName : "guest"
@@ -149,7 +149,14 @@ class ChooseTable extends Component {
             friends : [],
             what: '',
             user_schedule: [],
-            vote_result : []
+            vote_result : [
+                {
+                    DateId : 20191202,
+                    EndTime : 14,
+                    StartTime : 13,
+                    UserName : "guest"
+                }
+            ]
             };
         this.onChange = this.onChange.bind(this);
     }
@@ -163,71 +170,67 @@ class ChooseTable extends Component {
         .catch((error)=>{
             console.log('Error fetching man',error);
         });
-        /*update cells with props*/
-        if (this.props.type === "Vote") {
-            var url_vote = '/vote_result/'.concat(this.props.AppointmentId);
-            fetch(url_vote)
-                .then(res => res.json())
-                .then(answer => this.setState({ vote_result : answer.data }))   
-            .catch((error)=>{
-                console.log('Error fetching man',error);
-            });
-            console.log(this.state.vote_result);
-            const voteResults = this.state.vote_result
-            let DateId
-            let EndTime
-            let StartTime
-            let Username
-            let updatedCell
-            let updatedVoteCells = this.state.voteCells
-            let i = 0
-            
-            voteResults.map((vote)=>{
-                DateId = vote.DateId
-                EndTime = vote.EndTime
-                StartTime = vote.StartTime
-                Username = vote.UserName
-                i = 0
+        
+
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        console.log("getDerivedStateFromProps")
+        if (nextProps.type === "Vote") {
+                let DateId
+                let EndTime
+                let StartTime
+                let Username
+                let updatedCell
+                let updatedVoteCells = prevState.voteCells
+                let i = 0
                 
-                //set user name first
-                friendSet.add(Username)
-
-                //update votedata using given vote results
-                for (i=StartTime; i<EndTime; i++){
-                    updatedVoteCells = updatedVoteCells.map((data)=>{
-                        if (data.row == i){
-                           updatedCell = data.cell.map((content)=>
-                            content.id === DateId
-                            ? {...content, 
-                                selected : content.selected,
-                                selectNum : content.selectNum + 1}
-                            :content)
-                            return {...data, cell : updatedCell}
-                        }
-                        else{
-                            return data
-                        }
-                    })
-                }
-                this.setState({voteCells : updatedVoteCells })
-            })
+                nextProps.vote_result.map((vote)=>{
+                    DateId = vote.DateId
+                    EndTime = vote.EndTime
+                    StartTime = vote.StartTime
+                    Username = vote.UserName
+                    
+                    //set user name first
+                    friendSet.add(Username)
     
-            /* update friends list */
-            const friendList = Array.from(friendSet)
-            let friend
-            let friendState =[]
-            let index = 0
-            for (friend of friendList) {
-                friendState.push({
-                    name : friend,
-                    img : index
+                    //update votedata using given vote results
+                    for (i=StartTime; i<EndTime; i++){
+                        updatedVoteCells = updatedVoteCells.map((data)=>{
+                            if (data.row === i){
+                               updatedCell = data.cell.map((content)=>
+                                content.id === DateId
+                                ? {...content, 
+                                    selected : content.selected,
+                                    selectNum : content.selectNum + 1}
+                                :content)
+                                return {...data, cell : updatedCell}
+                            }
+                            else{
+                                return data
+                            }
+                        })
+                    }
                 })
-                index ++
+        
+                /* update friends list */
+                const friendList = Array.from(friendSet)
+                let friend
+                let friendState =[]
+                let index = 0
+                for (friend of friendList) {
+                    friendState.push({
+                        name : friend,
+                        img : index
+                    })
+                    index ++
+                }
+            return {
+                voteCells : updatedVoteCells,
+                friends : friendState
             }
-            this.setState({friends : friendState})
         }
-       
-
+        return null;
     }
   
     cellClick =(row, id, selected) => {
@@ -396,8 +399,7 @@ class ChooseTable extends Component {
 	}
 
     render(){
-        // this.updateDates();
-        console.log("vote result : ",this.state.vote_result)
+        console.log("state :", this.state.voteCells)
         return (
             <div>
                 {this.renderInputBox()}

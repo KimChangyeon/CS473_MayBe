@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './Cell.css'
 import heart from '../img/heart.png'
 
-const bgColors = {
+const bgColors = { 
     1 : "#ffe6e6",
     2 : "#ffcccc",
     3 : "#ffb3b3",

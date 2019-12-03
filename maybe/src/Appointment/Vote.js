@@ -19,7 +19,8 @@ class Vote extends Component {
 			AppointmentTime: [],
 			choiceDate : [],
 			decision: '',
-			l: 1
+			l: 1,
+			vote_result : []
 		}
 	}
 
@@ -37,6 +38,16 @@ class Vote extends Component {
 		fetch(url_vote, {method: "POST"})
 			.then(res => res.json())
 			.then(answer => console.log(answer.data))
+	}
+
+	componentWillMount () {
+		var url_vote = '/vote_result/'.concat(this.state.AppointmentId);
+		fetch(url_vote)
+			.then(res => res.json())
+			.then(answer => this.setState({ vote_result : answer.data }))   
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
 	}
 
 	Complete () {
@@ -117,6 +128,7 @@ class Vote extends Component {
 						AppointmentTime = {this.props.AppointmentTime}
 						AppointmentId = {this.state.AppointmentId}
 						updateChoice = {this.updateChoice}
+						vote_result = {this.vote_result}
 					/>
 				</body>
 		const content = <div>
