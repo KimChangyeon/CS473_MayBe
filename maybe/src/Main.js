@@ -221,7 +221,7 @@ class Main extends Component {
 							 diffDays === 0 ? "D-Day" :
 							 "D+" + String(-diffDays); 
 
-				const vote = info.DateID === null ?
+				const vote = info.DateId === null ?
 							<div>
 								<a href="#">
 									<img src={checkbox} style={{width: "50%", marginLeft: "12px", marginTop: "5px"}}
