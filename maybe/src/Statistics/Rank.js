@@ -31,6 +31,18 @@ class Rank extends Component {
         }
     }
 
+    componentWillMount () {
+        var url_reward_list = '/friend_reward/'.concat(this.props.user_id);
+		console.log(url_reward_list);
+		fetch(url_reward_list)
+			.then(res => res.json())
+			.then(answer => this.setState({friends_reward_rank: answer.data}))        
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+        });
+        this.state.friends_reward_rank.push({name: "(YOU)", reward: this.props.user_reward});
+    }
+
     reward_rank() {
         var reward_rank = this.state.friends_reward_rank;
         // reward_rank.push({name: "(YOU)", reward: this.props.user_reward});

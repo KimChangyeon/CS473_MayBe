@@ -222,6 +222,20 @@ router.post('/delete_appt/:aid/', (req, res) => {
     })
 });
 
+//한 약속에 대한 투표 결과 가져오기.
+router.get('/friend_reward/:id', (req, res) => {
+    var query = 'SELECT name, reward FROM User WHERE UserId in (SELECT FriendId from Friend WHERE UserId = ?)'
+    db.query(query, req.params.id, (err, rows) => {
+        if (!err) {
+            res.send({data: rows});
+        }
+        else {
+            res.send({data: err});
+        }
+    })
+});
+
+
 
 
 module.exports = router;
