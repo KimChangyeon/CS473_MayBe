@@ -123,20 +123,20 @@ class Make extends Component {
 			.then(function (answer) {
 				if (answer.data === 'SUCCESS') {
 					alert("Adding Friend is completed.");
-					var url_final = '/fri/'.concat(this.props.user_id);
-					console.log(url_final);
-					fetch(url_final)
-						.then(res => res.json())
-						.then(answer => this.setState({friends: make_friends(answer.data), friends_id: friend_id_dict(answer.data)}))        
-					.catch((error)=>{
-						console.log('Error fetching man',error);
-					});
-					this.setState({friends_check: make_dict(this.state.friends)});
 				}
 				else {
 					alert("There's no such friend matched.");
 				}
 			})
+		var url_final = '/fri/'.concat(this.props.user_id);
+		console.log(url_final);
+		fetch(url_final)
+			.then(res => res.json())
+			.then(answer => this.setState({friends: make_friends(answer.data), friends_id: friend_id_dict(answer.data)}))        
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
+		this.setState({friends_check: make_dict(this.state.friends)});
 	}
 	
 	onCheck = (name, e) => {

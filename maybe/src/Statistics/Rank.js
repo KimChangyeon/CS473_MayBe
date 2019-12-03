@@ -21,15 +21,27 @@ class Rank extends Component {
         super(props);
         this.state = {
             friends_reward_rank: [
-                {name: "Juho Kim", reward: 1000},
-                {name: "Sangho Lim", reward: 727},
-                {name: "Jisu Choi", reward: 459},
-                {name: "Seunghee Koh", reward: 120},
-                {name: "Changyeon Kim", reward: 58},
-                {name: "Jiho Jin", reward: 19},
+                // {name: "Juho Kim", reward: 1000},
+                // {name: "Sangho Lim", reward: 727},
+                // {name: "Jisu Choi", reward: 459},
+                // {name: "Seunghee Koh", reward: 120},
+                // {name: "Changyeon Kim", reward: 58},
+                // {name: "Jiho Jin", reward: 19},
                 {name: "(YOU)", reward: this.props.user_reward},
             ]
         }
+    }
+
+    componentWillMount () {
+        var url_reward_list = '/friend_reward/'.concat(this.props.user_id);
+		console.log(url_reward_list);
+		fetch(url_reward_list)
+			.then(res => res.json())
+			.then(answer => this.setState({friends_reward_rank: answer.data}))        
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+        });
+        this.state.friends_reward_rank.push({name: "(YOU)", reward: this.props.user_reward});
     }
 
     reward_rank() {

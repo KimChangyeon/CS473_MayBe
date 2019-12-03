@@ -34,18 +34,7 @@ router.post('/register_account/:Username/:password/:name', (req, res) => {
     })
 });
 
-// 한 유저가 포함되는 약속의 정보 리턴.
-router.get('/appoint/:id', (req, res) => {
-        var query = 'SELECT * from Appointment where appointmentid IN (SELECT b.appointmentid FROM Appointment_participants b where b.participantsid = ?)'
-        db.query(query, req.params.id, (err, rows) => {
-            if (!err) {
-                res.send({data: rows});
-            }
-            else {
-                res.send({data: err});
-            }
-        })
-    });
+
 
 // 한 유저의 스케줄 정보 불러오기.
 router.get('/sch/:id', (req, res) => {
@@ -220,6 +209,32 @@ router.post('/add_friend/:id/:fname/', (req, res) => {
         }
     })
 });
+
+router.post('/delete_appt/:aid/', (req, res) => {
+    var query = 'DELETE FROM Appointment_participants WHERE AppointmentId = ?; DELETE FROM Vote WHERE AppointmentId = ?; DELETE FROM Appointment WHERE AppointmentId = ?'
+    db.query(query, [req.params.aid, req.params.aid, req.params.aid], (err, rows) => {
+        if (!err) {
+            res.send({data: 'SUCCESS'});
+        }
+        else {
+            res.send({data: 'FAIL'});
+        }
+    })
+});
+
+//한 약속에 대한 투표 결과 가져오기.
+router.get('/friend_reward/:id', (req, res) => {
+    var query = 'SELECT name, reward FROM User WHERE UserId in (SELECT FriendId from Friend WHERE UserId = ?)'
+    db.query(query, req.params.id, (err, rows) => {
+        if (!err) {
+            res.send({data: rows});
+        }
+        else {
+            res.send({data: err});
+        }
+    })
+});
+
 
 
 
