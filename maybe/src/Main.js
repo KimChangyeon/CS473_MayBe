@@ -140,7 +140,13 @@ class Main extends Component {
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
-		this.update();
+		var url_final = '/appt/'.concat(this.props.user_id);
+		fetch(url_final)
+			.then(res => res.json())
+			.then(answer => this.setState({schedule: answer.data}))        
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
 	}
 
 
