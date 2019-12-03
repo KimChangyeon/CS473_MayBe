@@ -53,6 +53,9 @@ class Main extends Component {
 			schedule: [],
 			alert1: 0,
 			alert2: 0,
+			early_msg: "You've arrived at your appointment on time!",
+			early_min: 0,
+			reward_pt: 0,
 		}
 		this.setMarker = this.setMarker.bind(this);
 		this.setPlace = this.setPlace.bind(this);
@@ -154,13 +157,21 @@ class Main extends Component {
 		);
 	}
 
+	early_cal(info, diffDays) {
+		var today = new Date();
+		const hour2min = 60 * today.getHours();
+		const min = today.getMinutes();
+		const start_hour2min = 60 * info.StartTime;
+		var early_min = start_hour2min - (hour2min + min);
+		var reward_pt = early_min >= 0 ? (early_min < 10 ? 5 * early_min + 5 : 50) : 0;
+		early_min = diffDays > 0 ? 0 : early_min;
+		reward_pt = diffDays > 0 ? 50 : reward_pt;
+
+		this.state.early_min = early_min;
+		this.state.reward_pt = reward_pt;
+	}
+
 	appointment_list(info) {
-				let hour2min;
-				let min;
-				let start_hour2min;
-				let early_min;
-				let reward_pt;
-				
 				const date = parse(String(info.DateId));
 				var today = new Date();
 				const diffTime = date - today;
@@ -195,17 +206,11 @@ class Main extends Component {
 					<Popup trigger={<img src={coins} style={{width: "60%", marginTop: "2px", zindex :9999}} alt="reward"/>} contentStyle={{width: "250px",zindex :9999}}>
 						{close => (
 							<div style={{margin: "5px"}}>
-								{hour2min = 60 * today.getHours()}
-								{min = today.getMinutes()}
-								{start_hour2min = 60 * info.StartTime}
-								{early_min = start_hour2min - (hour2min + min)}
-								{reward_pt = early_min >= 0 ? (early_min < 10 ? 5 * early_min + 5 : 50) : 0}
-								{early_min = diffDays > 0 ? 0 : early_min}
-								{reward_pt = diffDays > 0 ? 50 : reward_pt}<br/>
-								<img src={coin} style={{float: "right", width: "50px"}} onClick={()=>{this.rewarding(reward_pt); close()}} alt="reward"/>
-								You've arrived at your appointment on time! <br/>
-								<u>{early_min} min</u> earlier <br/>
-								<Button variant="outlineflat" onClick={()=>{this.rewarding(reward_pt); close()}}>OK</Button>
+								{this.early_cal(info, diffDays)}
+								<img src={coin} style={{float: "right", width: "50px"}} onClick={()=>{this.rewarding(this.state.reward_pt); close()}} alt="reward"/>
+								{this.state.early_msg}<br/>
+								<u>{this.state.early_min} min</u> earlier <br/>
+								<Button variant="outlineflat" onClick={()=>{this.rewarding(this.state.reward_pt); close()}}>OK</Button>
 							</div>
 						)}
 					</Popup>;
