@@ -55,18 +55,28 @@ class Cell extends Component {
                 }
             case "Vote" :
                 console.log ("props type : vote")
-                if (selected) {
-                    if (selectNum >= 5) selectNum = 5
-                    else selectNum += 1
+                if (selected) selectNum +=1
+                if (selectNum > 5) selectNum = 5
+                if (selectNum >= 1) {
+                    return(
+                        <td
+                            onClick = {this.handleClick}
+                            style = {{backgroundColor : bgColors[selectNum]}}
+                        >
+                            {this.renderHeart()}
+                        </td>
+                    )
                 }
-                return(
-                    <td
+                
+                else {
+
+                    return (
+                        <td
                         onClick = {this.handleClick}
-                        style = {{backgroundColor : bgColors[selectNum]}}
-                    >
-                        {this.renderHeart()}
-                    </td>
-                )
+                        >
+                        </td>
+                    )
+                }
              }
     }
 }
