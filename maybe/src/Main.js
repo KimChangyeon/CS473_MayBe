@@ -5,8 +5,8 @@ import {Button} from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 import Fab from '@material-ui/core/Fab';
 import EmojiEventsRoundedIcon from '@material-ui/icons/EmojiEventsRounded';
-import PeopleAltRoundedIcon from '@material-ui/icons/PeopleAltRounded';
-import EventNoteRoundedIcon from '@material-ui/icons/EventNoteRounded';
+import EqualizerIcon from '@material-ui/icons/Equalizer';
+import EventIcon from '@material-ui/icons/Event';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import './App.css';
 
@@ -164,12 +164,12 @@ class Main extends Component {
 								</li>
 								<li>
 									<Fab className="fab" onClick={()=>this.nextStage(3)}>
-										<PeopleAltRoundedIcon className="White"/>
+										<EqualizerIcon className="White"/>
 									</Fab>
 								</li>
 								<li>
 									<Fab className="fab" onClick={()=>this.nextStage(2)}>
-										<EventNoteRoundedIcon className="White"/>
+										<EventIcon className="White"/>
 									</Fab>
 								</li>
 							</ul>
