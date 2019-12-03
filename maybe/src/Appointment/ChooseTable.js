@@ -192,7 +192,6 @@ class ChooseTable extends Component {
                            updatedCell = data.cell.map((content)=>
                             content.id === DateId
                             ? {...content, 
-                                disabled : false,
                                 selected : content.selected,
                                 selectNum : content.selectNum + 1}
                             :content)

@@ -1,43 +1,43 @@
 export const fiveVoteCandidates = [
     {
         id:20191125,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {   
         id:20191126,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191127,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191128,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191129,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191130,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191201,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     }
@@ -45,43 +45,43 @@ export const fiveVoteCandidates = [
 export const sixVoteCandidates = [
     {
         id:20191125,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {   
         id:20191126,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191127,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191128,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191129,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191130,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191201,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     }
@@ -89,43 +89,43 @@ export const sixVoteCandidates = [
 export const sevenVoteCandidates = [
     {
         id:20191125,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {   
         id:20191126,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191127,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191128,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191129,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191130,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191201,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     }
@@ -133,43 +133,43 @@ export const sevenVoteCandidates = [
 export const fourVoteCandidates = [
     {
         id:20191125,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {   
         id:20191126,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191127,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191128,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191129,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191130,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191201,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     }
@@ -177,43 +177,43 @@ export const fourVoteCandidates = [
 export const twelveVoteCandidates = [
     {
         id:20191125,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {   
         id:20191126,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191127,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191128,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191129,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191130,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191201,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     }
@@ -221,43 +221,43 @@ export const twelveVoteCandidates = [
 export const oneVoteCandidates = [
     {
         id:20191125,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {   
         id:20191126,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191127,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191128,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191129,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191130,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191201,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     }
@@ -265,43 +265,43 @@ export const oneVoteCandidates = [
 export const twoVoteCandidates = [
     {
         id:20191125,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {   
         id:20191126,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191127,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191128,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191129,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191130,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191201,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     }
@@ -309,43 +309,43 @@ export const twoVoteCandidates = [
 export const threeVoteCandidates = [
     {
         id:20191125,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {   
         id:20191126,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191127,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191128,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191129,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191130,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     },
     {
         id:20191201,
-        disabled : true,
+        disabled : false,
         selected : false,
         selectNum : 0
     }
