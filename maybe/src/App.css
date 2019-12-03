@@ -31,7 +31,7 @@ li {
 
 .menu{float: right;}
 .menu li {display: inline-block;}
-.menu li .fab {width: 57px; height: 57px; margin-top: 6px; margin-right: 5px; background: #3d4965;}
+.menu li .fab {width: 54px; height: 54px; margin-top: 8px; margin-right: 5px; background: #3d4965;}
 .menu li .fab .White {width: 30px; height: 30px;}
 
 body{
@@ -145,7 +145,35 @@ body{
 }
 
 hr {
+	margin: 5px;
+}
+
+.instruction {
+	color: black;
+	font-size: 15px;
 	margin: 10px;
+}
+
+.instruction .title {
+	font-size: large;
+}
+
+.instruction hr {
+	margin: 0px;
+	margin-top: 7px;
+	margin-bottom: 7px;
+}
+
+.instruction ul {
+	margin-bottom: 0px;
+}
+
+.instruction ul li {
+	margin-top: 5px;
+	line-height: 20px;
+	list-style: circle;
+	position: relative;
+	left: -20px
 }
 
 .card {
@@ -215,19 +243,6 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#help {
-	height: 35px;
-	width: 35px;
-	position: relative;
-	left: 250px;
-	top: -1px;
-}
-
-.instruction {
-	color: black;
-	font-size: 15px;
 }
 
 .maybe {
