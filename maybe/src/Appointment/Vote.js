@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Popup from 'reactjs-popup';
+import HelpRoundedIcon from '@material-ui/icons/HelpRounded';
 import '../App.css';
 import ChooseTable from './ChooseTable';
 
@@ -33,30 +34,27 @@ class Vote extends Component {
 				<li> <img className="cancel" src={cancel} alt="Cancel"
 						onClick={()=>this.props.nextStageWithAppointment(0,0)}/> </li>
 			</ul>
-		const bar = <div className="Bar">
-                        Vote Meeting Time
-                        <Popup
-                        trigger={<img id="help" src={help} alt="help" />} 
-                        position = "left top"
-                        contentStyle={{width: "270px",zindex: 9999}}>
-						{close => (
-							<div className="instruction" style={{margin: "15px"}}>
-								<b>Vote Meeting Time!</b><hr/>
-                                When do you want to meet your friends?<br/>
-                                Choose desirable timeslots <br/>
-								- The more friends choose certain timeslots, the darker the color of timeslots becomes<br/>
-								- You can check friends who completed vote by clicking animal icons <br/>
-								  <br/>
-								<b> Warning </b><hr/>
-								Once you push 'Complete' button, <b>you cannot vote again!</b> <br/>
-								So please think carefully!<br/>								
-                                <br/>
-                                <Button variant="outlineflat" style={{float: "right"}}
-                                    onClick={()=>{close()}}>OK</Button>
-							</div>
-						)}
-			            </Popup>
-                    </div>;
+		const bar = 
+			<div className="Bar">
+				Vote Meeting Time
+				<Popup
+				trigger={<a href="#"><HelpRoundedIcon style={{width: "23px", position: "relative", left: "10px", top: "-1px"}}/></a>} 
+				contentStyle={{width: "352px",zindex: 9999}}>
+				{close => (
+					<div className="instruction" style={{margin: "15px"}}>
+						<b className="title">Vote Meeting Time!</b><hr/>
+						When do you want to meet your friends?<br/>
+						Choose desirable timeslots.<br/>
+						- The more friends choose certain timeslots, the darker the color of timeslots becomes.<br/>
+						- You can check friends who completed vote by clicking animal icons.<br/>
+						<br/>
+						<b className="title"> Warning </b><hr/>
+						Once you push 'Complete' button, <b>you cannot vote again!</b> <br/>
+						So please think carefully!<br/>								
+					</div>
+				)}
+				</Popup>
+			</div>;
 		const header = this.props.header(bar,button);
 		const body =
 				<body className= "Body">
