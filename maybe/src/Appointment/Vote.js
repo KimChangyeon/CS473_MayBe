@@ -18,7 +18,8 @@ class Vote extends Component {
 			AppointmentId: this.props.AppointmentId,
 			AppointmentTime: [],
 			choiceDate : [],
-			decision: ''
+			decision: '',
+			l: 1
 		}
 	}
 
@@ -54,23 +55,27 @@ class Vote extends Component {
 			}
 		}
 		candidates.map((slot) => this.voting(slot));
-		var url_decision = '/vote_decision/'.concat(this.props.AppointmentId);
-		fetch(url_decision)
-			.then(res => res.json())
-			.then(answer => this.setState({decision: answer.data}))
-		
-		if (this.state.decision === 'true') {
-			var url_time = '/modify_time/'.concat(this.props.AppointmentId);
-			fetch(url_time, {method: "POST"})
-				.then(res => res.json())
-				.then(answer => console.log(answer.data))
-			alert('MAKING APPOINTMENT COMPLETED.');
-			this.props.nextStageWithAppointment(0,0)
-		}
+		this.setState({l: 0})
 
-		else if (this.state.decision === 'false') {
-			alert('VOTING COMPLETED.');
-			this.props.nextStageWithAppointment(0,0)
+		if (this.state.l === 0){
+			var url_decision = '/vote_decision/'.concat(this.props.AppointmentId);
+			fetch(url_decision)
+				.then(res => res.json())
+				.then(answer => this.setState({decision: answer.data}))
+			
+			if (this.state.decision === 'true') {
+				var url_time = '/modify_time/'.concat(this.props.AppointmentId);
+				fetch(url_time, {method: "POST"})
+					.then(res => res.json())
+					.then(answer => console.log(answer.data))
+				alert('MAKING APPOINTMENT COMPLETED.');
+				this.props.nextStageWithAppointment(0,0)
+			}
+
+			else if (this.state.decision === 'false') {
+				alert('VOTING COMPLETED.');
+				this.props.nextStageWithAppointment(0,0)
+			}
 		}
 	}
 
