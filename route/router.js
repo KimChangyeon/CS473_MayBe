@@ -198,7 +198,7 @@ router.get('/AppId/', (req, res) => {
 
 //한 약속에 대한 투표 결과 가져오기.
 router.get('/vote_result/:id', (req, res) => {
-    var query = 'SELECT Username, DateId, StartTime, EndTime FROM (SELECT UserId, DateId, StartTime, EndTime FROM Vote WHERE AppointmentId = ?) AS A INNER JOIN User as B ON A.UserId = B.userId'
+    var query = 'SELECT name, DateId, StartTime, EndTime FROM (SELECT UserId, DateId, StartTime, EndTime FROM Vote WHERE AppointmentId = ?) AS A INNER JOIN User as B ON A.UserId = B.userId'
     db.query(query, req.params.id, (err, rows) => {
         if (!err) {
             res.send({data: rows});
