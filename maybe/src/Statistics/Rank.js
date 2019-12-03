@@ -27,7 +27,7 @@ class Rank extends Component {
                 // {name: "Seunghee Koh", reward: 120},
                 // {name: "Changyeon Kim", reward: 58},
                 // {name: "Jiho Jin", reward: 19},
-                {name: "(YOU)", reward: this.props.user_reward},
+                // {name: "(YOU)", reward: this.props.user_reward},
             ]
         }
     }
