@@ -159,16 +159,30 @@ class Main extends Component {
 
 	early_cal(info, diffDays) {
 		var today = new Date();
-		const hour2min = 60 * today.getHours();
-		const min = today.getMinutes();
+		const min = 60 * today.getHours() + today.getMinutes();
 		const start_hour2min = 60 * info.StartTime;
-		var early_min = start_hour2min - (hour2min + min);
-		var reward_pt = early_min >= 0 ? (early_min < 10 ? 5 * early_min + 5 : 50) : 0;
-		early_min = diffDays > 0 ? 0 : early_min;
-		reward_pt = diffDays > 0 ? 50 : reward_pt;
+		var early_min = start_hour2min - min;
+		var reward_pt = 0;
+		var msg = "You've arrived at your appointment on time!";
 
+		if (diffDays > 0) {
+			early_min = 0;
+			reward_pt = 50;
+			msg += "(" + toString(diffDays) + " days early)";
+		} else if (diffDays < 0) {
+			early_min = 0;
+			msg = "You are late!";
+		} else if (early_min >= 0) {
+			reward_pt = early_min >= 10 ? 50 : 5 * early_min + 5;
+			msg += "(" + toString(early_min) + " minutes early)";
+		} else {
+			early_min = 0;
+			msg = "You are late!"
+		}
+	
 		this.state.early_min = early_min;
 		this.state.reward_pt = reward_pt;
+		this.state.early_msg = msg;
 	}
 
 	appointment_list(info) {
@@ -209,7 +223,7 @@ class Main extends Component {
 								{this.early_cal(info, diffDays)}
 								<img src={coin} style={{float: "right", width: "50px"}} onClick={()=>{this.rewarding(this.state.reward_pt); close()}} alt="reward"/>
 								{this.state.early_msg}<br/>
-								<u>{this.state.early_min} min</u> earlier <br/>
+								<u>+ {this.state.reward_pt}pt</u><br/>
 								<Button variant="outlineflat" onClick={()=>{this.rewarding(this.state.reward_pt); close()}}>OK</Button>
 							</div>
 						)}
