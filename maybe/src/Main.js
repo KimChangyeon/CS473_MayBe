@@ -224,16 +224,18 @@ class Main extends Component {
 							 "D+" + String(-diffDays); 
 
 				const vote = info.DateID === null ?
-							<a href="#">
-								<img src={checkbox} style={{width: "50%", marginLeft: "12px", marginTop: "5px"}}
-									onClick={()=>this.nextStageWithAppointment(4, info.AppointmentId, [info.StartTime, info.EndTime])}
-									alt="When"/>
-							</a>
+							<div>
+								<a href="#">
+									<img src={checkbox} style={{width: "50%", marginLeft: "12px", marginTop: "5px"}}
+										onClick={()=>this.nextStageWithAppointment(4, info.AppointmentId, [info.StartTime, info.EndTime])}
+										alt="When"/>
+								</a>
+							</div>
 							: <div className="edit">
 								{info.DateId}
 								{info.StartTime}
 								{info.EndTime}
-							</div>
+							  </div>
 
 				const Title = info.What;
 				const participants = info.participants.split(',');
