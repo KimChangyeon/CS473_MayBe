@@ -295,7 +295,6 @@ class ChooseTable extends Component {
                     <Cell 
                         id = {cell.id}
                         row = {row}
-                        disabled = {cell.disabled}
                         selected = {cell.selected}
                         cellClick = {this.cellClick}
                         type = {this.props.type}
@@ -381,6 +380,7 @@ class ChooseTable extends Component {
         console.log("choiceDate : ",choiceDate)
         if (this.props.type === "Choose")
             this.props.setTimeSlot(choiceDate);
+        else this.props.updateChoice(choiceDate)
     }
 
     onChange = (e)=> {
