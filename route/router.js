@@ -200,7 +200,8 @@ router.post('/modify_memo/:id/:Memo/', (req, res) => {
 });
 
 router.get('/AppId/', (req, res) => {
-    var query = 'SELECT LAST_INSERT_ID(AppointmentId) as AppointmentId from Appointment order by LAST_INSERT_ID(AppointmentId) desc limit 1'
+    // var query = 'SELECT LAST_INSERT_ID(AppointmentId) as AppointmentId from Appointment order by LAST_INSERT_ID(AppointmentId) desc limit 1'
+    var query = 'SELECT MAX(AppointmentId) as AppointmentId FROM Appointment'
     db.query(query, req, (err, rows) => {
         if (!err) {
             res.send({data: rows});

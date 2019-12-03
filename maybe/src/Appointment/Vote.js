@@ -14,7 +14,8 @@ let fakeData = [
         DateId : 20191202,
         EndTime : 14,
         StartTime : 13,
-        UserName : "guest"
+		UserName : "guest",
+		decision: [{decision: ''}],
     }
 ]
 
@@ -121,7 +122,7 @@ class Vote extends Component {
 			alert('VOTING COMPLETED.');
 			this.props.nextStageWithAppointment(0,0)
 		}
-		
+
 		const button =
 			<ul>
 				<li> <img className="complete" src={complete} alt="Complete"
