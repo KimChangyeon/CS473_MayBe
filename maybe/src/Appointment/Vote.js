@@ -105,9 +105,6 @@ class Vote extends Component {
 		Promise
 			.all(promises)
 			// .then(this.setState({l: 0}))
-	}
-
-	render () {
 
 		if (this.state.decision[0].decision === 'true') {
 			var url_time = '/modify_time/'.concat(this.props.AppointmentId);
@@ -122,7 +119,9 @@ class Vote extends Component {
 			alert('VOTING COMPLETED.');
 			this.props.nextStageWithAppointment(0,0)
 		}
+	}
 
+	render () {
 		const button =
 			<ul>
 				<li> <img className="complete" src={complete} alt="Complete"
