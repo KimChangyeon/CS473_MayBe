@@ -85,7 +85,7 @@ const containerStyles = theme => ({
   },
 });
 
-const currentDate = new Date(2019,10,26,10,33);
+const currentDate = new Date();
 
 function handling_appointments (schedules) { 
   var answer = [];

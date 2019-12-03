@@ -166,7 +166,14 @@ class ChooseTable extends Component {
                 console.log('Error fetching man',error);
             });
             console.log(this.state.vote_result);
-            
+            // vote_result = [
+            //     {
+            //         DateId : 20191128,
+            //         EndTime : 14,
+            //         StartTime : 13,
+            //         UserName : "guest"
+            //     }
+            // ]
             const voteResults = vote_result
             let DateId
             let EndTime
@@ -175,6 +182,7 @@ class ChooseTable extends Component {
             let updatedCell
             let updatedVoteCells = this.state.voteCells
             let i = 0
+            
             voteResults.map((vote)=>{
                 DateId = vote.DateId
                 EndTime = vote.EndTime

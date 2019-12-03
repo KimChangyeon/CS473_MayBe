@@ -35,8 +35,6 @@ function parse(str) {
     return new Date(y,m,d);
 }
 
-
-
 class Main extends Component {
 	constructor (props) {
 		super(props);
