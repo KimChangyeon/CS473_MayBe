@@ -56,7 +56,19 @@ class Vote extends Component {
 			}
 		}
 		console.log(candidates);
-		candidates.map((slot) => this.voting(slot));
+		for (var j = 0 ; j < candidates.length ; j ++) {
+			slot = candidates[i];
+			var UserId = this.props.user_id;
+			var DateId = slot.DateId;
+			var StartTime = slot.StartTime;
+			var EndTime = slot.EndTime;
+			var url_vote = '/votee/'.concat(this.props.AppointmentId).concat('/').concat(UserId).concat('/').concat(DateId).concat('/').concat(StartTime).concat('/').concat(EndTime);
+			console.log(url_vote);
+			fetch(url_vote, {method: "POST"})
+				.then(res => res.json())
+				.then(answer => console.log(answer.data))
+		}
+		
 		this.setState({l: 0})
 
 		if (this.state.l === 0){
