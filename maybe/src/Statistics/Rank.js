@@ -28,7 +28,7 @@ class Rank extends Component {
                 // {name: "Changyeon Kim", reward: 58},
                 // {name: "Jiho Jin", reward: 19},
                 {name: "(YOU)", reward: this.props.user_reward},
-            ],
+            ]
         }
     }
 
@@ -41,10 +41,9 @@ class Rank extends Component {
 		.catch((error)=>{
 			console.log('Error fetching man',error);
         });
-        var k = this.state.friends_reward_rank
-        k.push({name: "(YOU)", reward: this.props.user_reward});
-        this.setState({friends_reward_rank: k});
-        console.log(this.state.friends_reward_rank);
+        const k = this.state.friends_reward_rank;
+        const l = k.push({name: "(YOU)", reward: this.props.user_reward});
+        this.setState({friends_reward_rank: l});
     }
 
     reward_rank() {
