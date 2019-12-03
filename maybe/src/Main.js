@@ -200,6 +200,8 @@ class Main extends Component {
 								{start_hour2min = 60 * info.StartTime}
 								{early_min = start_hour2min - (hour2min + min)}
 								{reward_pt = early_min >= 0 ? (early_min < 10 ? 5 * early_min + 5 : 50) : 0}
+								{early_min = diffDays > 0 ? 0 : early_min}
+								{reward_pt = diffDays > 0 ? 50 : reward_pt}<br/>
 								<img src={coin} style={{float: "right", width: "50px"}} onClick={()=>{this.rewarding(reward_pt); close()}} alt="reward"/>
 								You've arrived at your appointment on time! <br/>
 								<u>{early_min} min</u> earlier <br/>
