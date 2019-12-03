@@ -62,7 +62,7 @@ router.get('/sch/:id', (req, res) => {
 
 // 한 유저의 약속 정보 불러오기.
 router.get('/appt/:id', (req, res) => {
-    var query = 'SELECT a.*, b.participants FROM (SELECT * FROM Appointment WHERE AppointmentId IN (SELECT Appointmentid FROM Appointment_participants WHERE ParticipantsId = ?)) a JOIN (SELECT AppointmentId, GROUP_CONCAT(participant) AS participants FROM (SELECT AppointmentId, (SELECT name from User where userid = ParticipantsId) participant from Appointment_participants) c GROUP BY AppointmentId) b ON a.AppointmentId = b.AppointmentId '
+    var query = 'SELECT a.*, b.participants FROM (SELECT * FROM Appointment WHERE AppointmentId IN (SELECT Appointmentid FROM Appointment_participants WHERE ParticipantsId = ?)) a JOIN (SELECT AppointmentId, GROUP_CONCAT(participant) AS participants FROM (SELECT AppointmentId, (SELECT name from User where userid = ParticipantsId) participant from Appointment_participants) c GROUP BY AppointmentId) b ON a.AppointmentId = b.AppointmentId ORDER BY a.DateId'
 
     db.query(query, req.params.id, (err, rows) => {
         if (!err) {
@@ -205,6 +205,18 @@ router.get('/vote_result/:id', (req, res) => {
         }
         else {
             res.send({data: err});
+        }
+    })
+});
+
+router.post('/add_friend/:id/:fname/', (req, res) => {
+    var query = 'INSERT INTO Friend VALUES(?,(SELECT UserId from User where name = ?),1)'
+    db.query(query, [req.params.id, req.params.fname], (err, rows) => {
+        if (!err) {
+            res.send({data: 'SUCCESS'});
+        }
+        else {
+            res.send({data: 'FAIL'});
         }
     })
 });
