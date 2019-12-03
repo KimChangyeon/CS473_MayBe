@@ -230,7 +230,7 @@ class Main extends Component {
 								</a>
 							</div>
 							: <div className="edit">
-								{info.DateId/10000}/{(info.DateId%10000)/100}/{(info.DateId%100)}<br/>
+								{parseInt(info.DateId/10000)}/{parseInt((info.DateId%10000)/100)}/{(info.DateId%100)}<br/>
 								{info.StartTime}:00 ~ {info.EndTime}:00
 							</div>
 
