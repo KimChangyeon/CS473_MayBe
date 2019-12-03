@@ -50,6 +50,7 @@ class Vote extends Component {
 	}
 
 	Complete () {
+		var promises = [];
 		var candidates = [];
 		var slot = this.state.choiceDate;
 		if (slot.length > 0) {
@@ -73,26 +74,30 @@ class Vote extends Component {
 			var EndTime = cand.EndTime;
 			var url_vote = '/vote2/'.concat(this.props.AppointmentId).concat('/').concat(UserId).concat('/').concat(DateId).concat('/').concat(StartTime).concat('/').concat(EndTime);
 			console.log(url_vote);
-			// promises.push(
+			promises.push(
 			fetch(url_vote, {method: "POST"})
 			.then(res => res.json())
 			.then(answer => console.log(answer.data))
-				// )
+				)
 		}
 
 		var url_decision = '/vote_decision/'.concat(this.props.AppointmentId);
-		// promises.push(
+		promises.push(
 		fetch(url_decision)
 		.then(res => res.json())
 		.then(answer => this.setState({decision: answer.data}))
-			// )
+			)
 
-		// Promise
-			// .all(promises)
+		Promise
+			.all(promises)
 			// .then(this.setState({l: 0}))
+	}
+
+	render () {
 
 		if (this.state.decision[0].decision === 'true') {
 			var url_time = '/modify_time/'.concat(this.props.AppointmentId);
+			console.log(url_time);
 			fetch(url_time, {method: "POST"})
 				.then(answer => console.log(answer.data))
 			alert('MAKING APPOINTMENT COMPLETED.');
@@ -103,9 +108,7 @@ class Vote extends Component {
 			alert('VOTING COMPLETED.');
 			this.props.nextStageWithAppointment(0,0)
 		}
-	}
-
-	render () {
+		
 		const button =
 			<ul>
 				<li> <img className="complete" src={complete} alt="Complete"

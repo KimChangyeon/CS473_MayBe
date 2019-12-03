@@ -106,6 +106,8 @@ class Main extends Component {
 		console.log(appId);
 		this.setState({stage_id: number, AppointmentId: appId});
 		switch (number) {
+			case (0):
+				this.update();
 			case (4):
 				this.setState({AppointmentTime: additional})
 				break;
