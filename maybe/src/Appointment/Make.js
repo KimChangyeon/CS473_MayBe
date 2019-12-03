@@ -176,11 +176,13 @@ class Make extends Component {
 	}
 
 	submit () {
+		var promises = [];
 		// '/make/:DateId/:StartTime/:EndTime/:What'
 		var url_make = '/make/'.concat(this.state.AppointmentName);
-		fetch(url_make, {method: "POST"})
+		promises.append(
+			fetch(url_make, {method: "POST"})
 			.then(res => res.json())
-			.then(answer => console.log(answer.data))
+			.then(answer => console.log(answer.data)));
 
 		// candidate registration for the avaliable time for the user.
 		
@@ -189,25 +191,26 @@ class Make extends Component {
 			var p = this.state.friends_in_appointment[k];
 			var url_participants = 'register'.concat('/').concat(p)
 			console.log(url_participants);
-			fetch(url_participants, {method: "POST"})
+			promises.append(
+				fetch(url_participants, {method: "POST"})
 				.then(res => res.json())
-				.then(answer => console.log(answer.data))
-			.catch((error)=>{
-				console.log('Error fetching man',error);
-			});
+				.then(answer => console.log(answer.data)))
 		}
 
 		var url_self = 'register_self'.concat('/').concat(this.state.user_id)
 		console.log(url_self);
+		promises.append(
 		fetch(url_self, {method: "POST"})
 			.then(res => res.json())
-			.then(answer => console.log(answer.data))
-		.catch((error)=>{
-			console.log('Error fetching man',error);
-		});
+			.then(answer => console.log(answer.data)))
 
+		Promise
+			.all(promises)
+			
 		var timeSlot = this.state.timeSlot;
 		timeSlot.map((slot) => this.voting(slot));
+
+		
 		
 	}
 
