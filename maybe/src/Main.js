@@ -228,7 +228,7 @@ class Main extends Component {
 									alt="When"/>
 							</a>
 							: <div className="edit">
-								{info.DateId/10000}/{(info.DateId%10000)/100}/{(info.DateId%10000)%100}<br/>
+								{info.DateId/10000}/{(info.DateId%10000)/100}/{(info.DateId%100)}<br/>
 								{info.StartTime}:00 ~ {info.EndTime}:00
 							</div>
 
