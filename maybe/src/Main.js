@@ -200,8 +200,8 @@ class Main extends Component {
 				const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) ; 
 
 				const Title = info.What;
-				// const participants = info.participants.split(',');
-				// const participants_list = participants.map((person) => <li key={person}><span>{person}</span></li>)
+				const participants = info.participants.split(',');
+				const participants_list = participants.map((person) => <li key={person}><span>{person}</span></li>)
 
 				const header = info.DateId === null ?
 				<b>TBD &nbsp;&nbsp; {Title} <CloseRoundedIcon style={{float: "right"}}/></b> : <b> D-{diffDays} &nbsp;&nbsp; {Title} <CloseRoundedIcon style={{float: "right"}}/></b>
@@ -255,8 +255,7 @@ class Main extends Component {
 							</div>
 							<div className="content-left"><b>Who</b><hr/>
 								<ul>
-									{/*{participants_list}*/}
-									Sangho Lim Kim
+									{participants_list}
 								</ul>
 							</div>
 							<div className="content-left"><b>Where</b><hr/>
@@ -309,11 +308,11 @@ class Main extends Component {
 				header = this.header(bar, button);
         body =
 					<body className="Body"> 
-						<li>{this.appointment_list(2, this.state.schedule[0])}</li>
+					{/* <li>{this.appointment_list(2, this.state.schedule[0])}</li>
 						<li>{this.appointment_list(3, this.state.schedule[0])}</li>
 						<li>{this.appointment_list(4, this.state.schedule[0])}</li>
 						<li>{this.appointment_list(5, this.state.schedule[0])}</li>
-						<li>{this.appointment_list(6, this.state.schedule[0])}</li>
+						<li>{this.appointment_list(6, this.state.schedule[0])}</li> */}
 						{upcoming_list}
 					</body>
 				content = <div>{header}{body}</div>;
