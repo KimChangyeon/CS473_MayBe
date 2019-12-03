@@ -41,11 +41,6 @@ class Rank extends Component {
 		.catch((error)=>{
 			console.log('Error fetching man',error);
         });
-        var k = this.state.friends_reward_rank;
-        k.push({name: "(YOU)", reward: this.props.user_reward});
-        console.log(k);
-        this.setState({friends_reward_rank: k});
-        console.log(this.state.friends_reward_rank);
     }
 
     reward_rank() {
