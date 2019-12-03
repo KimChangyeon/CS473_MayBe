@@ -155,16 +155,17 @@ class ChooseTable extends Component {
     }
 
     componentWillMount () {
-        var url_final = '/sch/'.concat(this.props.user_id);
-        console.log(url_final);
-        fetch(url_final)
-            .then(res => res.json())
-            .then(answer => this.setState({user_schedule: handling_schedule(answer.data)}))        
-        .catch((error)=>{
-            console.log('Error fetching man',error);
-        });
-        
-    }
+        if (this.props.type === 'Vote') {
+            var url_vote = '/vote_result/'.concat(this.props.AppointmentId);
+            fetch(url_vote)
+                .then(res => res.json())
+                .then(answer => this.setState({vote_result: answer.data}))        
+            .catch((error)=>{
+                console.log('Error fetching man',error);
+            });
+            console.log(this.state.vote_result);
+        }
+	}
   
     cellClick =(row, id, selected) => {
         let updatedCells=[]

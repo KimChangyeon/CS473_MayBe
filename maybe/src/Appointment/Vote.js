@@ -20,17 +20,6 @@ class Vote extends Component {
 		}
 	}
 
-	componentWillMount () {
-		var url_vote = '/vote_result/'.concat(this.props.AppointmentId);
-		fetch(url_vote)
-			.then(res => res.json())
-			.then(answer => this.setState({vote_result: answer.data}))        
-		.catch((error)=>{
-			console.log('Error fetching man',error);
-		});
-		console.log(this.state.vote_result);
-	}
-
 	render () {
 		const button =
 			<ul>
@@ -74,6 +63,7 @@ class Vote extends Component {
 					<ChooseTable 
 						type = "Vote"
 						AppointmentTime = {this.props.AppointmentTime}
+						AppointmentId = {this.state.AppointmentId}
 					/>
 				</body>
 		const content = <div>
