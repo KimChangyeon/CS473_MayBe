@@ -147,7 +147,7 @@ class Vote extends Component {
 						AppointmentTime = {this.props.AppointmentTime}
 						AppointmentId = {this.state.AppointmentId}
 						updateChoice = {this.updateChoice}
-						vote_result = {this.vote_result}
+						vote_result = {this.state.vote_result}
 					/>
 				</body>
 		const content = <div>
