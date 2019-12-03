@@ -106,6 +106,8 @@ class Main extends Component {
 		console.log(appId);
 		this.setState({stage_id: number, AppointmentId: appId});
 		switch (number) {
+			case (0):
+				this.update();
 			case (4):
 				this.setState({AppointmentTime: additional})
 				break;
@@ -207,9 +209,9 @@ class Main extends Component {
 			msg = "You are late!"
 		}
 	
-		this.setState({early_min: early_min});
-		this.setState({reward_pt: reward_pt});
-		this.setState({early_msg: msg});
+		this.state.early_min = early_min;
+		this.state.reward_pt = reward_pt;
+		this.state.early_msg = msg;
 	}
 
 	appointment_list(info) {

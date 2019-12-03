@@ -100,9 +100,9 @@ router.post('/vote/:UserId/:DateId/:StartTime/:EndTime', (req, res) => {
     })
 });
 
-router.post('/votee/:aid/:UserId/:DateId/:StartTime/:EndTime', (req, res) => {
+router.post('/vote2/:aid/:UserId/:DateId/:StartTime/:EndTime', (req, res) => {
     var query = 'INSERT INTO Vote(AppointmentId, UserId, DateId, StartTime, EndTime) VALUES (?,?,?,?,?)'
-    db.query(query, [req.params.aid, eq.params.UserId,req.params.DateId,req.params.StartTime,req.params.EndTime], (err, rows) => {
+    db.query(query, [req.params.aid, req.params.UserId, req.params.DateId, req.params.StartTime, req.params.EndTime], (err, rows) => {
         if (!err) {
             res.send({data: 'POSTING SUCCESSED FOR VOTING WITH WHEN BUTTON.'});
         }
@@ -151,8 +151,8 @@ router.post('/reward/:id/:point', (req, res) => {
 
 
 router.get('/vote_decision/:id', (req, res) => {
-    var query = 'SELECT IF ((SELECT COUNT(*) AS count FROM (SELECT * FROM Appointment_participants WHERE AppointmentId = 49) B) = (SELECT COUNT(*) as count FROM (SELECT UserId FROM (SELECT UserId from Vote Where AppointmentId = 49) B GROUP BY UserId) C), \'true\', \'false\') as decision;'
-    db.query(query, req.params.id, (err, rows) => {
+    var query = 'SELECT IF ((SELECT COUNT(*) AS count FROM (SELECT * FROM Appointment_participants WHERE AppointmentId = ?) B) = (SELECT COUNT(*) as count FROM (SELECT UserId FROM (SELECT UserId from Vote Where AppointmentId = ?) B GROUP BY UserId) C), \'true\', \'false\') as decision;'
+    db.query(query, [req.params.id, req.params.id], (err, rows) => {
         if (!err) {
             res.send({data: rows});
         }

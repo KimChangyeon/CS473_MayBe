@@ -8,6 +8,16 @@ import ChooseTable from './ChooseTable';
 import complete from '../img/button_complete.png';
 import cancel from '../img/button_cancel.png';
 
+
+let fakeData = [
+    {
+        DateId : 20191202,
+        EndTime : 14,
+        StartTime : 13,
+        UserName : "guest"
+    }
+]
+
 class Vote extends Component {
 
 	constructor (props) {
@@ -17,7 +27,8 @@ class Vote extends Component {
 			AppointmentTime: [],
 			choiceDate : [],
 			decision: '',
-			l: 1
+			l: 0,
+			vote_result : []
 		}
 	}
 
@@ -38,7 +49,21 @@ class Vote extends Component {
 			.then(answer => console.log(answer.data))
 	}
 
+	componentWillMount () {
+		var url_vote = '/vote_result/'.concat(this.state.AppointmentId);
+		fetch(url_vote)
+			.then(res => res.json())
+			.then(answer => this.setState({ vote_result : answer.data }))   
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
+		this.setState({
+			vote_result : fakeData
+		})
+	}
+
 	Complete () {
+		var promises = [];
 		var candidates = [];
 		var slot = this.state.choiceDate;
 		if (slot.length > 0) {
@@ -54,51 +79,49 @@ class Vote extends Component {
 			}
 		}
 		console.log(candidates);
-		var promises = [];
 		for (var j = 0 ; j < candidates.length ; j ++) {
-			slot = candidates[i];
+			var cand = candidates[j];
 			var UserId = this.props.user_id;
-			var DateId = slot.DateId;
-			var StartTime = slot.StartTime;
-			var EndTime = slot.EndTime;
-			var url_vote = '/votee/'.concat(this.props.AppointmentId).concat('/').concat(UserId).concat('/').concat(DateId).concat('/').concat(StartTime).concat('/').concat(EndTime);
+			var DateId = cand.DateId;
+			var StartTime = cand.StartTime;
+			var EndTime = cand.EndTime;
+			var url_vote = '/vote2/'.concat(this.props.AppointmentId).concat('/').concat(UserId).concat('/').concat(DateId).concat('/').concat(StartTime).concat('/').concat(EndTime);
 			console.log(url_vote);
 			promises.push(
-				fetch(url_vote, {method: "POST"})
-				.then(res => res.json())
-				.then(answer => console.log(answer.data))
+			fetch(url_vote, {method: "POST"})
+			.then(res => res.json())
+			.then(answer => console.log(answer.data))
 				)
 		}
 
 		var url_decision = '/vote_decision/'.concat(this.props.AppointmentId);
 		promises.push(
-			fetch(url_decision)
-			.then(res => res.json())
-			.then(answer => this.setState({decision: answer.data}))
+		fetch(url_decision)
+		.then(res => res.json())
+		.then(answer => this.setState({decision: answer.data}))
 			)
 
 		Promise
 			.all(promises)
-			.then(this.setState({l: 0}))
-
-		if (this.state.l === 0){
-			if (this.state.decision === 'true') {
-				var url_time = '/modify_time/'.concat(this.props.AppointmentId);
-				fetch(url_time, {method: "POST"})
-					.then(res => res.json())
-					.then(answer => console.log(answer.data))
-				alert('MAKING APPOINTMENT COMPLETED.');
-				this.props.nextStageWithAppointment(0,0)
-			}
-
-			else if (this.state.decision === 'false') {
-				alert('VOTING COMPLETED.');
-				this.props.nextStageWithAppointment(0,0)
-			}
-		}
+			// .then(this.setState({l: 0}))
 	}
 
 	render () {
+
+		if (this.state.decision[0].decision === 'true') {
+			var url_time = '/modify_time/'.concat(this.props.AppointmentId);
+			console.log(url_time);
+			fetch(url_time, {method: "POST"})
+				.then(answer => console.log(answer.data))
+			alert('MAKING APPOINTMENT COMPLETED.');
+			this.props.nextStageWithAppointment(0,0)
+		}
+
+		else if (this.state.decision[0].decision === 'false') {
+			alert('VOTING COMPLETED.');
+			this.props.nextStageWithAppointment(0,0)
+		}
+		
 		const button =
 			<ul>
 				<li> <img className="complete" src={complete} alt="Complete"
@@ -136,6 +159,7 @@ class Vote extends Component {
 						AppointmentTime = {this.props.AppointmentTime}
 						AppointmentId = {this.state.AppointmentId}
 						updateChoice = {this.updateChoice}
+						vote_result = {this.state.vote_result}
 					/>
 				</body>
 		const content = <div>
