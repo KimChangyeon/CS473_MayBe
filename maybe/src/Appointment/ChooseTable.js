@@ -149,14 +149,6 @@ class ChooseTable extends Component {
             friends : [],
             what: '',
             user_schedule: [],
-            vote_result : [
-                {
-                    DateId : 20191202,
-                    EndTime : 14,
-                    StartTime : 13,
-                    UserName : "guest"
-                }
-            ]
             };
         this.onChange = this.onChange.bind(this);
     }
@@ -171,11 +163,10 @@ class ChooseTable extends Component {
             console.log('Error fetching man',error);
         });
         
-
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
-        console.log("getDerivedStateFromProps")
+        console.log("getDerivedStateFromProps props :", nextProps.vote_result)
         if (nextProps.type === "Vote") {
                 let DateId
                 let EndTime
@@ -225,6 +216,7 @@ class ChooseTable extends Component {
                     })
                     index ++
                 }
+                console.log("getderivedStatefromProps updated state : ", updatedVoteCells)
             return {
                 voteCells : updatedVoteCells,
                 friends : friendState
@@ -265,15 +257,14 @@ class ChooseTable extends Component {
                 ? ({...Day, time: Day.time.filter((time) => time !== row ) })
                 : Day)
         }
-        console.log("updatedChoice : ", updatedChoice)
         this.updateDates(updatedChoice);
+        console.log("updatedChoice : ", updatedChoice)
         //setState
         if(this.props.type == "Choose") this.setState({chooseCells : updatedCells, choice : updatedChoice})
         else this.setState({voteCells : updatedCells, choice : updatedChoice})
    }
    
     renderRow = () =>{
-        console.log("renderRow",this.props.type)
         let renderCells = []
         if (this.props.type === "Choose") {
             renderCells = this.state.chooseCells.map((Row) => {
@@ -399,7 +390,7 @@ class ChooseTable extends Component {
 	}
 
     render(){
-        console.log("state :", this.state.voteCells)
+        console.log("vote_result :", this.props.vote_result)
         return (
             <div>
                 {this.renderInputBox()}
