@@ -191,7 +191,10 @@ class Main extends Component {
 		var reward_pt = 0;
 		var msg = "You've arrived at your appointment on time!";
 
-		if (diffDays > 0) {
+		if (info.DateId === null) {
+			early_min = 0;
+			msg = "The appointment time has not yet determined.";
+		} else if (diffDays > 0) {
 			early_min = 0;
 			reward_pt = 50;
 			msg += "(" + String(diffDays) + " days early)";
