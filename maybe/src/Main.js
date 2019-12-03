@@ -176,13 +176,13 @@ class Main extends Component {
 		if (diffDays > 0) {
 			early_min = 0;
 			reward_pt = 50;
-			msg += "(" + toString(diffDays) + " days early)";
+			msg += "(" + String(diffDays) + " days early)";
 		} else if (diffDays < 0) {
 			early_min = 0;
 			msg = "You are late!";
 		} else if (early_min >= 0) {
 			reward_pt = early_min >= 10 ? 50 : 5 * early_min + 5;
-			msg += "(" + toString(early_min) + " minutes early)";
+			msg += "(" + String(early_min) + " minutes early)";
 		} else {
 			early_min = 0;
 			msg = "You are late!"
