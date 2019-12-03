@@ -56,12 +56,11 @@ class Vote extends Component {
 		console.log(candidates);
 		var promises = [];
 		for (var j = 0 ; j < candidates.length ; j ++) {
-			var cand = candidates[i];
-			console.log(cand);
+			var cand = candidates[jsbn];
 			var UserId = this.props.user_id;
-			var DateId = cand['DateId'];
-			var StartTime = cand['StartTime'];
-			var EndTime = cand['EndTime'];
+			var DateId = cand.DateId;
+			var StartTime = cand.StartTime;
+			var EndTime = cand.EndTime;
 			var url_vote = '/votee/'.concat(this.props.AppointmentId).concat('/').concat(UserId).concat('/').concat(DateId).concat('/').concat(StartTime).concat('/').concat(EndTime);
 			console.log(url_vote);
 			promises.push(
