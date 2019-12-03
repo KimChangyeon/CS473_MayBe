@@ -43,6 +43,7 @@ class Vote extends Component {
 				<ChooseTable 
 					type = "Vote"
 					AppointmentTime = {this.props.AppointmentTime}
+					vote_result = {this.state.vote_result}
 				/>
 			</body>
 		const content = <div>{header}{body}</div>;
