@@ -221,6 +221,18 @@ class Main extends Component {
 							 diffDays === 0 ? "D-Day" :
 							 "D+" + String(-diffDays); 
 
+				const vote = info.DateID === null ?
+							<a href="#">
+								<img src={checkbox} style={{width: "50%", marginLeft: "12px", marginTop: "5px"}}
+									onClick={()=>this.nextStageWithAppointment(4, info.AppointmentId, [info.StartTime, info.EndTime])}
+									alt="When"/>
+							</a>
+							: <div className="edit">
+								{info.DateId}
+								{info.StartTime}
+								{info.EndTime}
+							</div>
+
 				const Title = info.What;
 				const participants = info.participants.split(',');
 				const participants_list = participants.map((person) => <li key={person}><span>{person}</span></li>)
@@ -269,11 +281,7 @@ class Main extends Component {
 					<Card.Body>
 						<div className="row">
 							<div className="content-left"><b>When</b><hr/>
-								<a href="#">
-									<img src={checkbox} style={{width: "50%", marginLeft: "12px", marginTop: "5px"}}
-										onClick={()=>this.nextStageWithAppointment(4, info.AppointmentId, [info.StartTime, info.EndTime])}
-										alt="When"/>
-								</a>
+								{vote}
 							</div>
 							<div className="content-left"><b>Who</b><hr/>
 								<ul>
@@ -356,6 +364,7 @@ class Main extends Component {
 		content = <Vote 
 					nextStage = {this.nextStage} nextStageWithAppointment = {this.nextStageWithAppointment}
 					header = {this.header} AppointmentId = {this.state.AppointmentId} AppointmentTime = {this.state.AppointmentTime}
+					user_id = {this.state.user_id}
 					update = {this.update} />;
 		break;
 
@@ -388,7 +397,7 @@ class Main extends Component {
 		break;
 	
 	case ('rank'):
-		content = <Rank nextStage = {this.nextStage} header = {this.header} user_reward = {this.props.user_reward} />;
+		content = <Rank nextStage = {this.nextStage} header = {this.header} user_reward = {this.props.user_reward} user_id = {this.state.user_id} />;
 		break;
 
       default:
