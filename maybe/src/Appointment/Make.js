@@ -21,6 +21,7 @@ import cancel from '../img/button_cancel.png';
 import statistics from '../img/statistics.png';
 import calendar from '../img/friend_list_friend_calendar.png';
 import search from '../img/search.png'
+import help from '../img/help.png';
 
 function make_friends(answer){
 	var friend_list = [];
@@ -329,7 +330,11 @@ class Make extends Component {
 							setTimeSlot = {this.setTimeSlot}
 							user_id = {this.state.user_id}
 							type = {"Choose"}/></body>;
-				content = <div>{header}{body}</div>;
+				content = 
+					<div>
+						{header}
+						{body}
+					</div>;
 				break;
 
 			case 'stat_friend':
