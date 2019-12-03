@@ -155,9 +155,6 @@ class Main extends Component {
 	}
 
 	appointment_list(info) {
-
-				
-				
 				const date = parse(String(info.DateId));
 				var today = new Date();
 				const diffTime = date - today;
