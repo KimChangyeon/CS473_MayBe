@@ -7,8 +7,6 @@ import ChooseTable from './ChooseTable';
 /* Icons */
 import complete from '../img/button_complete.png';
 import cancel from '../img/button_cancel.png';
-import help from '../img/help.png';
-import {Button} from 'react-bootstrap';
 
 class Vote extends Component {
 
@@ -56,6 +54,7 @@ class Vote extends Component {
 			}
 		}
 		console.log(candidates);
+		var promises = [];
 		for (var j = 0 ; j < candidates.length ; j ++) {
 			slot = candidates[i];
 			var UserId = this.props.user_id;
@@ -64,19 +63,25 @@ class Vote extends Component {
 			var EndTime = slot.EndTime;
 			var url_vote = '/votee/'.concat(this.props.AppointmentId).concat('/').concat(UserId).concat('/').concat(DateId).concat('/').concat(StartTime).concat('/').concat(EndTime);
 			console.log(url_vote);
-			fetch(url_vote, {method: "POST"})
+			promises.push(
+				fetch(url_vote, {method: "POST"})
 				.then(res => res.json())
 				.then(answer => console.log(answer.data))
+				)
 		}
-		
-		this.setState({l: 0})
+
+		var url_decision = '/vote_decision/'.concat(this.props.AppointmentId);
+		promises.push(
+			fetch(url_decision)
+			.then(res => res.json())
+			.then(answer => this.setState({decision: answer.data}))
+			)
+
+		Promise
+			.all(promises)
+			.then(this.setState({l: 0}))
 
 		if (this.state.l === 0){
-			var url_decision = '/vote_decision/'.concat(this.props.AppointmentId);
-			fetch(url_decision)
-				.then(res => res.json())
-				.then(answer => this.setState({decision: answer.data}))
-			
 			if (this.state.decision === 'true') {
 				var url_time = '/modify_time/'.concat(this.props.AppointmentId);
 				fetch(url_time, {method: "POST"})
