@@ -155,7 +155,7 @@ class ChooseTable extends Component {
     }
 
     componentWillMount () {
-        if (this.state.type === 'vote') {
+        if (this.props.type === 'vote') {
             var url_vote = '/vote_result/'.concat(this.props.AppointmentId);
             fetch(url_vote)
                 .then(res => res.json())
