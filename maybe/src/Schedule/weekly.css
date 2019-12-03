@@ -31,6 +31,7 @@
 }
 
 .MuiPickersToolbarButton-toolbarBtn {
+		min-width: 20px;
     padding: 0;
     width: 16px;
     text-transform: none;
