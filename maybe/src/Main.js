@@ -197,14 +197,17 @@ class Main extends Component {
 				const date = parse(String(info.DateId));
 				var today = new Date();
 				const diffTime = date - today;
-				const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) ; 
+				const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) ;
+				const D_day = diffDays > 0 ? "D-" + String(diffDays) :
+							 diffDays === 0 ? "D-Day" :
+							 "D+" + String(-diffDays); 
 
 				const Title = info.What;
 				const participants = info.participants.split(',');
 				const participants_list = participants.map((person) => <li key={person}><span>{person}</span></li>)
 
 				const header = info.DateId === null ?
-				<b>TBD &nbsp;&nbsp; {Title} <CloseRoundedIcon style={{float: "right"}}/></b> : <b> D-{diffDays} &nbsp;&nbsp; {Title} <CloseRoundedIcon style={{float: "right"}}/></b>
+				<b>TBD &nbsp;&nbsp; {Title} <CloseRoundedIcon style={{float: "right"}}/></b> : <b> {D_day} &nbsp;&nbsp; {Title} <CloseRoundedIcon style={{float: "right"}}/></b>
 				
 				const place = info.Place === '' ?
 					<img src={gps} style={{width: "65%"}}
