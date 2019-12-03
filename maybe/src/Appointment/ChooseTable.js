@@ -192,19 +192,6 @@ class ChooseTable extends Component {
                 }
             })
     
-            /* update friends list */
-            const friendList = Array.from(friendSet)
-            let friend
-            let friendState =[]
-            let index = 0
-            for (friend of friendList) {
-                friendState.push({
-                    name : friend,
-                    img : index
-                })
-                index ++
-            }
-            console.log("getderivedStatefromProps updated state : ", updatedVoteCells)
             return updatedVoteCells
     }
 
