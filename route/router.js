@@ -151,8 +151,8 @@ router.post('/reward/:id/:point', (req, res) => {
 
 
 router.get('/vote_decision/:id', (req, res) => {
-    var query = 'SELECT IF ((SELECT COUNT(*) AS count FROM (SELECT * FROM Appointment_participants WHERE AppointmentId = 49) B) = (SELECT COUNT(*) as count FROM (SELECT UserId FROM (SELECT UserId from Vote Where AppointmentId = 49) B GROUP BY UserId) C), \'true\', \'false\') as decision;'
-    db.query(query, req.params.id, (err, rows) => {
+    var query = 'SELECT IF ((SELECT COUNT(*) AS count FROM (SELECT * FROM Appointment_participants WHERE AppointmentId = ?) B) = (SELECT COUNT(*) as count FROM (SELECT UserId FROM (SELECT UserId from Vote Where AppointmentId = ?) B GROUP BY UserId) C), \'true\', \'false\') as decision;'
+    db.query(query, [req.params.id, req.params.id], (err, rows) => {
         if (!err) {
             res.send({data: rows});
         }
