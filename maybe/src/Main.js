@@ -207,9 +207,9 @@ class Main extends Component {
 			msg = "You are late!"
 		}
 	
-		this.setState({early_min: early_min});
-		this.setState({reward_pt: reward_pt});
-		this.setState({early_msg: msg});
+		this.state.early_min = early_min;
+		this.state.reward_pt = reward_pt;
+		this.state.early_msg = msg;
 	}
 
 	appointment_list(info) {
