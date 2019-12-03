@@ -102,7 +102,7 @@ router.post('/vote/:UserId/:DateId/:StartTime/:EndTime', (req, res) => {
 
 router.post('/vote2/:aid/:UserId/:DateId/:StartTime/:EndTime', (req, res) => {
     var query = 'INSERT INTO Vote(AppointmentId, UserId, DateId, StartTime, EndTime) VALUES (?,?,?,?,?)'
-    db.query(query, [req.params.aid, eq.params.UserId,req.params.DateId,req.params.StartTime,req.params.EndTime], (err, rows) => {
+    db.query(query, [req.params.aid, req.params.UserId, req.params.DateId, req.params.StartTime, req.params.EndTime], (err, rows) => {
         if (!err) {
             res.send({data: 'POSTING SUCCESSED FOR VOTING WITH WHEN BUTTON.'});
         }

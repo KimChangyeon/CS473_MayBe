@@ -75,6 +75,7 @@ class Vote extends Component {
 			console.log(url_vote);
 			// promises.push(
 			fetch(url_vote, {method: "POST"})
+			.then(res => res.json())
 			.then(answer => console.log(answer.data))
 				// )
 		}
@@ -83,7 +84,7 @@ class Vote extends Component {
 		// promises.push(
 		fetch(url_decision)
 		.then(res => res.json())
-		.then(answer => this.setState({decision: answer.data.decision}))
+		.then(answer => this.setState({decision: answer.data}))
 			// )
 
 		// Promise
@@ -92,7 +93,7 @@ class Vote extends Component {
 		this.setState({l: 0});
 
 		if (this.state.l === 0){
-			if (this.state.decision === 'true') {
+			if (this.state.decision.decision === 'true') {
 				var url_time = '/modify_time/'.concat(this.props.AppointmentId);
 				fetch(url_time, {method: "POST"})
 					.then(answer => console.log(answer.data))
@@ -100,7 +101,7 @@ class Vote extends Component {
 				this.props.nextStageWithAppointment(0,0)
 			}
 
-			else if (this.state.decision === 'false') {
+			else if (this.state.decision.decision === 'false') {
 				alert('VOTING COMPLETED.');
 				this.props.nextStageWithAppointment(0,0)
 			}
