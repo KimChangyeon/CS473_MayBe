@@ -230,9 +230,8 @@ class Main extends Component {
 									alt="When"/>
 							</a>
 							: <div className="edit">
-								{info.DateId}
-								{info.StartTime}
-								{info.EndTime}
+								{info.DateId.slice(0,4)}/{info.DateId.slice(4,6)}/{info.DateId.slice(6,8)}<br/>
+								{info.StartTime}:00 ~ {info.EndTime}:00
 							</div>
 
 				const Title = info.What;
