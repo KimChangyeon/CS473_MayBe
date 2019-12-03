@@ -16,6 +16,7 @@ import './ChooseTable.css'
 
 let choiceDate = []
 let friendSet= new Set()
+let vote_result = []
 
 function handling_schedule (schedules) {
     var answer = [];
@@ -156,12 +157,20 @@ class ChooseTable extends Component {
         });
         /*update cells with props*/
         if (this.props.type === "Vote") {
-            const voteResults = this.props.vote_result
-            console.log(voteResults)
+
+            var url_vote = '/vote_result/'.concat(this.props.AppointmentId);
+            fetch(url_vote)
+                .then(res => res.json())
+                .then(answer => vote_result = answer.data)   
+            .catch((error)=>{
+                console.log('Error fetching man',error);
+            });
+            console.log(this.state.vote_result);
+            
+            const voteResults = vote_result
             let DateId
             let EndTime
             let StartTime
-            let time = []
             let Username
             let updatedCell
             let updatedVoteCells = this.state.voteCells

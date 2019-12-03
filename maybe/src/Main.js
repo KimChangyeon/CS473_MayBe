@@ -3,6 +3,11 @@ import React, {Component} from 'react';
 import {Card} from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import Popup from 'reactjs-popup';
+import Fab from '@material-ui/core/Fab';
+import EmojiEventsRoundedIcon from '@material-ui/icons/EmojiEventsRounded';
+import PeopleAltRoundedIcon from '@material-ui/icons/PeopleAltRounded';
+import EventNoteRoundedIcon from '@material-ui/icons/EventNoteRounded';
+import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import './App.css';
 
 /* Classes */
@@ -15,8 +20,6 @@ import Memo from './Appointment/Memo.js';
 import Rank from './Statistics/Rank.js';
 
 /* Icons */
-import calendar from './img/hamburger_calendar.png';
-import statistics from './img/hamburger_statistics.png';
 import timer from './img/appointment_list_timer.png';
 import listbutton from './img/button_friend_list.png';
 import gps from './img/appointment_list_gps_location.png';
@@ -24,7 +27,6 @@ import align from './img/align.png';
 import checkbox from './img/checkbox.png';
 import coins from './img/appointment_list_reward.png';
 import coin from './img/coin.png';
-import rank from './img/rank.png';
 
 function parse(str) {
     var y = str.substring(0,4),
@@ -53,6 +55,9 @@ class Main extends Component {
 			schedule: [],
 			alert1: 0,
 			alert2: 0,
+			early_msg: "You've arrived at your appointment on time!",
+			early_min: 0,
+			reward_pt: 0,
 		}
 		this.setMarker = this.setMarker.bind(this);
 		this.setPlace = this.setPlace.bind(this);
@@ -117,8 +122,8 @@ class Main extends Component {
 		}
 	}
 
-	rewarding () {
-		var point = this.props.user_reward + 20;
+	rewarding (reward_pt) {
+		var point = this.props.user_reward + reward_pt;
 		var url_final = '/reward/'.concat(this.props.user_id).concat('/').concat(point);
 		fetch(url_final, {method: "POST"})
 			.then(answer => console.log(answer.data))        
@@ -128,6 +133,18 @@ class Main extends Component {
 		this.props.setReward(point);
 	}
 
+	delete_appointment (aid) {
+		var url_delete = '/delete_appt/'.concat(aid);
+		fetch(url_delete, {method: "POST"})
+			.then(answer => console.log(answer.data))        
+		.catch((error)=>{
+			console.log('Error fetching man',error);
+		});
+		this.update();
+	}
+
+
+
 
 	header(bar, button) {
 		return (
@@ -136,15 +153,21 @@ class Main extends Component {
 						<h1 className="Darkblue" onClick={()=>this.nextStage(0)}><a href="#">MayBe</a></h1>
 						<nav>
 							<ul className="menu">
-								<li><a href="#">
-									<img src={rank} onClick={()=>this.nextStage(7)} alt="rank" />
-								</a></li>
-								<li><a href="#">
-									<img src={statistics} onClick={()=>this.nextStage(3)} alt="statistics" />
-								</a></li>
-								<li><a href="#">
-									<img src={calendar} onClick={()=>this.nextStage(2)} alt="schedule" />
-								</a></li>
+								<li>
+									<Fab className="fab" onClick={()=>this.nextStage(7)}>
+										<EmojiEventsRoundedIcon className="White"/>
+									</Fab>
+								</li>
+								<li>
+									<Fab className="fab" onClick={()=>this.nextStage(3)}>
+										<PeopleAltRoundedIcon className="White"/>
+									</Fab>
+								</li>
+								<li>
+									<Fab className="fab" onClick={()=>this.nextStage(2)}>
+										<EventNoteRoundedIcon className="White"/>
+									</Fab>
+								</li>
 							</ul>
 						</nav>
 				</div>
@@ -154,10 +177,35 @@ class Main extends Component {
 		);
 	}
 
-	appointment_list(info) {
+	early_cal(info, diffDays) {
+		var today = new Date();
+		const min = 60 * today.getHours() + today.getMinutes();
+		const start_hour2min = 60 * info.StartTime;
+		var early_min = start_hour2min - min;
+		var reward_pt = 0;
+		var msg = "You've arrived at your appointment on time!";
 
-				
-				
+		if (diffDays > 0) {
+			early_min = 0;
+			reward_pt = 50;
+			msg += "(" + toString(diffDays) + " days early)";
+		} else if (diffDays < 0) {
+			early_min = 0;
+			msg = "You are late!";
+		} else if (early_min >= 0) {
+			reward_pt = early_min >= 10 ? 50 : 5 * early_min + 5;
+			msg += "(" + toString(early_min) + " minutes early)";
+		} else {
+			early_min = 0;
+			msg = "You are late!"
+		}
+	
+		this.state.early_min = early_min;
+		this.state.reward_pt = reward_pt;
+		this.state.early_msg = msg;
+	}
+
+	appointment_list(info) {
 				const date = parse(String(info.DateId));
 				var today = new Date();
 				const diffTime = date - today;
@@ -168,7 +216,7 @@ class Main extends Component {
 				const participants_list = participants.map((person) => <li key={person}><span>{person}</span></li>)
 
 				const header = info.DateId === null ?
-				<b>TBD &nbsp;&nbsp; {Title}</b> : <b> D-{diffDays} &nbsp;&nbsp; {Title}</b>
+				<b>TBD &nbsp;&nbsp; {Title} <CloseRoundedIcon style={{float: "right"}} onClick = {()=>{this.delete_appointment(info.AppointmentId)}}/></b> : <b> D-{diffDays} &nbsp;&nbsp; {Title} <CloseRoundedIcon style={{float: "right"}} onClick = {()=>{this.delete_appointment(info.AppointmentId)}}/></b>
 				
 				const place = info.Place === '' ?
 					<img src={gps} style={{width: "65%"}}
@@ -192,10 +240,11 @@ class Main extends Component {
 					<Popup trigger={<img src={coins} style={{width: "60%", marginTop: "2px", zindex :9999}} alt="reward"/>} contentStyle={{width: "250px",zindex :9999}}>
 						{close => (
 							<div style={{margin: "5px"}}>
-								<img src={coin} style={{float: "right", width: "50px"}} onClick={()=>{this.rewarding(); close()}} alt="reward"/>
-								You've arrived at your appointment on time! <br/>
-								<u>4 min</u> earlier <br/>
-								<Button variant="outlineflat" onClick={()=>{this.rewarding(); close()}}>OK</Button>
+								{this.early_cal(info, diffDays)}
+								<img src={coin} style={{float: "right", width: "50px"}} onClick={()=>{this.rewarding(this.state.reward_pt); close()}} alt="reward"/>
+								{this.state.early_msg}<br/>
+								<u>+ {this.state.reward_pt}pt</u><br/>
+								<Button variant="outlineflat" onClick={()=>{this.rewarding(this.state.reward_pt); close()}}>OK</Button>
 							</div>
 						)}
 					</Popup>;

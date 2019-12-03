@@ -31,6 +31,15 @@
     width: 44px;
 }
 
+.add {
+	flex-wrap: nowrap;
+}
+
+.add_button {
+	width: 44px;
+	padding-left: 8px;
+}
+
 .btn-search {
     background-color: #e2e2e2;
 }
