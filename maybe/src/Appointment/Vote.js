@@ -8,6 +8,16 @@ import ChooseTable from './ChooseTable';
 import complete from '../img/button_complete.png';
 import cancel from '../img/button_cancel.png';
 
+
+let fakeData = [
+    {
+        DateId : 20191202,
+        EndTime : 14,
+        StartTime : 13,
+        UserName : "guest"
+    }
+]
+
 class Vote extends Component {
 
 	constructor (props) {
@@ -17,7 +27,7 @@ class Vote extends Component {
 			AppointmentTime: [],
 			choiceDate : [],
 			decision: '',
-			l: 1,
+			l: 0,
 			vote_result : []
 		}
 	}
@@ -47,6 +57,9 @@ class Vote extends Component {
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
+		this.setState({
+			vote_result : fakeData
+		})
 	}
 
 	Complete () {

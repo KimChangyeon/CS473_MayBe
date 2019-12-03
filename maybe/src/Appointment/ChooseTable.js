@@ -16,14 +16,6 @@ import './ChooseTable.css'
 
 let choiceDate = []
 let friendSet= new Set()
-let fakeData = [
-    {
-        DateId : 20191202,
-        EndTime : 14,
-        StartTime : 13,
-        UserName : "guest"
-    }
-]
 
 function handling_schedule (schedules) {
     var answer = [];
@@ -146,7 +138,6 @@ class ChooseTable extends Component {
                     time : []
                 },
             ],
-            friends : [],
             what: '',
             user_schedule: [],
             };
@@ -165,64 +156,71 @@ class ChooseTable extends Component {
         
     }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
-        console.log("getDerivedStateFromProps props :", nextProps.vote_result)
-        if (nextProps.type === "Vote") {
-                let DateId
-                let EndTime
-                let StartTime
-                let Username
-                let updatedCell
-                let updatedVoteCells = prevState.voteCells
-                let i = 0
+    updateVoteCells=(stateVoteCell)=> {
+            let DateId
+            let EndTime
+            let StartTime
+            let Username
+            let updatedCell
+            let updatedVoteCells = stateVoteCell
+            let i = 0
+            
+            this.props.vote_result.map((vote)=>{
+                DateId = vote.DateId
+                EndTime = vote.EndTime
+                StartTime = vote.StartTime
+                Username = vote.UserName
                 
-                nextProps.vote_result.map((vote)=>{
-                    DateId = vote.DateId
-                    EndTime = vote.EndTime
-                    StartTime = vote.StartTime
-                    Username = vote.UserName
-                    
-                    //set user name first
-                    friendSet.add(Username)
-    
-                    //update votedata using given vote results
-                    for (i=StartTime; i<EndTime; i++){
-                        updatedVoteCells = updatedVoteCells.map((data)=>{
-                            if (data.row === i){
-                               updatedCell = data.cell.map((content)=>
-                                content.id === DateId
-                                ? {...content, 
-                                    selected : content.selected,
-                                    selectNum : content.selectNum + 1}
-                                :content)
-                                return {...data, cell : updatedCell}
-                            }
-                            else{
-                                return data
-                            }
-                        })
-                    }
-                })
-        
-                /* update friends list */
-                const friendList = Array.from(friendSet)
-                let friend
-                let friendState =[]
-                let index = 0
-                for (friend of friendList) {
-                    friendState.push({
-                        name : friend,
-                        img : index
+                //set user name first
+                friendSet.add(Username)
+
+                //update votedata using given vote results
+                for (i=StartTime; i<EndTime; i++){
+                    updatedVoteCells = updatedVoteCells.map((data)=>{
+                        if (data.row === i){
+                            updatedCell = data.cell.map((content)=>
+                            content.id === DateId
+                            ? {...content, 
+                                selectNum : content.selectNum + 1}
+                            :content)
+                            return {...data, cell : updatedCell}
+                        }
+                        else{
+                            return data
+                        }
                     })
-                    index ++
                 }
-                console.log("getderivedStatefromProps updated state : ", updatedVoteCells)
-            return {
-                voteCells : updatedVoteCells,
-                friends : friendState
+            })
+    
+            /* update friends list */
+            const friendList = Array.from(friendSet)
+            let friend
+            let friendState =[]
+            let index = 0
+            for (friend of friendList) {
+                friendState.push({
+                    name : friend,
+                    img : index
+                })
+                index ++
             }
-        }
-        return null;
+            console.log("getderivedStatefromProps updated state : ", updatedVoteCells)
+            return updatedVoteCells
+    }
+
+    updateFriendList = () => {
+        const friendList = Array.from(friendSet)
+            let friend
+            let friendState =[]
+            let index = 0
+            for (friend of friendList) {
+                friendState.push({
+                    name : friend,
+                    img : index
+                })
+                index ++
+            }
+        return friendState
     }
   
     cellClick =(row, id, selected) => {
@@ -277,7 +275,8 @@ class ChooseTable extends Component {
             })
         }
         else {
-            renderCells = this.state.voteCells.map((Row) => {
+            const updatedVoteCells=this.updateVoteCells(this.state.voteCells)
+            renderCells = updatedVoteCells.map((Row) => {
                 return (
                     <tr>
                         <td scope = "row">{Row.row}</td>
@@ -307,12 +306,13 @@ class ChooseTable extends Component {
 
     renderFriends = () => {        
         if ( this.props.type == "Vote") {
+            const friend_list=this.updateFriendList()
             return (
                 <Grid container item xs = {20} spacing = {1}>
                     <Grid item xs = {4.5}>
                         <Typography variant = "h6" ><span style = {{fontFamily : "ubuntu"}}>Completed Friends</span></Typography>
                     </Grid>
-                    {this.state.friends.map((friend)=>
+                    {friend_list.map((friend)=>
                         <Grid item xs = {1}>
                             <FriendIcons
                                 img = {friend.img}
