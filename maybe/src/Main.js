@@ -195,13 +195,13 @@ class Main extends Component {
 		} else if (diffDays > 0) {
 			early_min = 0;
 			reward_pt = 50;
-			msg += "(" + String(diffDays) + " days early)";
+			msg += "\n(" + String(diffDays) + " days early)";
 		} else if (diffDays < 0) {
 			early_min = 0;
 			msg = "You are late!";
 		} else if (early_min >= 0) {
 			reward_pt = early_min >= 10 ? 50 : 5 * early_min + 5;
-			msg += "(" + String(early_min) + " minutes early)";
+			msg += "\n(" + String(early_min) + " minutes early)";
 		} else {
 			early_min = 0;
 			msg = "You are late!"
@@ -228,7 +228,7 @@ class Main extends Component {
 									alt="When"/>
 							</a>
 							: <div className="edit">
-								{info.DateId.slice(0,4)}/{info.DateId.slice(4,6)}/{info.DateId.slice(6,8)}<br/>
+								{info.DateId/10000}/{(info.DateId%10000)/100}/{(info.DateId%10000)%100}<br/>
 								{info.StartTime}:00 ~ {info.EndTime}:00
 							</div>
 
