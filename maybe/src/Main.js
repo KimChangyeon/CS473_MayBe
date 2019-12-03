@@ -117,8 +117,8 @@ class Main extends Component {
 		}
 	}
 
-	rewarding () {
-		var point = this.props.user_reward + 20;
+	rewarding (reward_pt) {
+		var point = this.props.user_reward + reward_pt;
 		var url_final = '/reward/'.concat(this.props.user_id).concat('/').concat(point);
 		fetch(url_final, {method: "POST"})
 			.then(answer => console.log(answer.data))        
@@ -155,6 +155,12 @@ class Main extends Component {
 	}
 
 	appointment_list(info) {
+				let hour2min;
+				let min;
+				let start_hour2min;
+				let early_min;
+				let reward_pt;
+				
 				const date = parse(String(info.DateId));
 				var today = new Date();
 				const diffTime = date - today;
@@ -189,10 +195,15 @@ class Main extends Component {
 					<Popup trigger={<img src={coins} style={{width: "60%", marginTop: "2px", zindex :9999}} alt="reward"/>} contentStyle={{width: "250px",zindex :9999}}>
 						{close => (
 							<div style={{margin: "5px"}}>
-								<img src={coin} style={{float: "right", width: "50px"}} onClick={()=>{this.rewarding(); close()}} alt="reward"/>
+								{hour2min = 60 * today.getHours()}
+								{min = today.getMinutes()}
+								{start_hour2min = 60 * info.StartTime}
+								{early_min = start_hour2min - (hour2min + min)}
+								{reward_pt = early_min >= 0 ? (early_min < 10 ? 5 * early_min + 5 : 50) : 0}
+								<img src={coin} style={{float: "right", width: "50px"}} onClick={()=>{this.rewarding(reward_pt); close()}} alt="reward"/>
 								You've arrived at your appointment on time! <br/>
-								<u>4 min</u> earlier <br/>
-								<Button variant="outlineflat" onClick={()=>{this.rewarding(); close()}}>OK</Button>
+								<u>{early_min} min</u> earlier <br/>
+								<Button variant="outlineflat" onClick={()=>{this.rewarding(reward_pt); close()}}>OK</Button>
 							</div>
 						)}
 					</Popup>;
