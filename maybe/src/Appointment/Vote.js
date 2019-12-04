@@ -14,8 +14,14 @@ let fakeData = [
         DateId : 20191202,
         EndTime : 14,
         StartTime : 13,
-		UserName : "guest",
-    }
+		name : "guest",
+	},
+	{
+		DateId : 20191203,
+        EndTime : 15,
+        StartTime : 13,
+		name : "jisu",
+	}
 ]
 
 class Vote extends Component {

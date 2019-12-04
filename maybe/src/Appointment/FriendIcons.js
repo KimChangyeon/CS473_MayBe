@@ -40,7 +40,7 @@ export default function FriendIcons(props) {
       setOpen(prev => placement !== newPlacement || !prev);
       setPlacement(newPlacement);
     };
-
+    
     return (
         <div>
             <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
