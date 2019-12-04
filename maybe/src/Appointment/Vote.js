@@ -15,7 +15,6 @@ let fakeData = [
         EndTime : 14,
         StartTime : 13,
 		UserName : "guest",
-		decision: [{decision: ''}],
     }
 ]
 
@@ -27,9 +26,9 @@ class Vote extends Component {
 			AppointmentId: this.props.AppointmentId,
 			AppointmentTime: [],
 			choiceDate : [],
-			decision: '',
 			l: 0,
-			vote_result : []
+			vote_result : [],
+			decision: 'false',
 		}
 	}
 
@@ -54,7 +53,7 @@ class Vote extends Component {
 		var url_vote = '/vote_result/'.concat(this.state.AppointmentId);
 		fetch(url_vote)
 			.then(res => res.json())
-			.then(answer => this.setState({ vote_result : answer.data }))   
+			.then(answer => this.setState({ vote_result : answer.data[0].decision }))   
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
@@ -106,7 +105,12 @@ class Vote extends Component {
 			.all(promises)
 			// .then(this.setState({l: 0}))
 
-		if (this.state.decision[0].decision === 'true') {
+		
+	}
+
+	render () {
+
+		if (this.state.decision === 'true') {
 			var url_time = '/modify_time/'.concat(this.props.AppointmentId);
 			console.log(url_time);
 			fetch(url_time, {method: "POST"})
@@ -115,13 +119,11 @@ class Vote extends Component {
 			this.props.nextStageWithAppointment(0,0)
 		}
 
-		else if (this.state.decision[0].decision === 'false') {
+		else if (this.state.decision === 'false') {
 			alert('VOTING COMPLETED.');
 			this.props.nextStageWithAppointment(0,0)
 		}
-	}
 
-	render () {
 		const button =
 			<ul>
 				<li> <img className="complete" src={complete} alt="Complete"
