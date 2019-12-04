@@ -309,10 +309,11 @@ class Calendar extends React.PureComponent {
     super(props);
     this.state = {
 			user_id: this.props.user_id,
-			data: [],
+			data: this.props.data,
       currentDate: currentDate,
 			currentViewName : this.props.currentViewName,
 			appointmentChanges: {},
+			mount: this.props.mount,
 
       confirmationVisible: false,
       editingFormVisible: false,
@@ -375,6 +376,7 @@ class Calendar extends React.PureComponent {
   }
 
 	componentWillMount () {
+		if (this.state.mount) {
       var url_final = '/sch/'.concat(this.props.user_id);
       console.log(url_final);
       fetch(url_final)
@@ -383,11 +385,17 @@ class Calendar extends React.PureComponent {
       .catch((error)=>{
           console.log('Error fetching man',error);
       });
+			this.props.setMount(false);
+		}
   }
 
   componentDidUpdate() {
     this.appointmentForm.update();
   }
+
+	componentWillUnmount () {
+		this.props.setData({data: this.state.data});
+	}
 
 	currentViewNameChange(currentViewName) {
 		console.log(this.state.currentViewName);

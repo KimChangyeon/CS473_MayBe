@@ -56,10 +56,14 @@ class Main extends Component {
 			early_msg: "You've arrived at your appointment on time!",
 			early_min: 0,
 			reward_pt: 0,
+			data: [],
+			mount: true,
 		}
 		this.setMarker = this.setMarker.bind(this);
 		this.setPlace = this.setPlace.bind(this);
 		this.setMemo = this.setMemo.bind(this);
+		this.setData = this.setData.bind(this);
+		this.setMount = this.setMount.bind(this);
 		this.nextStage = this.nextStage.bind(this);
 		this.nextStageWithAppointment = this.nextStageWithAppointment.bind(this);
 		this.update = this.update.bind(this);
@@ -96,6 +100,14 @@ class Main extends Component {
 
 	setMemo(memo) {
 		this.setState(memo);
+	}
+
+	setData(data) {
+		this.setState(data);
+	}
+
+	setMount(value) {
+		this.setState({mount: value});
 	}
 
 	nextStage(number) {
@@ -357,7 +369,7 @@ class Main extends Component {
         break;
 
       case ('schedule'):
-      	content = <Schedule nextStage = {this.nextStage} header = {this.header} user_id = {this.state.user_id} AppointmentId = {this.state.AppointmentId}/>;
+      	content = <Schedule nextStage = {this.nextStage} header = {this.header} user_id = {this.state.user_id} AppointmentId = {this.state.AppointmentId} data = {this.state.data} setData = {this.setData} mount = {this.state.mount} setMount = {this.setMount}/>;
         break;
 
       case ('statistics'):

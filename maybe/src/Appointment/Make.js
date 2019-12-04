@@ -360,7 +360,7 @@ class Make extends Component {
 
 			case 'stat_friend':
 				bar =
-					<ButtonGroup id="Tap" size='lg' style={{top: "-12px", width: "100%", height: "50px"}}>
+					<ButtonGroup id="Tap" size='lg' style={{top: "-8px", width: "100%", height: "50px"}}>
 						<Button id="Button1" onClick={() => this.nextStage(0)}>
 							<img src={friendlist_light} alt="friend list" /></Button>
 						<Button id="Button2" onClick={() => this.nextStage(1)}>
