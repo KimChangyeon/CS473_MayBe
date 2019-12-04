@@ -14,7 +14,7 @@ class Login extends Component {
 				this.state = {
             id: '',
             pw: '',
-            result: {},
+            result: {a: 0},
             l: 1,
         }
         this.id = React.createRef(); 
