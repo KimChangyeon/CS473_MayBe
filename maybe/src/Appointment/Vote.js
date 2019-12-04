@@ -114,11 +114,13 @@ class Vote extends Component {
 				fetch(url_time, {method: "POST"})
 					.then(answer => console.log(answer.data))
 				alert('MAKING APPOINTMENT COMPLETED.');
+				this.setState({decision: ""});
 				this.props.nextStageWithAppointment(0,0)
 			}
 
 			else if (this.state.decision === 'false') {
 				alert('VOTING COMPLETED.');
+				this.setState({decision: ""});
 				this.props.nextStageWithAppointment(0,0)
 			}
 		}
