@@ -34,7 +34,7 @@ class Vote extends Component {
 			choiceDate : [],
 			l: 1,
 			vote_result : [],
-			decision: 'false',
+			decision: '',
 		}
 	}
 
@@ -59,7 +59,7 @@ class Vote extends Component {
 		var url_vote = '/vote_result/'.concat(this.state.AppointmentId);
 		fetch(url_vote)
 			.then(res => res.json())
-			.then(answer => this.setState({ vote_result : answer.data[0].decision }))   
+			.then(answer => this.setState({ vote_result : answer.data }))   
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 			// this.setState({ vote_result :  fakeData})
@@ -102,14 +102,13 @@ class Vote extends Component {
 		promises.push(
 		fetch(url_decision)
 		.then(res => res.json())
-		.then(answer => this.setState({decision: answer.data}))
+		.then(answer => this.setState({decision: answer.data[0].decision}))
 			)
 
 		Promise
 			.all(promises)
 			.then(this.setState({l: 0}))
 
-		
 	}
 
 	render () {
@@ -121,11 +120,13 @@ class Vote extends Component {
 				fetch(url_time, {method: "POST"})
 					.then(answer => console.log(answer.data))
 				alert('MAKING APPOINTMENT COMPLETED.');
+				this.setState({decision: ""});
 				this.props.nextStageWithAppointment(0,0)
 			}
 
 			else if (this.state.decision === 'false') {
 				alert('VOTING COMPLETED.');
+				this.setState({decision: ""});
 				this.props.nextStageWithAppointment(0,0)
 			}
 		}
