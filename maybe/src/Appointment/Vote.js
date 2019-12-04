@@ -28,7 +28,7 @@ class Vote extends Component {
 			choiceDate : [],
 			l: 1,
 			vote_result : [],
-			decision: 'false',
+			decision: '',
 		}
 	}
 
@@ -103,7 +103,6 @@ class Vote extends Component {
 			.all(promises)
 			.then(this.setState({l: 0}))
 
-		
 	}
 
 	render () {
