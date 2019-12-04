@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 /* Data */
-import {fiveCandidates, sixCandidates, sevenCandidates, fourCandidates, threeCandidates,
-    twelveCandidates,oneCandidates,twoCandidates} from './ChooseData';
-import {fiveVoteCandidates, sixVoteCandidates, sevenVoteCandidates, fourVoteCandidates,
-        threeVoteCandidates, twelveVoteCandidates, oneVoteCandidates, twoVoteCandidates} from './VoteData'
+import {fiveCandidates, sixCandidates, sevenCandidates, fourCandidates,
+        threeCandidates, twelveCandidates, oneCandidates, twoCandidates} from './VoteData'
 /* UI library */
 import {InputGroup, FormControl} from 'react-bootstrap'
 import Typography from '@material-ui/core/Typography';
@@ -38,7 +36,7 @@ class ChooseTable extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            chooseCells : [
+            cells : [
                 {
                     row : 12,
                     cell : twelveCandidates
@@ -71,41 +69,6 @@ class ChooseTable extends Component {
                 {
                     row: 19, 
                     cell : sevenCandidates
-                },
-            ],
-            voteCells : [
-                {
-                    row : 12,
-                    cell : twelveVoteCandidates
-                },
-                {
-                    row : 13,
-                    cell : oneVoteCandidates
-                },
-                {
-                    row : 14,
-                    cell : twoVoteCandidates
-                },
-                {
-                    row : 15,
-                    cell : threeVoteCandidates
-                },
-        
-                {
-                    row : 16,
-                    cell : fourVoteCandidates
-                },
-                {
-                    row : 17, 
-                    cell : fiveVoteCandidates
-                }, 
-                {
-                    row : 18, 
-                    cell : sixVoteCandidates
-                }, 
-                {
-                    row: 19, 
-                    cell : sevenVoteCandidates
                 },
             ],
             choice : [
@@ -153,6 +116,7 @@ class ChooseTable extends Component {
             let updatedVoteCells = stateVoteCell
             let i = 0
             
+            console.log('vote_result in choosetable.js : ',this.props.vote_result)
             this.props.vote_result.map((vote)=>{
                 DateId = vote.DateId
                 EndTime = vote.EndTime
@@ -180,19 +144,6 @@ class ChooseTable extends Component {
                 }
             })
     
-            /* update friends list */
-            const friendList = Array.from(friendSet)
-            let friend
-            let friendState =[]
-            let index = 0
-            for (friend of friendList) {
-                friendState.push({
-                    name : friend,
-                    img : index
-                })
-                index ++
-            }
-            console.log("getderivedStatefromProps updated state : ", updatedVoteCells)
             return updatedVoteCells
     }
 
@@ -214,46 +165,39 @@ class ChooseTable extends Component {
     cellClick =(row, id, selected) => {
         let updatedCells=[]
         let updatedChoice = []
-        if (this.props.type == "Choose"){
-            updatedCells = this.state.chooseCells.map((Row) => 
-                    Row.row === row
-                    ? {...Row, cell : Row.cell.map((cell)=> cell.id === id
-                        ?({...cell,selected : selected})
-                        :cell)}
-                    :Row)
-        }
-        if (this.props.type == "Vote") {
-            updatedCells = this.state.voteCells.map((Row) => 
+
+        /*update cells */
+        updatedCells = this.state.cells.map((Row) => 
                 Row.row === row
                 ? {...Row, cell : Row.cell.map((cell)=> cell.id === id
                     ?({...cell,selected : selected})
                     :cell)}
                 :Row)
-        }
+
+        /* update choice*/
         if (selected){
             updatedChoice = this.state.choice.map((Day) =>
                 Day.id === id
                 ? ({...Day, time: Day.time.concat(row)})
                 : Day)
-        }
-            
+        }            
         else{
             updatedChoice = this.state.choice.map((Day) => 
                 Day.id === id
                 ? ({...Day, time: Day.time.filter((time) => time !== row ) })
                 : Day)
         }
+
         this.updateDates(updatedChoice);
         console.log("updatedChoice : ", updatedChoice)
         //setState
-        if(this.props.type == "Choose") this.setState({chooseCells : updatedCells, choice : updatedChoice})
-        else this.setState({voteCells : updatedCells, choice : updatedChoice})
+        this.setState({cells : updatedCells, choice : updatedChoice})
    }
    
     renderRow = () =>{
         let renderCells = []
         if (this.props.type === "Choose") {
-            renderCells = this.state.chooseCells.map((Row) => {
+            renderCells = this.state.cells.map((Row) => {
                 return (
                     <tr>
                         <td scope = "row">{Row.row}</td>
@@ -263,7 +207,8 @@ class ChooseTable extends Component {
             })
         }
         else {
-            const updatedVoteCells=this.updateVoteCells(this.state.voteCells)
+            const updatedVoteCells=this.updateVoteCells(this.state.cells)
+            console.log("updatedvotecells :", updatedVoteCells)
             renderCells = updatedVoteCells.map((Row) => {
                 return (
                     <tr>
@@ -327,7 +272,7 @@ class ChooseTable extends Component {
                         />
                 </InputGroup>
             )
-        else return null
+        return null
     }
 
     updateDates =(updatedChoice) => {
@@ -378,7 +323,7 @@ class ChooseTable extends Component {
 	}
 
     render(){
-        console.log("vote_result :", this.props.vote_result)
+        // console.log("vote_result :", this.props.vote_result)
         return (
             <div>
                 {this.renderInputBox()}

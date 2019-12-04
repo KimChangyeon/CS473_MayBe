@@ -56,10 +56,8 @@ class Vote extends Component {
 			.then(answer => this.setState({ vote_result : answer.data }))   
 		.catch((error)=>{
 			console.log('Error fetching man',error);
+			// this.setState({ vote_result :  fakeData})
 		});
-		this.setState({
-			vote_result : fakeData
-		})
 	}
 
 	Complete () {
@@ -125,7 +123,7 @@ class Vote extends Component {
 				this.props.nextStageWithAppointment(0,0)
 			}
 		}
-
+		console.log("vote result in vote.js : ", this.state.vote_result)
 		const button =
 			<ul>
 				<li> <img className="complete" src={complete} alt="Complete"

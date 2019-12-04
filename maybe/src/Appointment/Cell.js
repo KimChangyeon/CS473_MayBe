@@ -12,8 +12,34 @@ const bgColors = {
 
 class Cell extends Component {
 
-    shouldComponentUpdate = nextProps =>
-    this.props.selected !== nextProps.selected;
+    constructor (props) {
+        super(props);
+        this.state = {
+            selected : props.selected,
+            selectNum : props.selected,
+            type : props.type
+        }
+    }
+
+    static getDerivedStateFromProps(nextProps, prevState){
+        if(nextProps.selected !== prevState.selected ||
+            nextProps.selectNum !== prevState.selectNum)
+            {
+                return {
+                    selectNum : nextProps.selectNum,
+                    selected : nextProps.selected
+                }
+            }
+        return null
+    }
+    shouldComponentUpdate = (nextProps, nextState) =>{
+        if (this.state.selected !== nextState.selected ||
+             this.state.selectNum !== nextState.selected)
+             return true
+        return false
+    }
+
+    
 
     handleClick =() => {
         const {id, row, cellClick, selected}= this.props
@@ -25,19 +51,13 @@ class Cell extends Component {
         return null
     }
     render(){
-        let className = ""
         let {
             selected,
-            type,
-            selectNum
-        } = this.props
-        className = "cell-enabled"
-        if (selected){
-            className = "cell-selected"
-        }
+            selectNum,
+            type
+        } = this.state
         switch (type) {
             case "Choose" :
-                console.log("props type : choose")
                 if (selected) {
                     return (
                         <td
@@ -54,7 +74,6 @@ class Cell extends Component {
                     )
                 }
             case "Vote" :
-                console.log ("props type : vote")
                 if (selected) selectNum +=1
                 if (selectNum > 5) selectNum = 5
                 if (selectNum >= 1) {
@@ -67,12 +86,10 @@ class Cell extends Component {
                         </td>
                     )
                 }
-                
                 else {
-
                     return (
                         <td
-                        onClick = {this.handleClick}
+                            onClick = {this.handleClick}
                         >
                         </td>
                     )
