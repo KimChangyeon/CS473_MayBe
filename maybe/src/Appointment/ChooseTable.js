@@ -107,18 +107,6 @@ class ChooseTable extends Component {
         this.onChange = this.onChange.bind(this);
     }
 
-    componentWillMount () {
-        var url_final = '/sch/'.concat(this.props.user_id);
-        console.log(url_final);
-        fetch(url_final)
-            .then(res => res.json())
-            .then(answer => this.setState({user_schedule: handling_schedule(answer.data)}))        
-        .catch((error)=>{
-            console.log('Error fetching man',error);
-        });
-        
-    }
-
     updateVoteCells=(stateVoteCell)=> {
             let DateId
             let EndTime

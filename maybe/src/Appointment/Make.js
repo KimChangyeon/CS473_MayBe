@@ -179,7 +179,7 @@ class Make extends Component {
 		var promises = [];
 		// '/make/:DateId/:StartTime/:EndTime/:What'
 		var url_make = '/make/'.concat(this.state.AppointmentName);
-		promises.append(
+		promises.push(
 			fetch(url_make, {method: "POST"})
 			.then(res => res.json())
 			.then(answer => console.log(answer.data)));
@@ -191,7 +191,7 @@ class Make extends Component {
 			var p = this.state.friends_in_appointment[k];
 			var url_participants = 'register'.concat('/').concat(p)
 			console.log(url_participants);
-			promises.append(
+			promises.push(
 				fetch(url_participants, {method: "POST"})
 				.then(res => res.json())
 				.then(answer => console.log(answer.data)))
@@ -199,14 +199,14 @@ class Make extends Component {
 
 		var url_self = 'register_self'.concat('/').concat(this.state.user_id)
 		console.log(url_self);
-		promises.append(
+		promises.push(
 		fetch(url_self, {method: "POST"})
 			.then(res => res.json())
 			.then(answer => console.log(answer.data)))
 
 		Promise
 			.all(promises)
-			
+
 		var timeSlot = this.state.timeSlot;
 		timeSlot.map((slot) => this.voting(slot));
 

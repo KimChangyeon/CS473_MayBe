@@ -89,7 +89,7 @@ router.post('/make/:What', (req, res) => {
 });
 
 router.post('/vote/:UserId/:DateId/:StartTime/:EndTime', (req, res) => {
-    var query = 'INSERT INTO Vote(AppointmentId, UserId, DateId, StartTime, EndTime) VALUES ((SELECT LAST_INSERT_ID(AppointmentId) as AppointmentId from Appointment order by LAST_INSERT_ID(AppointmentId) desc limit 1),?,?,?,?)'
+    var query = 'INSERT INTO Vote(AppointmentId, UserId, DateId, StartTime, EndTime) VALUES ((SELECT MAX(AppointmentId) as AppointmentId FROM Appointment),?,?,?,?)'
     db.query(query, [req.params.UserId,req.params.DateId,req.params.StartTime,req.params.EndTime], (err, rows) => {
         if (!err) {
             res.send({data: 'POSTING SUCCESSED FOR VOTING.'});
@@ -114,7 +114,7 @@ router.post('/vote2/:aid/:UserId/:DateId/:StartTime/:EndTime', (req, res) => {
 
 
 router.post('/register/:partname', (req, res) => {
-    var query = 'INSERT INTO Appointment_participants VALUES ((SELECT LAST_INSERT_ID(AppointmentId) as AppointmentId from Appointment order by LAST_INSERT_ID(AppointmentId) desc limit 1),(SELECT UserId from User where name = ?))'
+    var query = 'INSERT INTO Appointment_participants VALUES ((SELECT MAX(AppointmentId) as AppointmentId FROM Appointment),(SELECT UserId from User where name = ?))'
     db.query(query, req.params.partname, (err, rows) => {
         if (!err) {
             res.send({data: 'POSTING SUCCESSED FOR REGISTERING APPOINTMENT PARTICIPANTS.'});
@@ -126,7 +126,7 @@ router.post('/register/:partname', (req, res) => {
 });
 
 router.post('/register_self/:partid', (req, res) => {
-    var query = 'INSERT INTO Appointment_participants VALUES ((SELECT LAST_INSERT_ID(AppointmentId) as AppointmentId from Appointment order by LAST_INSERT_ID(AppointmentId) desc limit 1), ?)'
+    var query = 'INSERT INTO Appointment_participants VALUES ((SELECT MAX(AppointmentId) as AppointmentId FROM Appointment), ?)'
     db.query(query, Number(req.params.partid), (err, rows) => {
         if (!err) {
             res.send({data: 'POSTING SUCCESSED FOR REGISTERING THIS USER.'});
@@ -200,7 +200,8 @@ router.post('/modify_memo/:id/:Memo/', (req, res) => {
 });
 
 router.get('/AppId/', (req, res) => {
-    var query = 'SELECT LAST_INSERT_ID(AppointmentId) as AppointmentId from Appointment order by LAST_INSERT_ID(AppointmentId) desc limit 1'
+    // var query = 'SELECT LAST_INSERT_ID(AppointmentId) as AppointmentId from Appointment order by LAST_INSERT_ID(AppointmentId) desc limit 1'
+    var query = 'SELECT MAX(AppointmentId) as AppointmentId FROM Appointment'
     db.query(query, req, (err, rows) => {
         if (!err) {
             res.send({data: rows});

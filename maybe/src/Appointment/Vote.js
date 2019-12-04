@@ -14,7 +14,7 @@ let fakeData = [
         DateId : 20191202,
         EndTime : 14,
         StartTime : 13,
-        UserName : "guest"
+		UserName : "guest",
     }
 ]
 
@@ -26,9 +26,9 @@ class Vote extends Component {
 			AppointmentId: this.props.AppointmentId,
 			AppointmentTime: [],
 			choiceDate : [],
-			decision: '',
-			l: 0,
-			vote_result : []
+			l: 1,
+			vote_result : [],
+			decision: 'false',
 		}
 	}
 
@@ -53,7 +53,7 @@ class Vote extends Component {
 		var url_vote = '/vote_result/'.concat(this.state.AppointmentId);
 		fetch(url_vote)
 			.then(res => res.json())
-			.then(answer => this.setState({ vote_result : answer.data }))   
+			.then(answer => this.setState({ vote_result : answer.data[0].decision }))   
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 			// this.setState({ vote_result :  fakeData})
@@ -101,23 +101,27 @@ class Vote extends Component {
 
 		Promise
 			.all(promises)
-			// .then(this.setState({l: 0}))
+			.then(this.setState({l: 0}))
+
+		
 	}
 
 	render () {
 
-		if (this.state.decision[0].decision === 'true') {
-			var url_time = '/modify_time/'.concat(this.props.AppointmentId);
-			console.log(url_time);
-			fetch(url_time, {method: "POST"})
-				.then(answer => console.log(answer.data))
-			alert('MAKING APPOINTMENT COMPLETED.');
-			this.props.nextStageWithAppointment(0,0)
-		}
+		if (this.state.l === 0){
+			if (this.state.decision === 'true') {
+				var url_time = '/modify_time/'.concat(this.props.AppointmentId);
+				console.log(url_time);
+				fetch(url_time, {method: "POST"})
+					.then(answer => console.log(answer.data))
+				alert('MAKING APPOINTMENT COMPLETED.');
+				this.props.nextStageWithAppointment(0,0)
+			}
 
-		else if (this.state.decision[0].decision === 'false') {
-			alert('VOTING COMPLETED.');
-			this.props.nextStageWithAppointment(0,0)
+			else if (this.state.decision === 'false') {
+				alert('VOTING COMPLETED.');
+				this.props.nextStageWithAppointment(0,0)
+			}
 		}
 		console.log("vote result in vote.js : ", this.state.vote_result)
 		const button =

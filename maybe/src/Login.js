@@ -28,7 +28,7 @@ class Login extends Component {
     }
 
     login_process ()  {
-        const pw = this.state.pw
+        
         var url_final = '/login/'.concat(this.state.id).concat('/').concat(this.state.pw);
             fetch(url_final)
                 .then(res => res.json())
@@ -37,6 +37,18 @@ class Login extends Component {
                 console.log('Error in LOGIN',error);
             });
         
+    }
+
+    handleId() {
+        this.setState({id: this.id.current.value});
+    }
+
+    handlePw() {
+        this.setState({pw: this.pw.current.value});
+    }
+
+    render() {
+        const pw = this.state.pw
         if (this.state.l === 0){
             if (pw.length <= 0)
                 alert('YOU SHOULD WRITE YOUR PASSWORD.');
@@ -52,18 +64,7 @@ class Login extends Component {
             }
 				// this.props.setStage(1);
         }
-        
-    }
 
-    handleId() {
-        this.setState({id: this.id.current.value});
-    }
-
-    handlePw() {
-        this.setState({pw: this.pw.current.value});
-    }
-
-    render() {
         return (
         <div>
             <img id="login_calendar" src={calendar} alt="logo calendar" />
