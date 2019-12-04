@@ -26,7 +26,7 @@ class Vote extends Component {
 			AppointmentId: this.props.AppointmentId,
 			AppointmentTime: [],
 			choiceDate : [],
-			l: 0,
+			l: 1,
 			vote_result : [],
 			decision: 'false',
 		}
@@ -103,25 +103,27 @@ class Vote extends Component {
 
 		Promise
 			.all(promises)
-			// .then(this.setState({l: 0}))
+			.then(this.setState({l: 0}))
 
 		
 	}
 
 	render () {
 
-		if (this.state.decision === 'true') {
-			var url_time = '/modify_time/'.concat(this.props.AppointmentId);
-			console.log(url_time);
-			fetch(url_time, {method: "POST"})
-				.then(answer => console.log(answer.data))
-			alert('MAKING APPOINTMENT COMPLETED.');
-			this.props.nextStageWithAppointment(0,0)
-		}
+		if (this.state.l === 0){
+			if (this.state.decision === 'true') {
+				var url_time = '/modify_time/'.concat(this.props.AppointmentId);
+				console.log(url_time);
+				fetch(url_time, {method: "POST"})
+					.then(answer => console.log(answer.data))
+				alert('MAKING APPOINTMENT COMPLETED.');
+				this.props.nextStageWithAppointment(0,0)
+			}
 
-		else if (this.state.decision === 'false') {
-			alert('VOTING COMPLETED.');
-			this.props.nextStageWithAppointment(0,0)
+			else if (this.state.decision === 'false') {
+				alert('VOTING COMPLETED.');
+				this.props.nextStageWithAppointment(0,0)
+			}
 		}
 
 		const button =
