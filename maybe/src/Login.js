@@ -32,7 +32,7 @@ class Login extends Component {
         var url_final = '/login/'.concat(this.state.id).concat('/').concat(this.state.pw);
             fetch(url_final)
                 .then(res => res.json())
-                .then(answer => this.setState({result: answer.data[0].UserId, l: 0}))
+                .then(answer => this.setState({result: answer.data[0].UserId, reward: answer.data[0].Reward, l: 0}))
             .catch((error)=>{
                 console.log('Error in LOGIN',error);
             });
@@ -55,8 +55,8 @@ class Login extends Component {
             else
             {
                 if (this.state.result > 0){
-                    this.props.setUserId(this.state.result['UserId']);
-                    this.props.setReward(this.state.result['Reward']);
+                    this.props.setUserId(this.state.result);
+                    this.props.setReward(this.state.reward);
                     this.props.setStage(1);
                 }
                 else
