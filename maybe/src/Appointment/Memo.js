@@ -35,24 +35,20 @@ class Memo extends Component {
 	render () {
 		const bar = <div className="Bar">Memo</div>;
 		const button =
-        <ul>
-        	<li>
-              <img className="complete" src={complete} alt="Complete"
-                onClick={() => {
-				  this.props.setMemo({memo: this.state.memo});
-				  this.submission();
-				  this.props.nextStageWithAppointment(0,0);
-				  this.props.update();
-                }}/>
-          </li>
-          <li>
-              <img className="cancel" src={cancel} alt="Cancel"
-                onClick={() => this.props.nextStageWithAppointment(0,0)}/>
-          </li>
-        </ul>;
-		const header = this.props.header(bar, button);
+					<div style={{textAlign: "center", marginTop: "20px"}}>
+						<img className="cancel" src={cancel} alt="Cancel"
+							onClick={() => this.props.nextStageWithAppointment(0,0)}/>
+						<img className="complete" src={complete} alt="Complete"
+							onClick={() => {
+								this.props.setMemo({memo: this.state.memo});
+								this.submission();
+								this.props.nextStageWithAppointment(0,0);
+								this.props.update();
+							}}/>
+					</div>
+		const header = this.props.header(bar, null);
 		const	body =
-			<body className="Body">
+			<body className="Body2">
 				<InputGroup>
 					<InputGroup.Prepend>
 						<InputGroup.Text id="basic-addon2">Memo</InputGroup.Text>
@@ -64,6 +60,7 @@ class Memo extends Component {
 						style = {{height: "300px"}}
 					/>
 				</InputGroup>
+				{button}
 			</body>
 		const content = <div>{header}{body}</div>;
 		return content;

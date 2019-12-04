@@ -44,7 +44,7 @@ class Statistics_Monthly extends Component {
 
 	body () {
 		return (
-			<div className="Body">
+			<body className="Body">
                 <h5>Overall Score of <span className="month">{this.state.month}</span></h5>
                 <div>
                     <Radar data={this.state.dataRadar}
@@ -64,7 +64,7 @@ class Statistics_Monthly extends Component {
                     }}]}
                   }}
                 />
-			</div>
+			</body>
 		);
 	}
 

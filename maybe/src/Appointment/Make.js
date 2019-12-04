@@ -246,7 +246,7 @@ class Make extends Component {
 								}}
 						/>
 				bar =
-					<ButtonGroup id="Tap" size='lg' style={{top: "-8px", width: "100%", height: "50px"}}>
+					<ButtonGroup id="Tap" size='lg' style={{width: "500px", height: "50px", position: "fixed", zIndex: "1001"}}>
 						<Button id="Button1" onClick={() => this.nextStage(0)}>
 							<img src={friendlist_light} alt="friend list" /></Button>
 						<Button id="Button2" onClick={() => this.nextStage(1)}>
@@ -254,7 +254,7 @@ class Make extends Component {
 					</ButtonGroup>
 				header = this.props.header(bar, button);
 				body =
-					<body className="Body">
+					<body className="Body" style={{paddingTop: "70px"}}>
 						<InputGroup className="search">
 							<input
 								style = {{width: "455px", paddingLeft: "10px"}}
@@ -310,7 +310,7 @@ class Make extends Component {
 								this.nextStage(2)
 							}}/>;
 				bar =
-					<ButtonGroup id="Tap" size='lg' style={{top: "-8px", width: "100%", height: "50px"}}>
+					<ButtonGroup id="Tap" size='lg' style={{width: "500px", height: "50px", position: "fixed", zIndex: "1001"}}>
 						<Button id="Button2" onClick={() => this.nextStage(0)}>
 							<img src={friendlist_dark} alt="friend list" /></Button>
 						<Button id="Button1" onClick={() => this.nextStage(1)}>
@@ -333,24 +333,26 @@ class Make extends Component {
 
 			case 'choose':
 				button =
-					<ul>
-						<li> <img className="complete" src={complete} alt="Complete"
+					<div style={{textAlign: "center"}}>
+						<img className="cancel" src={cancel} alt="Cancel"
+								onClick={()=>this.props.nextStage(0)}/>
+						<img className="complete" src={complete} alt="Complete"
 								onClick={()=>{
 									this.submit();
 									this.props.nextStage(0);
 									this.props.update();
-									}}/> </li>
-						<li> <img className="cancel" src={cancel} alt="Cancel"
-								onClick={()=>this.props.nextStage(0)}/> </li>
-					</ul>
+									}}/>
+					</div>
 				bar = <div className="Bar">Choose Available Time Slots</div>;
-				header = this.props.header(bar, button);
-				body = <body className="Body">
+				header = this.props.header(bar, null);
+				body = <body className="Body" style={{paddingTop: "70px"}}>
 						<ChooseTable 
 							setAppointmentName = {this.setAppointmentName} 
 							setTimeSlot = {this.setTimeSlot}
 							user_id = {this.state.user_id}
-							type = {"Choose"}/></body>;
+							type = {"Choose"}/>
+						{button}
+					</body>;
 				content = 
 					<div>
 						{header}
@@ -360,7 +362,7 @@ class Make extends Component {
 
 			case 'stat_friend':
 				bar =
-					<ButtonGroup id="Tap" size='lg' style={{top: "-8px", width: "100%", height: "50px"}}>
+					<ButtonGroup id="Tap" size='lg' style={{width: "500px", height: "50px", position: "fixed", zIndex: "1001"}}>
 						<Button id="Button1" onClick={() => this.nextStage(0)}>
 							<img src={friendlist_light} alt="friend list" /></Button>
 						<Button id="Button2" onClick={() => this.nextStage(1)}>
@@ -371,7 +373,7 @@ class Make extends Component {
 				break;
 
 			case 'schedule_friend':
-				content = <Schedule nextStage = {this.props.nextStage} header = {this.props.header} user_id = {this.state.selected_friend_id} AppointmentId = {this.state.AppointmentId}/>;
+				content = <Schedule nextStage = {this.props.nextStage} header = {this.props.header} user_id = {this.state.selected_friend_id} AppointmentId = {this.state.AppointmentId} isFriend = {true} mount = {true}/>;
 				break;
 
     		default:

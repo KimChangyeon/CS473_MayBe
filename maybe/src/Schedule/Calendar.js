@@ -309,7 +309,7 @@ class Calendar extends React.PureComponent {
     super(props);
     this.state = {
 			user_id: this.props.user_id,
-			data: this.props.data,
+			data: this.props.isFriend ? [] : this.props.data,
       currentDate: currentDate,
 			currentViewName : this.props.currentViewName,
 			appointmentChanges: {},
@@ -385,7 +385,8 @@ class Calendar extends React.PureComponent {
       .catch((error)=>{
           console.log('Error fetching man',error);
       });
-			this.props.setMount(false);
+			if (!this.props.isFriend)
+				this.props.setMount(false);
 		}
   }
 
@@ -394,7 +395,8 @@ class Calendar extends React.PureComponent {
   }
 
 	componentWillUnmount () {
-		this.props.setData({data: this.state.data});
+		if (!this.props.isFriend)
+			this.props.setData({data: this.state.data});
 	}
 
 	currentViewNameChange(currentViewName) {

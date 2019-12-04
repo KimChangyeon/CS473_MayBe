@@ -132,12 +132,12 @@ class Vote extends Component {
 		}
 		console.log("vote result in vote.js : ", this.state.vote_result)
 		const button =
-			<ul>
-				<li> <img className="complete" src={complete} alt="Complete"
-						onClick={()=>this.Complete()}/> </li>
-				<li> <img className="cancel" src={cancel} alt="Cancel"
-						onClick={()=>this.props.nextStageWithAppointment(0,0)}/> </li>
-			</ul>
+			<div style={{textAlign: "center", marginTop: "20px"}}>
+				<img className="cancel" src={cancel} alt="Cancel"
+						onClick={()=>this.props.nextStageWithAppointment(0,0)}/>
+				<img className="complete" src={complete} alt="Complete"
+						onClick={()=>this.Complete()}/>
+			</div>
 		const bar = 
 			<div className="Bar">
 				Vote Meeting Time
@@ -160,9 +160,9 @@ class Vote extends Component {
 				)}
 				</Popup>
 			</div>;
-		const header = this.props.header(bar,button);
+		const header = this.props.header(bar, null);
 		const body =
-				<body className= "Body">
+				<body className= "Body2">
 					<ChooseTable 
 						type = "Vote"
 						AppointmentTime = {this.props.AppointmentTime}
@@ -170,6 +170,7 @@ class Vote extends Component {
 						updateChoice = {this.updateChoice}
 						vote_result = {this.state.vote_result}
 					/>
+					{button}
 				</body>
 		const content = <div>
 							{header}

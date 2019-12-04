@@ -166,6 +166,7 @@ class Main extends Component {
 
 	header(bar, button) {
 		return (
+			<div>
 			<header>
 				<div className = "wrapper">
 						<h1 className="Darkblue" onClick={()=>this.nextStage(0)}><a href="#">MayBe</a></h1>
@@ -189,9 +190,10 @@ class Main extends Component {
 							</ul>
 						</nav>
 				</div>
-				{bar}
-				<a href="#">{button}</a>
 			</header>
+			{bar}
+			{button}
+			</div>
 		);
 	}
 
@@ -369,7 +371,7 @@ class Main extends Component {
         break;
 
       case ('schedule'):
-      	content = <Schedule nextStage = {this.nextStage} header = {this.header} user_id = {this.state.user_id} AppointmentId = {this.state.AppointmentId} data = {this.state.data} setData = {this.setData} mount = {this.state.mount} setMount = {this.setMount}/>;
+      	content = <Schedule nextStage = {this.nextStage} header = {this.header} user_id = {this.state.user_id} AppointmentId = {this.state.AppointmentId} data = {this.state.data} setData = {this.setData} mount = {this.state.mount} setMount = {this.setMount} isFriend = {false}/>;
         break;
 
       case ('statistics'):

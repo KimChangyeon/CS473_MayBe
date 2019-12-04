@@ -9,7 +9,7 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      stage_id: 1,
+      stage_id: 0,
       stages: ['login', 'Main', 'signup'],
       user_id: 0,
       user_reward: 0,

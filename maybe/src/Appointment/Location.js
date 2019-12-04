@@ -49,8 +49,9 @@ class Location extends Component {
 
 	render () {
 		const button =
-			<ul>
-				<li>
+					<div style={{textAlign: "center", marginTop: "420px"}}>
+						<img className="cancel" src={cancel} alt="Cancel"
+              onClick={() => this.props.nextStageWithAppointment(0,0)}/>
 						<img className="complete" src={complete} alt="Complete"
 						  onClick={() => {
 								this.props.setMarker({marker: this.state.marker, initialCenter: this.state.initialCenter});
@@ -59,15 +60,10 @@ class Location extends Component {
 								this.props.nextStageWithAppointment(0,0);
 								this.props.update();
 							}}/>
-				</li>
-        <li>
-						<img className="cancel" src={cancel} alt="Cancel"
-              onClick={() => this.props.nextStageWithAppointment(0,0)}/>
-				</li>
-			</ul>
+					</div>
     const bar = <div className="Bar">Choose Meeting Point</div>;
-    const header = this.props.header(bar,button);
-		const body = <body className= "Body">
+    const header = this.props.header(bar, null);
+		const body = <body className= "Body2">
 				<InputGroup className="mb-3">
 					<InputGroup.Prepend>
 						<InputGroup.Text id="basic-addon3">Location</InputGroup.Text>
@@ -90,6 +86,7 @@ class Location extends Component {
         >
           <Marker position={this.state.marker}/>
         </Map>
+				{button}
 			</body>
 		const content = <div>{header}{body}</div>
 

@@ -36,7 +36,7 @@ class Schedule extends Component {
 				</Popup>
 			</div>;
 		const header = this.props.header(bar, null);
-		const body = <body className="Body"><Calendar user_id={this.props.user_id} currentViewName={this.state.currentViewName} data={this.props.data} setData={this.props.setData} mount={this.props.mount} setMount={this.props.setMount}/></body>;
+		const body = <body className="Body"><Calendar user_id={this.props.user_id} currentViewName={this.state.currentViewName} data={this.props.data} setData={this.props.setData} mount={this.props.mount} setMount={this.props.setMount} isFriend={this.props.isFriend}/></body>;
 		// const body = <body className="Body"><Weekly user_id={this.props.user_id} currentViewName={this.state.currentViewName}/></body>;
 		const content = <div>{header}{body}</div>;
 

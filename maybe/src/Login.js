@@ -100,7 +100,7 @@ class Login extends Component {
                 </div>                    
             </form>
             <Popup trigger={<img id="help_login" src={help} alt="help"/>} 
-                position = "right center"
+                position = "bottom left"
                 contentStyle={{width: "350px",zindex :9999}}>
 						{close => ( 
 							<div style={{margin: "5px"}}>

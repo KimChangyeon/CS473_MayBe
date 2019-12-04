@@ -52,50 +52,56 @@ body{
 .White {color: white;}
 
 .Bar {
-	width: 100%;
+	width: 500px;
 	height: 50px;
 	background-color: #564c4d;
 	color: White;
-	margin-top: 70px;
 	padding: 10px 0px 0px 20px;
 	font-size: 20px;
+	z-index: 1001;
+	position: fixed;
 }
 
 .listbutton {
-	position: relative;
-	left: 370px;
-	top: 490px;
+	position: fixed;
+	margin-left: 370px;
+	margin-top: 550px;
 	width: 100px;
+	z-index: 1000;
 }
 
 .makebutton {
-	position: absolute;
-	left: 300px;
-	top: 650px;
+	position: fixed;
+	margin-left: 270px;
+	margin-top: 550px;
 	width: 200px;
+	z-index: 1000;
 }
 
 .complete {
-	position: absolute;
-	right: 50px;
-	top: 680px;
+	margin-left: 20px;
 	width: 150px;	
+	z-index: 1000;
 }
 
 .cancel {
-	position: absolute;
-	left: 50px;
-	top: 680px;
+	margin-right: 20px;
 	width: 150px;	
+	z-index: 1000;
 }
 
 .Body {
-	margin-top: 140px;
 	margin-bottom: 50px;
+	padding-top: 50px;
 }
 
 .Body li {
 	margin: 20px;
+}
+
+.Body2 {
+	margin-bottom: 50px;
+	padding-top: 70px;
 }
 
 #Tap img {

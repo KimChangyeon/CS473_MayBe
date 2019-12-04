@@ -58,15 +58,15 @@ class Rank extends Component {
                       reward >= 400 ? "Lv.3 Often":
                       reward >= 100 ? "Lv.2 Sometimes":
                       "Lv.1 Never";
-        const badge_img = reward >= 1000 ? b5 :
-                      reward >= 700 ? b4: 
-                      reward >= 400 ? b3:
-                      reward >= 100 ? b2:
-                      b1;
+				const badge_img = reward >= 1000 ? <img id="badge" src={b5} style={{marginTop: "10px"}} alt="badge img"/>:
+                      reward >= 700 ? <img id="badge" src={b4} style={{marginTop: "11px"}} alt="badge img"/>: 
+                      reward >= 400 ? <img id="badge" src={b3} style={{marginTop: "9px"}} alt="badge img"/>:
+                      reward >= 100 ? <img id="badge" src={b2} style={{marginTop: "22px"}} alt="badge img"/>:
+                      <img id="badge" src={b1} style={{marginTop: "12px"}}/>;
 
         return (
-            <div className="Body">
-                <img id="badge" src={badge_img} alt="badge img"/>
+            <body className="Body">
+								{badge_img}
                 <h5>Rewards
                     {/* <img id="rewards" src={rewards} alt="rewards img"/> */}
                     {/* <span className="reward_val">{this.state.reward_pt}pt</span> */}
@@ -89,7 +89,7 @@ class Rank extends Component {
                             </ListGroup.Item>;
                         })}
                 </ListGroup>
-            </div>
+            </body>
         );
     }
 
@@ -119,7 +119,7 @@ class Rank extends Component {
 						)}
 			            </Popup>
                     </div>;
-		const header = this.props.header(bar, null);
+		const header = this.props.header(bar);
 		const body = this.body();
 		const content = <div>{header}{body}</div>;
 		return content;
