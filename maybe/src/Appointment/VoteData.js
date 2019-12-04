@@ -1,4 +1,4 @@
-export const fiveVoteCandidates = [
+export const fiveCandidates = [
     {
         id : 20191202,
         
@@ -42,7 +42,7 @@ export const fiveVoteCandidates = [
         selectNum : 0
     }
 ]
-export const sixVoteCandidates = [
+export const sixCandidates = [
     {
         id : 20191202,
         
@@ -86,7 +86,7 @@ export const sixVoteCandidates = [
         selectNum : 0
     }
 ]
-export const sevenVoteCandidates = [
+export const sevenCandidates = [
     {
         id : 20191202,
         
@@ -130,7 +130,7 @@ export const sevenVoteCandidates = [
         selectNum : 0
     }
 ]
-export const fourVoteCandidates = [
+export const fourCandidates = [
     {
         id : 20191202,
         
@@ -174,7 +174,7 @@ export const fourVoteCandidates = [
         selectNum : 0
     }
 ]
-export const twelveVoteCandidates = [
+export const twelveCandidates = [
     {
         id : 20191202,
         
@@ -218,7 +218,7 @@ export const twelveVoteCandidates = [
         selectNum : 0
     }
 ]
-export const oneVoteCandidates = [
+export const oneCandidates = [
     {
         id : 20191202,
         
@@ -262,7 +262,7 @@ export const oneVoteCandidates = [
         selectNum : 0
     }
 ]
-export const twoVoteCandidates = [
+export const twoCandidates = [
     {
         id : 20191202,
         
@@ -306,7 +306,7 @@ export const twoVoteCandidates = [
         selectNum : 0
     }
 ]
-export const threeVoteCandidates = [
+export const threeCandidates = [
     {
         id : 20191202,
         
