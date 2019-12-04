@@ -164,7 +164,7 @@ router.get('/vote_decision/:id', (req, res) => {
 
 
 router.post('/modify_time/:id/', (req, res) => {
-    var query = 'UPDATE Appointment AS App,( SELECT DateId, StartTime, EndTime FROM (SELECT DateId, StartTime, EndTime, count(*) as count FROM (SELECT * FROM Vote WHERE AppointmentId = ?) A GROUP BY DateId, StartTime, EndTIme ORDER BY count, DateId LIMIT 1) Final ) AS vote_result SET App.DateId = vote_result.DateId, App.StartTime = vote_result.StartTime, App.EndTime = vote_result.EndTime WHERE App.AppointmentId = ?'
+    var query = 'UPDATE Appointment AS App,(SELECT DateId, StartTime, EndTime FROM (SELECT DateId, StartTime, EndTime, count(*) as count FROM MayBe.Vote WHERE appointmentid = ? GROUP BY DateId, StartTime, EndTime ORDER BY count DESC LIMIT 1) Final ) AS vote_result SET App.DateId = vote_result.DateId, App.StartTime = vote_result.StartTime, App.EndTime = vote_result.EndTime WHERE App.AppointmentId = ?'
     db.query(query, [req.params.id, req.params.id], (err, rows) => {
         if (!err) {
             res.send({data: 'POSTING SUCCESSED FOR SETTING VOTING RESULT.'});
