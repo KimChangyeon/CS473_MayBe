@@ -53,7 +53,7 @@ class Vote extends Component {
 		var url_vote = '/vote_result/'.concat(this.state.AppointmentId);
 		fetch(url_vote)
 			.then(res => res.json())
-			.then(answer => this.setState({ vote_result : answer.data[0].decision }))   
+			.then(answer => this.setState({ vote_result : answer.data }))   
 		.catch((error)=>{
 			console.log('Error fetching man',error);
 		});
@@ -98,7 +98,7 @@ class Vote extends Component {
 		promises.push(
 		fetch(url_decision)
 		.then(res => res.json())
-		.then(answer => this.setState({decision: answer.data}))
+		.then(answer => this.setState({decision: answer.data[0].decision}))
 			)
 
 		Promise
