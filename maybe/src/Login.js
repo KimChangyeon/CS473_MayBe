@@ -14,7 +14,7 @@ class Login extends Component {
 				this.state = {
             id: '',
             pw: '',
-            result: {a: 0},
+            result: 0,
             l: 1,
         }
         this.id = React.createRef(); 
@@ -32,7 +32,7 @@ class Login extends Component {
         var url_final = '/login/'.concat(this.state.id).concat('/').concat(this.state.pw);
             fetch(url_final)
                 .then(res => res.json())
-                .then(answer => this.setState({result: answer.data[0], l: 0}))
+                .then(answer => this.setState({result: answer.data[0].UserId, l: 0}))
             .catch((error)=>{
                 console.log('Error in LOGIN',error);
             });
@@ -54,7 +54,7 @@ class Login extends Component {
                 alert('YOU SHOULD WRITE YOUR PASSWORD.');
             else
             {
-                if (Object.keys(this.state.result).length > 0){
+                if (this.state.result > 0){
                     this.props.setUserId(this.state.result['UserId']);
                     this.props.setReward(this.state.result['Reward']);
                     this.props.setStage(1);
