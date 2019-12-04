@@ -121,7 +121,7 @@ class ChooseTable extends Component {
                 DateId = vote.DateId
                 EndTime = vote.EndTime
                 StartTime = vote.StartTime
-                Username = vote.UserName
+                Username = vote.name
                 
                 //set user name first
                 friendSet.add(Username)
@@ -149,16 +149,17 @@ class ChooseTable extends Component {
 
     updateFriendList = () => {
         const friendList = Array.from(friendSet)
-            let friend
-            let friendState =[]
-            let index = 0
-            for (friend of friendList) {
-                friendState.push({
-                    name : friend,
-                    img : index
-                })
-                index ++
-            }
+        console.log("updated friendlist in choosetable.js: ", friendList)
+        let friend
+        let friendState =[]
+        let index = 0
+        for (friend of friendList) {
+            friendState.push({
+                name : friend,
+                img : index
+            })
+            index ++
+        }
         return friendState
     }
   
