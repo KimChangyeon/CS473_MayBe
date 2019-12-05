@@ -176,6 +176,11 @@ class Make extends Component {
 	}
 
 	submit () {
+		if (this.state.AppointmentName === ''){
+			alert('YOU MUST FILL THE NAME OF APPOINTMENT.');
+			return;
+		}
+		
 		var promises = [];
 		// '/make/:DateId/:StartTime/:EndTime/:What'
 		var url_make = '/make/'.concat(this.state.AppointmentName);

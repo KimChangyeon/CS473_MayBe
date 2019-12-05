@@ -199,19 +199,6 @@ router.post('/modify_memo/:id/:Memo/', (req, res) => {
     })
 });
 
-router.get('/AppId/', (req, res) => {
-    // var query = 'SELECT LAST_INSERT_ID(AppointmentId) as AppointmentId from Appointment order by LAST_INSERT_ID(AppointmentId) desc limit 1'
-    var query = 'SELECT MAX(AppointmentId) as AppointmentId FROM Appointment'
-    db.query(query, req, (err, rows) => {
-        if (!err) {
-            res.send({data: rows});
-        }
-        else {
-            res.send({data: err});
-        }
-    })
-});
-
 //한 약속에 대한 투표 결과 가져오기.
 router.get('/vote_result/:id', (req, res) => {
     var query = 'SELECT name, DateId, StartTime, EndTime FROM (SELECT UserId, DateId, StartTime, EndTime FROM Vote WHERE AppointmentId = ?) AS A INNER JOIN User as B ON A.UserId = B.userId'
