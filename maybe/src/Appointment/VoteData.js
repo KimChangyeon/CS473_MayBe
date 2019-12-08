@@ -1,42 +1,39 @@
 export const fiveCandidates = [
     {
-        id : 20191202,
-        
+        id : 20191208,   
         selected : false,
         selectNum : 0
     },
     {   
-        id : 20191203,
+        id : 20191209,
+        selected : false,
+        selectNum : 0
+    },
+    {
+        id : 20191210,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191204,
+        id : 20191211,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191205,
+        id : 20191212,
+        selected : false,
+        selectNum : 0
+    },
+    {
+        id : 20191213,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191206,
-        
-        selected : false,
-        selectNum : 0
-    },
-    {
-        id : 20191207,
-        
-        selected : false,
-        selectNum : 0
-    },
-    {
-        id : 20191208,
+        id : 20191214,
         
         selected : false,
         selectNum : 0
@@ -44,43 +41,43 @@ export const fiveCandidates = [
 ]
 export const sixCandidates = [
     {
-        id : 20191202,
+        id : 20191208,
         
         selected : false,
         selectNum : 0
     },
     {   
-        id : 20191203,
+        id : 20191209,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191204,
+        id : 20191210,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191205,
+        id : 20191211,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191206,
+        id : 20191212,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191207,
+        id : 20191213,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191208,
+        id : 20191214,
         
         selected : false,
         selectNum : 0
@@ -88,43 +85,43 @@ export const sixCandidates = [
 ]
 export const sevenCandidates = [
     {
-        id : 20191202,
+        id : 20191208,
         
         selected : false,
         selectNum : 0
     },
     {   
-        id : 20191203,
+        id : 20191209,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191204,
+        id : 20191210,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191205,
+        id : 20191211,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191206,
+        id : 20191212,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191207,
+        id : 20191213,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191208,
+        id : 20191214,
         
         selected : false,
         selectNum : 0
@@ -132,43 +129,43 @@ export const sevenCandidates = [
 ]
 export const fourCandidates = [
     {
-        id : 20191202,
+        id : 20191208,
         
         selected : false,
         selectNum : 0
     },
     {   
-        id : 20191203,
+        id : 20191209,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191204,
+        id : 20191210,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191205,
+        id : 20191211,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191206,
+        id : 20191212,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191207,
+        id : 20191213,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191208,
+        id : 20191214,
         
         selected : false,
         selectNum : 0
@@ -176,43 +173,43 @@ export const fourCandidates = [
 ]
 export const twelveCandidates = [
     {
-        id : 20191202,
+        id : 20191208,
         
         selected : false,
         selectNum : 0
     },
     {   
-        id : 20191203,
+        id : 20191209,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191204,
+        id : 20191210,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191205,
+        id : 20191211,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191206,
+        id : 20191212,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191207,
+        id : 20191213,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191208,
+        id : 20191214,
         
         selected : false,
         selectNum : 0
@@ -220,43 +217,43 @@ export const twelveCandidates = [
 ]
 export const oneCandidates = [
     {
-        id : 20191202,
+        id : 20191208,
         
         selected : false,
         selectNum : 0
     },
     {   
-        id : 20191203,
+        id : 20191209,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191204,
+        id : 20191210,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191205,
+        id : 20191211,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191206,
+        id : 20191212,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191207,
+        id : 20191213,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191208,
+        id : 20191214,
         
         selected : false,
         selectNum : 0
@@ -264,43 +261,43 @@ export const oneCandidates = [
 ]
 export const twoCandidates = [
     {
-        id : 20191202,
+        id : 20191208,
         
         selected : false,
         selectNum : 0
     },
     {   
-        id : 20191203,
+        id : 20191209,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191204,
+        id : 20191210,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191205,
+        id : 20191211,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191206,
+        id : 20191212,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191207,
+        id : 20191213,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191208,
+        id : 20191214,
         
         selected : false,
         selectNum : 0
@@ -308,43 +305,43 @@ export const twoCandidates = [
 ]
 export const threeCandidates = [
     {
-        id : 20191202,
+        id : 20191208,
         
         selected : false,
         selectNum : 0
     },
     {   
-        id : 20191203,
+        id : 20191209,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191204,
+        id : 20191210,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191205,
+        id : 20191211,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191206,
+        id : 20191212,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191207,
+        id : 20191213,
         
         selected : false,
         selectNum : 0
     },
     {
-        id : 20191208,
+        id : 20191214,
         
         selected : false,
         selectNum : 0
